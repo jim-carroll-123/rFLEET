@@ -9,11 +9,13 @@
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "importOrder": [
-    "^react$",
-    "^next$",
-    "^@(?!/).*$",
-    "^@/(.*)$",
-    "^[./]"
+    "^react",
+    "^next",
+    "^[^@./].*",
+    "^@(?!app|components|assets|styles).*$",
+    "^@(app|components|assets|styles).*$",
+    "^\\.[./]",
+    ".*"
   ],
   "plugins": [
     "@trivago/prettier-plugin-sort-imports"
