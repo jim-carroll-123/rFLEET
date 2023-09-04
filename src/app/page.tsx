@@ -1,9 +1,3 @@
-'use client'
-
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <button>kkk</button>
-    </main>
-  )
+  return <main>This is a home page</main>
 }

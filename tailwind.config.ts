@@ -21,8 +21,8 @@ const config: Config = {
         inherit: colors.inherit,
         current: colors.current,
         transparent: colors.transparent,
-        primary: '#9333EA',
-        secondary: '#ff7e33',
+        primary: '#2F80ED',
+        secondary: '#141943',
         info: '#0C63E7',
         black: colors.black,
         white: colors.white,
@@ -150,6 +150,7 @@ const config: Config = {
       backgroundColor: ({ theme }) => theme('colors'),
       backgroundImage: {
         none: 'none',
+        'gradient-primary': 'linear-gradient(125deg, #69EACB 22.81%, #EACCF8 61.92%, #6654F1 98.66%)',
         'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
         'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
         'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
@@ -253,6 +254,9 @@ const config: Config = {
       },
       container: {
         center: true,
+        screens: {
+          DEFAULT: '1174px',
+        },
       },
       content: {
         none: 'none',
@@ -370,33 +374,7 @@ const config: Config = {
         DEFAULT: '1',
       },
       fontFamily: {
-        sans: [
-          'ui-sans-serif',
-          'system-ui',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          '"Segoe UI"',
-          'Roboto',
-          '"Helvetica Neue"',
-          'Arial',
-          '"Noto Sans"',
-          'sans-serif',
-          '"Apple Color Emoji"',
-          '"Segoe UI Emoji"',
-          '"Segoe UI Symbol"',
-          '"Noto Color Emoji"',
-        ],
-        serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
-        mono: [
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          '"Liberation Mono"',
-          '"Courier New"',
-          'monospace',
-        ],
+        poppins: ['"Poppins"'],
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1rem' }],

@@ -25,3 +25,8 @@ a {
 .ReactModal__Overlay {
   @apply z-50;
 }
+
+.text-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
