@@ -9,6 +9,7 @@ import Close from '@assets/icons/close.svg'
 import Hamburger from '@assets/icons/hamburger.svg'
 import Lock from '@assets/icons/lock.svg'
 import { Button } from '@components/ui/Button'
+import { Logo } from '@components/ui/Logo'
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -27,9 +28,7 @@ export default function Example() {
       <div className="container">
         <div className="relative flex flex-wrap items-center justify-between gap-6 md:gap-0">
           <div className="relative z-[20] flex justify-between w-full md:px-0 lg:w-max ">
-            <Link href="/" aria-label="logo" className="flex items-center gap-1 space-x-2 hover:text-inherit">
-              <div className="flex text-4xl font-bold text-white text-gradient bg-gradient-primary">rFleet.io</div>
-            </Link>
+            <Logo />
             <div className="relative flex items-center max-h-10 lg:hidden ">
               <button
                 aria-label="humburger"

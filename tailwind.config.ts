@@ -2,9 +2,8 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/tw-elements/dist/js/**/*.js',
   ],
 
@@ -23,6 +22,7 @@ const config: Config = {
         transparent: colors.transparent,
         primary: '#2F80ED',
         secondary: '#141943',
+        dark: '#0E1135',
         info: '#0C63E7',
         black: colors.black,
         white: colors.white,

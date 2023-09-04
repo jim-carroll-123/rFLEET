@@ -11,7 +11,6 @@
   "importOrder": [
     "^react",
     "^next",
-    "^[^@./].*",
     "^@(?!app|components|assets|styles|lib).*$",
     "^@(app|components|assets|styles|lib).*$",
     "^\\.[./]",
