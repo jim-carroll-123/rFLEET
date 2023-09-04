@@ -1,5 +1,7 @@
 'use client'
 
+import { ParallaxProvider, useParallax } from 'react-scroll-parallax'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,6 +14,18 @@ import { getImageUrl } from '@lib/utils'
 import { Search } from './Search'
 
 export default function Home() {
+  return (
+    <ParallaxProvider>
+      <PageContent />
+    </ParallaxProvider>
+  )
+}
+
+const PageContent = () => {
+  const parallax = useParallax<HTMLDivElement>({
+    translateX: [-5, 2],
+    translateY: [50, -50],
+  })
   return (
     <main
       className={`relative bg-fixed bg-center bg-cover`}
@@ -85,7 +99,7 @@ export default function Home() {
       <section className="text-white">
         <div className="h-[100px] bg-gradient-fade-top-secondary" />
         <div className="bg-secondary">
-          <div className="mb-[36px] lg:mb-[50px] pl-[60px]">
+          <div className="mb-[36px] lg:mb-[50px] pl-[60px]" ref={parallax.ref}>
             <Image src={airplane} alt="" />
           </div>
           <div className="container">
