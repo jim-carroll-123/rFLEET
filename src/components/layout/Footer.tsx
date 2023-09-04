@@ -21,16 +21,16 @@ export default function Example() {
               <h6>Supply Chain Management</h6>
             </div>
             <div className="flex gap-10">
-              <Link href="#">
+              <Link href="#" className="svg-hover">
                 <Discord />
               </Link>
-              <Link href="#">
+              <Link href="#" className="svg-hover">
                 <Twitter />
               </Link>
-              <Link href="#">
+              <Link href="#" className="svg-hover">
                 <Instagram />
               </Link>
-              <Link href="#">
+              <Link href="#" className="svg-hover">
                 <Youtube />
               </Link>
             </div>

@@ -2,9 +2,13 @@ a {
   @apply block text-inherit no-underline hover:text-primary;
 }
 
-a:hover svg,
-a:hover svg * {
+a.svg-hover:hover svg,
+a.svg-hover:hover svg * {
   @apply hover:fill-primary;
+}
+
+br {
+  @apply hidden lg:block;
 }
 
 .container {
@@ -34,4 +38,8 @@ a:hover svg * {
 .text-gradient {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.only-desktop {
+  @apply hidden lg:block;
 }
