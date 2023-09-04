@@ -30,14 +30,14 @@ export default function Example() {
           <div className="relative z-[20] flex justify-between w-full md:px-0 lg:w-max ">
             <Logo />
             <div className="relative flex items-center max-h-10 lg:hidden ">
-              <Button
+              <button
                 aria-label="humburger"
                 id="hamburger"
-                size="xl"
+                className="fill-white"
                 onClick={() => setMobileMenuOpen((prev) => !prev)}
               >
                 {mobileMenuOpen ? <Close /> : <Hamburger />}
-              </Button>
+              </button>
             </div>
           </div>
           <div

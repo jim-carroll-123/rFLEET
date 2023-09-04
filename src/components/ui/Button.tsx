@@ -43,14 +43,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const sizeConfig = {
       sm: { padding: 'px-3 h-7', font: 'text-xs' },
       md: { padding: 'px-5 h-9', font: 'text-sm' },
-      lg: { padding: 'px-[32px] py-[18px]', font: 'text-[15px]' },
-      xl: { padding: 'px-[50px] h-[62px]', font: 'text-lg' },
+      lg: { padding: 'px-[24px] py-[14px] lg:px-[32px] lg:py-[18px]', font: 'text-[15px]' },
+      xl: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'text-lg' },
     }
 
     const { bgColor, textColor } = colorConfig[color]
     const { padding, font } = sizeConfig[size]
 
-    const width = full ? '' : 'sm:w-max'
+    const width = full ? 'w-full' : ''
     const hoverActive = disabled
       ? ''
       : 'hover:before:scale-[1.03] active:before:scale-[0.97] hover:after:blur-md active:after:blur-none active:after:bg-transparent'
@@ -60,7 +60,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled}
         className={cn(
-          'w-full relative flex items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 font-semibold',
+          'relative flex items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 font-semibold',
           className,
           width,
           bgColor,

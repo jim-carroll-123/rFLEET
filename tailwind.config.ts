@@ -150,7 +150,6 @@ const config: Config = {
       backgroundColor: ({ theme }) => theme('colors'),
       backgroundImage: {
         none: 'none',
-        'gradient-primary': 'linear-gradient(125deg, #69EACB 22.81%, #EACCF8 61.92%, #6654F1 98.66%)',
         'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
         'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
         'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
@@ -159,6 +158,14 @@ const config: Config = {
         'gradient-to-bl': 'linear-gradient(to bottom left, var(--tw-gradient-stops))',
         'gradient-to-l': 'linear-gradient(to left, var(--tw-gradient-stops))',
         'gradient-to-tl': 'linear-gradient(to top left, var(--tw-gradient-stops))',
+
+        'gradient-primary-to-r': 'linear-gradient(90deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%)',
+        'gradient-primary-to-br': 'linear-gradient(125deg, #69EACB 22.81%, #EACCF8 61.92%, #6654F1 98.66%)',
+
+        'gradient-fade-top-secondary':
+          'linear-gradient(0deg,rgba(20,25,67,1)0%,rgba(20,25,67,0.8)45%,rgba(20,25,67,0)100%)',
+        'gradient-fade-bottom-secondary':
+          'linear-gradient(180deg,rgba(20,25,67,1)0%,rgba(20,25,67,0.8)45%,rgba(20,25,67,0)100%)',
       },
       backgroundOpacity: ({ theme }) => theme('opacity'),
       backgroundPosition: {
