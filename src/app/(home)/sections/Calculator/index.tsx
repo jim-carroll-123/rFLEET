@@ -4,6 +4,7 @@ import { ParallaxBanner } from 'react-scroll-parallax'
 
 import planetEarth from '@assets/images/planet-earth.jpeg'
 
+import { CalculatorBox } from './CalculatorBox'
 import { TruckAndShip } from './TruckAndShip'
 
 export const CalculatorSection = () => {
@@ -22,36 +23,7 @@ export const CalculatorSection = () => {
                 from anywhere to just about everywhere.
               </h6>
             </div>
-            <div className="relative bg-[linear-gradient(117deg,#1C194B,0.9%,rgba(47,128,237,0.20)100%)] border border-solid border-[#ffffff30] p-[26px] lg:p-[36px] rounded-[20px]">
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-              kkk
-              <br />
-            </div>
+            <CalculatorBox />
           </div>
           <TruckAndShip />
         </div>
