@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import SearchIcon from '@assets/icons/search.svg'
 import { Button } from '@components/ui/Button'
 
-export const Search = () => {
+export const SearchInput = () => {
   useEffect(() => {
     const init = async () => {
       const { Ripple, initTE } = await import('tw-elements')
