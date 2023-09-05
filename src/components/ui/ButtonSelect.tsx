@@ -13,9 +13,9 @@ interface Props {
   onChange?: (newValue: any) => void
 }
 
-export const ButtonSelect = ({ options, value, onChange }: Props) => {
+export const ButtonSelect = ({ options, value, onChange, className }: Props) => {
   return (
-    <div className="flex lg:flex-row flex-col justify-between gap-[10px]">
+    <div className={cn('flex lg:flex-row flex-col justify-between gap-[10px]', className)}>
       {options.map((option, index) => (
         <button
           key={index}

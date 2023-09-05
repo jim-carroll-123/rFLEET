@@ -13,7 +13,7 @@ export const SearchSection = () => (
       <div className="relative flex flex-col h-full">
         <div className="h-[100px] shrink-0 bg-gradient-secondary-fade-in-to-top" />
 
-        <div className="container flex flex-col flex-1 justify-center items-center text-center gap-[42px] lg:gap-[56px]">
+        <div className="container flex flex-col flex-1 justify-center items-center text-center gap-[42px] lg:gap-[56px] lg:py-[40px] py-[30px]">
           <div>
             <h3 className="font-bold mb-[15px] lg:mb-[20px] text-gradient bg-gradient-primary-to-r">
               SEARCH ENGINE & OPTIMIZATION
