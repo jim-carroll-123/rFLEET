@@ -2,7 +2,7 @@
 
 import { ParallaxBanner } from 'react-scroll-parallax'
 
-import planetEarth from '@assets/images/planet-earth.jpeg'
+import planetEarth from '@assets/images/bg-planet-earth.jpeg'
 
 import { CalculatorBox } from './CalculatorBox'
 import { TruckAndShip } from './TruckAndShip'

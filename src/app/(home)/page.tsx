@@ -5,6 +5,7 @@ import { ParallaxProvider } from 'react-scroll-parallax'
 import { BannerSection } from './sections/Banner'
 import { CalculatorSection } from './sections/Calculator'
 import { LoginPortalSection } from './sections/LoginPortal'
+import { OnboardingSection } from './sections/Onboarding'
 import { SearchSection } from './sections/Search'
 
 export default function Home() {
@@ -22,6 +23,7 @@ const PageContent = () => {
       <SearchSection />
       <CalculatorSection />
       <LoginPortalSection />
+      <OnboardingSection />
     </main>
   )
 }

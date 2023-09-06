@@ -2,9 +2,9 @@
 
 import { ParallaxBanner } from 'react-scroll-parallax'
 
+import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
 import { TransparentButton } from '@components/ui/Button'
-import { GradientCard } from '@components/ui/GradientCard'
 
 export const LoginPortalSection = () => {
   return (
@@ -52,3 +52,12 @@ export const LoginPortalSection = () => {
     </section>
   )
 }
+
+export const GradientCard = ({ children }: { children: React.ReactNode }) => (
+  <div
+    className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[22px] lg:mb-[54px] mb-[48px]"
+    style={{ background: `url(${gradientCard.src})`, backgroundSize: '100% 100%' }}
+  >
+    {children}
+  </div>
+)
