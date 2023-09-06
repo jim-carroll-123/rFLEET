@@ -83,7 +83,7 @@ export const TransparentButton = React.forwardRef<HTMLButtonElement, React.Butto
   (props, ref) => (
     <button
       ref={ref}
-      className="w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semi rounded-md hover:bg-[#ffffff20] transition duration-300"
+      className="w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semi rounded-md hover:bg-[#ffffff20] transition duration-300 font-semibold"
       {...props}
     >
       {props.children}

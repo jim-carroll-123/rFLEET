@@ -5,10 +5,12 @@ import Link from 'next/link'
 import PlayCircle from '@assets/icons/play-circle.svg'
 import { Button } from '@components/ui/Button'
 
+import { CitiesGlobe } from './CitiesGlobe'
+
 export const BannerSection = () => (
   <section className="text-white bg-secondary">
-    <div className="container block lg:grid grid-cols-5">
-      <div className="col-span-3 py-[100px] lg:pt-[140px] pb-[100px]">
+    <div className="container block lg:grid grid-cols-9">
+      <div className="col-span-5 py-[100px] lg:pt-[140px] pb-[100px]">
         <h3 className="font-bold mb-[15px] lg:mb-[20px]">
           ELEVATE YOUR LOGISTICS
           <br className="only-desktop" />
@@ -38,7 +40,9 @@ export const BannerSection = () => (
           </Link>
         </div>
       </div>
-      <div className="col-span-2"></div>
+      <div className="col-span-4 text-white lg:py-[60px]">
+        <CitiesGlobe />
+      </div>
     </div>
   </section>
 )
