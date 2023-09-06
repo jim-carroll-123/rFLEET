@@ -14,9 +14,11 @@ export const CalculatorSection = () => {
         <div className="flex flex-col justify-between flex-1 bg-gradient-secondary-fade-in-to-top relative">
           <div className="container text-white relative z-10">
             <div className="text-center mb-[42px] lg:mb-[54px]">
-              <h3 className="font-bold mb-[15px] lg:mb-[40px] text-gradient bg-gradient-primary-to-r">
-                FREIGHT CALCULATOR & RATE REQUEST (RFQ TOOL)
-              </h3>
+              <div className="flex justify-center">
+                <h3 className="font-bold mb-[15px] lg:mb-[40px] text-gradient bg-gradient-primary-to-r">
+                  FREIGHT CALCULATOR & RATE REQUEST (RFQ TOOL)
+                </h3>
+              </div>
               <h6 className="text-gray-100">
                 Request rates for Parcel, LTL, FTL, Drayage, Ocean Containers, and Air Cargo
                 <br className="only-desktop" />

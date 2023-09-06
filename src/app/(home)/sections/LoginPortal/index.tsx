@@ -14,7 +14,11 @@ export const LoginPortalSection = () => {
           <div className="text-white">3d globe here</div>
           <div className="flex flex-col lg:items-end items-center">
             <div className="flex flex-col">
-              <h3 className="font-bold mb-[28px] lg:mb-[36px] text-gradient bg-gradient-primary-to-r">LOGIN PORTAL</h3>
+              <div className="flex justify-start">
+                <h3 className="font-bold mb-[28px] lg:mb-[36px] text-gradient bg-gradient-primary-to-r">
+                  LOGIN PORTAL
+                </h3>
+              </div>
               <GradientCard>
                 <h6 className="font-semi lg:mb-[24px] mb-[18px]">
                   ACCESS

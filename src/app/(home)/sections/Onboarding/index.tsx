@@ -17,9 +17,11 @@ export const OnboardingSection = () => {
         <div className="relative container lg:py-[110px] py-[90px] text-white">
           <div className="flex justify-center text-center lg:mb-[158px] mb-[50px]">
             <div className="flex flex-col">
-              <h3 className="font-bold lg:mb-[30px] mb-[24px] text-gradient bg-gradient-primary-to-r">
-                CARRIER NETWORK ONBOARDING
-              </h3>
+              <div className="flex justify-center">
+                <h3 className="font-bold lg:mb-[30px] mb-[24px] text-gradient bg-gradient-primary-to-r">
+                  CARRIER NETWORK ONBOARDING
+                </h3>
+              </div>
               <h6 className="lg:mb-[38px] mb-[28px]">
                 Join our Expansive Carrier Network built by truckers, for truckers supporting
                 <BreakD />
