@@ -1,0 +1,54 @@
+'use client'
+
+import { ParallaxBanner } from 'react-scroll-parallax'
+
+import wave from '@assets/images/particle-wave.png'
+import { TransparentButton } from '@components/ui/Button'
+import { GradientCard } from '@components/ui/GradientCard'
+
+export const LoginPortalSection = () => {
+  return (
+    <section className="bg-black text-white">
+      <ParallaxBanner className="parallax-banner" layers={[{ image: wave.src, speed: -20 }]}>
+        <div className="relative container lg:grid block grid-cols-2 lg:py-[128px] py-[90px]">
+          <div className="text-white">3d globe here</div>
+          <div className="flex flex-col lg:items-end items-center">
+            <div className="flex flex-col">
+              <h3 className="font-bold mb-[28px] lg:mb-[36px] text-gradient bg-gradient-primary-to-r">LOGIN PORTAL</h3>
+              <GradientCard>
+                <h6 className="font-semi lg:mb-[24px] mb-[18px]">
+                  ACCESS
+                  <br className="only-desktop" />
+                  SHIPPING PORTAL
+                </h6>
+                <div className="text-gray-200 lg:mb-[12px] mb-[8px]">
+                  Quote, Ship, Track, Manage Work Orders,
+                  <br className="only-desktop" />
+                  Carrier Relationships, Multi-Warehouses, and
+                  <br className="only-desktop" />
+                  Inventory Suppliers. (?)
+                </div>
+                <TransparentButton>LOGIN</TransparentButton>
+              </GradientCard>
+              <GradientCard>
+                <h6 className="font-semi lg:mb-[24px] mb-[18px]">
+                  ACCESS
+                  <br className="only-desktop" />
+                  CARRIER PORTAL
+                </h6>
+                <div className="text-gray-200 lg:mb-[12px] mb-[8px]">
+                  Efficiently Manage Trucks, Drivers, Bids, and
+                  <br className="only-desktop" />
+                  Loads. Seamlessly Collaborate with Your Team,
+                  <br className="only-desktop" />
+                  Customers, and Vendors in Real-Time. (?)
+                </div>
+                <TransparentButton>LOGIN</TransparentButton>
+              </GradientCard>
+            </div>
+          </div>
+        </div>
+      </ParallaxBanner>
+    </section>
+  )
+}

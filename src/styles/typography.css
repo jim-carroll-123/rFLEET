@@ -10,31 +10,31 @@
 
   h1 {
     @apply text-5xl sm:text-6xl;
-    /* 48px 60px */
+    /* 60px 48px */
   }
 
   h2 {
     @apply text-4xl sm:text-5xl;
-    /* 36px 40px */
+    /* 40px 36px */
   }
 
   h3 {
     @apply text-3xl sm:text-4xl leading-[32px] lg:leading-[44px];
-    /* 30px 36px */
+    /* 36px 30px */
   }
 
   h4 {
     @apply text-2xl sm:text-3xl;
-    /* 24px 32px */
+    /* 32px 24px */
   }
 
   h5 {
     @apply text-xl sm:text-2xl;
-    /* 20px 28px */
+    /* 28px 20px */
   }
 
   h6 {
     @apply text-lg sm:text-xl;
-    /* 18px 20px */
+    /* 20px 18px */
   }
 }
