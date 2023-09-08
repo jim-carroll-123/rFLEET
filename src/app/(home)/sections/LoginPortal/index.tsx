@@ -4,19 +4,30 @@ import { ParallaxBanner } from 'react-scroll-parallax'
 
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
+import wireframeGlobe from '@assets/images/wireframe-globe-body.png'
 import { TransparentButton } from '@components/ui/Button'
-
-import { WireframeGlobe } from './WireframeGlobe'
 
 export const LoginPortalSection = () => {
   return (
-    <section className="bg-black text-white">
+    <section className="relative bg-[#00010c] text-white">
+      <div className="absolute xl:left-0 lg:-left-[20%] -left-[60%] lg:-top-[20%]">
+        <div
+          className="absolute w-[1200px] h-[1200px]"
+          style={{
+            background: `radial-gradient(600px 600px at center, #191D8840 ,#191D8880, #191D8800)`
+          }}
+        />
+        <div
+          className="absolute w-[1200px] h-[1200px]"
+          style={{ background: `url(${wireframeGlobe.src}) no-repeat 300px 350px` }}
+        />
+      </div>
       <ParallaxBanner className="parallax-banner" layers={[{ image: wave.src, speed: -20 }]}>
-        <div className="relative container lg:grid block grid-cols-2 lg:py-[128px] py-[90px]">
-          <div className="text-white">
-            <WireframeGlobe />
+        <div className="relative container lg:grid block grid-cols-2">
+          <div className="relative text-white">
+            <div className="relative h-full"></div>
           </div>
-          <div className="flex flex-col lg:items-end items-center">
+          <div className="flex flex-col lg:items-end items-center lg:py-[128px] py-[90px]">
             <div className="flex flex-col">
               <div className="flex justify-start">
                 <h3 className="font-bold mb-[28px] lg:mb-[36px] text-gradient bg-gradient-primary-to-r">
