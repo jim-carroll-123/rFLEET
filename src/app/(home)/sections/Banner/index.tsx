@@ -3,9 +3,8 @@
 import Link from 'next/link'
 
 import PlayCircle from '@assets/icons/play-circle.svg'
+import globeVideo from '@assets/videos/cities-globe.mp4'
 import { Button } from '@components/ui/Button'
-
-import { CitiesGlobe } from './CitiesGlobe'
 
 export const BannerSection = () => (
   <section className="text-white bg-secondary">
@@ -41,7 +40,10 @@ export const BannerSection = () => (
         </div>
       </div>
       <div className="col-span-4 text-white lg:py-[60px]">
-        <CitiesGlobe />
+        <video width="520" height="520" autoPlay loop muted>
+          <source src={globeVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </section>

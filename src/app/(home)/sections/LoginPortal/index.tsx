@@ -6,12 +6,16 @@ import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
 import { TransparentButton } from '@components/ui/Button'
 
+import { WireframeGlobe } from './WireframeGlobe'
+
 export const LoginPortalSection = () => {
   return (
     <section className="bg-black text-white">
       <ParallaxBanner className="parallax-banner" layers={[{ image: wave.src, speed: -20 }]}>
         <div className="relative container lg:grid block grid-cols-2 lg:py-[128px] py-[90px]">
-          <div className="text-white">3d globe here</div>
+          <div className="text-white">
+            <WireframeGlobe />
+          </div>
           <div className="flex flex-col lg:items-end items-center">
             <div className="flex flex-col">
               <div className="flex justify-start">
