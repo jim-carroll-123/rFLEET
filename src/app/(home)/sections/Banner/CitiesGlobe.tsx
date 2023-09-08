@@ -1,13 +1,29 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Globe from 'react-globe.gl'
 
 import placesData from './placesData.json'
 
+// const Globe = dynamic(() => import('react-globe.gl').then((mod) => mod.default), {
+//   ssr: false
+// })
+
 export const CitiesGlobe = () => {
+  const globeEl = useRef<any>(null)
   const places: any = placesData
+
+  useEffect(() => {
+    if (globeEl.current) {
+      globeEl.current.pointOfView({ lat: 20, lng: -16.6, altitude: 1.7 }, 4000)
+      globeEl.current.controls().autoRotate = true
+      globeEl.current.controls().enabled = false
+    }
+  }, [])
+
   return (
     <Globe
+      ref={globeEl}
       width={520}
       height={520}
       globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
@@ -20,8 +36,7 @@ export const CitiesGlobe = () => {
       labelSize={(d: any) => Math.sqrt(d.properties.pop_max) * 4e-4}
       labelDotRadius={(d: any) => Math.sqrt(d.properties.pop_max) * 4e-4}
       labelResolution={2}
-      enablePointerInteraction={false}
-      objectRotation={{ x: 1, y: 1, z: 1 }}
+      objectRotation={{ x: 50, y: 50, z: 1 }}
     />
   )
 }
