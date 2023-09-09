@@ -1,11 +1,12 @@
 import { BreakD } from '@components/ui/BreakD'
+import { Title } from '@components/ui/Typography'
 
 export const AboutSection = () => {
   return (
     <section className="lg:py-[130px] py-[100px] bg-[#191a4c] text-white">
       <div className="container text-center lg:mb-[72px] mb-[54px]">
         <div className="flex justify-center lg:mb-[26px] mb-[20px]">
-          <h3 className="font-bold mb-[15px] lg:mb-[40px] text-gradient bg-gradient-primary-to-r">ABOUT US</h3>
+          <Title>About Us</Title>
         </div>
         <h6 className="lg:mb-[62px] mb-[46px]">
           At rFleet Inc., we unite shippers, carriers, sellers, and buyers in a<BreakD />

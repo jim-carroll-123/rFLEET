@@ -6,6 +6,7 @@ import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
 import wireframeGlobe from '@assets/images/wireframe-globe-body.png'
 import { TransparentButton } from '@components/ui/Button'
+import { Title } from '@components/ui/Typography'
 
 export const LoginPortalSection = () => {
   return (
@@ -30,9 +31,7 @@ export const LoginPortalSection = () => {
           <div className="flex flex-col lg:items-end items-center lg:py-[128px] py-[90px]">
             <div className="flex flex-col">
               <div className="flex justify-start">
-                <h3 className="font-bold mb-[28px] lg:mb-[36px] text-gradient bg-gradient-primary-to-r">
-                  LOGIN PORTAL
-                </h3>
+                <Title>LOGIN PORTAL</Title>
               </div>
               <GradientCard>
                 <h6 className="font-semi lg:mb-[24px] mb-[18px]">

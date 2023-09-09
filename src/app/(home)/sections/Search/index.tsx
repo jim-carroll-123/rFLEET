@@ -4,6 +4,7 @@ import { ParallaxBanner } from 'react-scroll-parallax'
 
 import { SearchInput } from '@app/(home)/components/SearchInput'
 import bgEarth from '@assets/images/bg-earth.jpeg'
+import { Title } from '@components/ui/Typography'
 
 import { Airplane } from './Airplane'
 
@@ -15,9 +16,7 @@ export const SearchSection = () => (
 
         <div className="container flex flex-col flex-1 justify-center items-center text-center gap-[42px] lg:gap-[56px] lg:py-[40px] py-[30px]">
           <div>
-            <h3 className="font-bold mb-[15px] lg:mb-[20px] text-gradient bg-gradient-primary-to-r">
-              SEARCH ENGINE & OPTIMIZATION
-            </h3>
+            <Title>SEARCH ENGINE & OPTIMIZATION</Title>
             <h6 className="text-gray-300 font-[500]">What do you want to look for today?</h6>
           </div>
           <div className="w-full flex flex-col items-center">

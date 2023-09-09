@@ -67,7 +67,7 @@ export default function Example() {
               </div>
               <div className="flex">
                 <Link
-                  href="#"
+                  href="/signin"
                   className="flex gap-2 items-center text-white font-semibold transition hover:text-primary fill-white hover:fill-primary"
                 >
                   <span className="">Log in</span>
@@ -75,7 +75,7 @@ export default function Example() {
                 </Link>
               </div>
               <div className="flex gap-2">
-                <Link href="#">
+                <Link href="/signup">
                   <Button size="lg">Create Account</Button>
                 </Link>
               </div>

@@ -3,6 +3,7 @@
 import { ParallaxBanner } from 'react-scroll-parallax'
 
 import planetEarth from '@assets/images/bg-planet-earth.jpeg'
+import { Title } from '@components/ui/Typography'
 
 import { CalculatorBox } from './CalculatorBox'
 import { TruckAndShip } from './TruckAndShip'
@@ -15,9 +16,7 @@ export const CalculatorSection = () => {
           <div className="container text-white relative z-10">
             <div className="text-center mb-[42px] lg:mb-[54px]">
               <div className="flex justify-center">
-                <h3 className="font-bold mb-[15px] lg:mb-[40px] text-gradient bg-gradient-primary-to-r">
-                  FREIGHT CALCULATOR & RATE REQUEST (RFQ TOOL)
-                </h3>
+                <Title>FREIGHT CALCULATOR & RATE REQUEST (RFQ TOOL)</Title>
               </div>
               <h6 className="text-gray-100">
                 Request rates for Parcel, LTL, FTL, Drayage, Ocean Containers, and Air Cargo

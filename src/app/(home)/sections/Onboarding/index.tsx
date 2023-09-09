@@ -5,6 +5,7 @@ import bgWireframeGlobe from '@assets/images/bg-wireframe-globe.png'
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-br.png'
 import { BreakD } from '@components/ui/BreakD'
 import { TransparentButton } from '@components/ui/Button'
+import { Title } from '@components/ui/Typography'
 
 export const OnboardingSection = () => {
   return (
@@ -18,9 +19,7 @@ export const OnboardingSection = () => {
           <div className="flex justify-center text-center lg:mb-[158px] mb-[50px]">
             <div className="flex flex-col">
               <div className="flex justify-center">
-                <h3 className="font-bold lg:mb-[30px] mb-[24px] text-gradient bg-gradient-primary-to-r">
-                  CARRIER NETWORK ONBOARDING
-                </h3>
+                <Title>CARRIER NETWORK ONBOARDING</Title>
               </div>
               <h6 className="lg:mb-[38px] mb-[28px]">
                 Join our Expansive Carrier Network built by truckers, for truckers supporting
