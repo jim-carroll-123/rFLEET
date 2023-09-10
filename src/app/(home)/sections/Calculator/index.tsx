@@ -18,11 +18,11 @@ export const CalculatorSection = () => {
               <div className="flex justify-center">
                 <Title>FREIGHT CALCULATOR & RATE REQUEST (RFQ TOOL)</Title>
               </div>
-              <h6 className="text-gray-100">
+              <div className="text-body-xl text-gray-100">
                 Request rates for Parcel, LTL, FTL, Drayage, Ocean Containers, and Air Cargo
                 <br className="only-desktop" />
                 from anywhere to just about everywhere.
-              </h6>
+              </div>
             </div>
             <CalculatorBox />
           </div>

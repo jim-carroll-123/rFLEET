@@ -16,9 +16,9 @@ export default function Example() {
           <div className="flex flex-col gap-11">
             <Logo />
             <div className="flex flex-col gap-3">
-              <h6>A Leading Partner for Cutting-Edge</h6>
-              <h6>Innovation in the Sphere of Logistics and</h6>
-              <h6>Supply Chain Management</h6>
+              <div className="text-body-xl">A Leading Partner for Cutting-Edge</div>
+              <div className="text-body-xl">Innovation in the Sphere of Logistics and</div>
+              <div className="text-body-xl">Supply Chain Management</div>
             </div>
             <div className="flex gap-10">
               <Link href="#" className="svg-hover">
@@ -35,21 +35,23 @@ export default function Example() {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col gap-11 mt-11 lg:mt-0">
-            <h4>Links</h4>
-            <div className="flex flex-col gap-5">
-              <Link href="#">
-                <h6>Main Screen</h6>
-              </Link>
-              <Link href="#">
-                <h6>Ship Now</h6>
-              </Link>
-              <Link href="#">
-                <h6>Carrier Network</h6>
-              </Link>
-              <Link href="#">
-                <h6>About US</h6>
-              </Link>
+          <div className="flex lg:justify-ceter justify-start">
+            <div className="flex flex-col gap-11 mt-11 lg:mt-0">
+              <h4 className="font-semibold">Links</h4>
+              <div className="flex flex-col gap-5 text-gray-200">
+                <Link href="#">
+                  <div className="text-body-xl">Main Screen</div>
+                </Link>
+                <Link href="#">
+                  <div className="text-body-xl">Ship Now</div>
+                </Link>
+                <Link href="#">
+                  <div className="text-body-xl">Carrier Network</div>
+                </Link>
+                <Link href="#">
+                  <div className="text-body-xl">About US</div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -34,11 +34,11 @@ export const LoginPortalSection = () => {
                 <Title>LOGIN PORTAL</Title>
               </div>
               <GradientCard>
-                <h6 className="font-semi lg:mb-[24px] mb-[18px]">
+                <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">
                   ACCESS
                   <br className="only-desktop" />
                   SHIPPING PORTAL
-                </h6>
+                </div>
                 <div className="text-gray-200 lg:mb-[12px] mb-[8px]">
                   Quote, Ship, Track, Manage Work Orders,
                   <br className="only-desktop" />
@@ -49,11 +49,11 @@ export const LoginPortalSection = () => {
                 <TransparentButton>LOGIN</TransparentButton>
               </GradientCard>
               <GradientCard>
-                <h6 className="font-semi lg:mb-[24px] mb-[18px]">
+                <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">
                   ACCESS
                   <br className="only-desktop" />
                   CARRIER PORTAL
-                </h6>
+                </div>
                 <div className="text-gray-200 lg:mb-[12px] mb-[8px]">
                   Efficiently Manage Trucks, Drivers, Bids, and
                   <br className="only-desktop" />

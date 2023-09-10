@@ -1,40 +1,63 @@
 @layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply leading-normal;
+  .text-display {
+    @apply lg:text-[136px] text-[105px] lg:leading[128px] leading-[98px];
+  }
+
+  .text-display-sm {
+    @apply lg:text-[104px] text-[80] lg:leading-[96px] leading-[72px];
   }
 
   h1 {
-    @apply text-5xl sm:text-6xl;
-    /* 60px 48px */
+    @apply lg:text-[72px] text-[54px] lg:leading-[80px] leading-[60px]
+    /* 60px 48px */;
   }
 
   h2 {
-    @apply text-4xl sm:text-5xl;
-    /* 40px 36px */
+    @apply lg:text-[60px] text-[45px] lg:leading-[68px] leading-[51px]
+    /* 40px 36px */;
   }
 
   h3 {
-    @apply text-3xl sm:text-4xl leading-[32px] lg:leading-[44px];
-    /* 36px 30px */
+    @apply lg:text-[48px] text-[36px] lg:leading-[56px] leading-[42px]
+    /* 36px 30px */;
   }
 
   h4 {
-    @apply text-2xl sm:text-3xl;
-    /* 32px 24px */
+    @apply lg:text-[36px] text-[27px] lg:leading-[40px] leading-[30px]
+    /* 32px 24px */;
   }
 
   h5 {
-    @apply text-xl sm:text-2xl;
-    /* 28px 20px */
+    @apply lg:text-[30px] text-[23px] lg:leading-[36px] leading-[27px]
+    /* 28px 20px */;
   }
 
   h6 {
-    @apply text-lg sm:text-xl;
-    /* 20px 18px */
+    @apply lg:text-[24px] text-[18px] lg:leading-[32px] leading-[24px]
+    /* 20px 18px */;
+  }
+
+  .text-body-xl {
+    @apply lg:text-[20px] text-[15px] lg:leading-[28px] leading-[21px];
+  }
+
+  .text-body-lg {
+    @apply lg:text-[18px] text-[13px] lg:leading-[28px] leading-[21px];
+  }
+
+  .text-input-leading {
+    @apply lg:text-[16px] text-[12px] lg:leading-[24px] leading-[18px];
+  }
+
+  .text-input-text {
+    @apply lg:text-[14px] text-[10px] lg:leading-[20px] leading-[15px];
+  }
+
+  .text-caption-sm {
+    @apply lg:text-[14px] text-[10px] lg:leading-[20px] leading-[15px];
+  }
+
+  .text-caption-xs {
+    @apply lg:text-[12px] text-[9px] lg:leading-[16px] leading-[12px];
   }
 }

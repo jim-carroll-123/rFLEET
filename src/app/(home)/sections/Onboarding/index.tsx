@@ -21,13 +21,13 @@ export const OnboardingSection = () => {
               <div className="flex justify-center">
                 <Title>CARRIER NETWORK ONBOARDING</Title>
               </div>
-              <h6 className="lg:mb-[38px] mb-[28px]">
+              <div className="text-body-xl lg:mb-[38px] mb-[28px]">
                 Join our Expansive Carrier Network built by truckers, for truckers supporting
                 <BreakD />
                 the fight for humanity and fair wages. Onboard as a Truck Owner, Skilled
                 <BreakD />
                 Driver, Mechanic, Tow, and More..., or Deliver with Your Personal Vehicle.
-              </h6>
+              </div>
               <div className="w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semi rounded-md bg-[#ffffff20] transition duration-300">
                 Choose which profile best fits you?
               </div>
@@ -36,13 +36,13 @@ export const OnboardingSection = () => {
           <div className="lg:grid flex lg:grid-cols-3 flex-col gap-[28px]">
             <GradientCard>
               <WalletMoney />
-              <h6 className="font-semi text-center">
+              <div className="text-body-xl font-semi text-center">
                 TRUCKING COMPANIES,
                 <BreakD />
                 DISPATCHERS,
                 <BreakD />
                 AND COORDINATORS.
-              </h6>
+              </div>
               <div className="text-gray-200">
                 Create a Profile to Effortlessly Track
                 <BreakD />
@@ -61,13 +61,13 @@ export const OnboardingSection = () => {
             <div className="lg:translate-y-[-80px]">
               <GradientCard>
                 <WalletMoney />
-                <h6 className="font-semi text-center">
+                <div className="text-body-xl font-semi text-center">
                   CDL SEMI-TRUCK, SKILLED
                   <BreakD />
                   BOX TRUCK, AND PERSONAL
                   <BreakD />
                   VEHICLE DRIVERS
-                </h6>
+                </div>
                 <div className="text-gray-200">
                   Discover Your Next Move: Find
                   <BreakD />
@@ -86,13 +86,13 @@ export const OnboardingSection = () => {
             </div>
             <GradientCard>
               <WalletMoney />
-              <h6 className="font-semi">
+              <div className="text-body-xl font-semi">
                 OEM, VENDORS, MECHANICS
                 <BreakD />
                 TOWING COMPANIES, AND
                 <BreakD />
                 TIRE SHOP.
-              </h6>
+              </div>
               <div className="text-gray-200">
                 Fuel Your Success - Join Now and
                 <BreakD />

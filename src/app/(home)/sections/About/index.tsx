@@ -8,7 +8,7 @@ export const AboutSection = () => {
         <div className="flex justify-center lg:mb-[26px] mb-[20px]">
           <Title>About Us</Title>
         </div>
-        <h6 className="lg:mb-[62px] mb-[46px]">
+        <div className="text-body-xl lg:mb-[62px] mb-[46px]">
           At rFleet Inc., we unite shippers, carriers, sellers, and buyers in a<BreakD />
           decentralized ecosystem, cultivating collaboration across the supply
           <BreakD />
@@ -17,7 +17,7 @@ export const AboutSection = () => {
           and accountability from carriers, drivers, and vendors. Together, we&apos;re
           <BreakD />
           transforming the industry, forging a better way to do business.
-        </h6>
+        </div>
         <button className="lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">
           LEARN MORE
         </button>
@@ -30,39 +30,39 @@ export const AboutSection = () => {
           ></div>
           <div className="relative grid lg:grid-cols-4 grid-cols-2 gap-[2px]">
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">~$100 billion</h3>
-              <div className="lg:text-[18px] text-[16px]">cumulative trading volume to date</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">~$100 billion</h4>
+              <div className="text-body-lg text-gray-400">cumulative trading volume to date</div>
             </div>
             <div
               className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]"
               style={{ background: 'linear-gradient(135deg, #69EACB 0%, #5FA4E6 53.12%, #6654F1 100%)' }}
             >
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">0.8%</h3>
-              <div className="lg:text-[18px] text-[16px]">of the global crypto spot trading volume</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">0.8%</h4>
+              <div className="text-body-lg">of the global crypto spot trading volume</div>
             </div>
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">~30</h3>
-              <div className="lg:text-[18px] text-[16px]">Gravity Teammates (& growing)</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">~30</h4>
+              <div className="text-body-lg text-gray-400">Gravity Teammates (& growing)</div>
             </div>
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">25+</h3>
-              <div className="lg:text-[18px] text-[16px]">leading global and local crypto exchanges</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">25+</h4>
+              <div className="text-body-lg text-gray-400">leading global and local crypto exchanges</div>
             </div>
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">2017</h3>
-              <div className="lg:text-[18px] text-[16px]">start, crypto-natives</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">2017</h4>
+              <div className="text-body-lg text-gray-400">start, crypto-natives</div>
             </div>
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">1,200+</h3>
-              <div className="lg:text-[18px] text-[16px]">crypto-asset pairs</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">1,200+</h4>
+              <div className="text-body-lg text-gray-400">crypto-asset pairs</div>
             </div>
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">24/7</h3>
-              <div className="lg:text-[18px] text-[16px]">liquidity</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">24/7</h4>
+              <div className="text-body-lg text-gray-400">liquidity</div>
             </div>
             <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h3 className="font-[500] lg:mb-[15px] mb-[13px]">5 billion+</h3>
-              <div className="lg:text-[18px] text-[16px]">trades done to date</div>
+              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">5 billion+</h4>
+              <div className="text-body-lg text-gray-400">trades done to date</div>
             </div>
           </div>
         </div>

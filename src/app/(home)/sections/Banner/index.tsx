@@ -10,7 +10,7 @@ export const BannerSection = () => (
   <section className="text-white bg-secondary">
     <div className="container block lg:grid grid-cols-9">
       <div className="col-span-5 py-[100px] lg:pt-[140px] pb-[100px]">
-        <h3 className="font-bold mb-[15px] lg:mb-[20px]">
+        <h4 className="font-bold mb-[15px] lg:mb-[20px]">
           ELEVATE YOUR LOGISTICS
           <br className="only-desktop" />
           WITH <span className="text-gradient bg-gradient-primary-to-br">rFleet.io:</span>
@@ -19,7 +19,7 @@ export const BannerSection = () => (
             <br className="only-desktop" />
             CHAIN MANAGEMENT GLOBALLY
           </div>
-        </h3>
+        </h4>
         <div className="text-gray-300 tracking-widest leading-relaxed mb-[36px] lg:mb-[48px]">
           Experience efficiency, connectivity, and growth
           <br className="only-desktop" />
@@ -35,7 +35,7 @@ export const BannerSection = () => (
           </Link>
           <Link href="#" className="flex items-center gap-2">
             <PlayCircle />
-            <h6 className="only-desktop">HOW IT WORKS</h6>
+            <div className="only-desktop text-body-xl">HOW IT WORKS</div>
           </Link>
         </div>
       </div>
