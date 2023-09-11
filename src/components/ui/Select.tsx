@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, createContext, forwardRef, useContext, useEffect } from 'react'
 
 const SELECT_GROUP = 'INPUT_GROUP'
@@ -52,7 +54,7 @@ export const Select = forwardRef(
         </select>
       </div>
     )
-  },
+  }
 )
 
 const SelectGroupContext = createContext<string | null>(null)

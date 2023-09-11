@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 
 import { cn } from '@lib/utils'
@@ -19,7 +21,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn('w-full', className)}>
         {props.label!! && (
-          <label htmlFor="email" className={`block mb-1 text-sm font-medium text-gray-700`}>
+          <label htmlFor="email" className={`block lg:mb-[12px] mb-[8px] font-medium`}>
             {props.label}
           </label>
         )}
@@ -27,16 +29,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           onChange={(e) => (onChange ? onChange(e.target.value) : false)}
           className={cn(
-            'block w-full lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] border-2 border-solid  sm:text-sm shadow-sm rounded-md bg-transparent',
-            transparent
-              ? 'text-white border-gray-100 hover:border-gray-300 focus:ring-primary focus:border-primary placeholder:text-white'
-              : 'text-black border-primary focus:ring-blue-800 focus:border-blue-800',
+            'block w-full lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] border-2 border-solid  sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white border-gray-100 hover:border-gray-300 focus:ring-primary focus:border-primary placeholder:text-white'
           )}
           {...props}
         />
       </div>
     )
-  },
+  }
 )
 
 interface InputGroupProps {
@@ -51,7 +50,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(({ c
     if (React.isValidElement(child)) {
       return React.cloneElement(child as React.ReactElement<InputProps>, {
         index,
-        siblings: React.Children.count(children),
+        siblings: React.Children.count(children)
       })
     }
   })

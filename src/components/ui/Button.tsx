@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 import { cn } from '@lib/utils'
@@ -16,35 +18,35 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const colorConfig = {
       primary: {
         bgColor: 'before:bg-primary',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       light: {
         bgColor: 'before:bg-primary/10',
-        textColor: 'text-primary',
+        textColor: 'text-primary'
       },
       red: {
         bgColor: 'before:bg-red-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       green: {
         bgColor: 'before:bg-green-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       blue: {
         bgColor: 'before:bg-blue-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       yellow: {
         bgColor: 'before:bg-yellow-400',
-        textColor: 'text-white',
-      },
+        textColor: 'text-white'
+      }
     }
 
     const sizeConfig = {
       sm: { padding: 'px-3 h-7', font: 'text-xs' },
       md: { padding: 'px-5 h-9', font: 'text-sm' },
       lg: { padding: 'px-[24px] py-[14px] lg:px-[32px] lg:py-[18px]', font: 'text-[15px]' },
-      xl: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'text-lg' },
+      xl: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'text-lg' }
     }
 
     const { bgColor, textColor } = colorConfig[color]
@@ -69,14 +71,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           glossy
             ? 'before:z-[1] before:border-2 before:border-solid before:border-[#4AED52] after:z-0 after:bg-[#4AED52] after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300'
             : '',
-          disabled ? 'opacity-50' : '',
+          disabled ? 'opacity-50' : ''
         )}
         {...props}
       >
         <span className={cn('relative z-[2]', textColor, font)}>{children}</span>
       </button>
     )
-  },
+  }
 )
 
 export const TransparentButton = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
@@ -88,5 +90,5 @@ export const TransparentButton = React.forwardRef<HTMLButtonElement, React.Butto
     >
       {props.children}
     </button>
-  ),
+  )
 )

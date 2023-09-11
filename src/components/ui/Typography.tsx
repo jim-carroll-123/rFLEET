@@ -1,3 +1,5 @@
+'use client'
+
 import { cn } from '@lib/utils'
 
 export const Title = ({ children, className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
