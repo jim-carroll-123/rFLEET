@@ -51,8 +51,8 @@ export default function Index() {
             </div>
             <div className="flex flex-col lg:gap-[24px] gap-[18px]">
               <div className="lg:grid grid-cols-2 lg:gap-[16px] gap-[18px]">
-                <Input label="First Name" />
-                <Input label="Last Name" />
+                <Input label="First Name" placeholder="Enter your first name" />
+                <Input label="Last Name" placeholder="Enter your last name" />
               </div>
               <Select
                 label="Type of Profile"
