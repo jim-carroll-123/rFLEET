@@ -22,6 +22,7 @@
       "@app/*": ["./src/app/*"],
       "@components/*": ["./src/components/*"],
       "@lib/*": ["./src/lib/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "@assets/*": ["./src/assets/*"],
       "@styles/*": ["./src/styles/*"],
       "@json/*": ["./src/json/*"]

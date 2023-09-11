@@ -23,7 +23,7 @@ export default function Index() {
               <h6 className="font-semibold">LOGIN</h6>
               <div className="text-body-small text-gray-400">Welcome back. Let&apos;s get you into your account.</div>
             </div>
-            <div className="flex flex-col lg:gap-[24px] gap-[28px]">
+            <div className="flex flex-col lg:gap-[24px] gap-[18px]">
               <Input label="Email" placeholder="Enter your email address" leftIcon="email" />
               <div>
                 <Input

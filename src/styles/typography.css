@@ -8,33 +8,27 @@
   }
 
   h1 {
-    @apply lg:text-[72px] text-[54px] lg:leading-[80px] leading-[60px]
-    /* 60px 48px */;
+    @apply lg:text-[72px] text-[54px] lg:leading-[80px] leading-[60px];
   }
 
   h2 {
-    @apply lg:text-[60px] text-[45px] lg:leading-[68px] leading-[51px]
-    /* 40px 36px */;
+    @apply lg:text-[60px] text-[45px] lg:leading-[68px] leading-[51px];
   }
 
   h3 {
-    @apply lg:text-[48px] text-[36px] lg:leading-[56px] leading-[42px]
-    /* 36px 30px */;
+    @apply lg:text-[48px] text-[36px] lg:leading-[56px] leading-[42px];
   }
 
   h4 {
-    @apply lg:text-[36px] text-[27px] lg:leading-[40px] leading-[30px]
-    /* 32px 24px */;
+    @apply lg:text-[36px] text-[27px] lg:leading-[40px] leading-[30px];
   }
 
   h5 {
-    @apply lg:text-[30px] text-[23px] lg:leading-[36px] leading-[27px]
-    /* 28px 20px */;
+    @apply lg:text-[30px] text-[23px] lg:leading-[36px] leading-[27px];
   }
 
   h6 {
-    @apply lg:text-[24px] text-[18px] lg:leading-[32px] leading-[24px]
-    /* 20px 18px */;
+    @apply lg:text-[24px] text-[18px] lg:leading-[32px] leading-[24px];
   }
 
   .text-body-xl {
