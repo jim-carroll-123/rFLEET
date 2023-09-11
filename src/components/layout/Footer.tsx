@@ -35,7 +35,7 @@ export default function Example() {
               </Link>
             </div>
           </div>
-          <div className="flex lg:justify-ceter justify-start">
+          <div className="flex lg:justify-center justify-start">
             <div className="flex flex-col gap-11 mt-11 lg:mt-0">
               <h4 className="font-semibold">Links</h4>
               <div className="flex flex-col gap-5 text-gray-200">
