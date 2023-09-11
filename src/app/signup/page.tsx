@@ -76,9 +76,11 @@ export default function Index() {
               <div className="flex justify-between">
                 <Check label="I agree to all the Term and Condition and Privacy Policy" />
               </div>
-              <Button full size="xl">
-                Get Started
-              </Button>
+              <Link href="/verify-email">
+                <Button full size="xl">
+                  Get Started
+                </Button>
+              </Link>
             </div>
             <div className="flex justify-center gap-[8px]">
               <div className="text-gray-400">Already have a account?</div>
