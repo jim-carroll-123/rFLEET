@@ -8,7 +8,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   className?: string
   full?: boolean
-  color?: 'primary' | 'light' | 'red'
+  color?: 'primary' | 'light' | 'red' | 'transparent'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   glossy?: boolean
 }
@@ -38,6 +38,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       },
       yellow: {
         bgColor: 'before:bg-yellow-400',
+        textColor: 'text-white'
+      },
+      transparent: {
+        bgColor: 'before:bg-transparent before:border-2 before:border-solid before:border-white',
         textColor: 'text-white'
       }
     }

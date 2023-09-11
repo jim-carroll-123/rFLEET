@@ -2,22 +2,49 @@
 
 import * as React from 'react'
 
+import IconEmail from '@assets/icons/email.svg'
+import IconInvisible from '@assets/icons/eye-invisible.svg'
+import IconLock from '@assets/icons/lock-white.svg'
 import { cn } from '@lib/utils'
 
-const INPUT_GROUP = 'INPUT_GROUP'
+type Icon = 'email' | 'invisible' | 'lock'
 
 type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   label?: string
   transparent?: boolean
   index?: number
   siblings?: number
+  leftIcon?: Icon
+  rightIcon?: Icon
   onChange?: (v: string) => void | Promise<void>
+  onLeftIconClick?: () => void | Promise<void>
+  onRightIconClick?: () => void | Promise<void>
+}
+
+const INPUT_GROUP = 'INPUT_GROUP'
+
+const icons = {
+  email: IconEmail,
+  invisible: IconInvisible,
+  lock: IconLock
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, index, transparent, siblings, onChange, ...props }, ref) => {
-    const parent = React.useContext(InputGroupContext)
-
+  (
+    {
+      className,
+      index,
+      transparent,
+      siblings,
+      leftIcon,
+      rightIcon,
+      onChange,
+      onLeftIconClick,
+      onRightIconClick,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div className={cn('w-full', className)}>
         {props.label!! && (
@@ -25,14 +52,40 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             {props.label}
           </label>
         )}
-        <input
-          ref={ref}
-          onChange={(e) => (onChange ? onChange(e.target.value) : false)}
-          className={cn(
-            'block w-full lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] border-2 border-solid  sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white border-gray-100 hover:border-gray-300 focus:ring-primary focus:border-primary placeholder:text-white'
+        <div className="relative">
+          {leftIcon && (
+            <div
+              onClick={onLeftIconClick}
+              className={cn(
+                'absolute left-0 top-0 bottom-0 w-[54px] flex justify-center items-center',
+                onLeftIconClick ? 'cursor-pointer' : ''
+              )}
+            >
+              {React.createElement(icons[leftIcon], { className: 'ml-[4px]' })}
+            </div>
           )}
-          {...props}
-        />
+          <input
+            ref={ref}
+            onChange={(e) => (onChange ? onChange(e.target.value) : false)}
+            className={cn(
+              'block w-full lg:py-[20px] py-[15px] border-2 border-solid  sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white border-gray-100 hover:border-gray-300 focus:ring-primary focus:border-primary placeholder:text-white',
+              leftIcon ? 'pl-[54px]' : 'lg:pl-[16px] pl-[12px]',
+              rightIcon ? 'pr-[54px]' : 'lg:pr-[16px] pr-[12px]'
+            )}
+            {...props}
+          />
+          {rightIcon && (
+            <div
+              onClick={onRightIconClick}
+              className={cn(
+                'absolute right-0 top-0 bottom-0 w-[54px] flex justify-center items-center',
+                onRightIconClick ? 'cursor-pointer' : ''
+              )}
+            >
+              {React.createElement(icons[rightIcon], { className: 'mr-[4px]' })}
+            </div>
+          )}
+        </div>
       </div>
     )
   }
