@@ -21,6 +21,7 @@ const config: Config = {
         current: colors.current,
         transparent: colors.transparent,
         primary: '#2F80ED',
+        'primary-green': '#4AED52',
         secondary: '#141943',
         dark: '#0E1135',
         info: '#0C63E7',
