@@ -77,9 +77,7 @@ export default function Index() {
                 <Check label="I agree to all the Term and Condition and Privacy Policy" />
               </div>
               <Link href="/verify-email">
-                <Button full size="xl">
-                  Get Started
-                </Button>
+                <Button full>Get Started</Button>
               </Link>
             </div>
             <div className="flex justify-center gap-[8px]">

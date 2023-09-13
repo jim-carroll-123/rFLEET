@@ -18,7 +18,7 @@ export default function Index() {
               We have sent email to testmail@gmail.com to confirm the validity of your email address. After receiving
               the email follow the link provided to complete you registration.
             </div>
-            <Button full size="xl" color="transparent">
+            <Button full color="transparent">
               Resend email
             </Button>
           </div>

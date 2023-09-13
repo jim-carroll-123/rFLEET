@@ -24,9 +24,7 @@ export default function Index() {
             </div>
             <div className="flex flex-col lg:gap-[24px] gap-[18px]">
               <Input label="Email" placeholder="Enter your email address" leftIcon="email" />
-              <Button full size="xl">
-                Request reset link
-              </Button>
+              <Button full>Request reset link</Button>
             </div>
             <Link href="/signin">
               <div className="text-center">Back to Login</div>

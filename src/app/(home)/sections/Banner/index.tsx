@@ -29,9 +29,7 @@ export const BannerSection = () => (
         </div>
         <div className="flex items-center gap-6">
           <Link href="#">
-            <Button glossy size="xl">
-              CONTACT US
-            </Button>
+            <Button glossy>CONTACT US</Button>
           </Link>
           <Link href="#" className="flex items-center gap-2">
             <PlayCircle />

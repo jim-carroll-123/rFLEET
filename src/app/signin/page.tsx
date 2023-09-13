@@ -40,9 +40,7 @@ export default function Index() {
                   </Link>
                 </div>
               </div>
-              <Button full size="xl">
-                Login
-              </Button>
+              <Button full>Login</Button>
             </div>
             <div className="flex lg:gap-[8px] gap-[6px] items-center">
               <div className="grow h-[1px] bg-[linear-gradient(90deg,rgba(105,234,203,1)0%,rgba(234,204,248,1)100%)]" />
@@ -50,13 +48,13 @@ export default function Index() {
               <div className="grow h-[1px] bg-[linear-gradient(90deg,rgba(234,204,248,1)0%,rgba(102,84,241,1)100%)]" />
             </div>
             <div className="flex lg:gap-[16px] gap-[12px]">
-              <Button full size="xl" color="transparent">
+              <Button full color="transparent">
                 <div className="flex items-center lg:gap-[10px] gap-[9px]">
                   <Google />
                   Google
                 </div>
               </Button>
-              <Button full size="xl" color="transparent">
+              <Button full color="transparent">
                 <div className="flex items-center lg:gap-[10px] gap-[9px]">
                   <Linkedin />
                   Linkedin

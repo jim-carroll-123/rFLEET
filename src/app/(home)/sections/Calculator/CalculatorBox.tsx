@@ -44,9 +44,7 @@ export const CalculatorBox = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        <Button size="xl" glossy>
-          SEARCH
-        </Button>
+        <Button glossy>SEARCH</Button>
       </div>
     </div>
   )

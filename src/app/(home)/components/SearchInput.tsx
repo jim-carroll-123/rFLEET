@@ -23,7 +23,6 @@ export const SearchInput = () => {
       />
       <Button
         glossy
-        size="xl"
         className="!h-[56px] lg:!h-[72px] !px-[10px] lg:!px-[50px] before:rounded-l-none before:rounded-r-lg"
       >
         <SearchIcon />

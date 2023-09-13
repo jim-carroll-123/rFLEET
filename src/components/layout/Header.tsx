@@ -76,7 +76,7 @@ export default function Example() {
               </div>
               <div className="flex gap-2">
                 <Link href="/signup">
-                  <Button size="lg">Create Account</Button>
+                  <Button size="sm">Create Account</Button>
                 </Link>
               </div>
             </div>
