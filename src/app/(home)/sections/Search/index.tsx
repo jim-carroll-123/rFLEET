@@ -26,15 +26,9 @@ export const SearchSection = () => (
             </div>
           </div>
           <div className="flex flex-col gap-[15px] items-center">
-            <div className="px-[12px] py-[8px] lg:px-[16px] lg:py-[10px] bg-opacity-bubble">
-              Quote 2 pallets from Cleveland, OH to Los Angeles, CA?
-            </div>
-            <div className="px-[12px] py-[8px] lg:px-[16px] lg:py-[10px] bg-opacity-bubble">
-              How long is the estimated transit time from Atlanta, GA to Seattle, WA?
-            </div>
-            <div className="px-[12px] py-[8px] lg:px-[16px] lg:py-[10px] bg-opacity-bubble">
-              Take me to my dashboard.&quot;, or &quot;New Quote&quot;
-            </div>
+            <Prompt>Quote 2 pallets from Cleveland, OH to Los Angeles, CA?</Prompt>
+            <Prompt>How long is the estimated transit time from Atlanta, GA to Seattle, WA?</Prompt>
+            <Prompt>Take me to my dashboard.&quot;, or &quot;New Quote&quot;</Prompt>
           </div>
         </div>
         <div className="h-[100px] shrink-0 bg-gradient-secondary-fade-in-to-bottom" />
@@ -42,4 +36,8 @@ export const SearchSection = () => (
       <Airplane />
     </ParallaxBanner>
   </section>
+)
+
+const Prompt = ({ children }: { children: React.ReactNode }) => (
+  <div className="px-[12px] py-[8px] lg:px-[16px] lg:py-[10px] bg-blur hover-bg-green-glow">{children}</div>
 )
