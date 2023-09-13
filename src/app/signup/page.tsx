@@ -13,24 +13,24 @@ import { Title } from '@components/ui/Typography'
 
 const profileTypes = [
   {
-    label: 'Sales & Service',
-    value: 'Sales & Service'
+    label: 'Shipping Company and/or Employee',
+    value: 'Shipping Company and/or Employee'
   },
   {
-    label: 'Marketing',
-    value: 'Marketing'
+    label: 'Truck Company / Owner-Operator',
+    value: 'Truck Company / Owner-Operator'
   },
   {
-    label: 'Business',
-    value: 'Business'
+    label: 'Vendors and Services',
+    value: 'Vendors and Services'
   },
   {
-    label: 'Residential',
-    value: 'Residential'
+    label: 'Passenger Vehicle Drivers (local)',
+    value: 'Passenger Vehicle Drivers (local)'
   },
   {
-    label: 'Commercial',
-    value: 'Commercial'
+    label: 'Agents, Brokers, and Freight Forwarders',
+    value: 'Agents, Brokers, and Freight Forwarders'
   }
 ]
 

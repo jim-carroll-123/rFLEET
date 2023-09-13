@@ -20,18 +20,18 @@ interface Props {
 }
 
 export const Select = React.forwardRef(({ className, options, value, onChange, placeholder, ...props }: Props, _) => {
-  const [dropdownOpen, setDropdownOpen] = React.useState(false)
+  const [selectOpen, setSelectOpen] = React.useState(false)
   const dropdownNode = React.useRef<any>()
 
   useOnClickOutside(dropdownNode, () => {
-    setDropdownOpen(false)
+    setSelectOpen(false)
   })
 
   const handleOptionClick = (option: Option) => {
     if (onChange) {
       onChange(option)
     }
-    setDropdownOpen(false)
+    setSelectOpen(false)
   }
 
   const currentLabel = value?.label || placeholder || 'Select...'
@@ -40,12 +40,12 @@ export const Select = React.forwardRef(({ className, options, value, onChange, p
     <div className={`relative w-full ${className}`} ref={dropdownNode}>
       {props.label && <label className={`block lg:mb-[12px] mb-[8px] font-medium`}>{props.label}</label>}
       <div
-        onClick={() => setDropdownOpen(true)}
+        onClick={() => setSelectOpen(!selectOpen)}
         className="block w-full lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] border-2 border-solid  sm:text-sm shadow-sm lg:rounded-lg rounded-md border-gray-100 hover:border-gray-300 focus:ring-primary focus:border-primary placeholder:text-white"
       >
         {currentLabel}
       </div>
-      {dropdownOpen && (
+      {selectOpen && (
         <div className="absolute w-full z-10 bg-gradient-dialog backdrop-blur-md backdrop-opacity-100 flex flex-col lg:gap-[4px] gap-[3px] lg:mt-[8px] mt-[6px] lg:p-[8px] p-[6px] border-2 border-solid sm:text-sm lg:rounded-lg rounded-md">
           {options.map((option, key) => (
             <div
