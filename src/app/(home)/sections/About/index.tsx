@@ -24,49 +24,30 @@ export const AboutSection = () => {
       </div>
       <div className="container">
         <div className="relative">
-          <div
-            className="absolute left-0 right-0 top-0 bottom-0"
-            style={{ background: 'linear-gradient(135deg, #69EACB 0%, #5FA4E6 53.12%, #6654F1 100%)' }}
-          ></div>
+          <div className="absolute left-0 right-0 top-0 bottom-0 bg-gradient-card"></div>
           <div className="relative grid lg:grid-cols-4 grid-cols-2 gap-[2px]">
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">~$100 billion</h4>
-              <div className="text-body-lg text-gray-400">cumulative trading volume to date</div>
-            </div>
-            <div
-              className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]"
-              style={{ background: 'linear-gradient(135deg, #69EACB 0%, #5FA4E6 53.12%, #6654F1 100%)' }}
-            >
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">0.8%</h4>
-              <div className="text-body-lg">of the global crypto spot trading volume</div>
-            </div>
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">~30</h4>
-              <div className="text-body-lg text-gray-400">Gravity Teammates (& growing)</div>
-            </div>
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">25+</h4>
-              <div className="text-body-lg text-gray-400">leading global and local crypto exchanges</div>
-            </div>
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">2017</h4>
-              <div className="text-body-lg text-gray-400">start, crypto-natives</div>
-            </div>
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">1,200+</h4>
-              <div className="text-body-lg text-gray-400">crypto-asset pairs</div>
-            </div>
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">24/7</h4>
-              <div className="text-body-lg text-gray-400">liquidity</div>
-            </div>
-            <div className="text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
-              <h4 className="font-[500] lg:mb-[15px] mb-[13px]">5 billion+</h4>
-              <div className="text-body-lg text-gray-400">trades done to date</div>
-            </div>
+            <Card>{['~$100 billion', 'cumulative trading volume to date']}</Card>
+            <Card>{['0.8%', 'of the global crypto spot trading volume']}</Card>
+            <Card>{['~30', 'Gravity Teammates (& growing)']}</Card>
+            <Card>{['25+', 'leading global and local crypto exchanges']}</Card>
+            <Card>{['2017', 'start, crypto-natives']}</Card>
+            <Card>{['1,200+', 'crypto-asset pairs']}</Card>
+            <Card>{['24/7', 'liquidity']}</Card>
+            <Card>{['5 billion+', 'trades done to date']}</Card>
           </div>
         </div>
       </div>
     </section>
   )
 }
+
+interface CardProps {
+  children: [string, string]
+}
+
+const Card = ({ children }: CardProps) => (
+  <div className="cursor-default group text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c] hover:bg-gradient-card">
+    <h4 className="font-[500] lg:mb-[15px] mb-[13px]">{children[0]}</h4>
+    <div className="text-body-lg text-gray-400 group-hover:text-white">{children[1]}</div>
+  </div>
+)
