@@ -172,7 +172,10 @@ const config: Config = {
         'gradient-card': 'linear-gradient(135deg, #69EACB 0%, #5FA4E6 53.12%, #6654F1 100%)',
 
         'gradient-for-onboarding-section':
-          'linear-gradient(180deg, rgba(8,0,9,1) 0%, rgba(8,0,9,1) 6%, rgba(8,0,9,0) 16%, rgba(8,0,9,0) 80%, rgba(8,0,9,0.8) 100%)'
+          'linear-gradient(180deg, rgba(8,0,9,1) 0%, rgba(8,0,9,1) 6%, rgba(8,0,9,0) 16%, rgba(8,0,9,0) 80%, rgba(8,0,9,0.8) 100%)',
+
+        'gradient-for-chatbot-message':
+          'linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)'
       },
       backgroundOpacity: ({ theme }) => theme('opacity'),
       backgroundPosition: {
