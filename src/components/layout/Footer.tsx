@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 
 import Link from 'next/link'
 
+import { VideoModal } from '@app/(home)/sections/Banner/VideoModal'
 import Discord from '@assets/icons/discord.svg'
 import Instagram from '@assets/icons/instagram.svg'
 import Twitter from '@assets/icons/twitter.svg'
@@ -11,6 +13,8 @@ import Youtube from '@assets/icons/youtube.svg'
 import { Logo } from '@components/ui/Logo'
 
 export default function Example() {
+  const [openVideoModal, setOpenVideoModal] = useState(false)
+
   return (
     <footer className="relative flex flex-col pt-[60px] pb-[100px] lg:pt-[88px] lg:pb-[144px] bg-dark text-white">
       <div className="container">
@@ -50,7 +54,7 @@ export default function Example() {
                 <Link href="#">
                   <div className="text-body-xl">Carrier Network</div>
                 </Link>
-                <Link href="#">
+                <Link href="#" onClick={() => setOpenVideoModal(true)}>
                   <div className="text-body-xl">About US</div>
                 </Link>
               </div>
@@ -61,6 +65,7 @@ export default function Example() {
           © 2023 All Rights Reserved. Eminent Global Solutions, LLC and rFleet Inc.
         </div>
       </div>
+      {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
     </footer>
   )
 }

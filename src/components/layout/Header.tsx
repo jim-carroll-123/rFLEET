@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { VideoModal } from '@app/(home)/sections/Banner/VideoModal'
 import Close from '@assets/icons/close.svg'
 import Hamburger from '@assets/icons/hamburger.svg'
 import Lock from '@assets/icons/lock.svg'
@@ -12,6 +13,7 @@ import { Logo } from '@components/ui/Logo'
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [openVideoModal, setOpenVideoModal] = useState(false)
   const pathName = usePathname()
 
   const closeMenu = () => {
@@ -54,7 +56,7 @@ export default function Example() {
                 <Nav>MAIN SCREEN</Nav>
                 <Nav>SHIP NOW</Nav>
                 <Nav>CARRIER NETWORK</Nav>
-                <Nav>ABOUT US</Nav>
+                <Nav onClick={() => setOpenVideoModal(true)}>ABOUT US</Nav>
               </div>
               <div className="flex">
                 <Nav href="/signin">
@@ -75,17 +77,19 @@ export default function Example() {
           </div>
         </div>
       </div>
+      {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
     </header>
   )
 }
 
 interface NavProps {
   href?: string
+  onClick?: () => void | Promise<void>
   children: React.ReactNode
 }
 
-const Nav = ({ href = '#', children }: NavProps) => (
-  <Link href={href} className="block text-white relative group">
+const Nav = ({ href = '#', children, onClick }: NavProps) => (
+  <Link href={href} className="block text-white relative group" onClick={onClick}>
     <span className="absolute w-full h-full group-hover:bg-primary-green transition duration-300 active:scale-[0.97] group-hover:blur-md active:blur-none active:bg-transparent group-hover:scale-y-[60%] group-hover:scale-x-[105%]" />
     <span className="relative group-hover:text-white block">{children}</span>
   </Link>
