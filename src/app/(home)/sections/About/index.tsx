@@ -1,4 +1,4 @@
-import { BreakD } from '@components/ui/BreakD'
+import { BRD } from '@components/ui/BRD'
 import { Title } from '@components/ui/Typography'
 
 export const AboutSection = () => {
@@ -9,13 +9,13 @@ export const AboutSection = () => {
           <Title>About Us</Title>
         </div>
         <div className="text-body-xl lg:mb-[62px] mb-[46px]">
-          At rFleet Inc., we unite shippers, carriers, sellers, and buyers in a<BreakD />
+          At rFleet Inc., we unite shippers, carriers, sellers, and buyers in a<BRD />
           decentralized ecosystem, cultivating collaboration across the supply
-          <BreakD />
+          <BRD />
           chain. We advocate fair wages and practices, promoting transparency
-          <BreakD />
+          <BRD />
           and accountability from carriers, drivers, and vendors. Together, we&apos;re
-          <BreakD />
+          <BRD />
           transforming the industry, forging a better way to do business.
         </div>
         <button className="hover-bg-white-glow lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">

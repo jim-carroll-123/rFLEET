@@ -2,6 +2,8 @@
 
 import { ParallaxBanner } from 'react-scroll-parallax'
 
+import Link from 'next/link'
+
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
 import wireframeGlobe from '@assets/images/wireframe-globe-body.png'
@@ -44,7 +46,10 @@ export const LoginPortalSection = () => {
                   <br className="only-desktop" />
                   Carrier Relationships, Multi-Warehouses, and
                   <br className="only-desktop" />
-                  Inventory Suppliers. (?)
+                  Inventory Suppliers.{' '}
+                  <Link href="#" className="inline-block">
+                    (?)
+                  </Link>
                 </div>
                 <TransparentButton>LOGIN</TransparentButton>
               </GradientCard>
@@ -59,7 +64,10 @@ export const LoginPortalSection = () => {
                   <br className="only-desktop" />
                   Loads. Seamlessly Collaborate with Your Team,
                   <br className="only-desktop" />
-                  Customers, and Vendors in Real-Time. (?)
+                  Customers, and Vendors in Real-Time.{' '}
+                  <Link href="#" className="inline-block">
+                    (?)
+                  </Link>
                 </div>
                 <TransparentButton>LOGIN</TransparentButton>
               </GradientCard>
