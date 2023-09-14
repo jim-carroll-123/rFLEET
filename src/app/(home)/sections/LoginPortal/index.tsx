@@ -1,8 +1,8 @@
 'use client'
 
+import { isMobile } from 'react-device-detect'
 import { ParallaxBanner } from 'react-scroll-parallax'
-
-import Link from 'next/link'
+import { Tooltip } from 'react-tooltip'
 
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
@@ -31,7 +31,7 @@ export const LoginPortalSection = () => {
             <div className="relative h-full"></div>
           </div>
           <div className="flex flex-col lg:items-end items-center lg:py-[128px] py-[90px]">
-            <div className="flex flex-col">
+            <div className="flex flex-col react-tooltip-portal-help-container">
               <div className="flex justify-start">
                 <Title>LOGIN PORTAL</Title>
               </div>
@@ -47,9 +47,25 @@ export const LoginPortalSection = () => {
                   Carrier Relationships, Multi-Warehouses, and
                   <br className="only-desktop" />
                   Inventory Suppliers.{' '}
-                  <Link href="#" className="inline-block">
+                  <a id="help-shiping-portal" className="inline-block">
                     (?)
-                  </Link>
+                  </a>
+                  <Tooltip
+                    anchorSelect="#help-shiping-portal"
+                    place={isMobile ? 'top-start' : 'top-end'}
+                    style={{
+                      backgroundColor: '#6957F2',
+                      color: 'white',
+                      borderRadius: 16,
+                      padding: '30px 20px',
+                      fontSize: 16
+                    }}
+                    opacity={1}
+                  >
+                    For Shippers, Agents, <br />
+                    Brokers, and Drone <br />
+                    Delivery Operators.
+                  </Tooltip>
                 </div>
                 <TransparentButton>LOGIN</TransparentButton>
               </GradientCard>
@@ -65,9 +81,26 @@ export const LoginPortalSection = () => {
                   Loads. Seamlessly Collaborate with Your Team,
                   <br className="only-desktop" />
                   Customers, and Vendors in Real-Time.{' '}
-                  <Link href="#" className="inline-block">
+                  <a id="help-carrier-portal" className="inline-block">
                     (?)
-                  </Link>
+                  </a>
+                  <Tooltip
+                    anchorSelect="#help-carrier-portal"
+                    place="top-start"
+                    style={{
+                      backgroundColor: '#6957F2',
+                      color: 'white',
+                      borderRadius: 16,
+                      padding: '30px 20px',
+                      fontSize: 16
+                    }}
+                    opacity={1}
+                  >
+                    For Truck Fleet Managers, <br />
+                    Drivers, Carriers/Couriers, <br />
+                    Intermodal-Rail Providers, <br />
+                    Vessels, and Airlines
+                  </Tooltip>
                 </div>
                 <TransparentButton>LOGIN</TransparentButton>
               </GradientCard>
