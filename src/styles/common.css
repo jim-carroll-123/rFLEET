@@ -1,10 +1,10 @@
 a {
-  @apply block text-inherit no-underline hover:text-primary;
+  @apply block text-inherit no-underline hover:text-primary-green;
 }
 
 a.svg-hover:hover svg,
 a.svg-hover:hover svg * {
-  @apply hover:fill-primary;
+  @apply hover:fill-primary-green;
 }
 
 .container {
