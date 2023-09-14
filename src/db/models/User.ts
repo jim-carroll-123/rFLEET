@@ -37,10 +37,11 @@ const userSchema = new mongoose.Schema<UserDocument>(
   },
   { timestamps: true }
 );
- 
+
  userSchema.plugin(passportLocalMongoose);
 //  userSchema.plugin(mongodbErrorHandler);
 
 const User = mongoose.models.User || mongoose.model<UserDocument>('User', userSchema);
 
 export default User as Model<UserDocument>;
+
