@@ -13,6 +13,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "20.5.7",
     "@types/passport": "^1.0.12",
     "@types/passport-local": "^1.0.35",
@@ -25,6 +26,7 @@
     "migrate-mongo": "^10.0.0",
     "mongoose": "^7.5.1",
     "next": "13.4.19",
+    "next-connect": "^1.0.0",
     "next-videos": "^1.4.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
