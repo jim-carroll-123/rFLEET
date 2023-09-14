@@ -10,7 +10,7 @@ import { TruckAndShip } from './TruckAndShip'
 
 export const CalculatorSection = () => {
   return (
-    <section className="relative">
+    <section id="calculator-section" className="relative">
       <ParallaxBanner className="parallax-banner" layers={[{ image: planetEarth.src, speed: -20 }]}>
         <div className="flex flex-col justify-between flex-1 bg-gradient-secondary-fade-in-to-top relative">
           <div className="container text-white relative z-10">

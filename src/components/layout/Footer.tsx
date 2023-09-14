@@ -1,5 +1,7 @@
 'use client'
 
+import { Link as ScrollLink } from 'react-scroll'
+
 import Link from 'next/link'
 
 import Discord from '@assets/icons/discord.svg'
@@ -39,12 +41,12 @@ export default function Example() {
             <div className="flex flex-col gap-11 mt-11 lg:mt-0">
               <h4 className="font-semibold">Links</h4>
               <div className="flex flex-col gap-5 text-gray-200">
-                <Link href="#">
+                <ScrollLink to="search-section" smooth>
                   <div className="text-body-xl">Main Screen</div>
-                </Link>
-                <Link href="#">
+                </ScrollLink>
+                <ScrollLink to="calculator-section" smooth>
                   <div className="text-body-xl">Ship Now</div>
-                </Link>
+                </ScrollLink>
                 <Link href="#">
                   <div className="text-body-xl">Carrier Network</div>
                 </Link>
