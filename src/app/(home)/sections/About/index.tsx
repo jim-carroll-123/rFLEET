@@ -18,7 +18,7 @@ export const AboutSection = () => {
           <BreakD />
           transforming the industry, forging a better way to do business.
         </div>
-        <button className="hover-bg-green-glow lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">
+        <button className="hover-bg-white-glow lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">
           LEARN MORE
         </button>
       </div>

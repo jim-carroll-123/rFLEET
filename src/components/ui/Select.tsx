@@ -21,9 +21,9 @@ interface Props {
 
 export const Select = React.forwardRef(({ className, options, value, onChange, placeholder, ...props }: Props, _) => {
   const [selectOpen, setSelectOpen] = React.useState(false)
-  const dropdownNode = React.useRef<any>()
+  const selectNode = React.useRef<any>()
 
-  useOnClickOutside(dropdownNode, () => {
+  useOnClickOutside(selectNode, () => {
     setSelectOpen(false)
   })
 
@@ -37,7 +37,7 @@ export const Select = React.forwardRef(({ className, options, value, onChange, p
   const currentLabel = value?.label || placeholder || 'Select...'
 
   return (
-    <div className={`relative w-full ${className}`} ref={dropdownNode}>
+    <div className={`relative w-full ${className}`} ref={selectNode}>
       {props.label && <label className={`block lg:mb-[12px] mb-[8px] font-medium`}>{props.label}</label>}
       <div
         onClick={() => setSelectOpen(!selectOpen)}
