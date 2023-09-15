@@ -9,6 +9,7 @@ import { cn } from '@lib/utils'
 export interface Option {
   label: string
   value: string
+  icon?: any
 }
 
 interface Props {
@@ -23,6 +24,7 @@ interface Props {
 export const Select = React.forwardRef(({ className, options, value, onChange, placeholder, ...props }: Props, _) => {
   const [selectOpen, setSelectOpen] = React.useState(false)
   const selectNode = React.useRef<any>()
+  const _placeholder = 'Select...'
 
   useOnClickOutside(selectNode, () => {
     setSelectOpen(false)
@@ -35,7 +37,7 @@ export const Select = React.forwardRef(({ className, options, value, onChange, p
     setSelectOpen(false)
   }
 
-  const currentLabel = value?.label || placeholder || 'Select...'
+  const currentLabel = value?.label || placeholder || _placeholder
 
   return (
     <div className={`relative w-full ${className}`} ref={selectNode}>
@@ -43,11 +45,12 @@ export const Select = React.forwardRef(({ className, options, value, onChange, p
       <div
         onClick={() => setSelectOpen(!selectOpen)}
         className={cn(
-          'flex justify-between items-center w-full lg:px-[16px] px-[12px] lg:py-[18px] py-[14px] border border-solid  sm:text-sm shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
+          'flex justify-between items-center lg:gap-[10px] gap-[7px] w-full lg:px-[16px] px-[12px] lg:py-[18px] py-[14px] border border-solid  sm:text-sm shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
           selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
         )}
       >
-        <div className="flex-1 lg:py-[2px] py-[1px]">{currentLabel}</div>
+        {value?.icon && value.icon}
+        <div className="flex flex-1 lg:py-[2px] py-[1px]">{currentLabel}</div>
         <ArrowDown />
       </div>
       {selectOpen && (
@@ -56,11 +59,12 @@ export const Select = React.forwardRef(({ className, options, value, onChange, p
             <div
               key={key}
               className={cn(
-                'lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] rounded hover:bg-primary',
+                'flex items-center lg:gap-[10px] gap-[7px] lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] rounded hover:bg-primary',
                 value?.value === option.value ? 'bg-primary' : 'cursor-pointer '
               )}
               onClick={() => handleOptionClick(option)}
             >
+              {option?.icon && option.icon}
               {option.label}
             </div>
           ))}
