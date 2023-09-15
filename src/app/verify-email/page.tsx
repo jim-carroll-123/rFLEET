@@ -9,7 +9,7 @@ export default function Index() {
     <main className="relative flex" style={{ background: `url(${planetEarth.src}) no-repeat center / cover` }}>
       <div className="flex flex-1 bg-[#1a194990]">
         <div className="flex-1 flex justify-center items-center">
-          <div className="text-center bg-gradient-dialog backdrop-blur lg:px-[80px] px-[20px] lg:pt-[80px] pt-[60px] lg:pb-[80px] pb-[60px] flex flex-col lg:gap-[32px] gap-[24px] max-w-[720px] w-full">
+          <div className="text-center bg-gradient-blur-dialog backdrop-blur lg:px-[80px] px-[20px] lg:pt-[80px] pt-[60px] lg:pb-[80px] pb-[60px] flex flex-col lg:gap-[32px] gap-[24px] max-w-[720px] w-full">
             <div className="flex justify-center">
               <ConfirmEmail />
             </div>

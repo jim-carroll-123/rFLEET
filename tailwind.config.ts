@@ -30,6 +30,7 @@ const config: Config = {
         light: colors.purple[200],
         slate: colors.slate,
         gray: {
+          DEFAULT: '#9da3bd',
           50: '#FAFAFC',
           100: '#E9E9EC',
           200: '#C6C8CD',
@@ -168,14 +169,17 @@ const config: Config = {
         'gradient-secondary-fade-in-to-top':
           'linear-gradient(180deg,rgba(20,25,67,1)0%,rgba(20,25,67,0.8)45%,rgba(20,25,67,0)100%)',
 
-        'gradient-dialog': 'linear-gradient(117deg, #1C194B 0.9%, rgba(47, 128, 237, 0.20) 100%)',
+        'gradient-blur-dialog': 'linear-gradient(117deg, rgba(28,25,75,0.9) 0%, rgba(47,128,237,0.2) 100%)',
+
         'gradient-card': 'linear-gradient(135deg, #69EACB 0%, #5FA4E6 53.12%, #6654F1 100%)',
 
         'gradient-for-onboarding-section':
           'linear-gradient(180deg, rgba(8,0,9,1) 0%, rgba(8,0,9,1) 6%, rgba(8,0,9,0) 16%, rgba(8,0,9,0) 80%, rgba(8,0,9,0.8) 100%)',
 
         'gradient-for-chatbot-message':
-          'linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)'
+          'linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)',
+
+        'gradient-to-r-from-green-to-violet': 'linear-gradient(90deg,rgba(105,234,203,1)0%,rgba(102,84,241,1)100%)'
       },
       backgroundOpacity: ({ theme }) => theme('opacity'),
       backgroundPosition: {

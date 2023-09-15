@@ -28,7 +28,9 @@ export const ButtonSelect = ({ options, value, onChange, className }: Props) => 
             option.value === value?.value ? 'before:bg-primary' : 'border border-solid rounded-md'
           )}
         >
-          <span className="relative z-[2] text-white lg:text-lg text-md whitespace-pre">{option.label}</span>
+          <span className="relative z-[2] text-white lg:text-lg text-md !leading-tight whitespace-pre">
+            {option.label}
+          </span>
         </button>
       ))}
     </div>

@@ -21,7 +21,7 @@ export const BannerSection = () => {
             ELEVATE YOUR LOGISTICS
             <br className="only-desktop" />
             WITH <span className="text-gradient bg-gradient-primary-to-br">rFleet.io:</span>
-            <div className="text-gradient bg-gradiawefent-primary-to-br">
+            <div className="text-gradient bg-gradient-primary-to-br">
               EMPOWERING SUPPLY
               <br className="only-desktop" />
               CHAIN MANAGEMENT GLOBALLY
