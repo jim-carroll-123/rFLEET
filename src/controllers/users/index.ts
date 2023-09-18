@@ -1,6 +1,5 @@
 import  User from '../../db/models/User'
 import bcrypt from 'bcryptjs';
-import { db } from '@lib/db';
 import { headers } from 'next/headers';
 import jwt from 'jsonwebtoken';
 
