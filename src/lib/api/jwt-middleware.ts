@@ -1,6 +1,5 @@
 import { NextRequest } from 'next/server';
-
-import { auth } from '_helpers/server';
+import { auth } from '../auth';
 
 export { jwtMiddleware };
 

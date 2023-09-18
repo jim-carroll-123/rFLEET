@@ -1,3 +1,5 @@
+import { connectToDatabase, isDatabaseConnected } from '../../../../lib/db';
+
 import { apiHandler } from '../../../../lib/api';
 import joi from 'joi';
 import { usersController } from '../../../../controllers/users';
@@ -7,6 +9,8 @@ module.exports = apiHandler({
 });
 
 async function register(req: Request) {
+    if (!isDatabaseConnected()) await connectToDatabase();
+
     const body = await req.json();
     await usersController.create(body);
 }
