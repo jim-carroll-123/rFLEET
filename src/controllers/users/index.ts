@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 const User = db.User;
 
-export const usersRepo = {
+export const usersController = {
     authenticate,
     getAll,
     getById,

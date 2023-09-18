@@ -23,6 +23,7 @@
     "bcrypt": "^5.1.1",
     "clsx": "^2.0.0",
     "express-session": "^1.17.3",
+    "joi": "^17.10.2",
     "migrate-mongo": "^10.0.0",
     "mongoose": "^7.5.1",
     "next": "13.4.19",
