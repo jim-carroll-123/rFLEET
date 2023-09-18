@@ -5,3 +5,5 @@ import passport from 'passport'
 passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+export default passport

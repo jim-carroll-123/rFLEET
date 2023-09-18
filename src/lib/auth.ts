@@ -1,17 +1,23 @@
-import nextConnect from 'next-connect';
-import passport from 'passport';
+import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 
-const handler = nextConnect();
+export const auth = {
+  isAuthenticated,
+  verifyToken
+}
 
-handler.use(
-  require('express-session')({
-    secret: 'secret-key', // TODO: add env variable
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+function isAuthenticated() {
+  try {
+    verifyToken();
+    return true;
+  } catch {
+    return false;
+  }
+}
 
-handler.use(passport.initialize());
-handler.use(passport.session());
-
-export default handler;
+function verifyToken() {
+  const token = cookies().get('authorization')?.value ?? '';
+  const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+  const id = decoded.sub as string;
+  return id;
+}
