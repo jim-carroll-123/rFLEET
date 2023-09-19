@@ -1,6 +1,5 @@
 'use client'
 
-import { isMobile } from 'react-device-detect'
 import { ParallaxBanner } from 'react-scroll-parallax'
 import { Tooltip } from 'react-tooltip'
 
@@ -56,7 +55,7 @@ export const LoginPortalSection = () => {
                   </a>
                   <Tooltip
                     anchorSelect="#help-shiping-portal"
-                    place={isMobile ? 'top-start' : 'top-end'}
+                    place="top-start"
                     style={{
                       backgroundColor: '#6957F2',
                       color: 'white',

@@ -33,8 +33,8 @@ export const OnboardingSection = () => {
                 <BRD />
                 Driver, Mechanic, Tow, and More..., or Deliver with Your Personal Vehicle.
               </div>
-              <div className="w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semi rounded-md bg-[#ffffff20] transition duration-300">
-                Choose which profile best fits you?
+              <div className="w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border-[1.5px] border-solid border-gray-200 text-body-lg font-semi rounded-md bg-gradient-blur-dialog backdrop-blur-md transition duration-300">
+                Quote 2 pallets from Cleveland, OH to Los Angeles, CA?
               </div>
             </div>
           </div>
@@ -48,7 +48,7 @@ export const OnboardingSection = () => {
                 <BRD />
                 AND COORDINATORS.
               </div>
-              <div className="text-gray-200">
+              <div className="text-gray">
                 Create a Profile to Effortlessly Track
                 <BRD />
                 and Manage Your Truck Fleet,
@@ -75,7 +75,7 @@ export const OnboardingSection = () => {
                   <BRD />
                   VEHICLE DRIVERS
                 </div>
-                <div className="text-gray-200">
+                <div className="text-gray">
                   Discover Your Next Move: Find
                   <BRD />
                   Companies to Work for, Manage
@@ -102,7 +102,7 @@ export const OnboardingSection = () => {
                 <BRD />
                 TIRE SHOP.
               </div>
-              <div className="text-gray-200">
+              <div className="text-gray">
                 Fuel Your Success - Join Now and
                 <BRD />
                 Become a Link in the Logistics Chain

@@ -16,7 +16,7 @@ export default function Example() {
   const [openVideoModal, setOpenVideoModal] = useState(false)
 
   return (
-    <footer className="relative flex flex-col pt-[60px] pb-[100px] lg:pt-[88px] lg:pb-[144px] bg-dark text-white">
+    <footer className="relative flex flex-col pt-[75px] pb-[36px] lg:pt-[100px] lg:pb-[48px] bg-dark text-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-[120px] lg:mb-[160px]">
           <div className="flex flex-col gap-11">
@@ -63,7 +63,7 @@ export default function Example() {
         </div>
         <div className="flex justify-center">© 2023 All Rights Reserved. rFleet Inc.</div>
       </div>
-      {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
+      <VideoModal open={openVideoModal} onClose={() => setOpenVideoModal(false)} />
     </footer>
   )
 }
