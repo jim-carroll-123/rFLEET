@@ -51,9 +51,9 @@ export default function Example() {
                 <ScrollLink to="calculator-section" smooth>
                   <div className="text-body-xl">Ship Now</div>
                 </ScrollLink>
-                <Link href="#">
+                <ScrollLink to="onboarding-section" smooth>
                   <div className="text-body-xl">Carrier Network</div>
-                </Link>
+                </ScrollLink>
                 <Link href="#" onClick={() => setOpenVideoModal(true)}>
                   <div className="text-body-xl">About US</div>
                 </Link>

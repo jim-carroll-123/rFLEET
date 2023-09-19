@@ -11,7 +11,7 @@ import { Title } from '@components/ui/Typography'
 
 export const OnboardingSection = () => {
   return (
-    <section className="">
+    <section id="onboarding-section">
       <ParallaxBanner className="parallax-banner" layers={[{ image: bgWireframeGlobe.src, speed: -20 }]}>
         <div
           className="absolute left-0 right-0 top-0 bottom-0 bg-[rgba(0,3,26,0.30)] opacity-90"
