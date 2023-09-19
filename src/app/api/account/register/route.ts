@@ -4,6 +4,16 @@ import { apiHandler } from '../../../../lib/api';
 import joi from 'joi';
 import { usersController } from '../../../../controllers/users';
 
+/**
+ * @swagger
+ * /api/account/register:
+ *   post:
+ *     description: Returns the hello world
+ *     responses:
+ *       200:
+ *         description: Hello World!
+ */
+
 module.exports = apiHandler({
     POST: register
 });
