@@ -32,7 +32,7 @@ export const Panel = () => {
   return (
     <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[26px] lg:p-[36px] rounded-[20px]">
       <ButtonSelect options={types} value={type} onChange={setType} containerClassName="mb-[28px]" />
-      <TabPane className="relative" autoDismiss activeTab={shippingStepId} onTabChange={(id) => setShippingStepId(id)}>
+      <TabPane className="relative" activeTab={shippingStepId} onTabChange={(id) => setShippingStepId(id)}>
         <div className="lg:grid lg:grid-cols-4 lg:gap-[16px] flex flex-col gap-[30px] lg:mb-[34px] mb-[26px]">
           <div>
             <ShippingStep target="tab-ship-origin" label="Origin" className="mb-6" shippingStepId={shippingStepId}>

@@ -68,7 +68,7 @@ export default function Example() {
               </div>
               <div className="flex gap-2">
                 <Link href="/signup">
-                  <button className="relative flex items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 font-semibold before:bg-primary px-[24px] py-[14px] lg:px-[32px] lg:py-[18px] hover:before:scale-[1.03] before:z-[1] before:border-2 before:border-solid before:border-primary hover:before:border-primary-green after:z-0 hover:after:bg-primary-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300 active:before:scale-[0.97] hover:after:blur-md active:after:blur-none active:after:bg-transparent">
+                  <button className="relative flex items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 font-semibold before:bg-primary px-[24px] py-[14px] lg:px-[32px] lg:py-[18px] hover:before:scale-[1.03] before:z-[1] before:border-2 before:border-solid before:border-primary hover:before:border-green after:z-0 hover:after:bg-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300 active:before:scale-[0.97] hover:after:blur-md active:after:blur-none active:after:bg-transparent">
                     <span className="relative z-[2] text-white text-[15px]">Create Account</span>
                   </button>
                 </Link>
@@ -90,7 +90,7 @@ interface NavProps {
 
 const Nav = ({ href = '#', children, onClick }: NavProps) => (
   <Link href={href} className="block text-white relative group" onClick={onClick}>
-    <span className="absolute w-full h-full group-hover:bg-primary-green transition duration-300 active:scale-[0.97] group-hover:blur-md active:blur-none active:bg-transparent group-hover:scale-y-[60%] group-hover:scale-x-[105%]" />
+    <span className="absolute w-full h-full group-hover:bg-green transition duration-300 active:scale-[0.97] group-hover:blur-md active:blur-none active:bg-transparent group-hover:scale-y-[60%] group-hover:scale-x-[105%]" />
     <span className="relative group-hover:text-white block">{children}</span>
   </Link>
 )

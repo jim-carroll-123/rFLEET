@@ -39,7 +39,7 @@ export const BannerSection = () => {
               <Button glossy>CONTACT US</Button>
             </Link>
             <Link href="#" onClick={() => setOpenVideoModal(true)} className="flex items-center gap-2">
-              <PlayCircle />
+              <PlayCircle className="hover:bg-green" />
               <div className="only-desktop text-body-xl">HOW IT WORKS</div>
             </Link>
           </div>

@@ -72,7 +72,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           padding,
           hoverActive,
           glossy
-            ? 'before:z-[1] before:border-2 before:border-solid before:border-primary-green after:z-0 after:bg-primary-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300'
+            ? 'before:z-[1] before:border-2 before:border-solid before:border-green after:z-0 after:bg-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300'
             : '',
           disabled ? 'opacity-50' : ''
         )}
