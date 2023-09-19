@@ -36,7 +36,9 @@ export const BannerSection = () => {
           </div>
           <div className="flex items-center gap-6">
             <Link href="#">
-              <Button glossy>CONTACT US</Button>
+              <Button className="hover:before:bg-secondary" glossy>
+                CONTACT US
+              </Button>
             </Link>
             <Link href="#" onClick={() => setOpenVideoModal(true)} className="flex items-center gap-2 group">
               <div className="relative">
@@ -56,7 +58,7 @@ export const BannerSection = () => {
           </video>
         </div>
       </div>
-      {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
+      <VideoModal open={openVideoModal} onClose={() => setOpenVideoModal(false)} />
     </section>
   )
 }
