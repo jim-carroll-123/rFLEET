@@ -61,9 +61,7 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center">
-          © 2023 All Rights Reserved. Eminent Global Solutions, LLC and rFleet Inc.
-        </div>
+        <div className="flex justify-center">© 2023 All Rights Reserved. rFleet Inc.</div>
       </div>
       {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
     </footer>

@@ -20,7 +20,7 @@ export const BannerSection = () => {
           <h4 className="font-bold mb-[15px] lg:mb-[20px]">
             ELEVATE YOUR LOGISTICS
             <br className="only-desktop" />
-            WITH <span className="text-gradient bg-gradient-primary-to-br">rFleet.io:</span>
+            WITH <span className="text-gradient bg-gradient-primary-to-br">rFleet.ai:</span>
             <div className="text-gradient bg-gradient-primary-to-br">
               EMPOWERING SUPPLY
               <br className="only-desktop" />

@@ -1,5 +1,7 @@
 import { ParallaxBanner } from 'react-scroll-parallax'
 
+import Link from 'next/link'
+
 import WalletMoney from '@assets/icons/wallet-money.svg'
 import bgWireframeGlobe from '@assets/images/bg-wireframe-globe.png'
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-br.png'
@@ -59,7 +61,9 @@ export const OnboardingSection = () => {
                 <BRD />
                 with Quick Pay Options.
               </div>
-              <TransparentButton>LOGIN</TransparentButton>
+              <Link href="/signup" className="block w-full">
+                <TransparentButton>REGISTER</TransparentButton>
+              </Link>
             </GradientCard>
             <div className="lg:translate-y-[-80px]">
               <GradientCard>
@@ -84,7 +88,9 @@ export const OnboardingSection = () => {
                   <BRD />
                   References.
                 </div>
-                <TransparentButton>LOGIN</TransparentButton>
+                <Link href="/signup" className="block w-full">
+                  <TransparentButton>REGISTER</TransparentButton>
+                </Link>
               </GradientCard>
             </div>
             <GradientCard>
@@ -105,7 +111,9 @@ export const OnboardingSection = () => {
                 <BRD />
                 Strengthening the Logistics Industry.
               </div>
-              <TransparentButton>LOGIN</TransparentButton>
+              <Link href="/signup" className="block w-full">
+                <TransparentButton>REGISTER</TransparentButton>
+              </Link>
             </GradientCard>
           </div>
         </div>

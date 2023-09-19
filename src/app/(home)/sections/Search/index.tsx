@@ -16,7 +16,7 @@ export const SearchSection = () => {
   const [openChatbotModal, setOpenChatbotModal] = useState(false)
   return (
     <section id="search-section">
-      <ParallaxBanner className="parallax-banner xl:aspect-[2/1]" layers={[{ image: bgEarth.src, speed: -20 }]}>
+      <ParallaxBanner className="parallax-banner xl:h-[860px]" layers={[{ image: bgEarth.src, speed: -20 }]}>
         <div
           className="absolute w-full h-full"
           style={{ backdropFilter: 'blur(12.5px)', opacity: 0.6, backgroundColor: 'rgba(0,0,0,0.3)' }}
