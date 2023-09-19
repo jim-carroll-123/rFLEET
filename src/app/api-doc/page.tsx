@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactSwagger from './react-swagger';
 import { getApiDocs } from '../../lib/swagger';
 
