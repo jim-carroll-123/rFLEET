@@ -4,6 +4,8 @@ import { isMobile } from 'react-device-detect'
 import { ParallaxBanner } from 'react-scroll-parallax'
 import { Tooltip } from 'react-tooltip'
 
+import Link from 'next/link'
+
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png'
 import wave from '@assets/images/particle-wave.png'
 import wireframeGlobe from '@assets/images/wireframe-globe-body.png'
@@ -13,17 +15,19 @@ import { Title } from '@components/ui/Typography'
 export const LoginPortalSection = () => {
   return (
     <section className="relative bg-[#00010c] text-white">
-      <div className="absolute xl:left-0 lg:-left-[20%] -left-[60%] lg:-top-[20%]">
-        <div
-          className="absolute w-[1200px] h-[1200px]"
-          style={{
-            background: `radial-gradient(600px 600px at center, #191D8840 ,#191D8880, #191D8800)`
-          }}
-        />
-        <div
-          className="absolute w-[1200px] h-[1200px]"
-          style={{ background: `url(${wireframeGlobe.src}) no-repeat 300px 350px` }}
-        />
+      <div className="relative container lg:block hidden">
+        <div className="absolute lg:left-[-300px] lg:top-[-230px] left-[-320px] top-[-200px]">
+          <div
+            className="absolute w-[1200px] h-[1200px]"
+            style={{
+              background: `radial-gradient(600px 600px at center, #191D8840 ,#191D8880, #191D8800)`
+            }}
+          />
+          <div
+            className="absolute w-[1200px] h-[1200px]"
+            style={{ background: `url(${wireframeGlobe.src}) no-repeat 300px 350px` }}
+          />
+        </div>
       </div>
       <ParallaxBanner className="parallax-banner" layers={[{ image: wave.src, speed: -20 }]}>
         <div className="relative container lg:grid block grid-cols-2">
@@ -33,7 +37,7 @@ export const LoginPortalSection = () => {
           <div className="flex flex-col lg:items-end items-center lg:py-[128px] py-[90px]">
             <div className="flex flex-col react-tooltip-portal-help-container">
               <div className="flex justify-start">
-                <Title>LOGIN PORTAL</Title>
+                <Title>REGISTER PORTAL</Title>
               </div>
               <GradientCard>
                 <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">
@@ -67,7 +71,9 @@ export const LoginPortalSection = () => {
                     Delivery Operators.
                   </Tooltip>
                 </div>
-                <TransparentButton>LOGIN</TransparentButton>
+                <Link href="/signup">
+                  <TransparentButton>REGISTER</TransparentButton>
+                </Link>
               </GradientCard>
               <GradientCard>
                 <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">
@@ -102,7 +108,9 @@ export const LoginPortalSection = () => {
                     Vessels, and Airlines
                   </Tooltip>
                 </div>
-                <TransparentButton>LOGIN</TransparentButton>
+                <Link href="/signup">
+                  <TransparentButton>REGISTER</TransparentButton>
+                </Link>
               </GradientCard>
             </div>
           </div>
