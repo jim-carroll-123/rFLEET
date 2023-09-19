@@ -5,13 +5,14 @@ import { useState } from 'react'
 import { Button } from '@components/ui/Button'
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { Check } from '@components/ui/Check'
-import { Pane, Tab, TabPane } from '@components/ui/TabPane'
-import { cn } from '@lib/utils'
+import { TabPane } from '@components/ui/TabPane'
 
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LoadType } from './Panes/LoadType'
 import { To } from './Panes/To'
+import { ShippingPane } from './ShippingPane'
+import { ShippingStep } from './ShippingStep'
 
 const types = [
   { label: 'Parcel', value: 'Parcel' },
@@ -26,98 +27,70 @@ const types = [
 
 export const Panel = () => {
   const [type, setType] = useState(types[0])
-  const [category, setCategory] = useState('')
+  const [shippingStepId, setShippingStepId] = useState('')
 
   return (
     <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[26px] lg:p-[36px] rounded-[20px]">
       <ButtonSelect options={types} value={type} onChange={setType} containerClassName="mb-[28px]" />
-      <TabPane className="relative" autoDismiss activeTab={category} onTabChange={(id) => setCategory(id)}>
+      <TabPane className="relative" autoDismiss activeTab={shippingStepId} onTabChange={(id) => setShippingStepId(id)}>
         <div className="lg:grid lg:grid-cols-4 lg:gap-[16px] flex flex-col gap-[30px] lg:mb-[34px] mb-[26px]">
           <div>
-            <CategoryTab target="tab-ship-origin" label="Origin" className="mb-6" category={category}>
+            <ShippingStep target="tab-ship-origin" label="Origin" className="mb-6" shippingStepId={shippingStepId}>
               Where are you shipping from?
-            </CategoryTab>
+            </ShippingStep>
             <Check label="Add Extra Pickups" labelClassName="lg:text-[12px] text-[8px]" />
           </div>
           <div>
-            <CategoryTab target="tab-ship-destination" label="Destination" className="mb-6" category={category}>
+            <ShippingStep
+              target="tab-ship-destination"
+              label="Destination"
+              className="mb-6"
+              shippingStepId={shippingStepId}
+            >
               Where are you shipping to?
-            </CategoryTab>
+            </ShippingStep>
             <Check label="Add Extra Drops" labelClassName="lg:text-[12px] text-[8px]" />
           </div>
           <div>
-            <CategoryTab target="tab-ship-load-type" label="Load Type" className="mb-6" category={category}>
+            <ShippingStep
+              target="tab-ship-load-type"
+              label="Load Type"
+              className="mb-6"
+              shippingStepId={shippingStepId}
+            >
               What are you shipping?
-            </CategoryTab>
+            </ShippingStep>
           </div>
           <div>
-            <CategoryTab target="tab-ship-goods-commodity" label="Goods/Commodity" className="mb-6" category={category}>
+            <ShippingStep
+              target="tab-ship-goods-commodity"
+              label="Goods/Commodity"
+              className="mb-6"
+              shippingStepId={shippingStepId}
+            >
               Goods/Commodity
-            </CategoryTab>
+            </ShippingStep>
             <Check label="Add More Goods/Commodities" labelClassName="lg:text-[12px] text-[8px]" />
           </div>
         </div>
         <div>
-          <CategoryPane id="tab-ship-origin">
-            <From next={() => setCategory('tab-ship-destination')} />
-          </CategoryPane>
-          <CategoryPane id="tab-ship-destination">
-            <To next={() => setCategory('tab-ship-load-type')} />
-          </CategoryPane>
-          <CategoryPane id="tab-ship-load-type">
-            <LoadType next={() => setCategory('tab-ship-goods-commodity')} />
-          </CategoryPane>
-          <CategoryPane id="tab-ship-goods-commodity">
+          <ShippingPane id="tab-ship-origin">
+            <From next={() => setShippingStepId('tab-ship-destination')} />
+          </ShippingPane>
+          <ShippingPane id="tab-ship-destination">
+            <To next={() => setShippingStepId('tab-ship-load-type')} />
+          </ShippingPane>
+          <ShippingPane id="tab-ship-load-type">
+            <LoadType next={() => setShippingStepId('tab-ship-goods-commodity')} />
+          </ShippingPane>
+          <ShippingPane id="tab-ship-goods-commodity">
             <GoodsCommodity />
-          </CategoryPane>
+          </ShippingPane>
         </div>
       </TabPane>
       <div className="flex justify-center">
         <Button glossy>SEARCH</Button>
       </div>
     </div>
-  )
-}
-
-interface CategoryTabProps extends React.HTMLAttributes<HTMLDivElement> {
-  target: string
-  label: string
-  category: string
-  children: React.ReactNode
-}
-
-const CategoryTab = ({ target, label, className, children, category }: CategoryTabProps) => {
-  return (
-    <>
-      <div className={cn('font-semibold mb-4', target === category ? 'text-white' : 'text-gray')}>{label}</div>
-      <Tab
-        target={target}
-        className={cn(
-          'block w-full lg:py-[20px] py-[15px] border-2 border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent   lg:pl-[16px] pl-[12px] lg:pr-[16px] pr-[12px]',
-          className,
-          target === category
-            ? 'text-white border-white hover:text-white'
-            : 'text-gray border-gray hover:text-primary hover:border-primary'
-        )}
-      >
-        {children}
-      </Tab>
-    </>
-  )
-}
-
-interface CategoryPane {
-  id: string
-  children: React.ReactNode
-}
-
-const CategoryPane = ({ id, children }: CategoryPane) => {
-  return (
-    <Pane
-      id={id}
-      className="absolute lg:mt-[-76px] flex flex-col lg:gap-[32px] gap-[24px] z-10 lg:p-[38px] p-[28px] lg:rounded-[8px] rounded-[6px] border border-[#FFFFFF30] bg-gradient-blur-dialog backdrop-blur-[12px] w-full"
-    >
-      {children}
-    </Pane>
   )
 }

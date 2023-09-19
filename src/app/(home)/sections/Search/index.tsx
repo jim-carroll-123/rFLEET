@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
-import { SearchInput } from '@app/(home)/components/SearchInput'
 import ChatbotIcon from '@assets/icons/chatbot.svg'
 import bgEarth from '@assets/images/bg-earth.jpeg'
 import { Modal } from '@components/ui/Modal'
@@ -11,6 +10,7 @@ import { Title } from '@components/ui/Typography'
 
 import { Airplane } from './Airplane'
 import { Chatbot } from './Chatbot'
+import { SearchInput } from './SearchInput'
 
 export const SearchSection = () => {
   const [openChatbotModal, setOpenChatbotModal] = useState(false)

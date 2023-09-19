@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import Delete from '@assets/icons/delete.svg'
 import Parcel from '@assets/icons/parcel.svg'
 import Plus from '@assets/icons/plus.svg'
 import PolyMailer from '@assets/icons/polymailer.svg'
@@ -68,6 +69,15 @@ export const LoadType = ({ next }: Props) => {
       </div>
       <div className="w-full h-[2px] opacity-70 bg-gradient-to-r-from-green-to-violet" />
       <ButtonSelect full value={boxTypes[0]} options={boxTypes} containerClassName="gap-d-16" />
+      <div className="flex border border-white lg:rounded-[6px] rounded-[5px]">
+        <div className="shrink-0 text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">Load 1</div>
+        <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">2 Boxes/Crates</div>
+        <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">80X80X80 CM 10KG</div>
+        <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[20px] py-[15px]">
+          <Delete />
+        </div>
+      </div>
+      <div className="w-full h-[2px] opacity-70 bg-gradient-to-r-from-green-to-violet" />
       <div className="flex lg:flex-row lg:justify-between flex-col">
         <div className="flex flex-col gap-d-12">
           <div className="font-bold">Dimensions</div>
