@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
   full?: boolean
   color?: 'primary' | 'light' | 'red' | 'transparent'
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'lg'
   glossy?: boolean
 }
 
@@ -47,8 +47,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     const sizeConfig = {
-      sm: { padding: 'px-[24px] py-[14px] lg:px-[32px] lg:py-[18px]', font: 'text-[15px]' },
-      md: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'text-lg' }
+      sm: { padding: 'px-[24px] py-[14px] lg:px-[32px] lg:py-[18px]', font: 'lg:text-[15px] text-[12px]' },
+      md: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'lg:text-[18px] text-[14px]' },
+      lg: { padding: 'lg:px-[50px] px-[36px] lg:py-[20px] py-[15px]', font: 'lg:text-[18px] text-[14px]' }
     }
 
     const { bgColor, textColor } = colorConfig[color]

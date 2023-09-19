@@ -22,7 +22,7 @@ export default function Index() {
                 Please enter the email address you&apos;d like your password reset information sent to.
               </div>
             </div>
-            <div className="flex flex-col lg:gap-[24px] gap-[18px]">
+            <div className="flex flex-col gap-d-24">
               <Input label="Email" placeholder="Enter your email address" leftIcon="email" />
               <Button full>Request reset link</Button>
             </div>

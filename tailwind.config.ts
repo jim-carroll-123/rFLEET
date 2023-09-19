@@ -936,7 +936,8 @@ const config: Config = {
         screen: '100vw',
         min: 'min-content',
         max: 'max-content',
-        fit: 'fit-content'
+        fit: 'fit-content',
+        inherit: 'inherit'
       }),
       willChange: {
         auto: 'auto',

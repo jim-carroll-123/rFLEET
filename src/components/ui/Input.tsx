@@ -12,13 +12,17 @@ type Icon = 'email' | 'invisible' | 'lock'
 type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   label?: string
   transparent?: boolean
+  full?: boolean
   index?: number
   siblings?: number
   leftIcon?: Icon
   rightIcon?: Icon
+  containerClassName?: string
   onChange?: (v: string) => void | Promise<void>
   onLeftIconClick?: () => void | Promise<void>
   onRightIconClick?: () => void | Promise<void>
+
+  labelClassName?: string
 }
 
 const INPUT_GROUP = 'INPUT_GROUP'
@@ -32,9 +36,11 @@ const icons = {
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      className,
+      containerClassName,
+      labelClassName,
       index,
       transparent,
+      full,
       siblings,
       leftIcon,
       rightIcon,
@@ -46,9 +52,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ref
   ) => {
     return (
-      <div className={cn('w-full', className)}>
+      <div className={cn(full ? 'w-full' : '', containerClassName)}>
         {props.label!! && (
-          <label htmlFor="email" className={`block lg:mb-[12px] mb-[8px] font-medium`}>
+          <label htmlFor="email" className={cn(`block lg:mb-[12px] mb-[8px] font-medium`, labelClassName)}>
             {props.label}
           </label>
         )}

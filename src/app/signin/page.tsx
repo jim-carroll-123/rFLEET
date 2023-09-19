@@ -23,7 +23,7 @@ export default function Index() {
               <h6 className="font-semibold">LOGIN</h6>
               <div className="text-body-small text-gray-400">Welcome back. Let&apos;s get you into your account.</div>
             </div>
-            <div className="flex flex-col lg:gap-[24px] gap-[18px]">
+            <div className="flex flex-col gap-d-24">
               <Input label="Email" placeholder="Enter your email address" leftIcon="email" />
               <div>
                 <Input
@@ -31,7 +31,7 @@ export default function Index() {
                   placeholder="Enter your email password"
                   leftIcon="lock"
                   rightIcon="invisible"
-                  className="lg:mb-[12px] mb-[8px]"
+                  containerClassName="lg:mb-[12px] mb-[8px]"
                 />
                 <div className="flex justify-between">
                   <Check label="Remember me" />
@@ -47,15 +47,15 @@ export default function Index() {
               <div className="text-body-sm">OR</div>
               <div className="grow h-[1px] bg-[linear-gradient(90deg,rgba(234,204,248,1)0%,rgba(102,84,241,1)100%)]" />
             </div>
-            <div className="flex lg:gap-[16px] gap-[12px]">
+            <div className="flex gap-d-16">
               <Button full color="transparent">
-                <div className="flex items-center lg:gap-[10px] gap-[9px]">
+                <div className="flex items-center gap-d-10">
                   <Google />
                   Google
                 </div>
               </Button>
               <Button full color="transparent">
-                <div className="flex items-center lg:gap-[10px] gap-[9px]">
+                <div className="flex items-center gap-d-10">
                   <Linkedin />
                   Linkedin
                 </div>

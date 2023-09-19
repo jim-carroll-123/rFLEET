@@ -49,7 +49,7 @@ export default function Index() {
               <h6 className="font-semibold">CREATE ACCOUNT</h6>
               <div className="text-body-small text-gray-400">Let&apos;s get you into your account.</div>
             </div>
-            <div className="flex flex-col lg:gap-[24px] gap-[18px]">
+            <div className="flex flex-col gap-d-24">
               <div className="lg:grid grid-cols-2 lg:gap-[16px] gap-[18px]">
                 <Input label="First Name" placeholder="Enter your first name" />
                 <Input label="Last Name" placeholder="Enter your last name" />
@@ -67,7 +67,7 @@ export default function Index() {
                   label="Password"
                   placeholder="Enter your email password"
                   leftIcon="lock"
-                  className="lg:mb-[12px] mb-[8px]"
+                  containerClassName="lg:mb-[12px] mb-[8px]"
                 />
                 <div className="text-caption-xs text-gray-100">
                   Must be 8+ Characters and cannot be a commonly used password

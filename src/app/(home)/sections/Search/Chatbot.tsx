@@ -52,7 +52,7 @@ export const Chatbot = () => {
         </div>
       </div>
       <div className="lg:pt-[30px] pt-[22px] lg:pb-[40px] pb-[30px] lg:px-[40px] px-[30px] lg:py-[40px] py-[30px]">
-        <div className="flex flex-col lg:gap-[16px] gap-[12px] lg:mb-[24px] mb-[18px]">
+        <div className="flex flex-col gap-d-16 lg:mb-[24px] mb-[18px]">
           {messages.map((message, index) => (
             <Message
               key={index}
@@ -64,7 +64,7 @@ export const Chatbot = () => {
           ))}
           <div className="flex flex-col lg:gap-[8x] gap-[6px]">
             <div className="text-caption-sm">Suggestions</div>
-            <div className="flex lg:gap-[16px] gap-[12px] overflow-x-hidden">
+            <div className="flex gap-d-16 overflow-x-hidden">
               <div className="whitespace-nowrap bg-gradient-for-chatbot-message lg:px-[16px] px-[12px] lg:py-[10px] py-[8px] lg:rounded-[10px] rounded-[10px]">
                 Quote 2 pallets from Cleveland, OH to Los Angeles, CA?
               </div>
@@ -77,7 +77,7 @@ export const Chatbot = () => {
             </div>
           </div>
         </div>
-        <div className="flex justify-between lg:gap-[12px] gap-[8px] bg-white lg:rounded-[16px] rounded-[12px] lg:pl-[24px] pl-[18px] lg:pr-[16px] pr-[12px] lg:py-[14px] py-[10px]">
+        <div className="flex justify-between gap-d-12 bg-white lg:rounded-[16px] rounded-[12px] lg:pl-[24px] pl-[18px] lg:pr-[16px] pr-[12px] lg:py-[14px] py-[10px]">
           <input
             type="text"
             className="grow lg:text-[14px] text-[10px] text-[#47464A] placeholder:text-[#84818A]"

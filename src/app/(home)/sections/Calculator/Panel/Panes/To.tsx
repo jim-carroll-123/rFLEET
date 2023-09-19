@@ -33,6 +33,16 @@ const fromTypes = [
     label: 'Residential Address',
     value: 'Residential Address',
     icon: <ResidentialAddress />
+  },
+  {
+    label: 'Fulfillment Center',
+    value: 'Fulfillment Center',
+    icon: <div />
+  },
+  {
+    label: 'Consolidation Station',
+    value: 'Consolidation Station',
+    icon: <div />
   }
 ]
 
@@ -40,13 +50,13 @@ interface Props {
   next: () => void
 }
 
-export const From = ({ next }: Props) => {
+export const To = ({ next }: Props) => {
   const [fromType, setFromType] = useState<Option>()
   const [fromCountry, setFromCountry] = useState<Option>()
 
   return (
     <>
-      <h4 className="font-semibold">Where are you shipping from?</h4>
+      <h4 className="font-semibold">Where are you shipping to?</h4>
       <div className="flex lg:flex-row flex-col flex-1 gap-d-24">
         <div className="flex-1 lg:grid lg:grid-cols-3 flex flex-col gap-d-16">
           <div>

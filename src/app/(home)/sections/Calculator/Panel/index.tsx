@@ -9,6 +9,9 @@ import { Pane, Tab, TabPane } from '@components/ui/TabPane'
 import { cn } from '@lib/utils'
 
 import { From } from './Panes/From'
+import { GoodsCommodity } from './Panes/GoodsCommodity'
+import { LoadType } from './Panes/LoadType'
+import { To } from './Panes/To'
 
 const types = [
   { label: 'Parcel', value: 'Parcel' },
@@ -27,46 +30,46 @@ export const Panel = () => {
 
   return (
     <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[26px] lg:p-[36px] rounded-[20px]">
-      <ButtonSelect options={types} value={type} onChange={setType} className="mb-[28px]" />
-      <TabPane className="relative" autoDismiss onTabChanged={(id) => setCategory(id)}>
+      <ButtonSelect options={types} value={type} onChange={setType} containerClassName="mb-[28px]" />
+      <TabPane className="relative" autoDismiss activeTab={category} onTabChange={(id) => setCategory(id)}>
         <div className="lg:grid lg:grid-cols-4 lg:gap-[16px] flex flex-col gap-[30px] lg:mb-[34px] mb-[26px]">
           <div>
-            <CategoryTab target="1" label="Origin" className="mb-6" category={category}>
+            <CategoryTab target="tab-ship-origin" label="Origin" className="mb-6" category={category}>
               Where are you shipping from?
             </CategoryTab>
-            <Check label="Add Extra Pickups" />
+            <Check label="Add Extra Pickups" labelClassName="lg:text-[12px] text-[8px]" />
           </div>
           <div>
-            <CategoryTab target="2" label="Destination" className="mb-6" category={category}>
+            <CategoryTab target="tab-ship-destination" label="Destination" className="mb-6" category={category}>
               Where are you shipping to?
             </CategoryTab>
-            <Check label="Add Extra Drops" />
+            <Check label="Add Extra Drops" labelClassName="lg:text-[12px] text-[8px]" />
           </div>
           <div>
-            <CategoryTab target="3" label="Load Type" className="mb-6" category={category}>
+            <CategoryTab target="tab-ship-load-type" label="Load Type" className="mb-6" category={category}>
               What are you shipping?
             </CategoryTab>
           </div>
           <div>
-            <CategoryTab target="4" label="Goods/Commodity" className="mb-6" category={category}>
+            <CategoryTab target="tab-ship-goods-commodity" label="Goods/Commodity" className="mb-6" category={category}>
               Goods/Commodity
             </CategoryTab>
-            <Check label="Add More Goods/Commodities" />
+            <Check label="Add More Goods/Commodities" labelClassName="lg:text-[12px] text-[8px]" />
           </div>
         </div>
         <div>
-          <CategoryPane id="1">
-            <From />
+          <CategoryPane id="tab-ship-origin">
+            <From next={() => setCategory('tab-ship-destination')} />
           </CategoryPane>
-          <Pane id="2" className="absolute">
-            Pane 2
-          </Pane>
-          <Pane id="3" className="absolute">
-            Pane 2
-          </Pane>
-          <Pane id="4" className="absolute">
-            Pane 2
-          </Pane>
+          <CategoryPane id="tab-ship-destination">
+            <To next={() => setCategory('tab-ship-load-type')} />
+          </CategoryPane>
+          <CategoryPane id="tab-ship-load-type">
+            <LoadType next={() => setCategory('tab-ship-goods-commodity')} />
+          </CategoryPane>
+          <CategoryPane id="tab-ship-goods-commodity">
+            <GoodsCommodity />
+          </CategoryPane>
         </div>
       </TabPane>
       <div className="flex justify-center">
