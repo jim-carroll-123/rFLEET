@@ -38,8 +38,13 @@ export const BannerSection = () => {
             <Link href="#">
               <Button glossy>CONTACT US</Button>
             </Link>
-            <Link href="#" onClick={() => setOpenVideoModal(true)} className="flex items-center gap-2">
-              <PlayCircle className="hover:bg-green" />
+            <Link href="#" onClick={() => setOpenVideoModal(true)} className="flex items-center gap-2 group">
+              <div className="relative">
+                <div className="z-[1] absolute flex justify-center items-center left-0 right-0 top-0 bottom-0 rounded-full group-hover:blur-[10px] active:blur-none active:bg-transparent active:duration-75 group-hover:bg-green blur-sm inset-0 transition duration-300">
+                  <div className="w-[50px] h-[50px] bg-secondary rounded-full" />
+                </div>
+                <PlayCircle className="relative z-[2]" />
+              </div>
               <div className="only-desktop text-body-xl">HOW IT WORKS</div>
             </Link>
           </div>
