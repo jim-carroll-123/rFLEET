@@ -5,14 +5,15 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { VideoModal } from '@app/(home)/sections/Banner/VideoModal'
 import Close from '@assets/icons/close.svg'
 import Hamburger from '@assets/icons/hamburger.svg'
 import Lock from '@assets/icons/lock.svg'
-import { Button } from '@components/ui/Button'
 import { Logo } from '@components/ui/Logo'
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [openVideoModal, setOpenVideoModal] = useState(false)
   const pathName = usePathname()
 
   const closeMenu = () => {
@@ -52,37 +53,44 @@ export default function Example() {
           >
             <div className="flex flex-col lg:flex-row lg:items-center gap-[40px] relative">
               <div className="w-full lg:w-auto lg:pr-4 lg:pt-0 flex flex-col gap-5 tracking-wide lg:flex-row lg:text-sm">
-                <Link href="#" className="block text-white transition hover:text-primary">
-                  <span className="">MAIN SCREEN</span>
-                </Link>
-                <Link href="#" className="block text-white transition hover:text-primary">
-                  <span className="">SHIP NOW</span>
-                </Link>
-                <Link href="#" className="block text-white transition hover:text-primary">
-                  <span className="">CARRIER NETWORK</span>
-                </Link>
-                <Link href="#" className="block text-white transition hover:text-primary">
-                  <span className="">ABOUT US</span>
-                </Link>
+                <Nav>MAIN SCREEN</Nav>
+                <Nav>SHIP NOW</Nav>
+                <Nav>CARRIER NETWORK</Nav>
+                <Nav onClick={() => setOpenVideoModal(true)}>ABOUT US</Nav>
               </div>
               <div className="flex">
-                <Link
-                  href="#"
-                  className="flex gap-2 items-center text-white font-semibold transition hover:text-primary fill-white hover:fill-primary"
-                >
-                  <span className="">Log in</span>
-                  <Lock className="" />
-                </Link>
+                <Nav href="/signin">
+                  <div className="flex gap-2 items-center text-white font-semibold transition fill-white hover:fill-white">
+                    <span className="font-semibold">Log in</span>
+                    <Lock className="" />
+                  </div>
+                </Nav>
               </div>
               <div className="flex gap-2">
-                <Link href="#">
-                  <Button size="lg">Create Account</Button>
+                <Link href="/signup">
+                  <button className="relative flex items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 font-semibold before:bg-primary px-[24px] py-[14px] lg:px-[32px] lg:py-[18px] hover:before:scale-[1.03] before:z-[1] before:border-2 before:border-solid before:border-primary hover:before:border-primary-green after:z-0 hover:after:bg-primary-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300 active:before:scale-[0.97] hover:after:blur-md active:after:blur-none active:after:bg-transparent">
+                    <span className="relative z-[2] text-white text-[15px]">Create Account</span>
+                  </button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
     </header>
   )
 }
+
+interface NavProps {
+  href?: string
+  onClick?: () => void | Promise<void>
+  children: React.ReactNode
+}
+
+const Nav = ({ href = '#', children, onClick }: NavProps) => (
+  <Link href={href} className="block text-white relative group" onClick={onClick}>
+    <span className="absolute w-full h-full group-hover:bg-primary-green transition duration-300 active:scale-[0.97] group-hover:blur-md active:blur-none active:bg-transparent group-hover:scale-y-[60%] group-hover:scale-x-[105%]" />
+    <span className="relative group-hover:text-white block">{children}</span>
+  </Link>
+)

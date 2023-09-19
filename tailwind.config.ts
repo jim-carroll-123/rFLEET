@@ -4,7 +4,7 @@ const config: Config = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/tw-elements/dist/js/**/*.js',
+    './node_modules/tw-elements/dist/js/**/*.js'
   ],
 
   theme: {
@@ -14,13 +14,14 @@ const config: Config = {
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1536px',
+        '2xl': '1536px'
       },
       colors: ({ colors }) => ({
         inherit: colors.inherit,
         current: colors.current,
         transparent: colors.transparent,
         primary: '#2F80ED',
+        'primary-green': '#4AED52',
         secondary: '#141943',
         dark: '#0E1135',
         info: '#0C63E7',
@@ -29,6 +30,7 @@ const config: Config = {
         light: colors.purple[200],
         slate: colors.slate,
         gray: {
+          DEFAULT: '#9da3bd',
           50: '#FAFAFC',
           100: '#E9E9EC',
           200: '#C6C8CD',
@@ -38,7 +40,7 @@ const config: Config = {
           600: '#5D6370',
           700: '#434959',
           800: '#293041',
-          900: '#0f172a',
+          900: '#0f172a'
         },
         zinc: colors.zinc,
         neutral: colors.neutral,
@@ -59,7 +61,7 @@ const config: Config = {
         purple: colors.purple,
         fuchsia: colors.fuchsia,
         pink: colors.pink,
-        rose: colors.rose,
+        rose: colors.rose
       }),
       columns: {
         auto: 'auto',
@@ -87,7 +89,7 @@ const config: Config = {
         '4xl': '56rem',
         '5xl': '64rem',
         '6xl': '72rem',
-        '7xl': '80rem',
+        '7xl': '80rem'
       },
       spacing: {
         px: '1px',
@@ -124,19 +126,19 @@ const config: Config = {
         64: '16rem',
         72: '18rem',
         80: '20rem',
-        96: '24rem',
+        96: '24rem'
       },
       animation: {
         none: 'none',
         spin: 'spin 1s linear infinite',
         ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
         pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        bounce: 'bounce 1s infinite',
+        bounce: 'bounce 1s infinite'
       },
       aspectRatio: {
         auto: 'auto',
         square: '1 / 1',
-        video: '16 / 9',
+        video: '16 / 9'
       },
       backdropBlur: ({ theme }) => theme('blur'),
       backdropBrightness: ({ theme }) => theme('brightness'),
@@ -166,6 +168,18 @@ const config: Config = {
           'linear-gradient(0deg,rgba(20,25,67,1)0%,rgba(20,25,67,0.8)45%,rgba(20,25,67,0)100%)',
         'gradient-secondary-fade-in-to-top':
           'linear-gradient(180deg,rgba(20,25,67,1)0%,rgba(20,25,67,0.8)45%,rgba(20,25,67,0)100%)',
+
+        'gradient-blur-dialog': 'linear-gradient(117deg, rgba(28,25,75,0.9) 0%, rgba(47,128,237,0.2) 100%)',
+
+        'gradient-card': 'linear-gradient(135deg, #69EACB 0%, #5FA4E6 53.12%, #6654F1 100%)',
+
+        'gradient-for-onboarding-section':
+          'linear-gradient(180deg, rgba(8,0,9,1) 0%, rgba(8,0,9,1) 6%, rgba(8,0,9,0) 16%, rgba(8,0,9,0) 80%, rgba(8,0,9,0.8) 100%)',
+
+        'gradient-for-chatbot-message':
+          'linear-gradient(155deg, rgba(255, 255, 255, 0.00) -2.13%, rgba(255, 255, 255, 0.15) 136.58%)',
+
+        'gradient-to-r-from-green-to-violet': 'linear-gradient(90deg,rgba(105,234,203,1)0%,rgba(102,84,241,1)100%)'
       },
       backgroundOpacity: ({ theme }) => theme('opacity'),
       backgroundPosition: {
@@ -177,12 +191,12 @@ const config: Config = {
         right: 'right',
         'right-bottom': 'right bottom',
         'right-top': 'right top',
-        top: 'top',
+        top: 'top'
       },
       backgroundSize: {
         auto: 'auto',
         cover: 'cover',
-        contain: 'contain',
+        contain: 'contain'
       },
       blur: {
         0: '0',
@@ -193,7 +207,7 @@ const config: Config = {
         lg: '16px',
         xl: '24px',
         '2xl': '40px',
-        '3xl': '64px',
+        '3xl': '64px'
       },
       brightness: {
         0: '0',
@@ -206,11 +220,11 @@ const config: Config = {
         110: '1.1',
         125: '1.25',
         150: '1.5',
-        200: '2',
+        200: '2'
       },
       borderColor: ({ theme }) => ({
         ...theme('colors'),
-        DEFAULT: theme('colors.gray.200', 'currentColor'),
+        DEFAULT: theme('colors.gray.200', 'currentColor')
       }),
       borderOpacity: ({ theme }) => theme('opacity'),
       borderRadius: {
@@ -222,17 +236,17 @@ const config: Config = {
         xl: '0.75rem',
         '2xl': '1rem',
         '3xl': '1.5rem',
-        full: '9999px',
+        full: '9999px'
       },
       borderSpacing: ({ theme }) => ({
-        ...theme('spacing'),
+        ...theme('spacing')
       }),
       borderWidth: {
         DEFAULT: '1px',
         0: '0px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       boxShadow: {
         sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
@@ -242,13 +256,13 @@ const config: Config = {
         xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
         '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
         inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-        none: 'none',
+        none: 'none'
       },
       boxShadowColor: ({ theme }) => theme('colors'),
       caretColor: ({ theme }) => theme('colors'),
       accentColor: ({ theme }) => ({
         ...theme('colors'),
-        auto: 'auto',
+        auto: 'auto'
       }),
       contrast: {
         0: '0',
@@ -257,16 +271,16 @@ const config: Config = {
         100: '1',
         125: '1.25',
         150: '1.5',
-        200: '2',
+        200: '2'
       },
       container: {
         center: true,
         screens: {
-          DEFAULT: '1174px',
-        },
+          DEFAULT: '1174px'
+        }
       },
       content: {
-        none: 'none',
+        none: 'none'
       },
       cursor: {
         auto: 'auto',
@@ -304,7 +318,7 @@ const config: Config = {
         'nesw-resize': 'nesw-resize',
         'nwse-resize': 'nwse-resize',
         'zoom-in': 'zoom-in',
-        'zoom-out': 'zoom-out',
+        'zoom-out': 'zoom-out'
       },
       divideColor: ({ theme }) => theme('borderColor'),
       divideOpacity: ({ theme }) => theme('borderOpacity'),
@@ -316,12 +330,12 @@ const config: Config = {
         lg: ['0 10px 8px rgb(0 0 0 / 0.04)', '0 4px 3px rgb(0 0 0 / 0.1)'],
         xl: ['0 20px 13px rgb(0 0 0 / 0.03)', '0 8px 5px rgb(0 0 0 / 0.08)'],
         '2xl': '0 25px 25px rgb(0 0 0 / 0.15)',
-        none: '0 0 #0000',
+        none: '0 0 #0000'
       },
       fill: ({ theme }) => theme('colors'),
       grayscale: {
         0: '0',
-        DEFAULT: '100%',
+        DEFAULT: '100%'
       },
       hueRotate: {
         0: '0deg',
@@ -329,17 +343,17 @@ const config: Config = {
         30: '30deg',
         60: '60deg',
         90: '90deg',
-        180: '180deg',
+        180: '180deg'
       },
       invert: {
         0: '0',
-        DEFAULT: '100%',
+        DEFAULT: '100%'
       },
       flex: {
         1: '1 1 0%',
         auto: '1 1 auto',
         initial: '0 1 auto',
-        none: 'none',
+        none: 'none'
       },
       flexBasis: ({ theme }) => ({
         auto: 'auto',
@@ -370,18 +384,18 @@ const config: Config = {
         '9/12': '75%',
         '10/12': '83.333333%',
         '11/12': '91.666667%',
-        full: '100%',
+        full: '100%'
       }),
       flexGrow: {
         0: '0',
-        DEFAULT: '1',
+        DEFAULT: '1'
       },
       flexShrink: {
         0: '0',
-        DEFAULT: '1',
+        DEFAULT: '1'
       },
       fontFamily: {
-        poppins: ['"Poppins"'],
+        poppins: ['"Poppins"']
       },
       fontSize: {
         xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -396,7 +410,7 @@ const config: Config = {
         '6xl': ['3.75rem', { lineHeight: '1' }],
         '7xl': ['4.5rem', { lineHeight: '1' }],
         '8xl': ['6rem', { lineHeight: '1' }],
-        '9xl': ['8rem', { lineHeight: '1' }],
+        '9xl': ['8rem', { lineHeight: '1' }]
       },
       fontWeight: {
         thin: '100',
@@ -407,7 +421,7 @@ const config: Config = {
         semibold: '600',
         bold: '700',
         extrabold: '800',
-        black: '900',
+        black: '900'
       },
       gap: ({ theme }) => theme('spacing'),
       gradientColorStops: ({ theme }) => theme('colors'),
@@ -415,13 +429,13 @@ const config: Config = {
         auto: 'auto',
         min: 'min-content',
         max: 'max-content',
-        fr: 'minmax(0, 1fr)',
+        fr: 'minmax(0, 1fr)'
       },
       gridAutoRows: {
         auto: 'auto',
         min: 'min-content',
         max: 'max-content',
-        fr: 'minmax(0, 1fr)',
+        fr: 'minmax(0, 1fr)'
       },
       gridColumn: {
         auto: 'auto',
@@ -437,7 +451,7 @@ const config: Config = {
         'span-10': 'span 10 / span 10',
         'span-11': 'span 11 / span 11',
         'span-12': 'span 12 / span 12',
-        'span-full': '1 / -1',
+        'span-full': '1 / -1'
       },
       gridColumnEnd: {
         auto: 'auto',
@@ -453,7 +467,7 @@ const config: Config = {
         10: '10',
         11: '11',
         12: '12',
-        13: '13',
+        13: '13'
       },
       gridColumnStart: {
         auto: 'auto',
@@ -469,7 +483,7 @@ const config: Config = {
         10: '10',
         11: '11',
         12: '12',
-        13: '13',
+        13: '13'
       },
       gridRow: {
         auto: 'auto',
@@ -479,7 +493,7 @@ const config: Config = {
         'span-4': 'span 4 / span 4',
         'span-5': 'span 5 / span 5',
         'span-6': 'span 6 / span 6',
-        'span-full': '1 / -1',
+        'span-full': '1 / -1'
       },
       gridRowStart: {
         auto: 'auto',
@@ -489,7 +503,7 @@ const config: Config = {
         4: '4',
         5: '5',
         6: '6',
-        7: '7',
+        7: '7'
       },
       gridRowEnd: {
         auto: 'auto',
@@ -499,7 +513,7 @@ const config: Config = {
         4: '4',
         5: '5',
         6: '6',
-        7: '7',
+        7: '7'
       },
       gridTemplateColumns: {
         none: 'none',
@@ -514,7 +528,7 @@ const config: Config = {
         9: 'repeat(9, minmax(0, 1fr))',
         10: 'repeat(10, minmax(0, 1fr))',
         11: 'repeat(11, minmax(0, 1fr))',
-        12: 'repeat(12, minmax(0, 1fr))',
+        12: 'repeat(12, minmax(0, 1fr))'
       },
       gridTemplateRows: {
         none: 'none',
@@ -523,7 +537,7 @@ const config: Config = {
         3: 'repeat(3, minmax(0, 1fr))',
         4: 'repeat(4, minmax(0, 1fr))',
         5: 'repeat(5, minmax(0, 1fr))',
-        6: 'repeat(6, minmax(0, 1fr))',
+        6: 'repeat(6, minmax(0, 1fr))'
       },
       height: ({ theme }) => ({
         auto: 'auto',
@@ -547,7 +561,7 @@ const config: Config = {
         screen: '100vh',
         min: 'min-content',
         max: 'max-content',
-        fit: 'fit-content',
+        fit: 'fit-content'
       }),
       inset: ({ theme }) => ({
         auto: 'auto',
@@ -558,35 +572,35 @@ const config: Config = {
         '1/4': '25%',
         '2/4': '50%',
         '3/4': '75%',
-        full: '100%',
+        full: '100%'
       }),
       keyframes: {
         spin: {
           to: {
-            transform: 'rotate(360deg)',
-          },
+            transform: 'rotate(360deg)'
+          }
         },
         ping: {
           '75%, 100%': {
             transform: 'scale(2)',
-            opacity: '0',
-          },
+            opacity: '0'
+          }
         },
         pulse: {
           '50%': {
-            opacity: '.5',
-          },
+            opacity: '.5'
+          }
         },
         bounce: {
           '0%, 100%': {
             transform: 'translateY(-25%)',
-            animationTimingFunction: 'cubic-bezier(0.8,0,1,1)',
+            animationTimingFunction: 'cubic-bezier(0.8,0,1,1)'
           },
           '50%': {
             transform: 'none',
-            animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
-          },
-        },
+            animationTimingFunction: 'cubic-bezier(0,0,0.2,1)'
+          }
+        }
       },
       letterSpacing: {
         tighter: '-0.05em',
@@ -594,7 +608,7 @@ const config: Config = {
         normal: '0em',
         wide: '0.025em',
         wider: '0.05em',
-        widest: '0.1em',
+        widest: '0.1em'
       },
       lineHeight: {
         none: '1',
@@ -610,16 +624,16 @@ const config: Config = {
         7: '1.75rem',
         8: '2rem',
         9: '2.25rem',
-        10: '2.5rem',
+        10: '2.5rem'
       },
       listStyleType: {
         none: 'none',
         disc: 'disc',
-        decimal: 'decimal',
+        decimal: 'decimal'
       },
       margin: ({ theme }) => ({
         auto: 'auto',
-        ...theme('spacing'),
+        ...theme('spacing')
       }),
       maxHeight: ({ theme }) => ({
         ...theme('spacing'),
@@ -627,7 +641,7 @@ const config: Config = {
         screen: '100vh',
         min: 'min-content',
         max: 'max-content',
-        fit: 'fit-content',
+        fit: 'fit-content'
       }),
       maxWidth: ({ theme, breakpoints }) => ({
         none: 'none',
@@ -648,7 +662,7 @@ const config: Config = {
         max: 'max-content',
         fit: 'fit-content',
         prose: '65ch',
-        ...breakpoints(theme('screens')),
+        ...breakpoints(theme('screens'))
       }),
       minHeight: {
         0: '0px',
@@ -656,14 +670,14 @@ const config: Config = {
         screen: '100vh',
         min: 'min-content',
         max: 'max-content',
-        fit: 'fit-content',
+        fit: 'fit-content'
       },
       minWidth: {
         0: '0px',
         full: '100%',
         min: 'min-content',
         max: 'max-content',
-        fit: 'fit-content',
+        fit: 'fit-content'
       },
       objectPosition: {
         bottom: 'bottom',
@@ -674,7 +688,7 @@ const config: Config = {
         right: 'right',
         'right-bottom': 'right bottom',
         'right-top': 'right top',
-        top: 'top',
+        top: 'top'
       },
       opacity: {
         0: '0',
@@ -691,7 +705,7 @@ const config: Config = {
         80: '0.8',
         90: '0.9',
         95: '0.95',
-        100: '1',
+        100: '1'
       },
       order: {
         first: '-9999',
@@ -708,7 +722,7 @@ const config: Config = {
         9: '9',
         10: '10',
         11: '11',
-        12: '12',
+        12: '12'
       },
       padding: ({ theme }) => theme('spacing'),
       placeholderColor: ({ theme }) => theme('colors'),
@@ -719,18 +733,18 @@ const config: Config = {
         1: '1px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       outlineWidth: {
         0: '0px',
         1: '1px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       ringColor: ({ theme }) => ({
         DEFAULT: theme(`colors.blue.500`, '#3b82f6'),
-        ...theme('colors'),
+        ...theme('colors')
       }),
       ringOffsetColor: ({ theme }) => theme('colors'),
       ringOffsetWidth: {
@@ -738,11 +752,11 @@ const config: Config = {
         1: '1px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       ringOpacity: ({ theme }) => ({
         DEFAULT: '0.5',
-        ...theme('opacity'),
+        ...theme('opacity')
       }),
       ringWidth: {
         DEFAULT: '3px',
@@ -750,7 +764,7 @@ const config: Config = {
         1: '1px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       rotate: {
         0: '0deg',
@@ -761,14 +775,14 @@ const config: Config = {
         12: '12deg',
         45: '45deg',
         90: '90deg',
-        180: '180deg',
+        180: '180deg'
       },
       saturate: {
         0: '0',
         50: '.5',
         100: '1',
         150: '1.5',
-        200: '2',
+        200: '2'
       },
       scale: {
         0: '0',
@@ -780,15 +794,15 @@ const config: Config = {
         105: '1.05',
         110: '1.1',
         125: '1.25',
-        150: '1.5',
+        150: '1.5'
       },
       scrollMargin: ({ theme }) => ({
-        ...theme('spacing'),
+        ...theme('spacing')
       }),
       scrollPadding: ({ theme }) => theme('spacing'),
       sepia: {
         0: '0',
-        DEFAULT: '100%',
+        DEFAULT: '100%'
       },
       skew: {
         0: '0deg',
@@ -796,16 +810,16 @@ const config: Config = {
         2: '2deg',
         3: '3deg',
         6: '6deg',
-        12: '12deg',
+        12: '12deg'
       },
       space: ({ theme }) => ({
-        ...theme('spacing'),
+        ...theme('spacing')
       }),
       stroke: ({ theme }) => theme('colors'),
       strokeWidth: {
         0: '0',
         1: '1',
-        2: '2',
+        2: '2'
       },
       textColor: ({ theme }) => theme('colors'),
       textDecorationColor: ({ theme }) => theme('colors'),
@@ -816,7 +830,7 @@ const config: Config = {
         1: '1px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       textUnderlineOffset: {
         auto: 'auto',
@@ -824,10 +838,10 @@ const config: Config = {
         1: '1px',
         2: '2px',
         4: '4px',
-        8: '8px',
+        8: '8px'
       },
       textIndent: ({ theme }) => ({
-        ...theme('spacing'),
+        ...theme('spacing')
       }),
       textOpacity: ({ theme }) => theme('opacity'),
       transformOrigin: {
@@ -839,7 +853,7 @@ const config: Config = {
         bottom: 'bottom',
         'bottom-left': 'bottom left',
         left: 'left',
-        'top-left': 'top left',
+        'top-left': 'top left'
       },
       transitionDelay: {
         75: '75ms',
@@ -849,7 +863,7 @@ const config: Config = {
         300: '300ms',
         500: '500ms',
         700: '700ms',
-        1000: '1000ms',
+        1000: '1000ms'
       },
       transitionDuration: {
         DEFAULT: '150ms',
@@ -860,7 +874,7 @@ const config: Config = {
         300: '300ms',
         500: '500ms',
         700: '700ms',
-        1000: '1000ms',
+        1000: '1000ms'
       },
       transitionProperty: {
         none: 'none',
@@ -870,14 +884,14 @@ const config: Config = {
         colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
         opacity: 'opacity',
         shadow: 'box-shadow',
-        transform: 'transform',
+        transform: 'transform'
       },
       transitionTimingFunction: {
         DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
         linear: 'linear',
         in: 'cubic-bezier(0.4, 0, 1, 1)',
         out: 'cubic-bezier(0, 0, 0.2, 1)',
-        'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
+        'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)'
       },
       translate: ({ theme }) => ({
         ...theme('spacing'),
@@ -887,7 +901,7 @@ const config: Config = {
         '1/4': '25%',
         '2/4': '50%',
         '3/4': '75%',
-        full: '100%',
+        full: '100%'
       }),
       width: ({ theme }) => ({
         auto: 'auto',
@@ -922,13 +936,13 @@ const config: Config = {
         screen: '100vw',
         min: 'min-content',
         max: 'max-content',
-        fit: 'fit-content',
+        fit: 'fit-content'
       }),
       willChange: {
         auto: 'auto',
         scroll: 'scroll-position',
         contents: 'contents',
-        transform: 'transform',
+        transform: 'transform'
       },
       zIndex: {
         auto: 'auto',
@@ -937,9 +951,9 @@ const config: Config = {
         20: '20',
         30: '30',
         40: '40',
-        50: '50',
-      },
-    },
+        50: '50'
+      }
+    }
   },
   variantOrder: [
     'first',
@@ -957,9 +971,9 @@ const config: Config = {
     'focus',
     'focus-visible',
     'active',
-    'disabled',
+    'disabled'
   ],
   plugins: [require('tw-elements/dist/plugin.cjs')],
-  darkMode: 'class',
+  darkMode: 'class'
 }
 export default config

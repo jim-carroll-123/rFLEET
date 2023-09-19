@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 
 import { cn } from '@lib/utils'
@@ -6,8 +8,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
   className?: string
   full?: boolean
-  color?: 'primary' | 'light' | 'red'
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  color?: 'primary' | 'light' | 'red' | 'transparent'
+  size?: 'sm' | 'md'
   glossy?: boolean
 }
 
@@ -16,35 +18,37 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const colorConfig = {
       primary: {
         bgColor: 'before:bg-primary',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       light: {
         bgColor: 'before:bg-primary/10',
-        textColor: 'text-primary',
+        textColor: 'text-primary'
       },
       red: {
         bgColor: 'before:bg-red-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       green: {
         bgColor: 'before:bg-green-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       blue: {
         bgColor: 'before:bg-blue-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
       yellow: {
         bgColor: 'before:bg-yellow-400',
-        textColor: 'text-white',
+        textColor: 'text-white'
       },
+      transparent: {
+        bgColor: 'before:bg-transparent before:border-2 before:border-solid before:border-white',
+        textColor: 'text-white'
+      }
     }
 
     const sizeConfig = {
-      sm: { padding: 'px-3 h-7', font: 'text-xs' },
-      md: { padding: 'px-5 h-9', font: 'text-sm' },
-      lg: { padding: 'px-[24px] py-[14px] lg:px-[32px] lg:py-[18px]', font: 'text-[15px]' },
-      xl: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'text-lg' },
+      sm: { padding: 'px-[24px] py-[14px] lg:px-[32px] lg:py-[18px]', font: 'text-[15px]' },
+      md: { padding: 'px-[36px] h-[46px] lg:px-[50px] lg:h-[62px]', font: 'text-lg' }
     }
 
     const { bgColor, textColor } = colorConfig[color]
@@ -67,26 +71,26 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           padding,
           hoverActive,
           glossy
-            ? 'before:z-[1] before:border-2 before:border-solid before:border-[#4AED52] after:z-0 after:bg-[#4AED52] after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300'
+            ? 'before:z-[1] before:border-2 before:border-solid before:border-primary-green after:z-0 after:bg-primary-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300'
             : '',
-          disabled ? 'opacity-50' : '',
+          disabled ? 'opacity-50' : ''
         )}
         {...props}
       >
         <span className={cn('relative z-[2]', textColor, font)}>{children}</span>
       </button>
     )
-  },
+  }
 )
 
 export const TransparentButton = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
   (props, ref) => (
     <button
       ref={ref}
-      className="w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semi rounded-md hover:bg-[#ffffff20] transition duration-300 font-semibold"
+      className="hover-bg-green-glow w-full lg:px-[30px] px-[26px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semi rounded-md hover:bg-[#ffffff20] transition duration-300 font-semibold"
       {...props}
     >
       {props.children}
     </button>
-  ),
+  )
 )

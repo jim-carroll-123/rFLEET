@@ -24,6 +24,7 @@
       "@components/*": ["./src/components/*"],
       "@controllers/*": ["./src/controllers/*"],
       "@lib/*": ["./src/lib/*"],
+      "@hooks/*": ["./src/hooks/*"],
       "@assets/*": ["./src/assets/*"],
       "@styles/*": ["./src/styles/*"],
       "@json/*": ["./src/json/*"]

@@ -1,17 +1,7 @@
-import { useEffect } from 'react'
-
 import SearchIcon from '@assets/icons/search.svg'
 import { Button } from '@components/ui/Button'
 
 export const SearchInput = () => {
-  useEffect(() => {
-    const init = async () => {
-      const { Ripple, initTE } = await import('tw-elements')
-      initTE({ Ripple })
-    }
-    init()
-  }, [])
-
   return (
     <div className="flex flex-wrap items-stretch relative mb-[24px] lg:mb-[34px] w-full max-w-[900px]">
       <input
@@ -23,7 +13,6 @@ export const SearchInput = () => {
       />
       <Button
         glossy
-        size="xl"
         className="!h-[56px] lg:!h-[72px] !px-[10px] lg:!px-[50px] before:rounded-l-none before:rounded-r-lg"
       >
         <SearchIcon />
