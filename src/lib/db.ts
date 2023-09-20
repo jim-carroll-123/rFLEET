@@ -11,7 +11,7 @@ const options: ConnectOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: MONGODB_DB
-};
+} as any;
 
 let isConnected = false;
 

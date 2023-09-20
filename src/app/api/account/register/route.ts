@@ -8,10 +8,14 @@ import { usersController } from '../../../../controllers/users';
  * @swagger
  * /api/account/register:
  *   post:
- *     description: Returns the hello world
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *     description: Register new user
  *     responses:
  *       200:
- *         description: Hello World!
+ *         description: Register
  */
 
 module.exports = apiHandler({
