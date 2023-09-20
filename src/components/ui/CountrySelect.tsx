@@ -3,7 +3,7 @@ import countries from '@json/countries.json'
 import { Select } from './Select'
 
 export interface Option {
-  label: string
+  label: string | JSX.Element
   value: string
   icon?: any
 }
