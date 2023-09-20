@@ -1,13 +1,14 @@
 'use client'
 
 import * as React from 'react'
+import { onlyText } from 'react-children-utilities'
 
 import ArrowDown from '@assets/icons/arrow-down.svg'
 import { useOnClickOutside } from '@hooks/utils/useClickOutside'
 import { cn } from '@lib/utils'
 
 export interface Option {
-  label: string
+  label: string | JSX.Element
   value: string
   icon?: any
 }
@@ -38,7 +39,12 @@ export const Select = React.forwardRef(
     const inputRef = React.useRef<any>(null)
 
     const filteredOptions = React.useMemo(
-      () => options.filter((option) => option.label.toLowerCase().includes(keyword.toLowerCase())),
+      () =>
+        options.filter((option) =>
+          (typeof option.label === 'string' ? option.label : onlyText(option.label))
+            .toLowerCase()
+            .includes(keyword.toLowerCase())
+        ),
       [options, keyword]
     )
 
@@ -80,7 +86,7 @@ export const Select = React.forwardRef(
           <input
             type="text"
             autoComplete="off"
-            placeholder={currentLabel}
+            placeholder={typeof currentLabel === 'string' ? currentLabel : onlyText(currentLabel)}
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             readOnly={!searchable}

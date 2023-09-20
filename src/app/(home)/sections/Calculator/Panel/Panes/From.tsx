@@ -10,6 +10,7 @@ import ResidentialAddress from '@assets/icons/residential-address.svg'
 import User from '@assets/icons/user.svg'
 import { Button } from '@components/ui/Button'
 import { CountrySelect } from '@components/ui/CountrySelect'
+import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Select } from '@components/ui/Select'
 
@@ -89,7 +90,7 @@ export const From = ({ methods, onSubmit }: Props) => {
           </Button>
         </div>
       </form>
-      <div className="w-full h-[2px] opacity-70 bg-gradient-to-r-from-green-to-violet" />
+      <GradientHR />
       <div className="flex flex-col lg:gap-[4px] gap-[3px]">
         <div className="text-caption-sm">My recent searches</div>
         <div className="flex items-center lg:gap-[8px] gap-[6px]">

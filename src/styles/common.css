@@ -114,3 +114,11 @@ a.svg-hover:hover svg * {
 .gap-d-10 {
   @apply lg:gap-[10px] gap-[7px];
 }
+
+.rounded-d-8 {
+  @apply lg:rounded-[8px] rounded-[6px];
+}
+
+.rounded-d-6 {
+  @apply lg:rounded-[6px] rounded-[5px];
+}
