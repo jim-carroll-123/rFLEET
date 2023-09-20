@@ -26,12 +26,6 @@ export const Chatbot = () => {
       createdAt: `Today `
     },
     {
-      bot: false,
-      avatar: false,
-      text: `I think I found a issue!`,
-      createdAt: `Today `
-    },
-    {
       bot: true,
       avatar: true,
       text: `Of course! I'd be happy to help you track your parcel.
@@ -44,15 +38,15 @@ export const Chatbot = () => {
   return (
     <>
       <div className="border-b border-[#FFFFFF20]">
-        <div className="flex justify-center lg:py-[24px] py-[18px]">
+        <div className="flex justify-center lg:py-[20px] py-[15px]">
           <div className="flex font-bold">
             <h4 className="text-primary">rFLEET.ai</h4>&nbsp;
             <h4>chatbot</h4>
           </div>
         </div>
       </div>
-      <div className="lg:pt-[30px] pt-[22px] lg:pb-[40px] pb-[30px] lg:px-[40px] px-[30px] lg:py-[40px] py-[30px]">
-        <div className="flex flex-col gap-d-16 lg:mb-[24px] mb-[18px]">
+      <div className="lg:pt-[20px] pt-[15px] lg:pb-[32px] pb-[24px] lg:px-[40px] px-[30px] lg:py-[40px] py-[30px]">
+        <div className="flex flex-col gap-d-12 lg:mb-[16px] mb-[12px]">
           {messages.map((message, index) => (
             <Message
               key={index}

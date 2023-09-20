@@ -1,12 +1,14 @@
 import Link from 'next/link'
 
+import bgCurveStripes from '@assets/images/bg-curve-stripes.png'
 import { BRD } from '@components/ui/BRD'
 import { Title } from '@components/ui/Typography'
 
 export const AboutSection = () => {
   return (
-    <section className="lg:py-[130px] py-[100px] bg-[#191a4c] text-white">
-      <div className="container text-center lg:mb-[72px] mb-[54px]">
+    <section className="relative lg:pt-[70px] pt-[48px] lg:pb-[100px] pb-[80px] bg-[#191a4c] text-white overflow-hidden">
+      <img className="absolute lg:block hidden left-[0] top-[0px] z-[1]" src={bgCurveStripes.src} />
+      <div className="relative z-[2] container text-center lg:mb-[72px] mb-[54px]">
         <div className="flex justify-center lg:mb-[26px] mb-[20px]">
           <Title>About Us</Title>
         </div>
@@ -20,9 +22,9 @@ export const AboutSection = () => {
           <BRD />
           transforming the industry, forging a better way to do business.
         </div>
-        <Link href="#">
-          <button className="hover-bg-green-glow lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-solid border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">
-            LEARN MORE
+        <Link href="/signin" className="hover:text-white">
+          <button className="hover-bg-green-glow lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-transparent hover:border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">
+            LOGIN
           </button>
         </Link>
       </div>
@@ -50,8 +52,9 @@ interface CardProps {
 }
 
 const Card = ({ children }: CardProps) => (
-  <div className="cursor-default group text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c] hover:bg-gradient-card">
-    <h4 className="font-[500] lg:mb-[15px] mb-[13px]">{children[0]}</h4>
-    <div className="text-body-lg text-gray-400 group-hover:text-white">{children[1]}</div>
+  <div className="relative cursor-default group text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
+    <div className="absolute z-[2] group-hover:bg-gradient-card w-full h-full left-0 top-0"></div>
+    <h4 className="relative z-[3] font-[500] lg:mb-[15px] mb-[13px]">{children[0]}</h4>
+    <div className="relative z-[3] text-body-lg text-gray-400 group-hover:text-white">{children[1]}</div>
   </div>
 )

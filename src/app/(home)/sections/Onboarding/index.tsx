@@ -20,7 +20,7 @@ export const OnboardingSection = () => {
         <div className="absolute left-0 right-0 top-0 bottom-0">
           <div className="absolute left-0 top-0 w-full h-full bg-gradient-for-onboarding-section" />
         </div>
-        <div className="relative container lg:py-[110px] py-[90px] text-white">
+        <div className="relative container lg:py-[64px] py-[48px] text-white">
           <div className="flex justify-center text-center lg:mb-[158px] mb-[50px]">
             <div className="flex flex-col">
               <div className="flex justify-center">
