@@ -124,9 +124,12 @@ export const OnboardingSection = () => {
 
 export const GradientCard = ({ children }: { children: React.ReactNode }) => (
   <div
-    className="lg:px-[28px] px-[22px] lg:py-[34px] py-[26px] flex flex-col items-center lg:gap-[25px] gap-[18px] text-center"
+    className="relative bg-gradient-blur-dialog"
     style={{ backgroundImage: `url(${gradientCard.src})`, backgroundSize: '100% 100%' }}
   >
-    {children}
+    <div className="absolute left-0 right-0 top-0 bottom-0 m-[2px] bg-gradient-blur-dialog rounded-[10px]" />
+    <div className="relative left-0 right-0 top-0 bottom-0 lg:px-[28px] px-[22px] lg:py-[34px] py-[26px] flex flex-col items-center lg:gap-[25px] gap-[18px] text-center">
+      {children}
+    </div>
   </div>
 )
