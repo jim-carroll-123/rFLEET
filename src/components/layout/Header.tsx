@@ -77,7 +77,7 @@ export default function Example() {
           </div>
         </div>
       </div>
-      {openVideoModal && <VideoModal onClose={() => setOpenVideoModal(false)} />}
+      {openVideoModal && <VideoModal open={openVideoModal} onClose={() => setOpenVideoModal(false)} />}
     </header>
   )
 }
