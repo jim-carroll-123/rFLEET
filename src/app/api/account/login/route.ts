@@ -1,3 +1,5 @@
+import { connectToDatabase, isDatabaseConnected } from '@lib/db';
+
 import { apiHandler } from '../../../../lib/api';
 import { cookies } from 'next/headers';
 import joi from 'joi';
@@ -8,6 +10,8 @@ module.exports = apiHandler({
 });
 
 async function login(req: Request) {
+    if (!isDatabaseConnected()) await connectToDatabase();
+
     const body = await req.json();
     const { user, token } = await usersController.authenticate(body);
 
