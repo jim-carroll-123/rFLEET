@@ -31,6 +31,8 @@ export type ToInputs = {
 }
 
 export type Field = {
+  carrierProvider: string
+  carrierSize: Option | undefined
   length: string
   width: string
   height: string
@@ -96,6 +98,8 @@ export const weightUnits = [
 ]
 
 export const initialField: Field = {
+  carrierProvider: '',
+  carrierSize: undefined,
   length: '0',
   width: '0',
   height: '0',

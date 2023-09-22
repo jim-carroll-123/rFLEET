@@ -8,7 +8,7 @@ interface Option {
 }
 
 interface Props {
-  label?: string
+  label?: string | JSX.Element
   value?: Option
   options: Option[]
   full?: boolean
