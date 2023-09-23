@@ -54,6 +54,8 @@ export type LoadTypeInputs = {
   fields: Field[]
 }
 
+export type GoodsCommodityInputs = {}
+
 export const parcelShapes = [
   {
     label: (
@@ -150,9 +152,17 @@ export const Panel = () => {
     }
   })
 
+  const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
+    defaultValues: {}
+  })
+
   const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => console.debug(data)
   const onToFormSubmit: SubmitHandler<ToInputs> = (data) => console.debug(data)
   const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => console.debug(data)
+  const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
+    console.debug(data)
+    setShippingStepId('')
+  }
 
   return (
     <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[26px] lg:p-[36px] rounded-[20px]">
@@ -175,7 +185,7 @@ export const Panel = () => {
             <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />
           </ShippingPane>
           <ShippingPane id="tab-ship-goods-commodity">
-            <GoodsCommodity />
+            <GoodsCommodity methods={goodsCommodityFormMethods} onSubmit={onGoodsCommodityFormSubmit} />
           </ShippingPane>
         </div>
       </TabPane>

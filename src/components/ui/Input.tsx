@@ -10,7 +10,7 @@ import { cn } from '@lib/utils'
 type Icon = 'email' | 'invisible' | 'lock'
 
 type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
-  label?: string
+  label?: JSX.Element | string
   transparent?: boolean
   full?: boolean
   index?: number

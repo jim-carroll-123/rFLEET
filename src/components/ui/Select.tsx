@@ -14,11 +14,12 @@ export interface Option {
 }
 
 interface Props {
-  label?: string
+  label?: string | JSX.Element
   value?: Option
   options: Option[]
   placeholder?: string
   searchable?: boolean
+  full?: boolean
   containerClassName?: string
   labelClassName?: string
   onChange?: (newValue: Option) => void | Promise<void>
@@ -26,7 +27,17 @@ interface Props {
 
 export const Select = React.forwardRef(
   (
-    { containerClassName, labelClassName, options, value, onChange, placeholder, searchable = false, ...props }: Props,
+    {
+      containerClassName,
+      labelClassName,
+      full = false,
+      options,
+      value,
+      onChange,
+      placeholder,
+      searchable = false,
+      ...props
+    }: Props,
     _
   ) => {
     const [selectOpen, setSelectOpen] = React.useState(false)
@@ -71,7 +82,7 @@ export const Select = React.forwardRef(
     }, [selectOpen])
 
     return (
-      <div className={cn(`relative w-full`, containerClassName)} ref={selectNode}>
+      <div className={cn(`relative`, containerClassName, full ? 'w-full' : '')} ref={selectNode}>
         {props.label && (
           <label className={cn(`block lg:mb-[12px] mb-[8px] font-medium`, labelClassName)}>{props.label}</label>
         )}
@@ -119,7 +130,7 @@ export const Select = React.forwardRef(
                   'flex justify-center items-center lg:gap-[10px] gap-[7px] lg:px-[16px] px-[12px] lg:py-[20px] py-[15px]'
                 )}
               >
-                No options
+                ---
               </div>
             )}
           </div>

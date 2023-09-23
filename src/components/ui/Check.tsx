@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { cn } from '@lib/utils'
 
 interface Props {
-  label?: string
+  label?: JSX.Element | string
   checked?: boolean
   containerClassName?: string
   labelClassName?: string
