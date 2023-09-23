@@ -13,17 +13,18 @@ interface Props {
   value?: Option
   placeholder?: string
   searchable?: boolean
+  error?: string | boolean
   className?: string
   labelClassName?: string
   onChange?: (newValue: Option) => void | Promise<void>
 }
 
-export const CountrySelect = (props: Props) => {
-  const options = countries.map((country) => ({
-    label: country.country || '',
-    value: country.code || '',
-    icon: <img src={country.flag} className="w-[24px] h-[24px]" /> || <></>
-  }))
+export const countryOptions = countries.map((country) => ({
+  label: country.country || '',
+  value: country.code || '',
+  icon: <img src={country.flag} className="w-[24px] h-[24px]" /> || <></>
+}))
 
-  return <Select options={options} {...props} />
+export const CountrySelect = (props: Props) => {
+  return <Select options={countryOptions} {...props} />
 }

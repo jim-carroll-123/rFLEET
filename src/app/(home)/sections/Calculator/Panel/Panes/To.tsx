@@ -9,10 +9,10 @@ import PortAirport from '@assets/icons/port_airport.svg'
 import ResidentialAddress from '@assets/icons/residential-address.svg'
 import User from '@assets/icons/user.svg'
 import { Button } from '@components/ui/Button'
-import { CountrySelect } from '@components/ui/CountrySelect'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelect'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
-import { Select } from '@components/ui/Select'
+import { Select, findOption } from '@components/ui/Select'
 
 import { ToInputs } from '..'
 
@@ -71,8 +71,9 @@ export const To = ({ methods, onSubmit }: Props) => {
             <div className="font-semibold text-gray-200 lg:mb-[12px] mb-[8px]">Type</div>
             <Select
               options={toTypes}
-              value={watch('toType')}
-              onChange={(value) => setValue('toType', value)}
+              value={findOption(toTypes, watch('toType'))}
+              onChange={({ value }) => setValue('toType', value)}
+              error={errors.toType?.message}
               placeholder="Tell us about your goods"
             />
           </div>
@@ -80,9 +81,10 @@ export const To = ({ methods, onSubmit }: Props) => {
             <div className="font-semibold text-gray-200 lg:mb-[12px] mb-[8px]">Country</div>
             <CountrySelect
               searchable
-              value={watch('toCountry')}
+              value={findOption(countryOptions, watch('toCountry'))}
               placeholder="Select a country"
-              onChange={(value) => setValue('toCountry', value)}
+              onChange={({ value }) => setValue('toCountry', value)}
+              error={errors.toCountry?.message}
             />
           </div>
           <div>
@@ -91,6 +93,7 @@ export const To = ({ methods, onSubmit }: Props) => {
               value={watch('toAddress')}
               onChange={(value) => setValue('toAddress', value)}
               placeholder="Enter Address or Zip/Postal Code"
+              error={errors.toAddress?.message}
             />
           </div>
         </div>

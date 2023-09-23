@@ -18,6 +18,7 @@ interface Props {
   value?: Option
   options: Option[]
   placeholder?: string
+  error?: string | boolean
   searchable?: boolean
   full?: boolean
   containerClassName?: string
@@ -35,6 +36,7 @@ export const Select = React.forwardRef(
       value,
       onChange,
       placeholder,
+      error = false,
       searchable = false,
       ...props
     }: Props,
@@ -90,7 +92,7 @@ export const Select = React.forwardRef(
           onClick={() => setSelectOpen(!selectOpen)}
           className={cn(
             'flex justify-between items-center lg:gap-[10px] gap-[7px] w-full lg:px-[16px] px-[12px] lg:py-[18px] py-[14px] border border-solid shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
-            selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
+            error ? 'border-red-600' : selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
           )}
         >
           {value?.icon && value.icon}
@@ -139,3 +141,7 @@ export const Select = React.forwardRef(
     )
   }
 )
+
+export const findOption = (options: Option[], value: string) => {
+  return options.find((option) => option.value === value)
+}

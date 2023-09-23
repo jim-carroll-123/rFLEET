@@ -15,7 +15,7 @@ import { Check } from '@components/ui/Check'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Radio } from '@components/ui/Radio'
-import { Option, Select } from '@components/ui/Select'
+import { Option, Select, findOption } from '@components/ui/Select'
 import { cn } from '@lib/utils'
 
 import { Field, LoadTypeInputs, dimensionUnits, initialField, parcelShapes, weightUnits } from '..'
@@ -34,7 +34,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   } = methods
 
   const isCustomDimensions = watch('parcelType') === 'Enter Custom Dimensions'
-  const isBoxOrTube = watch('parcelShape').value === 'Box or Tube'
+  const isBoxOrTube = watch('parcelShape') === 'Box or Tube'
 
   const fields: Field[] = watch('fields')
   const field = fields[fields.length - 1]
@@ -110,9 +110,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       {isCustomDimensions && (
         <ButtonSelect
           full
-          value={watch('parcelShape')}
+          value={findOption(parcelShapes, watch('parcelShape'))}
           options={parcelShapes}
-          onChange={(value) => setValue('parcelShape', value)}
+          onChange={({ value }) => setValue('parcelShape', value)}
           containerClassName="gap-d-16"
         />
       )}
@@ -127,8 +127,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 {el.identicalUnitsCount} Boxes/Crates
               </div>
               <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">
-                {el.length}X{el.width}X{el.height} {el.dimensionUnit?.value} {el.weight}
-                {el.weightUnit?.value}
+                {el.length}X{el.width}X{el.height} {el.dimensionUnit} {el.weight}
+                {el.weightUnit}
               </div>
               <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[20px] py-[15px] hover:cursor-pointer">
                 <Delete
@@ -195,8 +195,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         <Select
           label="Select Carrier Size"
           options={carrierSizes}
-          value={field.carrierSize}
-          onChange={(value) => setFieldItem('carrierSize', value)}
+          value={findOption(carrierSizes, field.carrierSize)}
+          onChange={({ value }) => setFieldItem('carrierSize', value)}
         />
       )}
       <div className="flex lg:flex-row lg:justify-between flex-col">
@@ -240,8 +240,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       <Select
                         placeholder="Select Unit"
                         options={dimensionUnits}
-                        value={field.dimensionUnit}
-                        onChange={(value) => setFieldItem('dimensionUnit', value)}
+                        value={findOption(dimensionUnits, field.dimensionUnit)}
+                        onChange={({ value }) => setFieldItem('dimensionUnit', value)}
                         containerClassName="lg:w-[135px]"
                       />
                     </div>
@@ -276,7 +276,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       label="Units"
                       placeholder="Select Unit"
                       options={dimensionUnits}
-                      value={field.dimensionUnit}
+                      value={findOption(dimensionUnits, field.dimensionUnit)}
                       onChange={(value) => setFieldItem('dimensionUnit', value)}
                       containerClassName="lg:w-[326px]"
                       labelClassName="font-bold"
@@ -303,7 +303,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               <Select
                 placeholder=" "
                 options={weightUnits}
-                value={field.weightUnit}
+                value={findOption(weightUnits, field.weightUnit)}
                 onChange={(value) => setFieldItem('weightUnit', value)}
                 containerClassName="lg:w-[100px]"
               />

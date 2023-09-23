@@ -12,6 +12,7 @@ type Icon = 'email' | 'invisible' | 'lock'
 type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   label?: JSX.Element | string
   transparent?: boolean
+  error?: string | boolean
   full?: boolean
   index?: number
   siblings?: number
@@ -44,6 +45,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       siblings,
       leftIcon,
       rightIcon,
+      error = false,
       onChange,
       onLeftIconClick,
       onRightIconClick,
@@ -74,7 +76,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={(e) => (onChange ? onChange(e.target.value) : false)}
             className={cn(
-              'block w-full lg:py-[20px] py-[15px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white border-gray-100 hover:border-gray-300 focus:ring-primary focus:border-primary placeholder:text-white',
+              'block w-full lg:py-[20px] py-[15px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white placeholder:text-white',
+              error ? 'border-red-600' : 'border-gray-100 hover:border-gray-300 focus:border-primary',
               leftIcon ? 'pl-[54px]' : 'lg:pl-[16px] pl-[12px]',
               rightIcon ? 'pr-[54px]' : 'lg:pr-[16px] pr-[12px]'
             )}

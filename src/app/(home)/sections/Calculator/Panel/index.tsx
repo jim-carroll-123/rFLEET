@@ -3,12 +3,15 @@
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import * as yup from 'yup'
+
+import { yupResolver } from '@hookform/resolvers/yup'
+
 import Parcel from '@assets/icons/parcel.svg'
 import PolyMailer from '@assets/icons/polymailer.svg'
 import { Button } from '@components/ui/Button'
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { Check } from '@components/ui/Check'
-import { Option } from '@components/ui/Select'
 import { TabPane } from '@components/ui/TabPane'
 
 import { From } from './Panes/From'
@@ -19,26 +22,26 @@ import { ShippingPane } from './ShippingPane'
 import { ShippingStep } from './ShippingStep'
 
 export type FromInputs = {
-  fromType: Option
-  fromCountry: Option
+  fromType: string
+  fromCountry: string
   fromAddress: string
 }
 
 export type ToInputs = {
-  toType: Option
-  toCountry: Option
+  toType: string
+  toCountry: string
   toAddress: string
 }
 
 export type Field = {
   carrierProvider: string
-  carrierSize: Option | undefined
+  carrierSize: string
   length: string
   width: string
   height: string
-  dimensionUnit: Option | undefined
+  dimensionUnit: string
   weight: string
-  weightUnit: Option | undefined
+  weightUnit: string
   identicalUnitsCount: string
   containsAlcohol: boolean
   alcoholRecipientType: 'License' | 'Consumer' | ''
@@ -50,7 +53,7 @@ export type Field = {
 
 export type LoadTypeInputs = {
   parcelType: string
-  parcelShape: Option
+  parcelShape: string
   fields: Field[]
 }
 
@@ -101,21 +104,33 @@ export const weightUnits = [
 
 export const initialField: Field = {
   carrierProvider: '',
-  carrierSize: undefined,
-  length: '0',
-  width: '0',
-  height: '0',
-  dimensionUnit: { label: 'in', value: 'in' },
-  weight: '0',
-  weightUnit: { label: 'kg', value: 'kg' },
-  identicalUnitsCount: '0',
+  carrierSize: '',
+  length: '',
+  width: '',
+  height: '',
+  dimensionUnit: '',
+  weight: '',
+  weightUnit: '',
+  identicalUnitsCount: '',
   containsAlcohol: false,
   alcoholRecipientType: '',
   containsDryIce: false,
-  dryIceWeight: '0',
+  dryIceWeight: '',
   isCreateReturnLabel: false,
   containsLithium: false
 }
+
+const fromSchema = yup.object({
+  fromType: yup.string().required(),
+  fromCountry: yup.string().required(),
+  fromAddress: yup.string().required()
+})
+
+const toSchema = yup.object({
+  toType: yup.string().required(),
+  toCountry: yup.string().required(),
+  toAddress: yup.string().required()
+})
 
 export const Panel = () => {
   const shippingMethods = [
@@ -133,13 +148,19 @@ export const Panel = () => {
   const [shippingStepId, setShippingStepId] = useState('')
 
   const fromFormMethods = useForm<FromInputs>({
+    resolver: yupResolver(fromSchema),
     defaultValues: {
+      fromType: '',
+      fromCountry: '',
       fromAddress: ''
     }
   })
 
   const toFormMethods = useForm<ToInputs>({
+    resolver: yupResolver(toSchema),
     defaultValues: {
+      toType: '',
+      toCountry: '',
       toAddress: ''
     }
   })
@@ -147,7 +168,7 @@ export const Panel = () => {
   const loadTypeFormMethods = useForm<LoadTypeInputs>({
     defaultValues: {
       parcelType: 'Enter Custom Dimensions',
-      parcelShape: parcelShapes[0],
+      parcelShape: parcelShapes[0].value,
       fields: [initialField]
     }
   })
@@ -156,9 +177,21 @@ export const Panel = () => {
     defaultValues: {}
   })
 
-  const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => console.debug(data)
-  const onToFormSubmit: SubmitHandler<ToInputs> = (data) => console.debug(data)
-  const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => console.debug(data)
+  const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => {
+    console.debug(data)
+    setShippingStepId('tab-ship-destination')
+  }
+
+  const onToFormSubmit: SubmitHandler<ToInputs> = (data) => {
+    console.debug(data)
+    setShippingStepId('tab-ship-load-type')
+  }
+
+  const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => {
+    console.debug(data)
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
     console.debug(data)
     setShippingStepId('')
