@@ -1,37 +1,64 @@
-import { connectToDatabase, isDatabaseConnected } from '../../../../lib/db';
+import { connectToDatabase, isDatabaseConnected } from '../../../../lib/db'
 
-import { apiHandler } from '../../../../lib/api';
-import joi from 'joi';
-import { usersController } from '../../../../controllers/users';
+import { CreateUser } from '@lib/types/User'
+import { apiHandler } from '../../../../lib/api'
+import { emailController } from '@controllers/email'
+import joi from 'joi'
+import { usersController } from '../../../../controllers/users'
 
 /**
  * @swagger
  * /api/account/register:
  *   post:
  *     requestBody:
+ *       description: Register a new User
  *       content:
  *         application/json:
  *           schema:
+ *              $ref: '#/components/schemas/CreateUserRequest'
  *     description: Register new user
  *     responses:
- *       200:
- *         description: Register
+ *       201:
+ *         description: Register Successful
+ *       400:
+ *         description: Bad Request
  */
 
 module.exports = apiHandler({
-    POST: register
-});
+  POST: register
+})
 
 async function register(req: Request) {
-    if (!isDatabaseConnected()) await connectToDatabase();
+  if (!isDatabaseConnected()) await connectToDatabase()
 
-    const body = await req.json();
-    await usersController.create(body);
+  const body = await req.json()
+  const { username, email, password, firstName, lastName, userType } = body
+  const user = await usersController.create({
+    username,
+    email,
+    password,
+    firstName,
+    lastName,
+    userType,
+    isVerified: false
+  } as CreateUser)
+
+  const link = usersController.generateEmailVerificationLink(user.id)
+
+  await emailController.sendEmail({
+    to: email,
+    subject: 'Verify Your Account',
+    text: link
+  })
+
+  return { response: { message: 'Success' }, status: 201 }
 }
 
 register.schema = joi.object({
-    firstName: joi.string().required(),
-    lastName: joi.string().required(),
-    username: joi.string().required(),
-    password: joi.string().min(6).required(),
-});
+  firstName: joi.string().required(),
+  lastName: joi.string().required(),
+  username: joi.string().required(),
+  email: joi.string().required(),
+  password: joi.string().min(8).required(),
+  userType: joi.number().required()
+})

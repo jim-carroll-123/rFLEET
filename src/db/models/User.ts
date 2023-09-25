@@ -1,14 +1,8 @@
-// TODO: integrate passport.js
-
-// import md5 from 'md5';
-// import mongodbErrorHandler from 'mongoose-mongodb-errors';
-import mongoose from 'mongoose';
-
-// import passportLocalMongoose from 'passport-local-mongoose';
+import mongoose from 'mongoose'
 
 // import validator from 'validator';
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const userSchema = new Schema(
   {
@@ -16,38 +10,35 @@ const userSchema = new Schema(
       type: String,
       trim: true,
       unique: true,
-      required: true,
-      // required: "Please enter a name!"
+      required: true
     },
     hash: { type: String, required: true },
     firstName: { type: String, required: true },
-    lastName: { type: String, required: true }
-    // email: {
-    //   type: String,
-    //   unique: true,
-    //   lowercase: true,
-    //   trim: true,
-    //   required: true,
-    //   // validate: [validator.isEmail, 'Invalid Email address'],
-    //   // required: "Please enter an email address!"
-    // },
+    lastName: { type: String, required: true },
+    email: {
+      type: String,
+      unique: true,
+      lowercase: true,
+      trim: true,
+      required: true
+      // validate: [validator.isEmail, 'Invalid Email address'],
+      // required: "Please enter an email address!"
+    },
+    userType: { type: Number, required: true },
+    isVerified: { type: Boolean, require: true }
   },
   { timestamps: true }
-);
+)
 
 userSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {
-      delete ret._id;
-      delete ret.hash;
+    delete ret._id
+    delete ret.hash
   }
-});
+})
 
-//  userSchema.plugin(passportLocalMongoose);
-//  userSchema.plugin(mongodbErrorHandler);
+const User = mongoose.models.User || mongoose.model('User', userSchema)
 
-const User = mongoose.models.User || mongoose.model('User', userSchema);
-
-export default User;
-
+export default User

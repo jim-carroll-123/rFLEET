@@ -1,8 +1,17 @@
 import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
 import { apiHandler } from '../../../../../lib/api';
-import { cookies } from 'next/headers';
 import joi from 'joi';
 import { shipEngineController } from '../../../../../controllers/shipEngine';
+
+/**
+ * @swagger
+ * /api/shipengine/rates/estimate:
+ *   post:
+ *     description: Rates Estimate
+ *     responses:
+ *       200:
+ *         description:  Successful
+ */
 
 module.exports = apiHandler({
     POST: getRateEstimates
@@ -23,13 +32,13 @@ async function getRateEstimates(req: Request) {
     return result;
 }
 
-getRateEstimates.schema = joi.object({
-    rateOptions: joi.object({
-        carrierIds: joi.array().required()
-    }).required(),
-    shipmentId: joi.string(),
-    shipment: joi.object({
-        shipTo: joi.object().required(),
-        packages: joi.array().required()
-    })
-})
+// getRateEstimates.schema = joi.object({
+//     rateOptions: joi.object({
+//         carrierIds: joi.array().required()
+//     }).required(),
+//     shipmentId: joi.string(),
+//     shipment: joi.object({
+//         shipTo: joi.object().required(),
+//         packages: joi.array().required()
+//     })
+// })

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 import { errorHandler, jwtMiddleware, validateMiddleware } from './';
 
 export { apiHandler };
@@ -26,8 +25,8 @@ function apiHandler(handler: any) {
                 await validateMiddleware(req, handler[method].schema);
 
                 // route handler
-                const responseBody = await handler[method](req, ...args);
-                return NextResponse.json(responseBody || {});
+                const {response, status } = await handler[method](req, ...args);
+                return NextResponse.json(response || {}, { status: status || 200 });
             } catch (err: any) {
                 // global error handler
                 return errorHandler(err);

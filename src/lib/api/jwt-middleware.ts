@@ -13,13 +13,15 @@ async function jwtMiddleware(req: NextRequest) {
 }
 
 function isPublicPath(req: NextRequest) {
-    // public routes that don't require authentication
-    const publicPaths = [
-        'POST:/api/account/login',
-        'POST:/api/account/logout',
-        'POST:/api/account/register',
-        'GET:/api/shipengine/carriers',
-        'POST:/api/shipengine/rates/estimate'
-    ];
-    return publicPaths.includes(`${req.method}:${req.nextUrl.pathname}`);
+  console.log('ttttt', req.nextUrl.pathname)
+  // public routes that don't require authentication
+  const publicPaths = [
+    'POST:/api/account/login',
+    'POST:/api/account/logout',
+    'POST:/api/account/register',
+    'GET:/api/shipengine/carriers',
+    'POST:/api/shipengine/rates/estimate',
+    'GET:/api/account/verify'
+  ]
+  return publicPaths.includes(`${req.method}:${req.nextUrl.pathname}`)
 }
