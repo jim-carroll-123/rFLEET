@@ -34,7 +34,8 @@ export type Field = {
   alcoholRecipientType: 'License' | 'Consumer' | ''
   containsDryIce: boolean
   dryIceWeight: string
-  isCreateReturnLabel: boolean
+  createsReturnLabel: boolean
+  returnLabel: ''
   containsLithium: boolean
 }
 
@@ -95,6 +96,13 @@ export const currencies = [
   }
 ]
 
+export const returnLabels = [
+  {
+    label: 'General hazmat',
+    value: 'General hazmat'
+  }
+]
+
 export const initialField: Field = {
   carrierProvider: '',
   carrierSize: '',
@@ -109,7 +117,8 @@ export const initialField: Field = {
   alcoholRecipientType: '',
   containsDryIce: false,
   dryIceWeight: '',
-  isCreateReturnLabel: false,
+  createsReturnLabel: false,
+  returnLabel: '',
   containsLithium: false
 }
 
@@ -226,6 +235,12 @@ const loadTypeSchema: any & { fields: Field[] } = yup.object({
         if (field.containsDryIce) {
           if (isNaN(Number(field.dryIceWeight)) || Number(field.dryIceWeight) <= 0) {
             errors.dryIceWeight = 'Dry ice weight must be a positive number'
+          }
+        }
+
+        if (field.createsReturnLabel) {
+          if (!field.returnLabel) {
+            errors.returnLabel = 'Return label must be chosen'
           }
         }
 

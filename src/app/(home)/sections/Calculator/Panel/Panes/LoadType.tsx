@@ -18,7 +18,7 @@ import { Radio } from '@components/ui/Radio'
 import { Option, Select, findOption } from '@components/ui/Select'
 import { cn } from '@lib/utils'
 
-import { Field, LoadTypeInputs, dimensionUnits, initialField, parcelShapes, weightUnits } from '..'
+import { Field, LoadTypeInputs, dimensionUnits, initialField, parcelShapes, returnLabels, weightUnits } from '..'
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
@@ -387,6 +387,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         />
         {field.containsDryIce && (
           <Input
+            type="number"
             placeholder="e.g.0.1"
             label="Dry ice weight (lb)*"
             value={field.dryIceWeight}
@@ -398,9 +399,18 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       </div>
       <Check
         label="Create a return label"
-        checked={field.isCreateReturnLabel}
-        onChange={(checked) => setFieldItem('isCreateReturnLabel', checked)}
+        checked={field.createsReturnLabel}
+        onChange={(checked) => setFieldItem('createsReturnLabel', checked)}
       />
+      {field.createsReturnLabel && (
+        <Select
+          options={returnLabels}
+          value={findOption(returnLabels, field.returnLabel)}
+          error={fieldErrors?.returnLabel}
+          onChange={({ value }) => setFieldItem('returnLabel', value)}
+          containerClassName="lg:w-[594px]"
+        />
+      )}
       <Check
         checked={field.containsLithium}
         onChange={(checked) => setFieldItem('containsLithium', checked)}
