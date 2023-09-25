@@ -87,7 +87,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   const setFieldItem = (key: keyof Field, value: any) => {
     const newField = { ...field, [key]: value }
     const newFields = [...fields.slice(0, fields.length - 1), newField]
-    setValue('fields', newFields)
+    setValue('fields', newFields, { shouldValidate: true })
   }
 
   const onAdd = async () => {
@@ -105,14 +105,14 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         <Radio
           value="Enter Custom Dimensions"
           checked={isCustomDimensions}
-          onCheck={() => setValue('parcelType', 'Enter Custom Dimensions')}
+          onCheck={() => setValue('parcelType', 'Enter Custom Dimensions', { shouldValidate: true })}
           label="Enter Custom Dimensions"
           labelClassName="lg:text-[20px] text-[15px] font-semibold"
         />
         <Radio
           value="Carrier Provided Parcel"
           checked={!isCustomDimensions}
-          onCheck={() => setValue('parcelType', 'Carrier Provided Parcel')}
+          onCheck={() => setValue('parcelType', 'Carrier Provided Parcel', { shouldValidate: true })}
           label="Carrier Provided Parcel"
           labelClassName="lg:text-[20px] text-[15px] font-semibold"
         />
@@ -123,7 +123,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           full
           value={findOption(parcelShapes, watch('parcelShape'))}
           options={parcelShapes}
-          onChange={({ value }) => setValue('parcelShape', value)}
+          onChange={({ value }) => setValue('parcelShape', value, { shouldValidate: true })}
           containerClassName="gap-d-16"
         />
       )}
@@ -146,7 +146,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                   onClick={() => {
                     let newArray = [...fields]
                     newArray.splice(index, 1)
-                    setValue('fields', newArray)
+                    setValue('fields', newArray, { shouldValidate: true })
                   }}
                 />
               </div>

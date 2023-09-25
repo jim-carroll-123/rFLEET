@@ -48,7 +48,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
       <div className="flex lg:flex-row flex-col gap-d-16">
         <Input
           value={watch('quantity')}
-          onChange={(v) => setValue('quantity', v)}
+          onChange={(value) => setValue('quantity', value, { shouldValidate: true })}
           error={errors.quantity?.message}
           label="Quantity*"
           containerClassName="lg:w-[80px] w-full"
@@ -57,7 +57,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         <Input
           label="SKU*"
           value={watch('sku')}
-          onChange={(v) => setValue('sku', v)}
+          onChange={(value) => setValue('sku', value, { shouldValidate: true })}
           error={errors.sku?.message}
           containerClassName="lg:w-[194px] w-full"
           type="number"
@@ -71,7 +71,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           }
           options={packageUnits}
           value={findOption(packageUnits, watch('packageUnit'))}
-          onChange={({ value }) => setValue('packageUnit', value)}
+          onChange={({ value }) => setValue('packageUnit', value, { shouldValidate: true })}
           error={errors.packageUnit?.message}
         />
         <Select
@@ -82,7 +82,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
             </div>
           }
           options={[]}
-          onChange={({ value }) => setValue('value', value)}
+          onChange={({ value }) => setValue('value', value, { shouldValidate: true })}
           error={errors.value?.message}
         />
         <Select
@@ -91,7 +91,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           placeholder=" "
           options={currencies}
           value={findOption(currencies, watch('currency') || '')}
-          onChange={({ value }) => setValue('currency', value)}
+          onChange={({ value }) => setValue('currency', value, { shouldValidate: true })}
         />
         <Input
           type="number"
@@ -102,7 +102,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
             </div>
           }
           value={watch('weight')}
-          onChange={(v) => setValue('weight', v)}
+          onChange={(value) => setValue('weight', value, { shouldValidate: true })}
           error={errors.weight?.message}
         />
       </div>
@@ -116,12 +116,12 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
             </div>
           }
           value={watch('madeWhere')}
-          onChange={(v) => setValue('madeWhere', v)}
+          onChange={(value) => setValue('madeWhere', value, { shouldValidate: true })}
           error={errors.madeWhere?.message}
         />
         <Input
           value={watch('scheduleB')}
-          onChange={(v) => setValue('scheduleB', v)}
+          onChange={(value) => setValue('scheduleB', value, { shouldValidate: true })}
           error={errors.scheduleB?.message}
           containerClassName="grow"
           label="Schedule B"

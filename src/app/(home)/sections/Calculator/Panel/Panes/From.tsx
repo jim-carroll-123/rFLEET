@@ -62,7 +62,7 @@ export const From = ({ methods, onSubmit }: Props) => {
             <Select
               options={fromTypes}
               value={findOption(fromTypes, watch('fromType'))}
-              onChange={({ value }) => setValue('fromType', value)}
+              onChange={({ value }) => setValue('fromType', value, { shouldValidate: true })}
               placeholder="Tell us about your goods"
               error={errors.fromType?.message}
             />
@@ -73,7 +73,7 @@ export const From = ({ methods, onSubmit }: Props) => {
               searchable
               value={findOption(countryOptions, watch('fromCountry'))}
               placeholder="Select a country"
-              onChange={({ value }) => setValue('fromCountry', value)}
+              onChange={({ value }) => setValue('fromCountry', value, { shouldValidate: true })}
               error={errors.fromCountry?.message}
             />
           </div>
@@ -81,7 +81,7 @@ export const From = ({ methods, onSubmit }: Props) => {
             <div className="font-semibold text-gray-200 lg:mb-[12px] mb-[8px]">Address</div>
             <Input
               value={watch('fromAddress')}
-              onChange={(value) => setValue('fromAddress', value)}
+              onChange={(value) => setValue('fromAddress', value, { shouldValidate: true })}
               placeholder="Enter Address or Zip/Postal Code"
               error={errors.fromAddress?.message}
             />

@@ -72,7 +72,7 @@ export const To = ({ methods, onSubmit }: Props) => {
             <Select
               options={toTypes}
               value={findOption(toTypes, watch('toType'))}
-              onChange={({ value }) => setValue('toType', value)}
+              onChange={({ value }) => setValue('toType', value, { shouldValidate: true })}
               error={errors.toType?.message}
               placeholder="Tell us about your goods"
             />
@@ -83,7 +83,7 @@ export const To = ({ methods, onSubmit }: Props) => {
               searchable
               value={findOption(countryOptions, watch('toCountry'))}
               placeholder="Select a country"
-              onChange={({ value }) => setValue('toCountry', value)}
+              onChange={({ value }) => setValue('toCountry', value, { shouldValidate: true })}
               error={errors.toCountry?.message}
             />
           </div>
@@ -91,7 +91,7 @@ export const To = ({ methods, onSubmit }: Props) => {
             <div className="font-semibold text-gray-200 lg:mb-[12px] mb-[8px]">Address</div>
             <Input
               value={watch('toAddress')}
-              onChange={(value) => setValue('toAddress', value)}
+              onChange={(value) => setValue('toAddress', value, { shouldValidate: true })}
               placeholder="Enter Address or Zip/Postal Code"
               error={errors.toAddress?.message}
             />
