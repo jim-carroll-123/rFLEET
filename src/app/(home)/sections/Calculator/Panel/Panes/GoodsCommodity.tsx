@@ -6,9 +6,9 @@ import { Button } from '@components/ui/Button'
 import { Check } from '@components/ui/Check'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
-import { Select } from '@components/ui/Select'
+import { Select, findOption } from '@components/ui/Select'
 
-import { GoodsCommodityInputs } from '..'
+import { GoodsCommodityInputs, currencies, packageUnits } from '..'
 
 interface Props {
   methods: UseFormReturn<GoodsCommodityInputs>
@@ -33,7 +33,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         </div>
         <div className="flex lg:flex-row flex-col lg:items-center gap-d-16">
           <div className="grow flex items-center gap-d-16">
-            <Button size="lg" className="grow">
+            <Button type="button" size="lg" className="grow">
               <div className="flex items-center gap-d-10">
                 Create Description
                 <QuoteRequest />
@@ -46,8 +46,22 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
       </div>
       <GradientHR />
       <div className="flex lg:flex-row flex-col gap-d-16">
-        <Input label="Quantity*" containerClassName="lg:w-[80px] w-full" type="number" />
-        <Input label="SKU*" containerClassName="lg:w-[194px] w-full" type="number" />
+        <Input
+          value={watch('quantity')}
+          onChange={(v) => setValue('quantity', v)}
+          error={errors.quantity?.message}
+          label="Quantity*"
+          containerClassName="lg:w-[80px] w-full"
+          type="number"
+        />
+        <Input
+          label="SKU*"
+          value={watch('sku')}
+          onChange={(v) => setValue('sku', v)}
+          error={errors.sku?.message}
+          containerClassName="lg:w-[194px] w-full"
+          type="number"
+        />
         <Select
           containerClassName="lg:w-[300px] w-full"
           label={
@@ -55,7 +69,10 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
               Unit*&nbsp;<div className="text-caption-xs text-gray">(How the item is packaged)</div>
             </div>
           }
-          options={[]}
+          options={packageUnits}
+          value={findOption(packageUnits, watch('packageUnit'))}
+          onChange={({ value }) => setValue('packageUnit', value)}
+          error={errors.packageUnit?.message}
         />
         <Select
           containerClassName="lg:w-[160px] w-full"
@@ -65,8 +82,17 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
             </div>
           }
           options={[]}
+          onChange={({ value }) => setValue('value', value)}
+          error={errors.value?.message}
         />
-        <Select containerClassName="lg:w-[94px] w-full" label="Currency" options={[]} />
+        <Select
+          containerClassName="lg:w-[94px] w-full"
+          label="Currency"
+          placeholder=" "
+          options={currencies}
+          value={findOption(currencies, watch('currency') || '')}
+          onChange={({ value }) => setValue('currency', value)}
+        />
         <Input
           type="number"
           label={
@@ -75,6 +101,9 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
               <IconInfo className="ml-[4px]" />
             </div>
           }
+          value={watch('weight')}
+          onChange={(v) => setValue('weight', v)}
+          error={errors.weight?.message}
         />
       </div>
       <div className="grid lg:grid-cols-2 grid-cols-1 gap-d-16">
@@ -86,8 +115,17 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
               <IconInfo className="ml-[4px]" />
             </div>
           }
+          value={watch('madeWhere')}
+          onChange={(v) => setValue('madeWhere', v)}
+          error={errors.madeWhere?.message}
         />
-        <Input containerClassName="grow" label="Schedule B" />
+        <Input
+          value={watch('scheduleB')}
+          onChange={(v) => setValue('scheduleB', v)}
+          error={errors.scheduleB?.message}
+          containerClassName="grow"
+          label="Schedule B"
+        />
       </div>
       <Check label="Add on insurance for goods valued over $100" />
       <GradientHR />

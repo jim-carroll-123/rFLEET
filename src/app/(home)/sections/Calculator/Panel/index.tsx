@@ -38,8 +38,6 @@ export type Field = {
   containsLithium: boolean
 }
 
-export type GoodsCommodityInputs = {}
-
 export const parcelShapes = [
   {
     label: (
@@ -80,6 +78,20 @@ export const weightUnits = [
   {
     label: 'kg',
     value: 'kg'
+  }
+]
+
+export const packageUnits = [
+  {
+    label: 'Pieces',
+    value: 'Pieces'
+  }
+]
+
+export const currencies = [
+  {
+    label: 'USD',
+    value: 'USD'
   }
 ]
 
@@ -230,9 +242,21 @@ const loadTypeSchema: any & { fields: Field[] } = yup.object({
   })
 })
 
+const goodsCommoditySchema = yup.object({
+  quantity: yup.string().required(),
+  sku: yup.string().required(),
+  packageUnit: yup.string().required(),
+  value: yup.string().required(),
+  currency: yup.string(),
+  weight: yup.string().required(),
+  madeWhere: yup.string().required(),
+  scheduleB: yup.string()
+})
+
 export type FromInputs = yup.InferType<typeof fromSchema>
 export type ToInputs = yup.InferType<typeof toSchema>
 export type LoadTypeInputs = yup.InferType<typeof loadTypeSchema>
+export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
 
 export const Panel = () => {
   const shippingMethods = [
@@ -280,7 +304,18 @@ export const Panel = () => {
   })
 
   const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
-    defaultValues: {}
+    mode: 'onChange',
+    resolver: yupResolver(goodsCommoditySchema),
+    defaultValues: {
+      quantity: '',
+      sku: '',
+      packageUnit: '',
+      value: '',
+      currency: '',
+      weight: '',
+      madeWhere: '',
+      scheduleB: ''
+    }
   })
 
   const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => {
