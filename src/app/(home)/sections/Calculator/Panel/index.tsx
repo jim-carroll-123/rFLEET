@@ -11,7 +11,6 @@ import Parcel from '@assets/icons/parcel.svg'
 import PolyMailer from '@assets/icons/polymailer.svg'
 import { Button } from '@components/ui/Button'
 import { ButtonSelect } from '@components/ui/ButtonSelect'
-import { Check } from '@components/ui/Check'
 import { TabPane } from '@components/ui/TabPane'
 
 import { From } from './Panes/From'
@@ -19,19 +18,7 @@ import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LoadType } from './Panes/LoadType'
 import { To } from './Panes/To'
 import { ShippingPane } from './ShippingPane'
-import { ShippingStep } from './ShippingStep'
-
-export type FromInputs = {
-  fromType: string
-  fromCountry: string
-  fromAddress: string
-}
-
-export type ToInputs = {
-  toType: string
-  toCountry: string
-  toAddress: string
-}
+import { ShippingSteps } from './ShippingSteps'
 
 export type Field = {
   carrierProvider: string
@@ -49,12 +36,6 @@ export type Field = {
   dryIceWeight: string
   isCreateReturnLabel: boolean
   containsLithium: boolean
-}
-
-export type LoadTypeInputs = {
-  parcelType: string
-  parcelShape: string
-  fields: Field[]
 }
 
 export type GoodsCommodityInputs = {}
@@ -132,6 +113,127 @@ const toSchema = yup.object({
   toAddress: yup.string().required()
 })
 
+const loadTypeSchema: any & { fields: Field[] } = yup.object({
+  parcelType: yup.string().required(),
+  parcelShape: yup.string().required(),
+  fields: yup.array().test({
+    message: '',
+    test: (fields: Field[] | undefined, context) => {
+      const errors: any = {}
+      const { fields: _, ...others } = context.parent
+
+      if (fields && fields.length > 0) {
+        const field = fields[fields.length - 1]
+
+        if (others.parcelType === 'Enter Custom Dimensions') {
+          if (others.parcelShape === 'Box or Tube') {
+            if (isNaN(Number(field.length)) || Number(field.length) <= 0) {
+              errors.length = 'Length must be a positive number'
+            }
+
+            if (isNaN(Number(field.width)) || Number(field.width) <= 0) {
+              errors.width = 'Width must be a positive number'
+            }
+
+            if (isNaN(Number(field.height)) || Number(field.height) <= 0) {
+              errors.height = 'Height must be a positive number'
+            }
+
+            if (isNaN(Number(field.weight)) || Number(field.weight) <= 0) {
+              errors.weight = 'Weight must be a positive number'
+            }
+
+            if (isNaN(Number(field.identicalUnitsCount)) || Number(field.identicalUnitsCount) <= 0) {
+              errors.identicalUnitsCount = 'Identical units must be a positive number'
+            }
+
+            if (!field.dimensionUnit) {
+              errors.dimensionUnit = 'Dimension unit must be chosen'
+            }
+
+            if (!field.weightUnit) {
+              errors.weightUnit = 'Weight unit must be chosen'
+            }
+          }
+
+          if (others.parcelShape === 'Poly Mailer/Satchel') {
+            if (isNaN(Number(field.length)) || Number(field.length) <= 0) {
+              errors.length = 'Length must be a positive number'
+            }
+
+            if (isNaN(Number(field.width)) || Number(field.width) <= 0) {
+              errors.width = 'Width must be a positive number'
+            }
+
+            if (isNaN(Number(field.identicalUnitsCount)) || Number(field.identicalUnitsCount) <= 0) {
+              errors.identicalUnitsCount = 'Identical units must be a positive number'
+            }
+
+            if (isNaN(Number(field.weight)) || Number(field.weight) <= 0) {
+              errors.weight = 'Weight must be a positive number'
+            }
+
+            if (!field.dimensionUnit) {
+              errors.dimensionUnit = 'Dimension unit must be chosen'
+            }
+
+            if (!field.weightUnit) {
+              errors.weightUnit = 'Weight unit must be chosen'
+            }
+          }
+        }
+
+        if (others.parcelType === 'Carrier Provided Parcel') {
+          if (!field.carrierProvider) {
+            errors.carrierProvider = 'Carrier provider must be chosen'
+          }
+
+          if (!field.carrierSize) {
+            errors.carrierSize = 'Carrier size must be chosen'
+          }
+
+          if (isNaN(Number(field.weight)) || Number(field.weight) <= 0) {
+            errors.weight = 'Weight must be a positive number'
+          }
+
+          if (!field.weightUnit) {
+            errors.weightUnit = 'Weight unit must be chosen'
+          }
+
+          if (isNaN(Number(field.identicalUnitsCount)) || Number(field.identicalUnitsCount) <= 0) {
+            errors.identicalUnitsCount = 'Identical units must be a positive number'
+          }
+        }
+
+        if (field.containsAlcohol) {
+          if (!field.alcoholRecipientType) {
+            errors.alcoholRecipientType = 'Alcohol recipient type must be chosen'
+          }
+        }
+
+        if (field.containsDryIce) {
+          if (isNaN(Number(field.dryIceWeight)) || Number(field.dryIceWeight) <= 0) {
+            errors.dryIceWeight = 'Dry ice weight must be a positive number'
+          }
+        }
+
+        // Collect and apply errors
+        if (Object.keys(errors).length > 0) {
+          return new yup.ValidationError(errors, null, 'fields')
+        }
+
+        return true
+      }
+
+      return false
+    }
+  })
+})
+
+export type FromInputs = yup.InferType<typeof fromSchema>
+export type ToInputs = yup.InferType<typeof toSchema>
+export type LoadTypeInputs = yup.InferType<typeof loadTypeSchema>
+
 export const Panel = () => {
   const shippingMethods = [
     { label: 'Parcel', value: 'Parcel' },
@@ -148,6 +250,7 @@ export const Panel = () => {
   const [shippingStepId, setShippingStepId] = useState('')
 
   const fromFormMethods = useForm<FromInputs>({
+    mode: 'onChange',
     resolver: yupResolver(fromSchema),
     defaultValues: {
       fromType: '',
@@ -157,6 +260,7 @@ export const Panel = () => {
   })
 
   const toFormMethods = useForm<ToInputs>({
+    mode: 'onChange',
     resolver: yupResolver(toSchema),
     defaultValues: {
       toType: '',
@@ -166,6 +270,8 @@ export const Panel = () => {
   })
 
   const loadTypeFormMethods = useForm<LoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(loadTypeSchema),
     defaultValues: {
       parcelType: 'Enter Custom Dimensions',
       parcelShape: parcelShapes[0].value,
@@ -228,40 +334,3 @@ export const Panel = () => {
     </div>
   )
 }
-
-interface ShippingStepsProps {
-  shippingStepId: string
-}
-
-const ShippingSteps = ({ shippingStepId }: ShippingStepsProps) => (
-  <div className="lg:grid lg:grid-cols-4 lg:gap-[16px] flex flex-col gap-[30px] lg:mb-[34px] mb-[26px]">
-    <div>
-      <ShippingStep target="tab-ship-origin" label="Origin" className="mb-6" shippingStepId={shippingStepId}>
-        Where are you shipping from?
-      </ShippingStep>
-      <Check label="Add Extra Pickups" labelClassName="lg:text-[12px] text-[8px]" />
-    </div>
-    <div>
-      <ShippingStep target="tab-ship-destination" label="Destination" className="mb-6" shippingStepId={shippingStepId}>
-        Where are you shipping to?
-      </ShippingStep>
-      <Check label="Add Extra Drops" labelClassName="lg:text-[12px] text-[8px]" />
-    </div>
-    <div>
-      <ShippingStep target="tab-ship-load-type" label="Load Type" className="mb-6" shippingStepId={shippingStepId}>
-        What are you shipping?
-      </ShippingStep>
-    </div>
-    <div>
-      <ShippingStep
-        target="tab-ship-goods-commodity"
-        label="Goods/Commodity"
-        className="mb-6"
-        shippingStepId={shippingStepId}
-      >
-        Goods/Commodity
-      </ShippingStep>
-      <Check label="Add More Goods/Commodities" labelClassName="lg:text-[12px] text-[8px]" />
-    </div>
-  </div>
-)

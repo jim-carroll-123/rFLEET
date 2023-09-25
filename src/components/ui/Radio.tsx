@@ -10,6 +10,7 @@ interface Props {
   searchable?: boolean
   containerClassName?: string
   labelClassName?: string
+  error?: boolean | string
   onCheck?: () => void | Promise<void>
 }
 
@@ -33,9 +34,19 @@ export const Radio = (props: Props) => {
           checked={props.checked}
           value={props.value}
           onChange={(e) => (props.onCheck && e.target.checked ? props.onCheck() : false)}
-          className="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 border-blue-gray-200 text-primary transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-primary checked:before:bg-primary hover:before:opacity-10"
+          className={cn(
+            "before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border-2 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:opacity-0 before:transition-opacity hover:before:opacity-10",
+            props.error
+              ? 'text-red-600 border-red-600 before:text-red-600 before:bg-red-600 checked:border-red-600 checked:before:bg-red-600'
+              : 'text-primary border-gray-200 before:text-primary before:bg-gray-500 checked:border-primary checked:before:bg-primary'
+          )}
         />
-        <div className="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-primary opacity-0 transition-opacity peer-checked:opacity-100">
+        <div
+          className={cn(
+            'pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 opacity-0 transition-opacity peer-checked:opacity-100',
+            props.error ? 'text-red-600' : 'text-primary'
+          )}
+        >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-[10px] w-[10px]" viewBox="0 0 12 12" fill="currentColor">
             <circle data-name="ellipse" cx={6} cy={6} r={6} />
           </svg>

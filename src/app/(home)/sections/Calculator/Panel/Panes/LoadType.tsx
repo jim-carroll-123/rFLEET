@@ -30,8 +30,11 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     watch,
     setValue,
     handleSubmit,
+    trigger,
     formState: { errors }
   } = methods
+
+  const fieldErrors: any = errors.fields?.message
 
   const isCustomDimensions = watch('parcelType') === 'Enter Custom Dimensions'
   const isBoxOrTube = watch('parcelShape') === 'Box or Tube'
@@ -72,12 +75,12 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       value: 'x2'
     },
     {
-      label: `${field.carrierProvider}®️ Extra Large Box (L1)`,
+      label: `${field.carrierProvider}®️ Large Box (L1)`,
       value: 'l1'
     },
     {
-      label: `${field.carrierProvider}®️ Extra Large Box (L2)`,
-      value: 'l2'
+      label: `${field.carrierProvider}®️ Medium Box (M1)`,
+      value: 'm1'
     }
   ]
 
@@ -85,6 +88,14 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     const newField = { ...field, [key]: value }
     const newFields = [...fields.slice(0, fields.length - 1), newField]
     setValue('fields', newFields)
+  }
+
+  const onAdd = async () => {
+    const validated = await trigger()
+    if (validated) {
+      setValue('fields', [...fields, { ...initialField }])
+    }
+    return
   }
 
   return (
@@ -152,8 +163,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               type="button"
               onClick={() => setFieldItem('carrierProvider', 'Postal Service')}
               className={cn(
-                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border border-white lg:w-[200px]',
-                field.carrierProvider === 'Postal Service' ? 'bg-white' : 'bg-white-40 hover:bg-white-30'
+                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
+                field.carrierProvider === 'Postal Service' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
               )}
             >
               <IconPostalService />
@@ -162,8 +174,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               type="button"
               onClick={() => setFieldItem('carrierProvider', 'FedEx')}
               className={cn(
-                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border border-white lg:w-[200px]',
-                field.carrierProvider === 'FedEx' ? 'bg-white' : 'bg-white-40 hover:bg-white-30'
+                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
+                field.carrierProvider === 'FedEx' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
               )}
             >
               <IconFedEx />
@@ -172,8 +185,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               type="button"
               onClick={() => setFieldItem('carrierProvider', 'DHL')}
               className={cn(
-                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border border-white lg:w-[200px]',
-                field.carrierProvider === 'DHL' ? 'bg-white' : 'bg-white-40 hover:bg-white-30'
+                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
+                field.carrierProvider === 'DHL' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
               )}
             >
               <IconDHL />
@@ -182,8 +196,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               type="button"
               onClick={() => setFieldItem('carrierProvider', 'UPS')}
               className={cn(
-                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border border-white lg:w-[200px]',
-                field.carrierProvider === 'UPS' ? 'bg-white' : 'bg-white-40 hover:bg-white-30'
+                'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
+                field.carrierProvider === 'UPS' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
               )}
             >
               <img src={uPsLogo.src} className="h-[27px]" />
@@ -196,6 +211,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           label="Select Carrier Size"
           options={carrierSizes}
           value={findOption(carrierSizes, field.carrierSize)}
+          error={fieldErrors?.carrierSize}
           onChange={({ value }) => setFieldItem('carrierSize', value)}
         />
       )}
@@ -212,6 +228,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                         type="number"
                         placeholder="Length"
                         value={field.length}
+                        error={fieldErrors?.length}
                         onChange={(value) => setFieldItem('length', value)}
                         containerClassName="lg:w-[135px]"
                       />
@@ -222,6 +239,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                         type="number"
                         placeholder="Width"
                         value={field.width}
+                        error={fieldErrors?.width}
                         onChange={(value) => setFieldItem('width', value)}
                         containerClassName="lg:w-[135px]"
                       />
@@ -234,12 +252,14 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                         type="number"
                         placeholder="Height"
                         value={field.height}
+                        error={fieldErrors?.height}
                         onChange={(value) => setFieldItem('height', value)}
                         containerClassName="lg:w-[135px]"
                       />
                       <Select
                         placeholder="Select Unit"
                         options={dimensionUnits}
+                        error={fieldErrors?.dimensionUnit}
                         value={findOption(dimensionUnits, field.dimensionUnit)}
                         onChange={({ value }) => setFieldItem('dimensionUnit', value)}
                         containerClassName="lg:w-[135px]"
@@ -258,6 +278,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                         label="Length*"
                         placeholder="Length"
                         value={field.length}
+                        error={fieldErrors?.length}
                         onChange={(value) => setFieldItem('length', value)}
                         containerClassName="lg:w-[326px]"
                         labelClassName="font-bold"
@@ -267,6 +288,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                         label="Width*"
                         placeholder="Width"
                         value={field.width}
+                        error={fieldErrors?.width}
                         onChange={(value) => setFieldItem('width', value)}
                         containerClassName="lg:w-[326px]"
                         labelClassName="font-bold"
@@ -277,7 +299,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       placeholder="Select Unit"
                       options={dimensionUnits}
                       value={findOption(dimensionUnits, field.dimensionUnit)}
-                      onChange={(value) => setFieldItem('dimensionUnit', value)}
+                      error={fieldErrors?.dimensionUnit}
+                      onChange={({ value }) => setFieldItem('dimensionUnit', value)}
                       containerClassName="lg:w-[326px]"
                       labelClassName="font-bold"
                     />
@@ -297,6 +320,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 type="number"
                 placeholder="Weight"
                 value={field.weight}
+                error={fieldErrors?.weight}
                 onChange={(value) => setFieldItem('weight', value)}
                 containerClassName="lg:w-[180px]"
               />
@@ -304,7 +328,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 placeholder=" "
                 options={weightUnits}
                 value={findOption(weightUnits, field.weightUnit)}
-                onChange={(value) => setFieldItem('weightUnit', value)}
+                error={fieldErrors?.weightUnit}
+                onChange={({ value }) => setFieldItem('weightUnit', value)}
                 containerClassName="lg:w-[100px]"
               />
             </div>
@@ -316,6 +341,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           <Input
             type="number"
             value={field.identicalUnitsCount}
+            error={fieldErrors?.identicalUnitsCount}
             onChange={(value) => setFieldItem('identicalUnitsCount', value)}
           />
         </div>
@@ -336,12 +362,14 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 value="License"
                 checked={field.alcoholRecipientType === 'License'}
                 onCheck={() => setFieldItem('alcoholRecipientType', 'License')}
+                error={fieldErrors?.alcoholRecipientType}
               />
               <Radio
                 label="Consumer"
                 value="Consumer"
                 checked={field.alcoholRecipientType === 'Consumer'}
                 onCheck={() => setFieldItem('alcoholRecipientType', 'Consumer')}
+                error={fieldErrors?.alcoholRecipientType}
               />
             </div>
             <div className="text-caption-xs lg:flex">
@@ -362,6 +390,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
             placeholder="e.g.0.1"
             label="Dry ice weight (lb)*"
             value={field.dryIceWeight}
+            error={fieldErrors?.dryIceWeight}
             onChange={(value) => setFieldItem('dryIceWeight', value)}
             containerClassName="lg:w-[180px]"
           />
@@ -380,13 +409,13 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       />
       <GradientHR />
       <div className="flex lg:flex-row flex-col gap-d-16 justify-end">
-        <Button color="transparent" onClick={() => setValue('fields', [...fields, { ...initialField }])}>
+        <Button type="button" color="transparent" onClick={onAdd}>
           <div className="flex gap-d-10">
             <Plus />
             Add Another Field
           </div>
         </Button>
-        <Button>Confirm</Button>
+        <Button type="submit">Confirm</Button>
       </div>
     </form>
   )
