@@ -31,6 +31,7 @@ import {
 export const Panel = () => {
   const [shippingMethod, setShippingMethod] = useState(shippingMethods[0])
   const [shippingStepId, setShippingStepId] = useState('')
+  const [data, setData] = useState({})
 
   const fromFormMethods = useForm<FromInputs>({
     mode: 'onChange',
@@ -78,17 +79,17 @@ export const Panel = () => {
   })
 
   const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => {
-    console.debug(data)
+    setData((prev) => ({ ...prev, ...data }))
     setShippingStepId('tab-ship-destination')
   }
 
   const onToFormSubmit: SubmitHandler<ToInputs> = (data) => {
-    console.debug(data)
+    setData((prev) => ({ ...prev, ...data }))
     setShippingStepId('tab-ship-load-type')
   }
 
   const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => {
-    console.debug(data)
+    setData((prev) => ({ ...prev, ...data }))
     setShippingStepId('tab-ship-goods-commodity')
   }
 
@@ -106,7 +107,7 @@ export const Panel = () => {
         containerClassName="mb-[28px]"
       />
       <TabPane className="relative" activeTab={shippingStepId} onTabChange={(id) => setShippingStepId(id)}>
-        <ShippingSteps shippingStepId={shippingStepId} />
+        <ShippingSteps shippingStepId={shippingStepId} data={data} />
         <div>
           <ShippingPane id="tab-ship-origin">
             <From methods={fromFormMethods} onSubmit={onFromFormSubmit} />
