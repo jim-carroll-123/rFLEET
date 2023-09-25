@@ -14,7 +14,7 @@ import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Select, findOption } from '@components/ui/Select'
 
-import { FromInputs } from '..'
+import { FromInputs } from '../types-schemas-constants'
 
 const fromTypes = [
   {

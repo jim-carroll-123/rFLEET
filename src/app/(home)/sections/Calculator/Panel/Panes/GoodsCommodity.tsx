@@ -8,7 +8,8 @@ import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Select, findOption } from '@components/ui/Select'
 
-import { GoodsCommodityInputs, currencies, packageUnits } from '..'
+import { currencies, packageUnits } from '../options'
+import { GoodsCommodityInputs } from '../types-schemas-constants'
 
 interface Props {
   methods: UseFormReturn<GoodsCommodityInputs>

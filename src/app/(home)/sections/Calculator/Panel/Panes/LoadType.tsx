@@ -18,7 +18,8 @@ import { Radio } from '@components/ui/Radio'
 import { Option, Select, findOption } from '@components/ui/Select'
 import { cn } from '@lib/utils'
 
-import { Field, LoadTypeInputs, dimensionUnits, initialField, parcelShapes, returnLabels, weightUnits } from '..'
+import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options'
+import { Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
