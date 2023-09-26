@@ -1,4 +1,4 @@
-import { apiHandler } from '../../../../lib/api';
+import { apiHandler } from '@lib/api';
 import { cookies } from 'next/headers';
 
 /**

@@ -1,10 +1,10 @@
-import { connectToDatabase, isDatabaseConnected } from '../../../../lib/db'
+import { connectToDatabase, isDatabaseConnected } from '@lib/db'
 
 import { CreateUser } from '@lib/types/User'
-import { apiHandler } from '../../../../lib/api'
+import { apiHandler } from '@lib/api'
 import { emailController } from '@controllers/email'
 import joi from 'joi'
-import { usersController } from '../../../../controllers/users'
+import { usersController } from '@controllers/users'
 
 /**
  * @swagger

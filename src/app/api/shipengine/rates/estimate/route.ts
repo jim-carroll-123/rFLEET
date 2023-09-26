@@ -1,7 +1,7 @@
 import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
-import { apiHandler } from '../../../../../lib/api';
+import { apiHandler } from '@lib/api';
 import joi from 'joi';
-import { shipEngineController } from '../../../../../controllers/shipEngine';
+import { shipEngineController } from '@controllers/shipEngine';
 
 /**
  * @swagger

@@ -1,6 +1,6 @@
-import { apiHandler } from '../../../lib/api';
+import { apiHandler } from '@lib/api';
 import joi from 'joi';
-import { usersController } from '../../../controllers/users';
+import { usersController } from '@controllers/users';
 
 module.exports = apiHandler({
     GET: getAll,

@@ -1,9 +1,9 @@
 import { connectToDatabase, isDatabaseConnected } from '@lib/db';
 
-import { apiHandler } from '../../../../lib/api';
+import { apiHandler } from '@lib/api';
 import { cookies } from 'next/headers';
 import joi from 'joi';
-import { usersController } from '../../../../controllers/users';
+import { usersController } from '@controllers/users';
 
 /**
  * @swagger

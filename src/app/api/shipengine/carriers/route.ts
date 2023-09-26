@@ -1,5 +1,5 @@
-import { apiHandler } from '../../../../lib/api';
-import { shipEngineController } from '../../../../controllers/shipEngine';
+import { apiHandler } from '@lib/api';
+import { shipEngineController } from '@controllers/shipEngine';
 
 /**
  * @swagger
