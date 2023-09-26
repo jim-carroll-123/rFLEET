@@ -1,10 +1,10 @@
 import mongoose, { ConnectOptions } from 'mongoose';
 
-const { MONGODB_URI, MONGODB_DB } = process.env;
+const { MONGODB_URI = '', MONGODB_DB = '' } = process.env;
 
-if (!MONGODB_URI || !MONGODB_DB) {
-  throw new Error('Please define MONGODB_URI and MONGODB_DB in your environment variables');
-}
+// if (!MONGODB_URI || !MONGODB_DB) {
+//   throw new Error('Please define MONGODB_URI and MONGODB_DB in your environment variables');
+// }
 
 // Define MongoDB connection options (optional)
 const options: ConnectOptions = {
