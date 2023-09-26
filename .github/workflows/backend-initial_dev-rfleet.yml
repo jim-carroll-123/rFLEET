@@ -23,14 +23,15 @@ jobs:
 
       - name: npm install, build, and test
         env:
-          SHIPENGINE_API_KEY: ${{ env.SHIPENGINE_API_KEY }}
-          MONGODB_URI: ${{ env.MONGODB_URI }}
-          MONGODB_DB: ${{ env.MONGODB_DB }}
-          BASE_URL: ${{ env.BASE_URL }}
-          JWT_SECRET: ${{ env.JWT_SECRET }}
-          EMAIL_USER: ${{ env.EMAIL_USER }}
-          EMAIL_PASSWORD: ${{ env.EMAIL_PASSWORD }}
+          SHIPENGINE_API_KEY: ${{ secrets.SHIPENGINE_API_KEY }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          MONGODB_DB: ${{ secrets.MONGODB_DB }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
+          echo $SHIPENGINE_API_KEY
           npm install
           npm run build --if-present
           npm run test --if-present
