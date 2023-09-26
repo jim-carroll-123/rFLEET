@@ -54,6 +54,14 @@ export const getApiDocs = async () => {
               }
             }
           },
+          VerifyAccountRequest: {
+            type: 'object',
+            properties: {
+              code: {
+                type: 'string'
+              },
+            }
+          },
           LoginResponse: {
             type: 'object',
             properties: {
