@@ -8,6 +8,12 @@ import { shipEngineController } from '@controllers/shipEngine';
  * /api/shipengine/rates/estimate:
  *   post:
  *     description: Rates Estimate
+ *     requestBody:
+ *       description: Rates Estimate Request
+ *       content:
+ *         application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/RatesEstimateRequest'
  *     responses:
  *       200:
  *         description:  Successful
