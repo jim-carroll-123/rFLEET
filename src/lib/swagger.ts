@@ -521,7 +521,7 @@ export const getApiDocs = async () => {
               insuredValue: {
                 nullable: true,
                 description: "The insured value of the package. Requires the insurance_provider field of the shipment to be set.",
-                $ref: '#/components/schemas/insuredValue'
+                $ref: '#/components/schemas/MonetaryValue'
               },
               labelMessages: {
                 nullable: true,
