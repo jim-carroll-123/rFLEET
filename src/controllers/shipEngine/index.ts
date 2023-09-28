@@ -45,4 +45,18 @@ async function createLabelFromShipmentDetails(params: CreateLabelFromShipmentDet
   }
 }
 
+async function validateAddresses(params: ValidateAddressesTypes.Params) {
+  try {
+    const result = await shipengine.validateAddresses(params);
+
+    if (result[0].status === 'verified') {
+      // Success! Print the formatted address
+    }
+    else {
+      // Bad address. Print the warning & error messages
+    }
+   return result;
+  } catch (e: any) {
+    throw "Error validating address: " + e.message;
+  }
 }
