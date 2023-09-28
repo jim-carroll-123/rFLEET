@@ -8,7 +8,11 @@ import { ValidateAddressesTypes } from 'shipengine';
  *   post:
  *     description: Validate Addresses
  *     requestBody:
- *       description: Rates Estimate Request
+ *       description: Validate Addresses Request
+*       content:
+ *         application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/ValidateAddressesRequest'
  *     responses:
  *       200:
  *         description:  Successful

@@ -99,7 +99,7 @@ export const getApiDocs = async () => {
               },
               shipment: {
                 nullable: true,
-                $ref: '#/components/schemas/Shipement'
+                $ref: '#/components/schemas/Shipment'
               },
               rateOptions: {
                 $ref: '#/components/schemas/RateOptions'
@@ -110,8 +110,22 @@ export const getApiDocs = async () => {
             description: 'Rates Results',
             $ref: '#/components/schemas/RatesResults'
           },
-
-          Shipement: {
+          CreateLabelFromRateRequest: {
+            description: 'Create Label From Rate Request',
+            $ref: '#/components/schemas/LabelWithoutShipment'
+          },
+          CreateLabelFromShipmentDetailsRequest: {
+            description: 'Create Label From Shipment Details Request',
+            $ref: '#/components/schemas/Label'
+          },
+          ValidateAddressesRequest: {
+            type: 'array',
+            description: 'Create Label From Shipment Details Request',
+            items: {
+              $ref: '#/components/schemas/Address'
+            }
+          },
+          Shipment: {
             type: 'object',
             required: [
               'shipTo',
@@ -751,6 +765,7 @@ export const getApiDocs = async () => {
           },
           Country: {
             type: 'string',
+            example: 'US',
             enum: ["AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MK", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SK", "SI", "SB", "SO", "ZA", "GS", "ES", "LK", "SD", "SR", "SJ", "SZ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW"]
           },
           ErrorCode: {
@@ -1072,6 +1087,163 @@ export const getApiDocs = async () => {
                 }
               }
             }
+          },
+          LabelLayout: {
+            type: 'string',
+            enum: ["4x6", "letter"]
+          },
+          LabelFormat: {
+            type: 'string',
+            enum: ["pdf", "png", "zpl"]
+          },
+          LabelDownloadType: {
+            type: 'string',
+            enum: ["url", "inline"]
+          },
+          DisplayScheme: {
+            type: 'string',
+            enum: ["label", "qr_code"]
+          },
+          LabelWithoutShipment: {
+            type: 'object',
+            required: [
+              'rateId'
+            ],
+            properties: {
+              rateId: {
+                type: 'string',
+                example: 'se-4071004500'
+              },
+              validateAddress: {
+                example: 'no_validation',
+                $ref: '#/components/schemas/ValidateAddress',
+              },
+              labelLayout: {
+                example: '4x6',
+                $ref: '#/components/schemas/LabelLayout',
+              },
+              labelFormat: {
+                example: 'pdf',
+                $ref: '#/components/schemas/LabelFormat',
+              },
+              labelDownloadType: {
+                example: 'url',
+                $ref: '#/components/schemas/LabelDownloadType',
+              },
+              displayScheme: {
+                example: 'label',
+                $ref: '#/components/schemas/DisplayScheme',
+              },
+            }
+          },
+          LabelChargeEvent: {
+            type: 'string',
+            enum: ["carrier_default", "on_creation", "on_carrier_acceptance"]
+          },
+          Label: {
+            type: 'object',
+            required: [
+              'shipment'
+            ],
+            properties: {
+              shipment: {
+                $ref: '#/components/schemas/Shipment',
+              },
+              isReturnLabel: {
+                type: 'boolean',
+                nullable: true,
+              },
+              rmaNumber: {
+                type: 'string',
+                nullable: true,
+              },
+              chargeEvent: {
+                nullable: true,
+                $ref: '#/components/schemas/LabelChargeEvent',
+              },
+              outboundLabelId: {
+                type: 'string',
+                nullable: true,
+              },
+              validateAddress: {
+                nullable: true,
+                $ref: '#/components/schemas/ValidateAddress',
+              },
+              labelDownloadType: {
+                nullable: true,
+                $ref: '#/components/schemas/LabelDownloadType',
+              },
+              labelFormat: {
+                nullable: true,
+                $ref: '#/components/schemas/LabelFormat',
+              },
+              displayScheme: {
+                nullable: true,
+                $ref: '#/components/schemas/DisplayScheme',
+              },
+              labelLayout: {
+                nullable: true,
+                $ref: '#/components/schemas/LabelLayout',
+              },
+              labelImageId: {
+                type: 'string'
+              }
+            }
+          },
+          Address: {
+            type: 'object',
+            properties: {
+              addressLine1: {
+                type: 'string',
+                example: '3800 N Lamar Blvd'
+              },
+              addressLine2: {
+                type: 'string',
+                example: '#220',
+                nullable: true,
+              },
+              addressLine3: {
+                type: 'string',
+                nullable: true,
+                example: null
+              },
+              countryCode: {
+                $ref: '#/components/schemas/Country',
+              },
+              name: {
+                type: 'string',
+                example: 'John Smith'
+              },
+              companyName: {
+                type: 'string',
+                example: 'ShipStation'
+              },
+              phone: {
+                type: 'string',
+                nullable: true,
+                example: null
+              },
+              cityLocality: {
+                type: 'string',
+                example: 'Austin'
+              },
+              stateProvince: {
+                type: 'string',
+                example: 'TX'
+              },
+              postalCode: {
+                type: 'string',
+                example: '78756'
+              },
+              addressResidentialIndicator: {
+                $ref: '#/components/schemas/AddressResidentialIndicator',
+              }
+            },
+          },
+          AddressResidentialIndicator: {
+            type: 'string',
+            example: 'no',
+            enum: ['unknown', 'yes', 'no' ]
           }
         }
       },

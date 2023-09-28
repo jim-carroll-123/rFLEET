@@ -9,6 +9,10 @@ import { CreateLabelFromRateTypes } from 'shipengine/esm/create-label-from-rate'
  *     description: Create Label From Rate
  *     requestBody:
  *       description: Rates Estimate Request
+ *       content:
+ *         application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/CreateLabelFromRateRequest'
  *     responses:
  *       200:
  *         description:  Successful

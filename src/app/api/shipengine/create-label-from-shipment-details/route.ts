@@ -9,6 +9,10 @@ import { CreateLabelFromShipmentDetailsTypes } from 'shipengine/esm/create-label
  *     description: Create Label From Shipment Details
  *     requestBody:
  *       description: Create Label From Shipment Details Request
+ *       content:
+ *         application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/CreateLabelFromShipmentDetailsRequest'
  *     responses:
  *       200:
  *         description:  Successful
