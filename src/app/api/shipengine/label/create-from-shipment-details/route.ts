@@ -4,7 +4,7 @@ import { CreateLabelFromShipmentDetailsTypes } from 'shipengine/esm/create-label
 
 /**
  * @swagger
- * /api/shipengine/create-label-from-shipment-details:
+ * /api/shipengine/label/create-from-shipment-details:
  *   post:
  *     description: Create Label From Shipment Details
  *     requestBody:

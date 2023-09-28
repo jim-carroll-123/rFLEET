@@ -4,7 +4,7 @@ import { CreateLabelFromRateTypes } from 'shipengine/esm/create-label-from-rate'
 
 /**
  * @swagger
- * /api/shipengine/create-label-from-rate:
+ * /api/shipengine/label/create-from-rate:
  *   post:
  *     description: Create Label From Rate
  *     requestBody:
