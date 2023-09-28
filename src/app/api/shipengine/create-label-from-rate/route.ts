@@ -1,0 +1,37 @@
+import { apiHandler } from '@lib/api';
+import { shipEngineController } from '@controllers/shipEngine';
+import { CreateLabelFromRateTypes } from 'shipengine/esm/create-label-from-rate';
+
+/**
+ * @swagger
+ * /api/shipengine/create-label-from-rate:
+ *   post:
+ *     description: Create Label From Rate
+ *     requestBody:
+ *       description: Rates Estimate Request
+ *     responses:
+ *       200:
+ *         description:  Successful
+ */
+
+module.exports = apiHandler({
+    POST: createLabelFromRate
+});
+
+async function createLabelFromRate(req: Request) {
+
+    const body = await req.json();
+
+    const { validateAddress, labelLayout, labelFormat, labelDownloadType, displayScheme, rateId } = body;
+
+    const response = await shipEngineController.createLabelFromRate({
+        rateId,
+        validateAddress,
+        labelLayout,
+        labelFormat,
+        labelDownloadType,
+        displayScheme,
+    } as CreateLabelFromRateTypes.Params);
+
+    return { response };
+}

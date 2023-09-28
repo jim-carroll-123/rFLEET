@@ -7,7 +7,7 @@ import { shipEngineController } from '@controllers/shipEngine';
  * @swagger
  * /api/shipengine/rates/estimate:
  *   post:
- *     description: Rates Estimate
+ *     description: Get Rates With Shipment Details
  *     requestBody:
  *       description: Rates Estimate Request
  *       content:
