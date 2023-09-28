@@ -17,6 +17,10 @@ import { shipEngineController } from '@controllers/shipEngine';
  *     responses:
  *       200:
  *         description:  Successful
+ *         content:
+ *         application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/RatesEstimateResponse'
  */
 
 module.exports = apiHandler({
@@ -29,13 +33,13 @@ async function getRateEstimates(req: Request) {
 
     const { rateOptions, shipmentId, shipment } = body;
 
-    const result = await shipEngineController.getRateEstimates({
+    const response = await shipEngineController.getRateEstimates({
         rateOptions,
         shipmentId,
         shipment
     } as GetRatesWithShipmentDetailsTypes.Params);
 
-    return result;
+    return { response };
 }
 
 // getRateEstimates.schema = joi.object({
