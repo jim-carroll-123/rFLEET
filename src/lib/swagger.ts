@@ -90,18 +90,6 @@ export const getApiDocs = async () => {
               }
             }
           },
-          UserType: {
-            type: 'integer',
-            description: 'Profile Type',
-            'x-enumNames': [
-              'ShippingCompanyOrEmployee',
-              'TruckCompanyOwnerOperator',
-              'VendorsAndServices',
-              'PassengerVehicleDrivers',
-              'AgentsBrokersAndFreightForwarders'
-            ],
-            enum: [0, 1, 2, 3, 4]
-          },
           RatesEstimateRequest: {
             type: 'object',
             properties: {
@@ -118,6 +106,11 @@ export const getApiDocs = async () => {
               }
             }
           },
+          RatesEstimateResponse: {
+            description: 'Rates Results',
+            $ref: '#/components/schemas/RatesResults'
+          },
+
           Shipement: {
             type: 'object',
             required: [
@@ -700,6 +693,14 @@ export const getApiDocs = async () => {
             type: 'string',
             enum: ["recipient", "third_party"]
           },
+          ValidationStatus: {
+            type: 'string',
+            enum: ["valid", "invalid", "has_warnings", "unknown"]
+          },
+          ShipmentStatus: {
+            type: 'string',
+            enum: ["pending", "processing", "label_purchased", "cancelled"]
+          },
           Currency: {
             type: 'string',
             enum: ['usd', 'cad', 'aud', 'gbp', 'eur', 'nzd' ]
@@ -752,6 +753,326 @@ export const getApiDocs = async () => {
             type: 'string',
             enum: ["AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "AQ", "AG", "AR", "AM", "AW", "AU", "AT", "AZ", "BS", "BH", "BD", "BB", "BY", "BE", "BZ", "BJ", "BM", "BT", "BO", "BA", "BW", "BV", "BR", "IO", "BN", "BG", "BF", "BI", "KH", "CM", "CA", "CV", "KY", "CF", "TD", "CL", "CN", "CX", "CC", "CO", "KM", "CG", "CD", "CK", "CR", "CI", "HR", "CU", "CY", "CZ", "DK", "DJ", "DM", "DO", "EC", "EG", "SV", "GQ", "ER", "EE", "ET", "FK", "FO", "FJ", "FI", "FR", "GF", "PF", "TF", "GA", "GM", "GE", "DE", "GH", "GI", "GR", "GL", "GD", "GP", "GU", "GT", "GG", "GN", "GW", "GY", "HT", "HM", "VA", "HN", "HK", "HU", "IS", "IN", "ID", "IR", "IQ", "IE", "IM", "IL", "IT", "JM", "JP", "JE", "JO", "KZ", "KE", "KI", "KR", "KW", "KG", "LA", "LV", "LB", "LS", "LR", "LY", "LI", "LT", "LU", "MO", "MK", "MG", "MW", "MY", "MV", "ML", "MT", "MH", "MQ", "MR", "MU", "YT", "MX", "FM", "MD", "MC", "MN", "ME", "MS", "MA", "MZ", "MM", "NA", "NR", "NP", "NL", "NC", "NZ", "NI", "NE", "NG", "NU", "NF", "MP", "NO", "OM", "PK", "PW", "PS", "PA", "PG", "PY", "PE", "PH", "PN", "PL", "PT", "PR", "QA", "RE", "RO", "RU", "RW", "BL", "SH", "KN", "LC", "MF", "PM", "VC", "WS", "SM", "ST", "SA", "SN", "RS", "SC", "SL", "SG", "SK", "SI", "SB", "SO", "ZA", "GS", "ES", "LK", "SD", "SR", "SJ", "SZ", "SE", "CH", "SY", "TW", "TJ", "TZ", "TH", "TL", "TG", "TK", "TO", "TT", "TN", "TR", "TM", "TC", "TV", "UG", "UA", "AE", "GB", "US", "UM", "UY", "UZ", "VU", "VE", "VN", "VG", "VI", "WF", "EH", "YE", "ZM", "ZW"]
           },
+          ErrorCode: {
+            type: 'string',
+            enum: ["auto_fund_not_supported", "batch_cannot_be_modified", "carrier_conflict", "carrier_not_connected", "carrier_not_supported", "confirmation_not_supported", "field_conflict", "field_value_required", "forbidden", "identifier_conflict", "identifiers_must_match", "incompatible_paired_labels", "invalid_address", "invalid_billing_plan", "invalid_charge_event", "invalid_field_value", "invalid_identifier", "invalid_status", "invalid_string_length", "label_images_not_supported", "meter_failure", "not_found", "rate_limit_exceeded", "request_body_required", "return_label_not_supported", "subscription_inactive", "terms_not_accepted", "timeout", "tracking_not_supported", "trial_expired", "unauthorized", "unspecified", "verification_failure", "warehouse_conflict", "webhook_event_type_conflict"]
+          },
+          ErrorSource: {
+            type: 'string',
+            enum: ["auto_fund_not_supported", "batch_cannot_be_modified", "carrier_conflict", "carrier_not_connected", "carrier_not_supported", "confirmation_not_supported", "field_conflict", "field_value_required", "forbidden", "identifier_conflict", "identifiers_must_match", "incompatible_paired_labels", "invalid_address", "invalid_billing_plan", "invalid_charge_event", "invalid_field_value", "invalid_identifier", "invalid_status", "invalid_string_length", "label_images_not_supported", "meter_failure", "not_found", "rate_limit_exceeded", "request_body_required", "return_label_not_supported", "subscription_inactive", "terms_not_accepted", "timeout", "tracking_not_supported", "trial_expired", "unauthorized", "unspecified", "verification_failure", "warehouse_conflict", "webhook_event_type_conflict"]
+          },
+          ErrorType: {
+            type: 'string',
+            enum: ["account_status", "security", "validation", "business_rules", "system"]
+          },
+          UserType: {
+            type: 'integer',
+            description: 'Profile Type',
+            'x-enumNames': [
+              'ShippingCompanyOrEmployee',
+              'TruckCompanyOwnerOperator',
+              'VendorsAndServices',
+              'PassengerVehicleDrivers',
+              'AgentsBrokersAndFreightForwarders'
+            ],
+            enum: [0, 1, 2, 3, 4]
+          },
+          RatesResults: {
+            type: 'object',
+            properties: {
+              shipmentId: {
+                type: 'string',
+                description: 'A string that uniquely identifies the shipment'
+              },
+              carrierId: {
+                type: 'string',
+                nullable: true,
+                description: 'The carrier account that is billed for the shipping charges'
+              },
+              serviceCode: {
+                type: 'string',
+                nullable: true,
+                description: 'The carrier service used to ship the package'
+              },
+              externalOrderId: {
+                type: 'string',
+                nullable: true,
+                description: 'ID that the Order Source assigned'
+              },
+              items: {
+                type: 'array',
+                nullable: true,
+                items: {
+                  $ref: '#/components/schemas/ShipmentItem'
+                }
+              },
+              taxIdentifiers: {
+                type: 'array',
+                nullable: true,
+                items: {
+                  $ref: '#/components/schemas/TaxIdentifier'
+                }
+              },
+              externalShipmentId: {
+                type: 'string',
+                nullable: true,
+              },
+              shipDate: {
+                type: 'string',
+                format: 'date-time'
+              },
+              createdAt: {
+                type: 'string',
+                format: 'date-time'
+              },
+              modifiedAt: {
+                type: 'string',
+                format: 'date-time'
+              },
+              shipmentStatus: {
+                $ref: '#/components/schemas/ShipmentStatus'
+              },
+              shipTo: {
+                nullable: true,
+                $ref: '#/components/schemas/ShippingAddress'
+              },
+              shipFrom: {
+                nullable: true,
+                $ref: '#/components/schemas/ShippingAddress'
+              },
+              warehouseId: {
+                type: 'string',
+                nullable: true,
+              },
+              returnTo: {
+                $ref: '#/components/schemas/ShippingAddress'
+              },
+              confirmation: {
+                $ref: '#/components/schemas/DeliveryConfirmation'
+              },
+              customs: {
+                type: 'object',
+                nullable: true,
+                properties: {
+                  contents: {
+                    $ref: '#/components/schemas/Contents'
+                  },
+                  nonDelivery: {
+                    $ref: '#/components/schemas/NonDelivery'
+                  },
+                  customsItems: {
+                    nullable: true,
+                    $ref: '#/components/schemas/CustomItem'
+                  }
+                }
+              },
+              advancedOptions: {
+                $ref: '#/components/schemas/AdvancedOptions'
+              },
+              originType: {
+                nullable: true,
+                $ref: '#/components/schemas/OriginType'
+              },
+              insuranceProvider: {
+                $ref: '#/components/schemas/InsuranceProvider'
+              },
+              tags: {
+                type: 'array',
+                items: {
+                  type: 'object',
+                  properties: {
+                    name: {
+                      type: 'string'
+                    }
+                  }
+                }
+              },
+              orderSourceCode: {
+                nullable: true,
+                oneOf: [
+                  {
+                    $ref: '#/components/schemas/OrderSourceCode',
+                  },
+                  {
+                    type: 'string'
+                  }
+                ]
+              },
+              packages: {
+                type: 'array',
+                items: {
+                  $ref: '#/components/schemas/Package',
+                }
+              },
+              totalWeight: {
+                type: 'object',
+                properties: {
+                  value: {
+                    type: 'number'
+                  },
+                  unit: {
+                    type: 'string',
+                    enum: ["pound", "ounce", "gram", "kilogram"]
+                  }
+                }
+              },
+              rateResponse: {
+                type: 'object',
+                properties: {
+                  rates: {
+                    type: 'array',
+                    nullable: true,
+                    items: {
+                      $ref: '#/components/schemas/Rate',
+                    }
+                  },
+                  invalidRates: {
+                    type: 'array',
+                    nullable: true,
+                    items: {
+                      $ref: '#/components/schemas/Rate',
+                    }
+                  },
+                  rateRequestId: {
+                    type: 'string',
+                    nullable: true,
+                  },
+                  shipmentId: {
+                    type: 'string',
+                    nullable: true,
+                  },
+                  createdAt: {
+                    type: 'string',
+                    nullable: true,
+                  },
+                  status: {
+                    type: 'string',
+                    nullable: true,
+                    enum: ["working", "completed", "partial", "error"]
+                  },
+                  errors: {
+                    type: 'array',
+                    nullable: true,
+                    items: {
+                      $ref: '#/components/schemas/Error',
+                    }
+                  }
+                }
+              }
+            }
+          },
+          Error: {
+            type: 'object',
+            properties: {
+              errorSource: {
+                $ref: '#/components/schemas/ErrorSource',
+              },
+              errorType: {
+                $ref: '#/components/schemas/ErrorType',
+              },
+              errorCode: {
+                $ref: '#/components/schemas/ErrorCode',
+              },
+              message: {
+                type: 'string'
+              }
+            }
+          },
+          Rate: {
+            type: 'object',
+            properties: {
+              rateId: {
+                type: 'string'
+              },
+              rateType: {
+                type: 'string',
+                enum: ["check", "shipment"]
+              },
+              carrierId: {
+                type: 'string'
+              },
+              shippingAmount: {
+                $ref: '#/components/schemas/MonetaryValue',
+              },
+              insuranceAmount: {
+                $ref: '#/components/schemas/MonetaryValue',
+              },
+              confirmationAmount: {
+                $ref: '#/components/schemas/MonetaryValue',
+              },
+              otherAmount: {
+                $ref: '#/components/schemas/MonetaryValue',
+              },
+              taxAmount: {
+                nullable: true,
+                $ref: '#/components/schemas/MonetaryValue',
+              },
+              zone: {
+                type: 'integer',
+                format: 'int32'
+              },
+              packageType: {
+                type: 'string'
+              },
+              deliveryDays: {
+                type: 'integer',
+                nullable: true,
+                format: 'int32'
+              },
+              guaranteedService: {
+                type: 'boolean'
+              },
+              estimatedDeliveryDate: {
+                type: 'string',
+                nullable: true,
+                format: 'date-time'
+              },
+              carrierDeliveryDays: {
+                type: 'string',
+                nullable: true,
+              },
+              shipDate: {
+                type: 'string',
+                nullable: true,
+              },
+              negotiatedRate: {
+                type: 'boolean'
+              },
+              serviceType: {
+                type: 'string'
+              },
+              serviceCode: {
+                type: 'string'
+              },
+              trackable: {
+                type: 'boolean'
+              },
+              carrierCode: {
+                type: 'string'
+              },
+              carrierNickname: {
+                type: 'string'
+              },
+              carrierFriendlyName: {
+                type: 'string'
+              },
+              validationStatus: {
+                $ref: '#/components/schemas/ValidationStatus',
+              },
+              warningMessages: {
+                type: 'array',
+                items: {
+                  type: 'string'
+                }
+              },
+              errorMessages: {
+                type: 'array',
+                items: {
+                  type: 'string'
+                }
+              }
+            }
+          }
         }
       },
       security: []
