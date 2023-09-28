@@ -20,7 +20,10 @@ function isPublicPath(req: NextRequest) {
     'POST:/api/account/register',
     'GET:/api/shipengine/carriers',
     'POST:/api/shipengine/rates/estimate',
-    'PUT:/api/account/verify'
+    'PUT:/api/account/verify',
+    'POST:/api/shipengine/create-label-from-rate',
+    'POST:/api/shipengine/create-label-from-shipment-details',
+    'POST:/api/shipengine/validate-addresses',
   ]
   return publicPaths.includes(`${req.method}:${req.nextUrl.pathname}`)
 }
