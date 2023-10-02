@@ -14,7 +14,7 @@ interface ShippingStepsProps {
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   return (
     <div className="flex lg:flex-row flex-col gap-d-16">
-      <div>
+      <div className="grow">
         <div className="lg:grid lg:grid-cols-4 gap-d-12 flex flex-col lg:mb-[8px] mb-[6px]">
           <ShippingStep
             target="tab-ship-origin"
@@ -68,7 +68,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           >
             {data.parcelType ? (
               <div className="flex items-center gap-d-10 text-white font-bold">
-                <div className="text-input">Confirmed</div>
+                <div className="text-input">
+                  {data.parcelType === 'Enter Custom Dimensions' ? 'Custom Dimensions' : data.parcelType}
+                </div>
               </div>
             ) : (
               'What are you shipping?'
