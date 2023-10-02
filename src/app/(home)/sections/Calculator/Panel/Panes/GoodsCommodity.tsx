@@ -25,16 +25,16 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
   } = methods
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[32px] gap-[24px]">
-      <h4 className="font-semibold">Provide Product Details</h4>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
+      <div className="text-body-lg font-semibold">Provide Product Details</div>
       <div>
         <div className="flex justify-between lg:mb-[16px] mb-[12px]">
-          <div className="font-bold">What is the item?*</div>
+          <div className="font-semibold">What is the item?*</div>
           <div className="text-caption">Quick Guide for Describing items</div>
         </div>
         <div className="flex lg:flex-row flex-col lg:items-center gap-d-16">
           <div className="grow flex items-center gap-d-16">
-            <Button type="button" className="grow">
+            <Button type="button" size="sm" className="grow">
               <div className="flex items-center gap-d-10">
                 Create Description
                 <QuoteRequest />
@@ -97,9 +97,9 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         <Input
           type="number"
           label={
-            <div className="flex items-center">
+            <div className="relative flex items-center">
               Weight*&nbsp;<div className="text-caption text-gray">(Per Item)</div>
-              <IconInfo className="ml-[4px]" />
+              <IconInfo className="absolute lg:w-[24px] w-[18px] lg:h-[24px] h-[18px] lg:left-[120px] left-[90px]" />
             </div>
           }
           value={watch('weight')}
@@ -111,9 +111,9 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         <Input
           containerClassName="grow"
           label={
-            <div className="flex items-center">
+            <div className="relative flex items-center">
               Where was the item made?**
-              <IconInfo className="ml-[4px]" />
+              <IconInfo className="absolute lg:w-[24px] w-[18px] lg:h-[24px] h-[18px] lg:left-[180px] left-[140px]" />
             </div>
           }
           value={watch('madeWhere')}

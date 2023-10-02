@@ -56,7 +56,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn(full ? 'w-full' : '', containerClassName)}>
         {props.label!! && (
-          <label htmlFor="email" className={cn(`block lg:mb-[12px] mb-[8px] font-medium`, labelClassName)}>
+          <label className={cn(`block lg:mb-[12px] mb-[8px] text-caption font-medium`, labelClassName)}>
             {props.label}
           </label>
         )}
@@ -76,7 +76,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             onChange={(e) => (onChange ? onChange(e.target.value) : false)}
             className={cn(
-              'block w-full lg:py-[20px] py-[15px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white placeholder:text-white',
+              'block w-full lg:py-[10px] py-[8px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-white placeholder:text-white',
               error ? 'border-red-600' : 'border-gray-100 hover:border-gray-300 focus:border-primary',
               leftIcon ? 'pl-[54px]' : 'lg:pl-[16px] pl-[12px]',
               rightIcon ? 'pr-[54px]' : 'lg:pr-[16px] pr-[12px]'

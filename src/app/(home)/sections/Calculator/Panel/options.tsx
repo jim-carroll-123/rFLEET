@@ -7,8 +7,8 @@ export const shippingMethods = [
   { label: 'Ocean Shipping', value: 'Ocean Shipping' },
   { label: 'Air Cargo', value: 'Air Cargo' },
   {
-    label: 'FTL, Power Only, Drayage,\nor Oversize & Overweight',
-    value: 'FTL, Power Only, Drayage, or Oversize & Overweight'
+    label: 'FTL, Drayage, etc',
+    value: 'FTL, Drayage, etc'
   }
 ]
 

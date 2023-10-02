@@ -29,7 +29,10 @@ export const Check = ({ checked, label, containerClassName, labelClassName, onCh
         onChange={(e) => (onChange ? onChange(e.target.checked) : false)}
       />
       {label && (
-        <label htmlFor={id} className={cn('inline-block pl-[0.15rem] hover:cursor-pointer', labelClassName)}>
+        <label
+          htmlFor={id}
+          className={cn('inline-block pl-[0.15rem] hover:cursor-pointer text-input leading-[24px]', labelClassName)}
+        >
           {label}
         </label>
       )}

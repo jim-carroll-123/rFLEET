@@ -16,7 +16,7 @@ export const SearchSection = () => {
   const [openChatbotModal, setOpenChatbotModal] = useState(false)
   return (
     <section id="search-section">
-      <ParallaxBanner className="parallax-banner xl:h-[860px]" layers={[{ image: bgEarth.src, speed: -20 }]}>
+      <ParallaxBanner className="parallax-banner xl:h-[750px]" layers={[{ image: bgEarth.src, speed: -20 }]}>
         <div
           className="absolute w-full h-full"
           style={{ backdropFilter: 'blur(12.5px)', opacity: 0.6, backgroundColor: 'rgba(0,0,0,0.3)' }}
@@ -24,10 +24,10 @@ export const SearchSection = () => {
         <div className="relative flex flex-col h-full">
           <div className="h-[100px] shrink-0 bg-gradient-secondary-fade-in-to-top" />
 
-          <div className="relative container flex flex-col flex-1 justify-center items-center text-center gap-[42px] lg:gap-[56px] lg:py-[80px] py-[60px]">
+          <div className="relative container flex flex-col flex-1 justify-center items-center text-center lg:gap-[32px] gap-[24px] lg:py-0 py-[45px]">
             <div>
               <Title>SEARCH ENGINE & OPTIMIZATION</Title>
-              <div className="text-body-xl text-gray-300 font-medium">What do you want to look for today?</div>
+              <div className="text-body-lg">What do you want to look for today?</div>
             </div>
             <div className="w-full flex flex-col items-center">
               <SearchInput />
@@ -43,7 +43,7 @@ export const SearchSection = () => {
             {!openChatbotModal && (
               <div className="absolute right-0 bottom-0">
                 <button className="transition duration-200 hover:scale-105" onClick={() => setOpenChatbotModal(true)}>
-                  <ChatbotIcon />
+                  <ChatbotIcon className="lg:w-[102px] w-[60px] lg:h-[80px] h-[50px]" />
                 </button>
               </div>
             )}
@@ -64,5 +64,5 @@ export const SearchSection = () => {
 }
 
 const Prompt = ({ children }: { children: React.ReactNode }) => (
-  <div className="px-[12px] py-[8px] lg:px-[16px] lg:py-[10px] bg-blur hover-bg-white-glow">{children}</div>
+  <div className="text-input px-[15px] py-[8px] lg:px-[20px] lg:py-[10px] bg-blur hover-bg-white-glow">{children}</div>
 )

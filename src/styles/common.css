@@ -7,6 +7,10 @@ a.svg-hover:hover svg * {
   @apply hover:fill-green;
 }
 
+input {
+  @apply lg:text-[14px] text-[10px] leading-[20px];
+}
+
 .container {
   @apply xl:px-0 px-[20px];
 }

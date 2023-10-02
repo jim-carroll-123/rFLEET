@@ -5,7 +5,6 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 
-import { Button } from '@components/ui/Button'
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
@@ -99,12 +98,12 @@ export const Panel = () => {
   }
 
   return (
-    <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[26px] lg:p-[36px] rounded-[20px]">
+    <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[18px] lg:p-[24px] rounded-[20px]">
       <ButtonSelect
         options={shippingMethods}
         value={shippingMethod}
         onChange={setShippingMethod}
-        containerClassName="mb-[28px]"
+        containerClassName="lg:mb-[24px] mb-[18px]"
       />
       <TabPane className="relative" activeTab={shippingStepId} onTabChange={(id) => setShippingStepId(id)}>
         <ShippingSteps shippingStepId={shippingStepId} data={data} />
@@ -123,9 +122,6 @@ export const Panel = () => {
           </ShippingPane>
         </div>
       </TabPane>
-      <div className="flex justify-center">
-        <Button glossy>SEARCH</Button>
-      </div>
     </div>
   )
 }

@@ -84,18 +84,18 @@ export const Select = React.forwardRef(
     }, [selectOpen])
 
     return (
-      <div className={cn(`relative`, containerClassName, full ? 'w-full' : '')} ref={selectNode}>
+      <div className={cn(`relative text-input`, containerClassName, full ? 'w-full' : '')} ref={selectNode}>
         {props.label && (
-          <label className={cn(`block lg:mb-[12px] mb-[8px] font-medium`, labelClassName)}>{props.label}</label>
+          <label className={cn(`block lg:mb-[8px] mb-[6px] font-medium`, labelClassName)}>{props.label}</label>
         )}
         <div
           onClick={() => setSelectOpen(!selectOpen)}
           className={cn(
-            'flex justify-between items-center lg:gap-[10px] gap-[7px] w-full lg:px-[16px] px-[12px] lg:py-[18px] py-[14px] border border-solid shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
+            'flex justify-between items-center w-full border border-solid shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
             error ? 'border-red-600' : selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
           )}
         >
-          {value?.icon && value.icon}
+          {value?.icon && <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>}
           <input
             type="text"
             autoComplete="off"
@@ -105,10 +105,10 @@ export const Select = React.forwardRef(
             readOnly={!searchable}
             ref={inputRef}
             className={cn(
-              'flex flex-1 w-inherit placeholder:text-white lg:text-[14px] text-[12px] bg-transparent cursor-default'
+              'flex flex-1 w-inherit placeholder:text-white bg-transparent cursor-default lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]'
             )}
           />
-          <ArrowDown className="shrink-0 lg:w-[24px] lg:h-[24px] w-[20px] h-[20px]" />
+          <ArrowDown className="shrink-0 lg:w-[24px] lg:h-[24px] w-[20px] h-[20px] lg:mr-[12px] mr-[9px]" />
         </div>
         {selectOpen && (
           <div className="absolute w-full z-10 max-h-[354px] overflow-y-auto slick-scroll bg-gradient-blur-dialog backdrop-blur-md backdrop-opacity-100 flex flex-col lg:gap-[4px] gap-[3px] lg:mt-[8px] mt-[6px] lg:p-[8px] p-[6px] border border-solid sm:text-sm lg:rounded-lg rounded-md">
@@ -117,19 +117,21 @@ export const Select = React.forwardRef(
                 <div
                   key={index}
                   className={cn(
-                    'flex items-center lg:gap-[10px] gap-[7px] lg:px-[16px] px-[12px] lg:py-[20px] py-[15px] rounded hover:bg-primary',
+                    'flex items-center rounded hover:bg-primary',
                     value?.value === option.value ? 'bg-primary' : 'cursor-pointer '
                   )}
                   onClick={() => handleOptionClick(option)}
                 >
-                  {option?.icon && option.icon}
-                  {option.label}
+                  {option?.icon && (
+                    <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{option.icon}</div>
+                  )}
+                  <div className="lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]">{option.label}</div>
                 </div>
               ))}
             {filteredOptions.length === 0 && (
               <div
                 className={cn(
-                  'flex justify-center items-center lg:gap-[10px] gap-[7px] lg:px-[16px] px-[12px] lg:py-[20px] py-[15px]'
+                  'flex justify-center items-center lg:gap-[10px] gap-[7px] lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]'
                 )}
               >
                 ---

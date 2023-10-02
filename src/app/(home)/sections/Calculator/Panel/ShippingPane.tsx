@@ -11,7 +11,7 @@ export const ShippingPane = ({ id, children }: ShippingPane) => {
   return (
     <Pane
       id={id}
-      className="absolute lg:mt-[-76px] flex flex-col lg:gap-[32px] gap-[24px] z-10 lg:p-[38px] p-[28px] rounded-d-8 border border-[#FFFFFF30] bg-gradient-blur-dialog backdrop-blur-[12px] w-full"
+      className="absolute lg:mt-[-56px] mt-[10px] flex flex-col gap-d-16 z-10 lg:p-[24px] p-[18px] rounded-d-8 border border-[#FFFFFF30] bg-gradient-blur-dialog backdrop-blur-[12px] w-full"
     >
       {children}
     </Pane>

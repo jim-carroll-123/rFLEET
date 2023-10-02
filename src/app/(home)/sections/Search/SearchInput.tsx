@@ -7,20 +7,15 @@ export const SearchInput = () => {
   const ref = useRef(null)
 
   return (
-    <div className="flex flex-wrap items-stretch relative mb-[24px] lg:mb-[34px] w-full max-w-[900px]">
+    <div className="flex flex-wrap items-stretch relative mb-[12px] lg:mb-[16px] w-full max-w-[900px]">
       <input
         ref={ref}
         type="text"
-        className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l-lg border border-solid border-white bg-clip-padding pl-[30px] pr-[26px] py-[14px] lg:pl-[40px] lg:pr-[68px] lg:py-[18px] text-[15px] lg:text-[20px] font-semibold leading-[1.6] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none focus:bg-gradient-blur-dialog bg-transparent focus:bg-opacity-40 placeholder:text-white focus:placeholder:text-transparent"
+        className="relative m-0 -mr-0.5 block min-w-0 flex-auto rounded-l-lg border border-solid border-white bg-clip-padding lg:px-[24px] px-[18px] lg:py-[12px] py-[6px] font-semibold leading-[20px] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none focus:bg-gradient-blur-dialog bg-transparent focus:bg-opacity-40 placeholder:text-white focus:placeholder:text-transparent"
         placeholder="Hello, how can I help you today?"
-        aria-label="Recipient's username"
-        aria-describedby="button-addon2"
       />
-      <Button
-        glossy
-        className="!h-[56px] lg:!h-[72px] !px-[10px] lg:!px-[50px] before:rounded-l-none before:rounded-r-lg"
-      >
-        <SearchIcon />
+      <Button glossy className="h-[36px] lg:h-[48px] px-[45px] lg:px-[60px] rounded-l-none rounded-r-lg">
+        <SearchIcon className="lg:w-[24px] w-[18px] lg:h-[24px] h-[18px]" />
       </Button>
     </div>
   )

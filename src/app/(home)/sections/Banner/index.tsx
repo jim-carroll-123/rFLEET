@@ -27,7 +27,7 @@ export const BannerSection = () => {
               CHAIN MANAGEMENT GLOBALLY
             </div>
           </h4>
-          <div className="text-gray-300 tracking-widest leading-relaxed mb-[36px] lg:mb-[48px]">
+          <div className="text-body-lg tracking-widest leading-relaxed lg:mb-[24px] mb-[18px]">
             Experience efficiency, connectivity, and growth
             <br className="only-desktop" />
             on one of the world&apos;s largest marketplace for supply chain
