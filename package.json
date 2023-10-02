@@ -37,6 +37,7 @@
     "next-videos": "^1.4.1",
     "nodemailer": "^6.9.5",
     "postcss": "8.4.29",
+    "postcss-import": "^15.1.0",
     "react": "18.2.0",
     "react-children-utilities": "^2.9.0",
     "react-device-detect": "^2.2.3",
