@@ -34,7 +34,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         </div>
         <div className="flex lg:flex-row flex-col lg:items-center gap-d-16">
           <div className="grow flex items-center gap-d-16">
-            <Button type="button" size="lg" className="grow">
+            <Button type="button" className="grow">
               <div className="flex items-center gap-d-10">
                 Create Description
                 <QuoteRequest />

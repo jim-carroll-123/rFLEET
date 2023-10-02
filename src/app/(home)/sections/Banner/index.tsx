@@ -36,8 +36,8 @@ export const BannerSection = () => {
           </div>
           <div className="flex items-center gap-6">
             <Link href="#">
-              <Button className="hover:before:bg-secondary" glossy>
-                CONTACT US
+              <Button glossy className="lg:px-[46px] px-[34px]">
+                Contact Us
               </Button>
             </Link>
             <Link href="#" onClick={() => setOpenVideoModal(true)} className="flex items-center gap-2 group">

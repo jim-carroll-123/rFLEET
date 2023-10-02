@@ -9,6 +9,7 @@ import { VideoModal } from '@app/(home)/sections/Banner/VideoModal'
 import Close from '@assets/icons/close.svg'
 import Hamburger from '@assets/icons/hamburger.svg'
 import Lock from '@assets/icons/lock.svg'
+import { Button } from '@components/ui/Button'
 import { Logo } from '@components/ui/Logo'
 
 export default function Example() {
@@ -68,9 +69,7 @@ export default function Example() {
               </div>
               <div className="flex gap-2">
                 <Link href="/signup">
-                  <button className="relative flex items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 font-semibold before:bg-primary px-[24px] py-[14px] lg:px-[32px] lg:py-[18px] hover:before:scale-[1.03] before:z-[1] before:border-2 before:border-solid before:border-primary hover:before:border-green after:z-0 hover:after:bg-green after:blur-sm after:absolute after:inset-0 after:rounded-md after:transition after:duration-300 active:before:scale-[0.97] hover:after:blur-md active:after:blur-none active:after:bg-transparent">
-                    <span className="relative z-[2] text-white text-[15px]">Create Account</span>
-                  </button>
+                  <Button>Create Account</Button>
                 </Link>
               </div>
             </div>
