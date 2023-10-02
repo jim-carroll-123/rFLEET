@@ -2,17 +2,18 @@ import Link from 'next/link'
 
 import bgCurveStripes from '@assets/images/bg-curve-stripes.png'
 import { BRD } from '@components/ui/BRD'
+import { Button } from '@components/ui/Button'
 import { Title } from '@components/ui/Typography'
 
 export const AboutSection = () => {
   return (
-    <section className="relative lg:pt-[70px] pt-[48px] lg:pb-[100px] pb-[80px] bg-[#191a4c] text-white overflow-hidden">
+    <section className="relative lg:pt-[90px] pt-[70px] lg:pb-[120px] pb-[90px] bg-[#191a4c] text-white overflow-hidden">
       <img className="absolute lg:block hidden left-[0] top-[0px] z-[1]" src={bgCurveStripes.src} />
-      <div className="relative z-[2] container text-center lg:mb-[72px] mb-[54px]">
-        <div className="flex justify-center lg:mb-[26px] mb-[20px]">
+      <div className="relative z-[2] container text-center lg:mb-[48px] mb-[36px]">
+        <div className="flex justify-center lg:mb-[16px] mb-[10px]">
           <Title>About Us</Title>
         </div>
-        <div className="text-body-xl lg:mb-[62px] mb-[46px]">
+        <div className="text-body-lg lg:mb-[48px] mb-[36px]">
           At rFleet Inc., we unite shippers, carriers, sellers, and buyers in a<BRD />
           decentralized ecosystem, cultivating collaboration across the supply
           <BRD />
@@ -22,11 +23,11 @@ export const AboutSection = () => {
           <BRD />
           transforming the industry, forging a better way to do business.
         </div>
-        <Link href="/signin" className="hover:text-white">
-          <button className="hover-bg-green-glow lg:w-auto w-full lg:px-[80px] px-[60px] lg:py-[15px] py-[12px] border border-transparent hover:border-gray-200 lg:text-[20px] text-[15px] font-semibold rounded-md bg-[#2F80ED] hover:bg-[#4796fd] transition duration-300">
-            LOGIN
-          </button>
-        </Link>
+        <div className="flex justify-center">
+          <Link href="/signin" className="hover:text-white">
+            <Button className="lg:w-[250px] w-full">Login</Button>
+          </Link>
+        </div>
       </div>
       <div className="container">
         <div className="relative">

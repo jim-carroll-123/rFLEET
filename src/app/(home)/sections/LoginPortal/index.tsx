@@ -35,16 +35,12 @@ export const LoginPortalSection = () => {
           </div>
           <div className="flex flex-col lg:items-end items-center lg:py-[128px] py-[90px]">
             <div className="flex flex-col react-tooltip-portal-help-container">
-              <div className="flex justify-start">
-                <Title>REGISTER PORTAL</Title>
+              <div className="flex justify-center">
+                <Title>LOGIN PORTAL</Title>
               </div>
               <GradientCard>
-                <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">
-                  ACCESS
-                  <br className="only-desktop" />
-                  SHIPPING PORTAL
-                </div>
-                <div className="text-gray-200 lg:mb-[12px] mb-[8px]">
+                <div className="text-body-xl font-semi lg:mb-[16px] mb-[12px]">ACCESS SHIPPING PORTAL</div>
+                <div className="text-gray-200 lg:mb-[24px] mb-[18px]">
                   Quote, Ship, Track, Manage Work Orders,
                   <br className="only-desktop" />
                   Carrier Relationships, Multi-Warehouses, and
@@ -71,15 +67,11 @@ export const LoginPortalSection = () => {
                   </Tooltip>
                 </div>
                 <Link href="/signup">
-                  <TransparentButton>REGISTER</TransparentButton>
+                  <TransparentButton>Login</TransparentButton>
                 </Link>
               </GradientCard>
               <GradientCard>
-                <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">
-                  ACCESS
-                  <br className="only-desktop" />
-                  CARRIER PORTAL
-                </div>
+                <div className="text-body-xl font-semi lg:mb-[24px] mb-[18px]">ACCESS CARRIER PORTAL</div>
                 <div className="text-gray-200 lg:mb-[12px] mb-[8px]">
                   Efficiently Manage Trucks, Drivers, Bids, and
                   <br className="only-desktop" />
@@ -108,7 +100,7 @@ export const LoginPortalSection = () => {
                   </Tooltip>
                 </div>
                 <Link href="/signup">
-                  <TransparentButton>REGISTER</TransparentButton>
+                  <TransparentButton>Login</TransparentButton>
                 </Link>
               </GradientCard>
             </div>
