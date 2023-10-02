@@ -69,7 +69,7 @@ export default function Index() {
                   leftIcon="lock"
                   containerClassName="lg:mb-[12px] mb-[8px]"
                 />
-                <div className="text-caption-xs text-gray-100">
+                <div className="text-caption text-gray-100">
                   Must be 8+ Characters and cannot be a commonly used password
                 </div>
               </div>

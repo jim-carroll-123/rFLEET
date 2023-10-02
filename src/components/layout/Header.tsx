@@ -62,7 +62,7 @@ export default function Example() {
               <div className="flex">
                 <Nav href="/signin">
                   <div className="flex gap-2 items-center text-white font-semibold transition fill-white hover:fill-white">
-                    <span className="font-semibold">Log in</span>
+                    <span className="font-medium text-input">Log in</span>
                     <Lock className="" />
                   </div>
                 </Nav>

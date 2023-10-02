@@ -32,7 +32,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   />
                 }
               </div>
-              <div className="text-input-text">{data.fromType}</div>
+              <div className="text-input">{data.fromType}</div>
             </div>
           ) : (
             'Where are you shipping from?'
@@ -57,7 +57,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   />
                 }
               </div>
-              <div className="text-input-text">{data.toType}</div>
+              <div className="text-input">{data.toType}</div>
             </div>
           ) : (
             'Where are you shipping to?'
@@ -74,7 +74,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         >
           {data.parcelType ? (
             <div className="flex items-center gap-d-10 text-white font-bold">
-              <div className="text-input-text">Confirmed</div>
+              <div className="text-input">Confirmed</div>
             </div>
           ) : (
             'What are you shipping?'

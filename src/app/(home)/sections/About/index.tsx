@@ -54,7 +54,7 @@ interface CardProps {
 const Card = ({ children }: CardProps) => (
   <div className="relative cursor-default group text-center lg:px-[32px] px-[24px] lg:py-[30px] py-[24px] bg-[#191a4c]">
     <div className="absolute z-[2] group-hover:bg-gradient-card w-full h-full left-0 top-0"></div>
-    <h4 className="relative z-[3] font-[500] lg:mb-[15px] mb-[13px]">{children[0]}</h4>
+    <h4 className="relative z-[3] font-medium lg:mb-[15px] mb-[13px]">{children[0]}</h4>
     <div className="relative z-[3] text-body-lg text-gray-400 group-hover:text-white">{children[1]}</div>
   </div>
 )

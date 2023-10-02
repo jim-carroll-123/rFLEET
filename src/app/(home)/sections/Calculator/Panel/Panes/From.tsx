@@ -95,12 +95,12 @@ export const From = ({ methods, onSubmit }: Props) => {
       </form>
       <GradientHR />
       <div className="flex flex-col lg:gap-[4px] gap-[3px]">
-        <div className="text-caption-sm">My recent searches</div>
+        <div className="text-input">My recent searches</div>
         <div className="flex items-center lg:gap-[8px] gap-[6px]">
           <User />
           <h6>Login / Sign Up</h6>
         </div>
-        <div className="text-caption-sm">Access your searches on any devices</div>
+        <div className="text-input">Access your searches on any devices</div>
       </div>
     </>
   )

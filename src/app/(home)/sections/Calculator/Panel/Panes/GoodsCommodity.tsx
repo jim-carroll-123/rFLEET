@@ -30,7 +30,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
       <div>
         <div className="flex justify-between lg:mb-[16px] mb-[12px]">
           <div className="font-bold">What is the item?*</div>
-          <div className="text-caption-xs">Quick Guide for Describing items</div>
+          <div className="text-caption">Quick Guide for Describing items</div>
         </div>
         <div className="flex lg:flex-row flex-col lg:items-center gap-d-16">
           <div className="grow flex items-center gap-d-16">
@@ -67,7 +67,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           containerClassName="lg:w-[300px] w-full"
           label={
             <div className="flex items-center">
-              Unit*&nbsp;<div className="text-caption-xs text-gray">(How the item is packaged)</div>
+              Unit*&nbsp;<div className="text-caption text-gray">(How the item is packaged)</div>
             </div>
           }
           options={packageUnits}
@@ -79,7 +79,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           containerClassName="lg:w-[160px] w-full"
           label={
             <div className="flex items-center">
-              Value*&nbsp;<div className="text-caption-xs text-gray">(Per Item)</div>
+              Value*&nbsp;<div className="text-caption text-gray">(Per Item)</div>
             </div>
           }
           options={[]}
@@ -98,7 +98,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           type="number"
           label={
             <div className="flex items-center">
-              Weight*&nbsp;<div className="text-caption-xs text-gray">(Per Item)</div>
+              Weight*&nbsp;<div className="text-caption text-gray">(Per Item)</div>
               <IconInfo className="ml-[4px]" />
             </div>
           }

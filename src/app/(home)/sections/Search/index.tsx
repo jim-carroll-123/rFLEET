@@ -27,7 +27,7 @@ export const SearchSection = () => {
           <div className="relative container flex flex-col flex-1 justify-center items-center text-center gap-[42px] lg:gap-[56px] lg:py-[80px] py-[60px]">
             <div>
               <Title>SEARCH ENGINE & OPTIMIZATION</Title>
-              <div className="text-body-xl text-gray-300 font-[500]">What do you want to look for today?</div>
+              <div className="text-body-xl text-gray-300 font-medium">What do you want to look for today?</div>
             </div>
             <div className="w-full flex flex-col items-center">
               <SearchInput />

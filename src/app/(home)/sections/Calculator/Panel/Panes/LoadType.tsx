@@ -267,7 +267,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       />
                     </div>
                   </div>
-                  <div className="text-caption-xs">Enter dimensions of package</div>
+                  <div className="text-caption">Enter dimensions of package</div>
                 </>
               )}
               {!isBoxOrTube && (
@@ -306,7 +306,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       labelClassName="font-bold"
                     />
                   </div>
-                  <div className="text-caption-xs">Enter dimensions of package</div>
+                  <div className="text-caption">Enter dimensions of package</div>
                 </>
               )}
             </>
@@ -334,7 +334,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 containerClassName="lg:w-[100px]"
               />
             </div>
-            <div className="text-caption-xs">Includes packaging</div>
+            <div className="text-caption">Includes packaging</div>
           </div>
         </div>
         <div className="flex flex-col gap-d-12">
@@ -373,7 +373,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 error={fieldErrors?.alcoholRecipientType}
               />
             </div>
-            <div className="text-caption-xs lg:flex">
+            <div className="text-caption lg:flex">
               <div className="text-gray">Complaint account with UPS and FedEx is required. For more info,&nbsp;</div>
               <Link href="#">visit our FAQ.</Link>
             </div>

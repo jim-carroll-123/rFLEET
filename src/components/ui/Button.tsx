@@ -21,7 +21,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         textColor: 'text-white'
       },
       transparent: {
-        bgColor: 'bg-transparent border-2 border-solid border-white',
+        bgColor: 'bg-transparent border-white',
         textColor: 'text-white'
       }
     }
@@ -37,10 +37,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const { padding, font } = sizeConfig[size]
 
     const defaultClass =
-      'relative flex items-center justify-center rounded-md bg-primary transition duration-300 font-semibold'
+      'relative flex items-center justify-center border-2 border-solid border-transparent rounded-md transition duration-300 font-semibold'
     const width = full ? 'w-full' : ''
-    const hover = disabled ? '' : 'hover:bg-transparent hover:shadow-button-lg'
-    const border_shadow = glossy ? 'shadow-button border-2 border-solid border-green' : ''
+    const hover = disabled ? '' : 'hover:bg-[#4AED5200] hover:shadow-button-lg hover:border-green'
+    const border_shadow = glossy ? 'shadow-button border-green' : ''
     const opacity = disabled ? 'opacity-50' : ''
 
     return (
