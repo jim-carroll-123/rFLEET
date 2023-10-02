@@ -103,6 +103,10 @@ input {
   @apply bg-white;
 }
 
+.gap-d-36 {
+  @apply lg:gap-[36px] gap-[24px];
+}
+
 .gap-d-24 {
   @apply lg:gap-[24px] gap-[18px];
 }
