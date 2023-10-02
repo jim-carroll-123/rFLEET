@@ -1,5 +1,6 @@
 import Parcel from '@assets/icons/parcel.svg'
 import PolyMailer from '@assets/icons/polymailer.svg'
+import currunciesData from '@json/currencies.json'
 
 export const shippingMethods = [
   { label: 'Parcel', value: 'Parcel' },
@@ -62,12 +63,10 @@ export const packageUnits = [
   }
 ]
 
-export const currencies = [
-  {
-    label: 'USD',
-    value: 'USD'
-  }
-]
+export const currencies = Object.entries(currunciesData).map(([key, currency]) => ({
+  label: currency.code,
+  value: currency.code
+}))
 
 export const returnLabels = [
   {
