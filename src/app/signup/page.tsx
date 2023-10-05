@@ -41,15 +41,15 @@ export default function Index() {
     <main className="relative flex" style={{ background: `url(${planetEarth.src}) no-repeat center / cover` }}>
       <div className="flex flex-1 bg-[#1a194990]">
         <div className="flex-1 flex justify-center items-center">
-          <div className="bg-gradient-blur-dialog backdrop-blur lg:px-[80px] px-[20px] lg:pt-[80px] pt-[60px] lg:pb-[40px] pb-[30px] flex flex-col lg:gap-[36px] gap-[27px] max-w-[720px] w-full">
+          <div className="bg-gradient-blur-dialog backdrop-blur lg:px-[80px] px-[20px] lg:pt-[80px] pt-[60px] lg:pb-[40px] pb-[30px] flex flex-col gap-d-24 max-w-[720px] w-full">
+            <Link href="/">
+              <Title className="text-5xl font-semibold">SHIPPING SIMPLIFIED</Title>
+            </Link>
             <div>
-              <Link href="/">
-                <Title className="text-5xl font-semibold lg:mb-[36px] mb-[27px]">SHIPPING SIMPLIFIED</Title>
-              </Link>
               <h6 className="font-semibold">CREATE ACCOUNT</h6>
-              <div className="text-body-small text-gray-400">Let&apos;s get you into your account.</div>
+              <div className="text-input text-gray-400">Let&apos;s get you into your account.</div>
             </div>
-            <div className="flex flex-col lg:gap-[24px] gap-[18px]">
+            <div className="flex flex-col gap-d-24">
               <div className="lg:grid grid-cols-2 lg:gap-[16px] gap-[18px]">
                 <Input label="First Name" placeholder="Enter your first name" />
                 <Input label="Last Name" placeholder="Enter your last name" />
@@ -67,9 +67,9 @@ export default function Index() {
                   label="Password"
                   placeholder="Enter your email password"
                   leftIcon="lock"
-                  className="lg:mb-[12px] mb-[8px]"
+                  containerClassName="lg:mb-[12px] mb-[8px]"
                 />
-                <div className="text-caption-xs text-gray-100">
+                <div className="text-caption text-gray-100">
                   Must be 8+ Characters and cannot be a commonly used password
                 </div>
               </div>
