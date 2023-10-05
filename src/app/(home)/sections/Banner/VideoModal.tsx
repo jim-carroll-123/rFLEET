@@ -9,7 +9,7 @@ export const VideoModal = ({ open, onClose }: Props) => {
   return (
     <Modal open={open} onClose={onClose}>
       <div className="lg:w-[800px] lg:h-[450px] bg-black transition duration-500">
-        <video width="100%" height="100%" autoPlay loop muted>
+        <video width="100%" height="100%" autoPlay loop muted controls>
           <source
             src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             type="video/mp4"
