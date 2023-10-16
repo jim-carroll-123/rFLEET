@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
@@ -11,6 +11,7 @@ import bgWireframeGlobe from '@assets/images/bg-wireframe-globe.png'
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-br.png'
 import { BRD } from '@components/ui/BRD'
 import { TransparentButton } from '@components/ui/Button'
+import { GlobeLoader } from '@components/ui/Loaders'
 import { Modal } from '@components/ui/Modal'
 import { Title } from '@components/ui/Typography'
 
@@ -29,11 +30,20 @@ import { TermsAndConditions } from './TermsAndConditions'
 
 export const OnboardingSection = () => {
   const [onboardingModalOpen, setOnboardingModalOpen] = useState<boolean>(false)
+  const [loadingNext, setLoadingNext] = useState<boolean>(false)
   const [activeFormIndex, setActiveFormIndex] = useState<number>(0)
 
   const gotoNextForm = () => {
-    setActiveFormIndex((prev) => prev + 1)
+    setLoadingNext(true)
+    setTimeout(() => {
+      setActiveFormIndex((prev) => prev + 1)
+      setLoadingNext(false)
+    }, 1000)
   }
+
+  useEffect(() => {
+    setActiveFormIndex(0)
+  }, [onboardingModalOpen])
 
   const onboardingForms: {
     [key: number]: JSX.Element
@@ -149,21 +159,27 @@ export const OnboardingSection = () => {
                 <BRD />
                 Strengthening the Logistics Industry.
               </div>
-              {/* revert link to /signup */}
-              <Link href="#" className="block w-full">
+              {/* <Link href="/signup" className="block w-full">
                 <TransparentButton onClick={() => setOnboardingModalOpen(true)}>Register</TransparentButton>
-              </Link>
+              </Link> */}
+
+              {/* tobe removed */}
+              <TransparentButton onClick={() => setOnboardingModalOpen(true)}>Register</TransparentButton>
             </GradientCard>
           </div>
         </div>
       </ParallaxBanner>
-      <Modal
-        open={onboardingModalOpen}
-        onClose={() => setOnboardingModalOpen(false)}
-        className="max-h-[96vh]  my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
-      >
-        {onboardingForms[activeFormIndex]}
-      </Modal>
+      {loadingNext ? (
+        <GlobeLoader />
+      ) : (
+        <Modal
+          open={onboardingModalOpen}
+          onClose={() => setOnboardingModalOpen(false)}
+          className="max-h-[96vh]  my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
+        >
+          {onboardingForms[activeFormIndex]}
+        </Modal>
+      )}
     </section>
   )
 }

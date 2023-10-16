@@ -160,3 +160,16 @@ input {
   background: transparent;
 }
 
+@keyframes fillProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+#progress-bar {
+  animation: fillProgress 1s ease-in-out;
+}
+
