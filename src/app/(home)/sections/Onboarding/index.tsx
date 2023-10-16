@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
 import Link from 'next/link'
@@ -7,9 +10,25 @@ import bgWireframeGlobe from '@assets/images/bg-wireframe-globe.png'
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-br.png'
 import { BRD } from '@components/ui/BRD'
 import { TransparentButton } from '@components/ui/Button'
+import { Modal } from '@components/ui/Modal'
 import { Title } from '@components/ui/Typography'
 
+import { CarrierEquipment } from './CarrierEquipment'
+import { CompanyInfo } from './CompanyInfo'
+import { CompanyValidation } from './CompanyValidation'
+import { ContactForm } from './ContactForm'
+import { Contacts } from './Contacts'
+import { DriverForm } from './DriverForm'
+import { DriverInfo } from './DriverInfo'
+import { InsurancePolicy } from './InsurancePolicy'
+import { InsurancePolicyForm } from './InsurancePolicyForm'
+import { PayeeInfo } from './PayeeInfo'
+import { PreferedLanes } from './PreferredLanes'
+import { TermsAndConditions } from './TermsAndConditions'
+
 export const OnboardingSection = () => {
+  const [onboardingModalOpen, setOnboardingModalOpen] = useState<boolean>(false)
+
   return (
     <section id="onboarding-section">
       <ParallaxBanner className="parallax-banner" layers={[{ image: bgWireframeGlobe.src, speed: -20 }]}>
@@ -111,13 +130,32 @@ export const OnboardingSection = () => {
                 <BRD />
                 Strengthening the Logistics Industry.
               </div>
-              <Link href="/signup" className="block w-full">
-                <TransparentButton>Register</TransparentButton>
+              {/* revert link to /signup */}
+              <Link href="#" className="block w-full">
+                <TransparentButton onClick={() => setOnboardingModalOpen(true)}>Register</TransparentButton>
               </Link>
             </GradientCard>
           </div>
         </div>
       </ParallaxBanner>
+      <Modal
+        open={onboardingModalOpen}
+        onClose={() => setOnboardingModalOpen(false)}
+        className="max-h-[95vh] fixed my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
+      >
+        {/* <CompanyInfo /> */}
+        {/* <TermsAndConditions /> */}
+        {/* <PayeeInfo /> */}
+        {/* <CompanyValidation /> */}
+        {/* <CarrierEquipment /> */}
+        {/* <DriverInfo /> */}
+        {/* <DriverForm /> */}
+        {/* <InsurancePolicy /> */}
+        {/* <InsurancePolicyForm /> */}
+        {/* <Contacts /> */}
+        {/* <ContactForm /> */}
+        <PreferedLanes />
+      </Modal>
     </section>
   )
 }

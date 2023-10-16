@@ -49,7 +49,7 @@ export default function Example() {
           ></div>
           <div
             id="navlinks"
-            className={`fixed left-0 top-[96px] lg:top-0 z-[100] flex-col flex-wrap justify-end sm:visible gap-6 p-8 transition-all duration-300 translate-y-1 bg-secondary lg:relative lg:flex lg:grow lg:translate-y-0 lg:flex-row lg:items-center lg:gap-0 lg:bg-transparent lg:p-0 lg:opacity-100 font-[15px] w-screen h-screen lg:w-auto lg:h-auto
+            className={`fixed left-0 top-[96px] lg:top-0 z-[40] flex-col flex-wrap justify-end sm:visible gap-6 p-8 transition-all duration-300 translate-y-1 bg-secondary lg:relative lg:flex lg:grow lg:translate-y-0 lg:flex-row lg:items-center lg:gap-0 lg:bg-transparent lg:p-0 lg:opacity-100 font-[15px] w-screen h-screen lg:w-auto lg:h-auto
             ${mobileMenuOpen ? '' : 'invisible opacity-0'}`}
           >
             <div className="flex flex-col lg:flex-row lg:items-center gap-[40px] relative">
