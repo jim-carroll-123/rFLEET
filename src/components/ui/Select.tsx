@@ -111,7 +111,7 @@ export const Select = React.forwardRef(
           <ArrowDown className="shrink-0 lg:w-[24px] lg:h-[24px] w-[20px] h-[20px] lg:mr-[12px] mr-[9px]" />
         </div>
         {selectOpen && (
-          <div className="absolute w-full z-10 max-h-[354px] overflow-y-auto slick-scroll bg-gradient-blur-dialog backdrop-blur-md backdrop-opacity-100 flex flex-col lg:gap-[4px] gap-[3px] lg:mt-[8px] mt-[6px] lg:p-[8px] p-[6px] border border-solid sm:text-sm lg:rounded-lg rounded-md">
+          <div className="absolute w-full z-[999] max-h-[354px] overflow-y-auto slick-scroll bg-gradient-blur-dialog backdrop-blur-md backdrop-opacity-100 flex flex-col lg:gap-[4px] gap-[3px] lg:mt-[8px] mt-[6px] lg:p-[8px] p-[6px] border border-solid sm:text-sm lg:rounded-lg rounded-md">
             {filteredOptions.length > 0 &&
               filteredOptions.map((option, index) => (
                 <div
