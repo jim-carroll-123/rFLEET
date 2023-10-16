@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
 import Link from 'next/link'
@@ -28,7 +29,25 @@ import { TermsAndConditions } from './TermsAndConditions'
 
 export const OnboardingSection = () => {
   const [onboardingModalOpen, setOnboardingModalOpen] = useState<boolean>(false)
+  const [activeFormIndex, setActiveFormIndex] = useState<number>(0)
 
+  const gotoNextForm = () => {
+    setActiveFormIndex((prev) => prev + 1)
+  }
+
+  const onboardingForms: {
+    [key: number]: JSX.Element
+  } = {
+    0: <CompanyInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    1: <TermsAndConditions onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    2: <PayeeInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    3: <CompanyValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    4: <CarrierEquipment onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    5: <DriverInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    6: <PreferedLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    7: <InsurancePolicy onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    8: <Contacts onClose={() => setOnboardingModalOpen(false)} />
+  }
   return (
     <section id="onboarding-section">
       <ParallaxBanner className="parallax-banner" layers={[{ image: bgWireframeGlobe.src, speed: -20 }]}>
@@ -141,20 +160,9 @@ export const OnboardingSection = () => {
       <Modal
         open={onboardingModalOpen}
         onClose={() => setOnboardingModalOpen(false)}
-        className="max-h-[95vh] fixed my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
+        className="max-h-[96vh]  my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
       >
-        {/* <CompanyInfo /> */}
-        {/* <TermsAndConditions /> */}
-        {/* <PayeeInfo /> */}
-        {/* <CompanyValidation /> */}
-        {/* <CarrierEquipment /> */}
-        {/* <DriverInfo /> */}
-        {/* <DriverForm /> */}
-        {/* <InsurancePolicy /> */}
-        {/* <InsurancePolicyForm /> */}
-        {/* <Contacts /> */}
-        {/* <ContactForm /> */}
-        <PreferedLanes />
+        {onboardingForms[activeFormIndex]}
       </Modal>
     </section>
   )

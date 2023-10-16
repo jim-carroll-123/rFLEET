@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { BiMinus, BiPlus, BiSolidInfoCircle, BiTrash } from 'react-icons/bi'
+import { AiOutlineClose } from 'react-icons/ai'
+import { BiMinus, BiPlus, BiTrash } from 'react-icons/bi'
 import { ImAttachment } from 'react-icons/im'
 
 import { Button, TransparentButton } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
+import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Option, Select } from '@components/ui/Select'
 
@@ -33,10 +34,11 @@ const carrierTypes = [
     value: 'Flatbed or Step Deck'
   }
 ]
-export const CarrierEquipment = () => {
-  // variable to hold carrier equipments
-  // add carrier equipment
-  // edit carrier equipment
+type Props = {
+  onClose?: () => void
+  onSubmit?: () => void
+}
+export const CarrierEquipment = ({ onClose, onSubmit }: Props) => {
   const [carrierType, setCarrierType] = useState<Option>()
   const [carrierEquipments, setCarrierEquipments] = useState<carrierEquipmentType[]>([])
 
@@ -55,43 +57,57 @@ export const CarrierEquipment = () => {
     const filteredEquipments = carrierEquipments.filter((obj) => obj != equipment)
     setCarrierEquipments(filteredEquipments)
   }
+
+  const onSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSubmit?.()
+  }
   return (
     <div className="p-3 flex flex-col h-full">
-      <div>
-        <div className="flex items-center justify-between">
-          <div className="flex flex-col">
-            <div className="font-semibold text-lg">Add Carrier Truck and Trailer Equipment</div>
-            <div className="font-extralight text-[10px]">Select the carrier equipment supported by this carrier</div>
+      <form onSubmit={onSubmitForm}>
+        <div>
+          <div className="flex items-center justify-between">
+            <div className="flex flex-col">
+              <div className="font-semibold text-lg">Add Carrier Truck and Trailer Equipment</div>
+              <div className="font-extralight text-[10px]">Select the carrier equipment supported by this carrier</div>
+            </div>
+            <AiOutlineClose onClick={onClose} className=" cursor-pointer" />
           </div>
-          <span>x</span>
+          <div className="my-4">
+            <GradientHR />
+          </div>{' '}
         </div>
+        <div className="flex flex-col gap-3">
+          {carrierEquipments.map((equipment, index) => {
+            return <EquipmentAccordion onDelete={removeEquipment} equipment={equipment} key={index} />
+          })}
 
-        <div className="w-full h-[2px] bg-gradient-to-br from-cyan-900 to-indigo-900  my-4"></div>
-      </div>
-      <div className="flex flex-col gap-3">
-        {carrierEquipments.map((equipment, index) => {
-          return <EquipmentAccordion onDelete={removeEquipment} equipment={equipment} key={index} />
-        })}
+          <Select
+            containerClassName="w-full"
+            placeholder="Select carrier"
+            options={carrierTypes}
+            value={carrierType}
+            onChange={addNewEquipment}
+          />
+        </div>
+        <div>
+          <div className="my-4">
+            <GradientHR />
+          </div>
 
-        <Select
-          containerClassName="w-full"
-          placeholder="Select carrier"
-          options={carrierTypes}
-          value={carrierType}
-          onChange={addNewEquipment}
-        />
-      </div>
-      <div>
-        <div className="w-full h-[2px] bg-gradient-to-br from-cyan-900 to-indigo-900  my-6"></div>
-
-        <div className="flex justify-between">
-          <TransparentButton className="border-0">Clear</TransparentButton>
-          <div className="flex gap-2">
-            <TransparentButton>Cancel</TransparentButton>
-            <Button>Apply</Button>
+          <div className="flex justify-between">
+            <TransparentButton className="border-0" type="reset">
+              Clear
+            </TransparentButton>
+            <div className="flex gap-2">
+              <TransparentButton onClick={onClose} type="button">
+                Cancel
+              </TransparentButton>
+              <Button type="submit">Apply</Button>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
