@@ -54,7 +54,7 @@ export default function Example() {
                   Ship Now
                 </ScrollLink>
                 <ScrollLink to="onboarding-section" smooth>
-                  Carrier Network
+                  Join Network
                 </ScrollLink>
                 <Link href="#" onClick={() => setOpenVideoModal(true)}>
                   About US

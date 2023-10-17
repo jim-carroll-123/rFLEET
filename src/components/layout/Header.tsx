@@ -56,7 +56,7 @@ export default function Example() {
               <div className="w-full lg:w-auto lg:pr-4 lg:pt-0 flex flex-col gap-5 tracking-wide lg:flex-row lg:text-sm">
                 <Nav>MAIN SCREEN</Nav>
                 <Nav>SHIP NOW</Nav>
-                <Nav>CARRIER NETWORK</Nav>
+                <Nav href="/signup">JOIN NETWORK</Nav>
                 <Nav onClick={() => setOpenVideoModal(true)}>ABOUT US</Nav>
               </div>
               <div className="flex">
