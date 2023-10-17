@@ -1,14 +1,19 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { ParallaxBanner } from 'react-scroll-parallax'
+import { useState } from 'react';
+import { ParallaxBanner } from 'react-scroll-parallax';
 
-import ChatbotIcon from '@assets/icons/chatbot.svg'
-import bgEarth from '@assets/images/bg-earth.jpeg'
-import { Modal } from '@components/ui/Modal'
-import { Title } from '@components/ui/Typography'
+
+
+import ChatbotIcon from '@assets/icons/chatbot.svg';
+import bgEarth from '@assets/images/bg-earth.jpeg';
+import { Modal } from '@components/ui/Modal';
+import { Title } from '@components/ui/Typography';
+
+
 
 import { Airplane } from './Airplane'
+import Botframework from './Botframework'
 import { Chatbot } from './Chatbot'
 import { SearchInput } from './SearchInput'
 
@@ -57,7 +62,7 @@ export const SearchSection = () => {
         onClose={() => setOpenChatbotModal(false)}
         className="lg:max-w-[810px] w-full border border-white lg:rounded-[10px] rounded-[8px] bg-[rgba(249,249,249,0.05)] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px]"
       >
-        <Chatbot />
+        <Botframework />
       </Modal>
     </section>
   )
