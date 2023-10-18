@@ -9,7 +9,6 @@ const BotFrameworkChat = () => {
   const styleSet = useMemo(
     () =>
       createStyleSet({
-        hideUploadButton: true,
         backgroundColor: 'rgba(0, 0, 0, .05)', // background color of the chat window
         primaryFont: 'Arial, sans-serif',
         bubbleBackground: 'rgba(0, 0, 0, .2)',
@@ -28,7 +27,8 @@ const BotFrameworkChat = () => {
         suggestedActionBackgroundColorOnHover: 'rgba(0, 0, 0, .8)',
         suggestedActionBorderRadius: 10,
         rootHeight: '75vh',
-        sendBoxHeight: 70
+        sendBoxHeight: 70,
+        hideUploadButton: true
       }),
     []
   )

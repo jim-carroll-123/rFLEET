@@ -2941,7 +2941,7 @@ botframework-webchat-core@4.15.9, botframework-webchat-core@^4.15.9:
 
 botframework-webchat@^4.15.9:
   version "4.15.9"
-  resolved "https://registry.npmjs.org/botframework-webchat/-/botframework-webchat-4.15.9.tgz"
+  resolved "https://registry.yarnpkg.com/botframework-webchat/-/botframework-webchat-4.15.9.tgz#5c951f2dbcaa1dc785d13402679c602639ef0037"
   integrity sha512-1cUuNaLkDOVbjIia4bCl160EaksbyNZvZ9okqF6UbHFql+dEcFwvYzlKHg39mbcZ0vv75lXUkIrf0IOTrGPzuQ==
   dependencies:
     "@babel/runtime" "7.19.0"
