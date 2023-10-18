@@ -9,6 +9,7 @@ const BotFrameworkChat = () => {
   const styleSet = useMemo(
     () =>
       createStyleSet({
+        hideUploadButton: true,
         backgroundColor: 'rgba(0, 0, 0, .05)', // background color of the chat window
         primaryFont: 'Arial, sans-serif',
         bubbleBackground: 'rgba(0, 0, 0, .2)',
@@ -21,11 +22,15 @@ const BotFrameworkChat = () => {
         sendBoxButtonColor: 'white',
         sendBoxTextColor: 'white',
         sendBoxBorderTop: 'rgba(0, 0, 0, .2)',
+        sendBoxButtonColorOnHover: 'rgba(0, 0, 0, .8)',
         suggestedActionTextColor: 'white',
         suggestedActionBackgroundColor: 'rgba(0, 0, 0, .2)',
         suggestedActionBackgroundColorOnHover: 'rgba(0, 0, 0, .8)',
         suggestedActionBorderRadius: 10,
-        rootHeight: '90vh'
+        rootHeight: '75vh',
+        sendBoxHeight: 70,
+        
+        
       }),
     []
   )
@@ -33,7 +38,19 @@ const BotFrameworkChat = () => {
   const directLine = useMemo(() => createDirectLine({ token: BOT_FRAMEWORK_TOKEN }), [])
   const userID = useMemo(() => `user-${Math.random().toString(36).substr(2, 9)}`, [])
 
-  return <ReactWebChat directLine={directLine} userID={userID} styleSet={styleSet} />
+  return (
+    <div>
+      <div className="border-b border-[#FFFFFF20]">
+        <div className="flex justify-center lg:py-[20px] py-[15px]">
+          <div className="flex font-bold">
+            <h4 className="text-primary">rFLEET.ai</h4>&nbsp;
+            <h4>chatbot</h4>
+          </div>
+        </div>
+      </div>
+      <ReactWebChat directLine={directLine} userID={userID} styleSet={styleSet} />
+    </div>
+  )
 }
 
 export default BotFrameworkChat
