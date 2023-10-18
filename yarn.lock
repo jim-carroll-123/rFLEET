@@ -3175,7 +3175,7 @@ botframework-webchat-component@4.15.9:
     simple-update-in "2.2.0"
     use-ref-from "0.0.1"
 
-botframework-webchat-core@4.15.9:
+botframework-webchat-core@^4.15.9, botframework-webchat-core@4.15.9:
   version "4.15.9"
   resolved "https://registry.npmjs.org/botframework-webchat-core/-/botframework-webchat-core-4.15.9.tgz"
   integrity sha512-3PiNivy+B9wR0KUbSRi4S9dNzMQaaK7x2YmbM9q0wzatFohcXUSqxep4c+2G7k+EHVYxRq1dV0TcsQUwJPZEQQ==

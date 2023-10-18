@@ -17,11 +17,15 @@ const BotFrameworkChat = () => {
         bubbleFromUserBorderRadius: 10,
         bubbleTextColor: 'white',
         bubbleFromUserTextColor: 'white',
-        botAvatarImage:
-          'https://docs.microsoft.com/en-us/azure/bot-service/v4sdk/media/logo_bot.svg?view=azure-bot-service-4.0',
-        userAvatarInitials: 'WC',
-        botAvatarInitials: 'BF',
-        userAvatarImage: 'https://github.com/compulim.png?size=64'
+        sendBoxBackground: 'rgba(0, 0, 0, .2)',
+        sendBoxButtonColor: 'white',
+        sendBoxTextColor: 'white',
+        sendBoxBorderTop: 'rgba(0, 0, 0, .2)',
+        suggestedActionTextColor: 'white',
+        suggestedActionBackgroundColor: 'rgba(0, 0, 0, .2)',
+        suggestedActionBackgroundColorOnHover: 'rgba(0, 0, 0, .8)',
+        suggestedActionBorderRadius: 10,
+        rootHeight: '90vh'
       }),
     []
   )
