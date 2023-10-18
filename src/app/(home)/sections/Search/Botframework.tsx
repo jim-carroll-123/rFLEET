@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 
-import ReactWebChat, { createDirectLine } from 'botframework-webchat'
+import ReactWebChat, { createDirectLine, createStore } from 'botframework-webchat'
 import { createStyleSet } from 'botframework-webchat'
 
 const BotFrameworkChat = () => {
@@ -28,15 +28,49 @@ const BotFrameworkChat = () => {
         suggestedActionBackgroundColorOnHover: 'rgba(0, 0, 0, .8)',
         suggestedActionBorderRadius: 10,
         rootHeight: '75vh',
-        sendBoxHeight: 70,
-        
-        
+        sendBoxHeight: 70
       }),
     []
   )
 
   const directLine = useMemo(() => createDirectLine({ token: BOT_FRAMEWORK_TOKEN }), [])
   const userID = useMemo(() => `user-${Math.random().toString(36).substr(2, 9)}`, [])
+
+  // Initialize store and send an initial message to bot
+  // const store = useMemo(() => {
+  //   const newStore = createStore()
+  //   newStore.dispatch({
+  //     type: 'DIRECT_LINE/POST_ACTIVITY',
+  //     meta: { method: 'keyboard' },
+  //     payload: {
+  //       activity: {
+  //         type: 'message',
+  //         text: 'Hello Bot!', // your initial message here
+  //         from: { id: userID, name: userID }
+  //       }
+  //     }
+  //   })
+  //   return newStore
+  // }, [userID])
+
+  const store = useMemo(() => {
+    return createStore({}, ({ dispatch }: any) => (next: any) => (action: any) => {
+      if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+        dispatch({
+          type: 'WEB_CHAT/SEND_EVENT',
+          payload: {
+            activity: {
+              type: 'message',
+              text: 'hi, hello', // This is the message you want to send
+              from: { id: userID, name: userID }
+            }
+          }
+        })
+      }
+
+      return next(action)
+    })
+  }, [userID])
 
   return (
     <div>
@@ -48,7 +82,7 @@ const BotFrameworkChat = () => {
           </div>
         </div>
       </div>
-      <ReactWebChat directLine={directLine} userID={userID} styleSet={styleSet} />
+      <ReactWebChat directLine={directLine} userID={userID} styleSet={styleSet} store={store} />
     </div>
   )
 }
