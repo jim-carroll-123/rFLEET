@@ -6,12 +6,20 @@ import SearchIcon from '@assets/icons/search.svg';
 import { Button } from '@components/ui/Button';
 
 
-export const SearchInput = () => {
+export const SearchInput = ({
+  onSearchChange,
+  onSearch
+}: {
+  onSearchChange: (value: string) => void
+  onSearch: () => void
+}) => {
   const ref = useRef<HTMLInputElement>(null)
 
   const handleSearch = async () => {
     const input = ref.current?.value
     console.log('Input: ', input)
+    onSearchChange(input || '')
+    onSearch()
   }
 
   return (

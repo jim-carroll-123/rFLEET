@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from 'react'
 import ReactWebChat, { createDirectLine, createStore } from 'botframework-webchat'
 import { createStyleSet } from 'botframework-webchat'
 
-const BotFrameworkChat = () => {
+const BotFrameworkChat = ({ searchValue }: { searchValue: string }) => {
   const BOT_FRAMEWORK_TOKEN = process.env.NEXT_PUBLIC_BOT_FRAMEWORK_TOKEN
 
   const styleSet = useMemo(
@@ -36,32 +36,17 @@ const BotFrameworkChat = () => {
   const directLine = useMemo(() => createDirectLine({ token: BOT_FRAMEWORK_TOKEN }), [])
   const userID = useMemo(() => `user-${Math.random().toString(36).substr(2, 9)}`, [])
 
-  // Initialize store and send an initial message to bot
-  // const store = useMemo(() => {
-  //   const newStore = createStore()
-  //   newStore.dispatch({
-  //     type: 'DIRECT_LINE/POST_ACTIVITY',
-  //     meta: { method: 'keyboard' },
-  //     payload: {
-  //       activity: {
-  //         type: 'message',
-  //         text: 'Hello Bot!', // your initial message here
-  //         from: { id: userID, name: userID }
-  //       }
-  //     }
-  //   })
-  //   return newStore
-  // }, [userID])
-
   const store = useMemo(() => {
     return createStore({}, ({ dispatch }: any) => (next: any) => (action: any) => {
       if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+        console.log('Connection Successful')
         dispatch({
-          type: 'WEB_CHAT/SEND_EVENT',
+          type: 'DIRECT_LINE/POST_ACTIVITY',
+          meta: { method: 'keyboard' },
           payload: {
             activity: {
               type: 'message',
-              text: 'hi, hello', // This is the message you want to send
+              text: searchValue, // This is the message you want to send
               from: { id: userID, name: userID }
             }
           }

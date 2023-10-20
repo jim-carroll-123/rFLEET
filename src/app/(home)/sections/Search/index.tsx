@@ -21,6 +21,12 @@ const DynamicBotframework = dynamic(() => import('./Botframework'), { ssr: false
 
 export const SearchSection = () => {
   const [openChatbotModal, setOpenChatbotModal] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleModalOpen = () => {
+    setOpenChatbotModal(true)
+  }
+
   return (
     <section id="search-section">
       <ParallaxBanner className="parallax-banner xl:h-[750px]" layers={[{ image: bgEarth.src, speed: -20 }]}>
@@ -37,7 +43,7 @@ export const SearchSection = () => {
               <div className="text-body-lg">What do you want to look for today?</div>
             </div>
             <div className="w-full flex flex-col items-center">
-              <SearchInput />
+              <SearchInput onSearchChange={setSearchValue} onSearch={handleModalOpen} />
               <div className="text-white">
                 Tip: ask me any questions or tasks relating to transportation and logistics
               </div>
@@ -64,7 +70,7 @@ export const SearchSection = () => {
         onClose={() => setOpenChatbotModal(false)}
         className="lg:max-w-[810px] w-full border border-white lg:rounded-[10px] rounded-[8px] bg-[rgba(249,249,249,0.05)] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px]"
       >
-        <DynamicBotframework />
+        <DynamicBotframework searchValue={searchValue} />
       </Modal>
     </section>
   )
