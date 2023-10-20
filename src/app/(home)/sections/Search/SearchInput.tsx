@@ -8,10 +8,12 @@ import { Button } from '@components/ui/Button';
 
 export const SearchInput = ({
   onSearchChange,
-  onSearch
+  onSearch,
+  value
 }: {
   onSearchChange: (value: string) => void
   onSearch: () => void
+  value: string
 }) => {
   const ref = useRef<HTMLInputElement>(null)
 
@@ -32,6 +34,8 @@ export const SearchInput = ({
     <div className="flex flex-wrap items-stretch relative mb-[12px] lg:mb-[16px] w-full max-w-[900px]">
       <input
         ref={ref}
+        value={value}
+        onChange={(e) => onSearchChange(e.target.value)}
         type="text"
         onKeyDown={handleKeyDown}
         className="relative m-0 -mr-0.5 block min-w-0 flex-auto rounded-l-lg border border-solid border-white bg-clip-padding lg:px-[24px] px-[18px] lg:py-[12px] py-[6px] font-semibold leading-[20px] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none focus:bg-gradient-blur-dialog bg-transparent focus:bg-opacity-40 placeholder:text-white focus:placeholder:text-transparent"
