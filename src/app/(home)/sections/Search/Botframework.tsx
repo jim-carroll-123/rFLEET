@@ -28,7 +28,11 @@ const BotFrameworkChat = ({ searchValue }: { searchValue: string }) => {
         suggestedActionBorderRadius: 10,
         rootHeight: '75vh',
         sendBoxHeight: 70,
-        hideUploadButton: true
+        hideUploadButton: true,
+        botAvatarInitials: 'BA',
+        userAvatarInitials: 'UA',
+        botAvatarBackgroundColor: 'rgba(0, 0, 10)',
+        userAvatarBackgroundColor: 'rgba(0, 0, 10)'
       }),
     []
   )
@@ -46,7 +50,7 @@ const BotFrameworkChat = ({ searchValue }: { searchValue: string }) => {
           payload: {
             activity: {
               type: 'message',
-              text: searchValue, // This is the message you want to send
+              text: searchValue,
               from: { id: userID, name: userID }
             }
           }
