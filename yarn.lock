@@ -2442,6 +2442,20 @@ abort-controller-es5@2.0.1:
     mkdirp "^1.0.4"
     read-pkg-up "^9.1.0"
 
+abort-controller-es5@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/abort-controller-es5/-/abort-controller-es5-2.0.1.tgz#6810f8aeee0c250d11e30d5070a7d6ddc06b28a1"
+  integrity sha512-wsJHPzphkEmwKZ0MAxEizI8tq4oX9CEy+Wc7Bfj0GiwbXb/u1oT7x3j3Fmj2n1fH9RmmPxN8fzXBGplM0XUVtg==
+  dependencies:
+    "@babel/cli" "^7.17.6"
+    "@babel/core" "^7.17.5"
+    "@babel/plugin-transform-runtime" "^7.17.0"
+    "@babel/preset-env" "^7.16.11"
+    "@babel/runtime-corejs3" "^7.17.2"
+    esbuild "^0.14.23"
+    mkdirp "^1.0.4"
+    read-pkg-up "^9.1.0"
+
 abort-controller@3.0.0, abort-controller@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/abort-controller/-/abort-controller-3.0.0.tgz"
