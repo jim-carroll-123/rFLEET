@@ -12,6 +12,7 @@ import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LTLLoadType } from './Panes/LTLLoadType'
 import { LoadType } from './Panes/LoadType'
+import { OceanLoadType } from './Panes/OceanLoadType'
 import { To } from './Panes/To'
 import { ShippingPane } from './ShippingPane'
 import { ShippingSteps } from './ShippingSteps'
@@ -21,13 +22,17 @@ import {
   GoodsCommodityInputs,
   LoadTypeInputs,
   LtlLoadTypeInputs,
+  OceanLoadTypeInputs,
   ToInputs,
   fromSchema,
   goodsCommoditySchema,
   initialField,
   initialLTLField,
+  initialOceanFclField,
+  initialOceanField,
   loadTypeSchema,
   ltlLoadTypeSchema,
+  oceanLoadTypeSchema,
   toSchema
 } from './types-schemas-constants'
 
@@ -78,6 +83,17 @@ export const Panel = () => {
     }
   })
 
+  //Ocean Load Type
+  const oceanLoadTypeFormMethods = useForm<OceanLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(oceanLoadTypeSchema),
+    defaultValues: {
+      containerLoadType: 'LCL',
+      fields: [{ ...initialOceanField }],
+      fclFields: [{ ...initialOceanFclField }]
+    }
+  })
+
   const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
     mode: 'onChange',
     resolver: yupResolver(goodsCommoditySchema),
@@ -113,6 +129,11 @@ export const Panel = () => {
     setShippingStepId('tab-ship-goods-commodity')
   }
 
+  const onOceanlLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
     console.debug(data)
     setShippingStepId('')
@@ -121,7 +142,7 @@ export const Panel = () => {
   const shippingMethodLoadTypes: any = {
     Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />,
     'LTL & Partials': <LTLLoadType methods={ltlLoadTypeFormMethods} onSubmit={onLtlLoadTypeFormSubmit} />,
-    'Ocean Shipping': <></>,
+    'Ocean Shipping': <OceanLoadType methods={oceanLoadTypeFormMethods} onSubmit={onOceanlLoadTypeFormSubmit} />,
     'Air Cargo': <></>
   }
 

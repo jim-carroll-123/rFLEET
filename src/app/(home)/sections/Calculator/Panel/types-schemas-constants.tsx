@@ -28,6 +28,30 @@ export type LTLField = {
   noOfUnits: string
   weight: string
 }
+export type OcenanField = {
+  handlingUnit: string
+  length: string
+  width: string
+  height: string
+  dimensionUnit: string
+  noOfUnits: string
+  weight: string
+  weightUnit: string
+  includesPackaging: boolean
+  incoterm: string
+}
+
+export type OcenanFclField = {
+  containerType: string
+
+  noOfUnits: string
+  weight: string
+  weightUnit: string
+  weightType: string
+  addExtraPickups: boolean
+  incoterm: string
+}
+
 export const initialLTLField: LTLField = {
   dimensionUnit: 'in',
   handlingUnit: 'Pallet',
@@ -36,6 +60,29 @@ export const initialLTLField: LTLField = {
   noOfUnits: '',
   weight: '',
   width: ''
+}
+
+export const initialOceanField: OcenanField = {
+  dimensionUnit: 'in',
+  handlingUnit: 'Pallet',
+  height: '',
+  length: '',
+  noOfUnits: '',
+  weight: '',
+  width: '',
+  weightUnit: 'in',
+  includesPackaging: false,
+  incoterm: 'Pallet'
+}
+
+export const initialOceanFclField: OcenanFclField = {
+  containerType: "20' Dry Standard",
+  noOfUnits: '',
+  weight: '',
+  weightUnit: 'in',
+  weightType: 'Overweight',
+  addExtraPickups: false,
+  incoterm: 'EXE - Ex Works'
 }
 
 export const initialField: Field = {
@@ -268,6 +315,41 @@ export const ltlLoadTypeSchema = yup.object().shape({
   containsLithium: yup.boolean()
 })
 
+export const oceanLoadTypeSchema = yup.object().shape({
+  containerLoadType: yup.string().required(),
+  fields: yup.array().of(
+    yup.object().shape({
+      handlingUnit: yup.string().required(),
+      length: yup.string().required('Length is required'),
+      width: yup.string().required('Width is required'),
+      height: yup.string().required('Height is required'),
+      dimensionUnit: yup.string().required(),
+      noOfUnits: yup.string().required(),
+
+      weight: yup.string().required('Height is required'),
+      weightUnit: yup.string().required(),
+      includesPackaging: yup.boolean(),
+      incoterm: yup.string().required()
+    })
+  ),
+  fclFields: yup.array().of(
+    yup.object().shape({
+      containerType: yup.string().required(),
+      noOfUnits: yup.string().required(),
+      weight: yup.string().required(),
+      weightUnit: yup.string().required(),
+      weightType: yup.string().required(),
+      addExtraPickups: yup.boolean(),
+      incoterm: yup.string().required()
+    })
+  ),
+  containsAlcohol: yup.boolean(),
+  alcoholRecipientType: yup.string().optional(),
+  containsDryIce: yup.boolean(),
+  dryIceWeight: yup.string().optional(),
+  containsLithium: yup.boolean()
+})
+
 export const goodsCommoditySchema = yup.object({
   quantity: yup.string().required(),
   sku: yup.string().required(),
@@ -283,4 +365,5 @@ export type FromInputs = yup.InferType<typeof fromSchema>
 export type ToInputs = yup.InferType<typeof toSchema>
 export type LoadTypeInputs = yup.InferType<typeof loadTypeSchema>
 export type LtlLoadTypeInputs = yup.InferType<typeof ltlLoadTypeSchema>
+export type OceanLoadTypeInputs = yup.InferType<typeof oceanLoadTypeSchema>
 export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
