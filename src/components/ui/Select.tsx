@@ -15,7 +15,7 @@ export interface Option {
 
 interface Props {
   label?: string | JSX.Element
-  value?: Option
+  value?: Option | string
   options: Option[]
   placeholder?: string
   error?: string | boolean
@@ -46,7 +46,7 @@ export const Select = React.forwardRef(
     const [keyword, setKeyword] = React.useState('')
 
     const _placeholder = 'Select...'
-    const currentLabel = value?.label || placeholder || _placeholder
+    const currentLabel = (typeof value == 'string' ? value : value?.label) || placeholder || _placeholder
 
     const selectNode = React.useRef<any>(null)
     const inputRef = React.useRef<any>(null)
@@ -95,7 +95,9 @@ export const Select = React.forwardRef(
             error ? 'border-red-600' : selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
           )}
         >
-          {value?.icon && <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>}
+          {typeof value != 'string' && value?.icon && (
+            <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>
+          )}
           <input
             type="text"
             autoComplete="off"
@@ -118,7 +120,13 @@ export const Select = React.forwardRef(
                   key={index}
                   className={cn(
                     'flex items-center rounded hover:bg-primary',
-                    value?.value === option.value ? 'bg-primary' : 'cursor-pointer '
+                    typeof value != 'string'
+                      ? value?.value === option.value
+                        ? 'bg-primary'
+                        : 'cursor-pointer '
+                      : value === option.value
+                      ? 'bg-primary'
+                      : 'cursor-pointer '
                   )}
                   onClick={() => handleOptionClick(option)}
                 >

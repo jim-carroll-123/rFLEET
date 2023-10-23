@@ -10,6 +10,7 @@ import { TabPane } from '@components/ui/TabPane'
 
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
+import { LTLLoadType } from './Panes/LTLLoadType'
 import { LoadType } from './Panes/LoadType'
 import { To } from './Panes/To'
 import { ShippingPane } from './ShippingPane'
@@ -19,16 +20,21 @@ import {
   FromInputs,
   GoodsCommodityInputs,
   LoadTypeInputs,
+  LtlLoadTypeInputs,
   ToInputs,
   fromSchema,
   goodsCommoditySchema,
   initialField,
+  initialLTLField,
   loadTypeSchema,
+  ltlLoadTypeSchema,
   toSchema
 } from './types-schemas-constants'
 
+type shippingMethodType = { label: string; value: string }
+
 export const Panel = () => {
-  const [shippingMethod, setShippingMethod] = useState(shippingMethods[0])
+  const [shippingMethod, setShippingMethod] = useState<shippingMethodType>(shippingMethods[0])
   const [shippingStepId, setShippingStepId] = useState('')
   const [data, setData] = useState({})
 
@@ -62,6 +68,16 @@ export const Panel = () => {
     }
   })
 
+  //LTL Load Type
+  const ltlLoadTypeFormMethods = useForm<LtlLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(ltlLoadTypeSchema),
+    defaultValues: {
+      ltlType: 'LTL',
+      fields: [{ ...initialLTLField }]
+    }
+  })
+
   const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
     mode: 'onChange',
     resolver: yupResolver(goodsCommoditySchema),
@@ -92,9 +108,21 @@ export const Panel = () => {
     setShippingStepId('tab-ship-goods-commodity')
   }
 
+  const onLtlLoadTypeFormSubmit: SubmitHandler<LtlLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
     console.debug(data)
     setShippingStepId('')
+  }
+
+  const shippingMethodLoadTypes: any = {
+    Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />,
+    'LTL & Partials': <LTLLoadType methods={ltlLoadTypeFormMethods} onSubmit={onLtlLoadTypeFormSubmit} />,
+    'Ocean Shipping': <></>,
+    'Air Cargo': <></>
   }
 
   return (
@@ -114,9 +142,7 @@ export const Panel = () => {
           <ShippingPane id="tab-ship-destination">
             <To methods={toFormMethods} onSubmit={onToFormSubmit} />
           </ShippingPane>
-          <ShippingPane id="tab-ship-load-type">
-            <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />
-          </ShippingPane>
+          <ShippingPane id="tab-ship-load-type">{shippingMethodLoadTypes[shippingMethod.value]}</ShippingPane>
           <ShippingPane id="tab-ship-goods-commodity">
             <GoodsCommodity methods={goodsCommodityFormMethods} onSubmit={onGoodsCommodityFormSubmit} />
           </ShippingPane>

@@ -74,3 +74,10 @@ export const returnLabels = [
     value: 'General hazmat'
   }
 ]
+
+export const handlingUnits = [
+  {
+    label: 'Pallet',
+    value: 'Pallet'
+  }
+]
