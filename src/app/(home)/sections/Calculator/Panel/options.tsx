@@ -9,7 +9,7 @@ export const shippingMethods = [
   { label: 'Air Cargo', value: 'Air Cargo' },
   {
     label: 'FTL, Drayage, etc',
-    value: 'FTL, Drayage, etc'
+    value: 'FTL'
   }
 ]
 
@@ -142,5 +142,33 @@ export const containerTypes = [
   {
     label: "40' Reefer High Cube",
     value: "40' Reefer High Cube"
+  }
+]
+
+export const truckTypes = [
+  {
+    label: 'Dry Van',
+    value: 'Dry Van'
+  }
+]
+
+export const truckSizes = [
+  {
+    label: '48',
+    value: '48'
+  }
+]
+
+export const loadTypes = [
+  {
+    label: '4850 lbs (2000kg) Outof Gauge',
+    value: 'Dry Van'
+  }
+]
+
+export const loadSizes = [
+  {
+    label: '40',
+    value: '40'
   }
 ]

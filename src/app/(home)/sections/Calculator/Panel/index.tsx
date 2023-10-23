@@ -9,6 +9,7 @@ import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
 import { AirLoadType } from './Panes/AirLoadType'
+import { FTLLoadType } from './Panes/FTLLoadType'
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LTLLoadType } from './Panes/LTLLoadType'
@@ -17,6 +18,7 @@ import { OceanLoadType } from './Panes/OceanLoadType'
 import { To } from './Panes/To'
 import { ShippingPane } from './ShippingPane'
 import { ShippingSteps } from './ShippingSteps'
+import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas'
 import { parcelShapes, shippingMethods } from './options'
 import {
   AirLoadTypeInputs,
@@ -107,6 +109,19 @@ export const Panel = () => {
     }
   })
 
+  //FTL Load Type
+  const ftlLoadTypeFormMethods = useForm<FtlLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(airLoadTypeSchema),
+    defaultValues: {
+      containerLoadType: 'Standard TL',
+      standardTL: [{ ...initialStandardTL }],
+      hazmatTL: [{ ...initialHazmatTL }],
+      drayage: [{ ...initialDrayage }],
+      oversizeTL: [{ ...initialOversizeTL }]
+    }
+  })
+
   const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
     mode: 'onChange',
     resolver: yupResolver(goodsCommoditySchema),
@@ -152,6 +167,11 @@ export const Panel = () => {
     setShippingStepId('tab-ship-goods-commodity')
   }
 
+  const onFtlLoadTypeFormSubmit: SubmitHandler<FtlLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
     console.debug(data)
     setShippingStepId('')
@@ -161,7 +181,8 @@ export const Panel = () => {
     Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />,
     'LTL & Partials': <LTLLoadType methods={ltlLoadTypeFormMethods} onSubmit={onLtlLoadTypeFormSubmit} />,
     'Ocean Shipping': <OceanLoadType methods={oceanLoadTypeFormMethods} onSubmit={onOceanLoadTypeFormSubmit} />,
-    'Air Cargo': <AirLoadType methods={airLoadTypeFormMethods} onSubmit={onAirLoadTypeFormSubmit} />
+    'Air Cargo': <AirLoadType methods={airLoadTypeFormMethods} onSubmit={onAirLoadTypeFormSubmit} />,
+    FTL: <FTLLoadType methods={ftlLoadTypeFormMethods} onSubmit={onFtlLoadTypeFormSubmit} />
   }
 
   return (

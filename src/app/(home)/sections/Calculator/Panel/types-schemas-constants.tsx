@@ -265,61 +265,6 @@ export const loadTypeSchema: any & { fields: Field[] } = yup.object({
   })
 })
 
-// export const ltlLoadTypeSchema: any & { fields: LTLField[] } = yup.object({
-//   ltlType: yup.string().required(),
-//   fields: yup.array().test({
-//     message: '',
-//     test: (fields: LTLField[] | undefined, context) => {
-//       const errors: any = {}
-//       const { fields: _, ...others } = context.parent
-
-//       if (fields && fields.length > 0) {
-//         const field = fields[fields.length - 1]
-
-//         if (!field.handlingUnit) {
-//           errors.handlingUnit = 'Handling unit must be chosen'
-//         }
-//         if (isNaN(Number(field.length)) || Number(field.length) <= 0) {
-//           errors.length = 'Length must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.width)) || Number(field.width) <= 0) {
-//           errors.width = 'Width must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.height)) || Number(field.height) <= 0) {
-//           errors.height = 'Height must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.weight)) || Number(field.weight) <= 0) {
-//           errors.weight = 'Weight must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.noOfUnits)) || Number(field.noOfUnits) <= 0) {
-//           errors.noOfUnits = 'Number of must be a positive number'
-//         }
-//         if (!field.dimensionUnit) {
-//           errors.dimensionUnit = 'Dimension unit must be chosen'
-//         }
-
-//         // Collect and apply errors
-//         if (Object.keys(errors).length > 0) {
-//           return new yup.ValidationError(errors, null, 'fields')
-//         }
-
-//         return true
-//       }
-
-//       return false
-//     }
-//   }),
-//   containsAlcohol: yup.boolean(),
-//   alcoholRecipientType: yup.string().optional(),
-//   containsDryIce: yup.boolean(),
-//   dryIceWeight: yup.string().optional(),
-//   containsLithium: yup.boolean()
-// })
-
 export const ltlLoadTypeSchema = yup.object().shape({
   ltlType: yup.string().required(),
   fields: yup.array().of(
