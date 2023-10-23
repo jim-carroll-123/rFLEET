@@ -5,11 +5,12 @@ import currunciesData from '@json/currencies.json'
 export const shippingMethods = [
   { label: 'Parcel', value: 'Parcel' },
   { label: 'LTL & Partials', value: 'LTL & Partials' },
-  { label: 'Ocean Shipping', value: 'Ocean Shipping' },
-  { label: 'Air Cargo', value: 'Air Cargo' },
+  { label: 'Ocean Shipping', value: 'Ocean Shipping', locked: false },
+  { label: 'Air Cargo', value: 'Air Cargo', locked: false },
   {
     label: 'FTL, Drayage, etc',
-    value: 'FTL'
+    value: 'FTL',
+    locked: false
   }
 ]
 
