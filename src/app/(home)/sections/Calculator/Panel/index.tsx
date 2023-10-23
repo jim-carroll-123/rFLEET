@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
+import { AirLoadType } from './Panes/AirLoadType'
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LTLLoadType } from './Panes/LTLLoadType'
@@ -18,12 +19,14 @@ import { ShippingPane } from './ShippingPane'
 import { ShippingSteps } from './ShippingSteps'
 import { parcelShapes, shippingMethods } from './options'
 import {
+  AirLoadTypeInputs,
   FromInputs,
   GoodsCommodityInputs,
   LoadTypeInputs,
   LtlLoadTypeInputs,
   OceanLoadTypeInputs,
   ToInputs,
+  airLoadTypeSchema,
   fromSchema,
   goodsCommoditySchema,
   initialField,
@@ -94,6 +97,16 @@ export const Panel = () => {
     }
   })
 
+  //Air Load Type
+  const airLoadTypeFormMethods = useForm<AirLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(airLoadTypeSchema),
+    defaultValues: {
+      containerLoadType: 'Air Cargo',
+      fields: [{ ...initialOceanField }]
+    }
+  })
+
   const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
     mode: 'onChange',
     resolver: yupResolver(goodsCommoditySchema),
@@ -129,7 +142,12 @@ export const Panel = () => {
     setShippingStepId('tab-ship-goods-commodity')
   }
 
-  const onOceanlLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
+  const onOceanLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
+  const onAirLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
     setData((prev) => ({ ...prev, ...data }))
     setShippingStepId('tab-ship-goods-commodity')
   }
@@ -142,8 +160,8 @@ export const Panel = () => {
   const shippingMethodLoadTypes: any = {
     Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />,
     'LTL & Partials': <LTLLoadType methods={ltlLoadTypeFormMethods} onSubmit={onLtlLoadTypeFormSubmit} />,
-    'Ocean Shipping': <OceanLoadType methods={oceanLoadTypeFormMethods} onSubmit={onOceanlLoadTypeFormSubmit} />,
-    'Air Cargo': <></>
+    'Ocean Shipping': <OceanLoadType methods={oceanLoadTypeFormMethods} onSubmit={onOceanLoadTypeFormSubmit} />,
+    'Air Cargo': <AirLoadType methods={airLoadTypeFormMethods} onSubmit={onAirLoadTypeFormSubmit} />
   }
 
   return (
