@@ -72,7 +72,7 @@ export const OnboardingSection = () => {
           <div className="flex justify-center text-center lg:mb-[117px] mb-[50px]">
             <div className="flex flex-col">
               <div className="flex justify-center">
-                <Title>CARRIER NETWORK ONBOARDING</Title>
+                <Title>NETWORK ONBOARDING</Title>
               </div>
               <div className="text-body-lg font-normal lg:mb-[38px] mb-[28px]">
                 Join our Expansive Carrier Network built by truckers, for truckers supporting
@@ -82,7 +82,7 @@ export const OnboardingSection = () => {
                 Driver, Mechanic, Tow, and More..., or Deliver with Your Personal Vehicle.
               </div>
               <div className="w-full lg:px-[20px] px-[15px] lg:py-[16px] py-[12px] border-[1.5px] border-solid border-gray-200 text-input font-normal rounded-md bg-gradient-blur-dialog backdrop-blur-md transition duration-300">
-                Quote 2 pallets from Cleveland, OH to Los Angeles, CA?
+                Choose which profile best fits you?
               </div>
             </div>
           </div>

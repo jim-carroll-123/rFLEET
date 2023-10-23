@@ -1,7 +1,13 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { ParallaxBanner } from 'react-scroll-parallax'
+import { useState } from 'react';
+import { ParallaxBanner } from 'react-scroll-parallax';
+
+
+
+import dynamic from 'next/dynamic';
+
+
 
 import ChatbotIcon from '@assets/icons/chatbot.svg'
 import bgEarth from '@assets/images/bg-earth.jpeg'
@@ -9,11 +15,20 @@ import { Modal } from '@components/ui/Modal'
 import { Title } from '@components/ui/Typography'
 
 import { Airplane } from './Airplane'
+import Botframework from './Botframework'
 import { Chatbot } from './Chatbot'
 import { SearchInput } from './SearchInput'
 
+const DynamicBotframework = dynamic(() => import('./Botframework'), { ssr: false })
+
 export const SearchSection = () => {
   const [openChatbotModal, setOpenChatbotModal] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
+
+  const handleModalOpen = () => {
+    setOpenChatbotModal(true)
+  }
+
   return (
     <section id="search-section">
       <ParallaxBanner className="parallax-banner xl:h-[750px]" layers={[{ image: bgEarth.src, speed: -20 }]}>
@@ -30,15 +45,25 @@ export const SearchSection = () => {
               <div className="text-body-lg">What do you want to look for today?</div>
             </div>
             <div className="w-full flex flex-col items-center">
-              <SearchInput />
+              <SearchInput onSearchChange={setSearchValue} onSearch={handleModalOpen} value={searchValue} />
               <div className="text-white">
                 Tip: ask me any questions or tasks relating to transportation and logistics
               </div>
             </div>
             <div className="flex flex-col gap-[15px] items-center">
-              <Prompt>Quote 2 pallets from Cleveland, OH to Los Angeles, CA?</Prompt>
-              <Prompt>How long is the estimated transit time from Atlanta, GA to Seattle, WA?</Prompt>
-              <Prompt>Take me to my dashboard.&quot;, or &quot;New Quote&quot;</Prompt>
+              <Prompt onClick={() => setSearchValue('Quote 2 pallets from Cleveland, OH to Los Angeles, CA?')}>
+                Quote 2 pallets from Cleveland, OH to Los Angeles, CA?
+              </Prompt>
+              <Prompt
+                onClick={() =>
+                  setSearchValue('How long is the estimated transit time from Atlanta, GA to Seattle, WA?')
+                }
+              >
+                How long is the estimated transit time from Atlanta, GA to Seattle, WA?
+              </Prompt>
+              <Prompt onClick={() => setSearchValue('Take me to my dashboard.')}>
+                Take me to my dashboard.", or "New Quote"
+              </Prompt>
             </div>
             {!openChatbotModal && (
               <div className="absolute right-0 bottom-0">
@@ -57,12 +82,18 @@ export const SearchSection = () => {
         onClose={() => setOpenChatbotModal(false)}
         className="lg:max-w-[810px] w-full border border-white lg:rounded-[10px] rounded-[8px] bg-[rgba(249,249,249,0.05)] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px]"
       >
-        <Chatbot />
+        <DynamicBotframework searchValue={searchValue} />
       </Modal>
     </section>
   )
 }
 
-const Prompt = ({ children }: { children: React.ReactNode }) => (
-  <div className="text-input px-[15px] py-[8px] lg:px-[20px] lg:py-[10px] bg-blur hover-bg-white-glow">{children}</div>
+const Prompt = ({ children, onClick }: { children: React.ReactNode; onClick: () => void }) => (
+  <div
+    className="text-input px-[15px] py-[8px] lg:px-[20px] lg:py-[10px] bg-blur hover-bg-white-glow"
+    style={{ cursor: 'pointer' }}
+    onClick={onClick}
+  >
+    {children}
+  </div>
 )

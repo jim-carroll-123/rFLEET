@@ -11,7 +11,7 @@ export const AboutSection = () => {
       <img className="absolute lg:block hidden left-[0] top-[0px] z-[1]" src={bgCurveStripes.src} />
       <div className="relative z-[2] container text-center lg:mb-[48px] mb-[36px]">
         <div className="flex justify-center lg:mb-[16px] mb-[10px]">
-          <Title>About Us</Title>
+          <Title>ABOUT US</Title>
         </div>
         <div className="text-body-lg lg:mb-[48px] mb-[36px]">
           At rFleet Inc., we unite shippers, carriers, sellers, and buyers in a<BRD />
