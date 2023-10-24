@@ -1,35 +1,29 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { yupResolver } from '@hookform/resolvers/yup'
 
-import { ButtonSelect } from '@components/ui/ButtonSelect'
-import { TabPane } from '@components/ui/TabPane'
 
-import { From } from './Panes/From'
-import { GoodsCommodity } from './Panes/GoodsCommodity'
-import { LTLLoadType } from './Panes/LTLLoadType'
-import { LoadType } from './Panes/LoadType'
-import { To } from './Panes/To'
-import { ShippingPane } from './ShippingPane'
-import { ShippingSteps } from './ShippingSteps'
-import { parcelShapes, shippingMethods } from './options'
-import {
-  FromInputs,
-  GoodsCommodityInputs,
-  LoadTypeInputs,
-  LtlLoadTypeInputs,
-  ToInputs,
-  fromSchema,
-  goodsCommoditySchema,
-  initialField,
-  initialLTLField,
-  loadTypeSchema,
-  ltlLoadTypeSchema,
-  toSchema
-} from './types-schemas-constants'
+import { yupResolver } from '@hookform/resolvers/yup';
+
+
+
+import { ButtonSelect } from '@components/ui/ButtonSelect';
+import { TabPane } from '@components/ui/TabPane';
+
+
+
+import { From } from './Panes/From';
+import { GoodsCommodity } from './Panes/GoodsCommodity';
+import { LTLLoadType } from './Panes/LTLLoadType';
+import { LoadType } from './Panes/LoadType';
+import { To } from './Panes/To';
+import { ShippingPane } from './ShippingPane';
+import { ShippingSteps } from './ShippingSteps';
+import { parcelShapes, shippingMethods } from './options';
+import { FromInputs, GoodsCommodityInputs, LoadTypeInputs, LtlLoadTypeInputs, ToInputs, fromSchema, goodsCommoditySchema, initialField, initialLTLField, loadTypeSchema, ltlLoadTypeSchema, toSchema } from './types-schemas-constants';
+
 
 type shippingMethodType = { label: string; value: string }
 
@@ -114,7 +108,7 @@ export const Panel = () => {
   }
 
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
-    console.debug(data)
+    console.log('Data: ', data)
     setShippingStepId('')
   }
 

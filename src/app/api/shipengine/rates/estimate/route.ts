@@ -46,8 +46,6 @@ async function getRateEstimates(req: Request) {
       shipment
     } as GetRatesWithShipmentDetailsTypes.Params)
 
-    console.log('The Response: ', response)
-
     return { response };
 }
 

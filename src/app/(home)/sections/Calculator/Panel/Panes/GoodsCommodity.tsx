@@ -82,7 +82,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
               Value*&nbsp;<div className="text-caption text-gray">(Per Item)</div>
             </div>
           }
-          options={[]}
+          options={currencies}
           onChange={({ value }) => setValue('value', value, { shouldValidate: true })}
           error={errors.value?.message}
         />
