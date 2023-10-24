@@ -8,26 +8,36 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
+import { AirLoadType } from './Panes/AirLoadType'
+import { FTLLoadType } from './Panes/FTLLoadType'
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LTLLoadType } from './Panes/LTLLoadType'
 import { LoadType } from './Panes/LoadType'
+import { OceanLoadType } from './Panes/OceanLoadType'
 import { To } from './Panes/To'
 import { ShippingPane } from './ShippingPane'
 import { ShippingSteps } from './ShippingSteps'
+import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas'
 import { parcelShapes, shippingMethods } from './options'
 import {
+  AirLoadTypeInputs,
   FromInputs,
   GoodsCommodityInputs,
   LoadTypeInputs,
   LtlLoadTypeInputs,
+  OceanLoadTypeInputs,
   ToInputs,
+  airLoadTypeSchema,
   fromSchema,
   goodsCommoditySchema,
   initialField,
   initialLTLField,
+  initialOceanFclField,
+  initialOceanField,
   loadTypeSchema,
   ltlLoadTypeSchema,
+  oceanLoadTypeSchema,
   toSchema
 } from './types-schemas-constants'
 
@@ -78,6 +88,40 @@ export const Panel = () => {
     }
   })
 
+  //Ocean Load Type
+  const oceanLoadTypeFormMethods = useForm<OceanLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(oceanLoadTypeSchema),
+    defaultValues: {
+      containerLoadType: 'LCL',
+      fields: [{ ...initialOceanField }],
+      fclFields: [{ ...initialOceanFclField }]
+    }
+  })
+
+  //Air Load Type
+  const airLoadTypeFormMethods = useForm<AirLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(airLoadTypeSchema),
+    defaultValues: {
+      containerLoadType: 'Air Cargo',
+      fields: [{ ...initialOceanField }]
+    }
+  })
+
+  //FTL Load Type
+  const ftlLoadTypeFormMethods = useForm<FtlLoadTypeInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(airLoadTypeSchema),
+    defaultValues: {
+      containerLoadType: 'Standard TL',
+      standardTL: [{ ...initialStandardTL }],
+      hazmatTL: [{ ...initialHazmatTL }],
+      drayage: [{ ...initialDrayage }],
+      oversizeTL: [{ ...initialOversizeTL }]
+    }
+  })
+
   const goodsCommodityFormMethods = useForm<GoodsCommodityInputs>({
     mode: 'onChange',
     resolver: yupResolver(goodsCommoditySchema),
@@ -113,6 +157,21 @@ export const Panel = () => {
     setShippingStepId('tab-ship-goods-commodity')
   }
 
+  const onOceanLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
+  const onAirLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
+  const onFtlLoadTypeFormSubmit: SubmitHandler<FtlLoadTypeInputs> = (data) => {
+    setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
+  }
+
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
     console.debug(data)
     setShippingStepId('')
@@ -121,8 +180,9 @@ export const Panel = () => {
   const shippingMethodLoadTypes: any = {
     Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />,
     'LTL & Partials': <LTLLoadType methods={ltlLoadTypeFormMethods} onSubmit={onLtlLoadTypeFormSubmit} />,
-    'Ocean Shipping': <></>,
-    'Air Cargo': <></>
+    'Ocean Shipping': <OceanLoadType methods={oceanLoadTypeFormMethods} onSubmit={onOceanLoadTypeFormSubmit} />,
+    'Air Cargo': <AirLoadType methods={airLoadTypeFormMethods} onSubmit={onAirLoadTypeFormSubmit} />,
+    FTL: <FTLLoadType methods={ftlLoadTypeFormMethods} onSubmit={onFtlLoadTypeFormSubmit} />
   }
 
   return (
