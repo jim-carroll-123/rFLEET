@@ -89,7 +89,18 @@ export const To = ({ methods, onSubmit }: Props) => {
               error={errors.toCountry?.message}
             />
           </div>
+
           <div>
+            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">City</div>
+            <Input
+              value={watch('toCity')}
+              onChange={(value) => setValue('toCity', value, { shouldValidate: true })}
+              placeholder="Enter the City"
+              error={errors.toCity?.message}
+            />
+          </div>
+
+          <div className="col-span-2">
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Address</div>
             <Input
               value={watch('toAddress')}
@@ -98,6 +109,20 @@ export const To = ({ methods, onSubmit }: Props) => {
               error={errors.toAddress?.message}
             />
           </div>
+         
+
+         
+          <div>
+            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
+            <Input
+              value={watch('toPostalCode')}
+              onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
+              placeholder="Enter Postal Code"
+              error={errors.toPostalCode?.message}
+            />
+          </div>
+
+          
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
           <Button type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">

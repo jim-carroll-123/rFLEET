@@ -93,7 +93,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         </div>
       </div>
       <div className="lg:pt-[32px]">
-        <Button size="sm" glossy className="lg:w-auto w-full">
+        <Button size="sm" glossy className="lg:w-auto w-full" onClick={() => console.log("Sending data: ", data)}>
           Search
         </Button>
       </div>

@@ -77,15 +77,41 @@ export const From = ({ methods, onSubmit }: Props) => {
               error={errors.fromCountry?.message}
             />
           </div>
-          <div>
+          
+           
+           <div>
+            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">City</div>
+            <Input
+              value={watch('fromCity')}
+              onChange={(value) => setValue('fromCity', value, { shouldValidate: true })}
+              placeholder="Enter the City"
+              error={errors.fromCity?.message}
+            />
+          </div>
+
+          <div className="col-span-2">
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Address</div>
             <Input
               value={watch('fromAddress')}
               onChange={(value) => setValue('fromAddress', value, { shouldValidate: true })}
-              placeholder="Enter Address or Zip/Postal Code"
+              placeholder="Enter Address"
               error={errors.fromAddress?.message}
             />
           </div>
+
+         
+          <div>
+            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
+            <Input
+              value={watch('fromPostalCode')}
+              onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
+              placeholder="Enter Postal Code"
+              error={errors.fromPostalCode?.message}
+            />
+          </div>
+
+          
+        
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
           <Button type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">

@@ -5,7 +5,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 
 
-import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup';
+
+
 
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
@@ -50,7 +52,9 @@ export const Panel = () => {
     defaultValues: {
       fromType: '',
       fromCountry: '',
-      fromAddress: ''
+      fromAddress: '',
+      fromCity: '',
+      fromPostalCode: ''
     }
   })
 
@@ -60,7 +64,9 @@ export const Panel = () => {
     defaultValues: {
       toType: '',
       toCountry: '',
-      toAddress: ''
+      toAddress: '',
+      toCity: '',
+      toPostalCode: ''
     }
   })
 
