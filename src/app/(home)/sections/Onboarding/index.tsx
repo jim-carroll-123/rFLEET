@@ -109,7 +109,7 @@ export const OnboardingSection = () => {
                 <BRD />
                 with Quick Pay Options.
               </div>
-              <Link href="/signup" className="block w-full">
+              <Link href="/signup?type=Truck Company / Owner-Operator" className="block w-full">
                 <TransparentButton>Register</TransparentButton>
               </Link>
             </GradientCard>
@@ -136,7 +136,7 @@ export const OnboardingSection = () => {
                   <BRD />
                   References.
                 </div>
-                <Link href="/signup" className="block w-full">
+                <Link href="/signup?type=Commercial Truck Drivers" className="block w-full">
                   <TransparentButton>Register</TransparentButton>
                 </Link>
               </GradientCard>
@@ -159,12 +159,12 @@ export const OnboardingSection = () => {
                 <BRD />
                 Strengthening the Logistics Industry.
               </div>
-              {/* <Link href="/signup" className="block w-full">
-                <TransparentButton onClick={() => setOnboardingModalOpen(true)}>Register</TransparentButton>
-              </Link> */}
+              <Link href="/signup?type=Vendors and Services" className="block w-full">
+                <TransparentButton>Register</TransparentButton>
+              </Link>
 
               {/* tobe removed */}
-              <TransparentButton onClick={() => setOnboardingModalOpen(true)}>Register</TransparentButton>
+              {/* <TransparentButton onClick={() => setOnboardingModalOpen(true)}>Register</TransparentButton> */}
             </GradientCard>
           </div>
         </div>

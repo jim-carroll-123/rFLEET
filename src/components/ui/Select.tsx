@@ -27,6 +27,7 @@ interface Props {
   full?: boolean
   containerClassName?: string
   labelClassName?: string
+  disabled?: boolean
   onChange?: (newValue: Option) => void | Promise<void>
 }
 
@@ -42,6 +43,7 @@ export const Select = React.forwardRef(
       placeholder,
       error = false,
       searchable = false,
+      disabled = false,
       ...props
     }: Props,
     _
@@ -93,7 +95,9 @@ export const Select = React.forwardRef(
           <label className={cn(`block lg:mb-[8px] mb-[6px] font-medium`, labelClassName)}>{props.label}</label>
         )}
         <div
-          onClick={() => setSelectOpen(!selectOpen)}
+          onClick={() => {
+            disabled ? null : setSelectOpen(!selectOpen)
+          }}
           className={cn(
             'flex justify-between items-center w-full border border-solid shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
             error ? 'border-red-600' : selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
