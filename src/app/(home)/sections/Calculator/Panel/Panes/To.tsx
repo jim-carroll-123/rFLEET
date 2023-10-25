@@ -64,6 +64,48 @@ export const To = ({ methods, onSubmit }: Props) => {
     formState: { errors }
   } = methods
 
+  const handleValidation = async () => {
+    const address = [
+      {
+        addressLine1: watch('toAddress'),
+        cityLocality: watch('toCity'),
+        postalCode: watch('toPostalCode'),
+        countryCode: watch('toCountry')
+      }
+    ]
+
+    try {
+      const response = await fetch('/api/shipengine/validate-addresses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(address)
+      })
+
+      const data = await response.json()
+
+      console.log('data', data)
+
+      if (data[0].status === 'verified') {
+        setValue('toCountry', data[0].normalizedAddress.countryCode, { shouldValidate: true })
+        setValue('toCity', data[0].normalizedAddress.cityLocality, { shouldValidate: true })
+        setValue('toAddress', data[0].normalizedAddress.addressLine1, { shouldValidate: true })
+        setValue('toPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
+        handleSubmit(onSubmit)()
+      } else {
+        alert('The address is not valid.' + data.response.status)
+      }
+    } catch (error) {
+      alert('Error validating the address.')
+    }
+  }
+
+  const handleButtonClick = (e) => {
+    e.preventDefault()
+    handleValidation()
+  }
+
   return (
     <>
       <div className="text-body-lg font-semibold">Where are you shipping to?</div>
@@ -109,9 +151,7 @@ export const To = ({ methods, onSubmit }: Props) => {
               error={errors.toAddress?.message}
             />
           </div>
-         
 
-         
           <div>
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
             <Input
@@ -121,11 +161,9 @@ export const To = ({ methods, onSubmit }: Props) => {
               error={errors.toPostalCode?.message}
             />
           </div>
-
-          
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
-          <Button type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
+          <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
             <ArrowRight />
           </Button>
         </div>

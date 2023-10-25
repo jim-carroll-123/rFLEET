@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
 import ArrowRight from '@assets/icons/arrow-right.svg'
@@ -52,6 +53,48 @@ export const From = ({ methods, onSubmit }: Props) => {
     formState: { errors }
   } = methods
 
+  const handleValidation = async () => {
+    const address = [
+      {
+        addressLine1: watch('fromAddress'),
+        cityLocality: watch('fromCity'),
+        postalCode: watch('fromPostalCode'),
+        countryCode: watch('fromCountry')
+      }
+    ]
+
+    try {
+      const response = await fetch('/api/shipengine/validate-addresses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(address)
+      })
+
+      const data = await response.json()
+
+      console.log('data', data)
+
+      if (data[0].status === 'verified') {
+        setValue('fromCountry', data[0].normalizedAddress.countryCode, { shouldValidate: true })
+        setValue('fromCity', data[0].normalizedAddress.cityLocality, { shouldValidate: true })
+        setValue('fromAddress', data[0].normalizedAddress.addressLine1, { shouldValidate: true })
+        setValue('fromPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
+        handleSubmit(onSubmit)()
+      } else {
+        alert('The address is not valid.' + data.response.status)
+      }
+    } catch (error) {
+      alert('Error validating the address.')
+    }
+  }
+
+  const handleButtonClick = (e) => {
+    e.preventDefault()
+    handleValidation()
+  }
+
   return (
     <>
       <div className="text-body-lg font-semibold">Where are you shipping from?</div>
@@ -77,9 +120,8 @@ export const From = ({ methods, onSubmit }: Props) => {
               error={errors.fromCountry?.message}
             />
           </div>
-          
-           
-           <div>
+
+          <div>
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">City</div>
             <Input
               value={watch('fromCity')}
@@ -99,7 +141,6 @@ export const From = ({ methods, onSubmit }: Props) => {
             />
           </div>
 
-         
           <div>
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
             <Input
@@ -109,12 +150,9 @@ export const From = ({ methods, onSubmit }: Props) => {
               error={errors.fromPostalCode?.message}
             />
           </div>
-
-          
-        
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
-          <Button type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
+          <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
             <ArrowRight />
           </Button>
         </div>
