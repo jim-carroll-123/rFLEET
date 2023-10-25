@@ -83,10 +83,10 @@ export const From = ({ methods, onSubmit }: Props) => {
         setValue('fromPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
         handleSubmit(onSubmit)()
       } else {
-        alert('The address is not valid.' + data.response.status)
+        alert('The address is not valid. Please check it and try again.')
       }
     } catch (error) {
-      alert('Error validating the address.')
+      alert('The address is not valid. Please check it and try again.')
     }
   }
 
