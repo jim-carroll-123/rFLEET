@@ -1,29 +1,37 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 
 
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup'
 
+import { ButtonSelect } from '@components/ui/ButtonSelect'
+import { TabPane } from '@components/ui/TabPane'
 
-
-import { ButtonSelect } from '@components/ui/ButtonSelect';
-import { TabPane } from '@components/ui/TabPane';
-
-
-
-import { From } from './Panes/From';
-import { GoodsCommodity } from './Panes/GoodsCommodity';
-import { LTLLoadType } from './Panes/LTLLoadType';
-import { LoadType } from './Panes/LoadType';
-import { To } from './Panes/To';
-import { ShippingPane } from './ShippingPane';
-import { ShippingSteps } from './ShippingSteps';
-import { parcelShapes, shippingMethods } from './options';
-import { FromInputs, GoodsCommodityInputs, LoadTypeInputs, LtlLoadTypeInputs, ToInputs, fromSchema, goodsCommoditySchema, initialField, initialLTLField, loadTypeSchema, ltlLoadTypeSchema, toSchema } from './types-schemas-constants';
-
+import { From } from './Panes/From'
+import { GoodsCommodity } from './Panes/GoodsCommodity'
+import { LTLLoadType } from './Panes/LTLLoadType'
+import { LoadType } from './Panes/LoadType'
+import { To } from './Panes/To'
+import { ShippingPane } from './ShippingPane'
+import { ShippingSteps } from './ShippingSteps'
+import { parcelShapes, shippingMethods } from './options'
+import {
+  FromInputs,
+  GoodsCommodityInputs,
+  LoadTypeInputs,
+  LtlLoadTypeInputs,
+  ToInputs,
+  fromSchema,
+  goodsCommoditySchema,
+  initialField,
+  initialLTLField,
+  loadTypeSchema,
+  ltlLoadTypeSchema,
+  toSchema
+} from './types-schemas-constants'
 
 type shippingMethodType = { label: string; value: string }
 
@@ -31,6 +39,10 @@ export const Panel = () => {
   const [shippingMethod, setShippingMethod] = useState<shippingMethodType>(shippingMethods[0])
   const [shippingStepId, setShippingStepId] = useState('')
   const [data, setData] = useState({})
+
+  useEffect(() => {
+    console.log('Updated Data:', data)
+  }, [data])
 
   const fromFormMethods = useForm<FromInputs>({
     mode: 'onChange',
@@ -88,27 +100,51 @@ export const Panel = () => {
   })
 
   const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('From Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('From Data: ', data)
     setShippingStepId('tab-ship-destination')
   }
 
   const onToFormSubmit: SubmitHandler<ToInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('To Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('To Data: ', data)
     setShippingStepId('tab-ship-load-type')
   }
 
   const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('Load Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('Load Type Data: ', data)
     setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onLtlLoadTypeFormSubmit: SubmitHandler<LtlLoadTypeInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('LTL Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('LTL Load Type Data: ', data)
     setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
-    console.log('Data: ', data)
+    setData((prev) => {
+      console.log('Goods Previous data:', prev)
+      return { ...prev, ...data }
+    })
+    console.log('Goods Commodity Data: ', data)
     setShippingStepId('')
   }
 

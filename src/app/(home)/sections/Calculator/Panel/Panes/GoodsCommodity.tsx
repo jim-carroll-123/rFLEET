@@ -75,15 +75,15 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           onChange={({ value }) => setValue('packageUnit', value, { shouldValidate: true })}
           error={errors.packageUnit?.message}
         />
-        <Select
+        <Input
           containerClassName="lg:w-[160px] w-full"
           label={
             <div className="flex items-center">
               Value*&nbsp;<div className="text-caption text-gray">(Per Item)</div>
             </div>
           }
-          options={currencies}
-          onChange={({ value }) => setValue('value', value, { shouldValidate: true })}
+          // options={currencies}
+          onChange={( value ) => setValue('value', value, { shouldValidate: true })}
           error={errors.value?.message}
         />
         <Select
