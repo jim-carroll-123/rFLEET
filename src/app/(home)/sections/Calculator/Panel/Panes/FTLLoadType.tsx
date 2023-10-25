@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, SubmitHandler, UseFormReturn, useFieldArray } from 'react-hook-form'
 import { BiEdit, BiPencil, BiPlus } from 'react-icons/bi'
 import { ImPencil } from 'react-icons/im'
@@ -12,7 +12,7 @@ import { Check } from '@components/ui/Check'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Radio } from '@components/ui/Radio'
-import { Select, findOption } from '@components/ui/Select'
+import { Option, Select, findOption } from '@components/ui/Select'
 
 import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialStandardTL } from '../ftl-schemas'
 import {
@@ -28,6 +28,7 @@ import {
   weightUnits
 } from '../options'
 import { initialOceanFclField, initialOceanField } from '../types-schemas-constants'
+import AdditionalServices from './AdditionalServices'
 
 interface Props {
   methods: UseFormReturn<FtlLoadTypeInputs>
@@ -95,198 +96,7 @@ export const FTLLoadType = ({ methods, onSubmit }: Props) => {
       </div>
 
       <GradientHR />
-      <div className="flex flex-col gap-4">
-        <div className="text-body-lg font-semibold">Additional Service Options</div>
-        <GradientCard>
-          <div className="grid grid-cols-3 w-full">
-            <div className="items-start flex flex-col gap-4">
-              <div className="uppercase">Pickup</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Liftgate-Ground Pickup"
-                  label="Liftgate-Ground Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Inside Pickup"
-                  label="Inside Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Liftgate-Ground Pickup"
-                  label="Liftgate-Ground Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Limited Access Pickup"
-                  label="Limited Access Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Residential Pickup"
-                  label="Residential Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Appointment for Pickup"
-                  label="Appointment for Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Airport Pickup"
-                  label="Airport Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Secure Shipment Divider"
-                  label="Secure Shipment Divider"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Threshold Pickup"
-                  label="Threshold Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Trade Show Pickup"
-                  label="Trade Show Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start gap-4">
-              <div className="uppercase">Delivery</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Liftgate-Ground Delivery"
-                  label="Liftgate-Ground Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Inside Delivery"
-                  label="Inside Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Liftgate-Ground Delivery"
-                  label="Liftgate-Ground Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Limited Access Delivery"
-                  label="Limited Access Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Residential Delivery"
-                  label="Residential Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Appointment for Pickup"
-                  label="Appointment for Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Airport Pickup"
-                  label="Airport Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Secure Shipment Divider"
-                  label="Secure Shipment Divider"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Threshold Pickup"
-                  label="Threshold Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Trade Show Pickup"
-                  label="Trade Show Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start gap-4">
-              <div className="uppercase">Other</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Do not Stack"
-                  label="Do not Stack"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Flatbed Delivery"
-                  label="Flatbed Delivery"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Arrival Notification"
-                  label="Arrival Notification"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Customs Clearance"
-                  label="Customs Clearance"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Freeze Protection"
-                  label="Freeze Protection"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Pickup/Delivery at Port"
-                  label="Pickup/Delivery at Port"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-          </div>
-        </GradientCard>
-      </div>
+      <AdditionalServices methods={methods} />
       <div className="flex flex-col gap-d-16 mt-0">
         <Controller
           name="containsAlcohol"
@@ -345,7 +155,6 @@ export const FTLLoadType = ({ methods, onSubmit }: Props) => {
         />
         {watch('containsDryIce') && (
           <Input
-            type="number"
             placeholder="e.g.0.1"
             label="Dry ice weight (lb)*"
             value={watch('dryIceWeight')}
@@ -440,7 +249,6 @@ const StandardTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
               control={control}
               render={({ field }) => (
                 <Input
-                  type="number"
                   placeholder=""
                   error={errors.standardTL && errors.standardTL[index]?.noOfTrucks?.message}
                   containerClassName="lg:w-[180px]"
@@ -466,7 +274,6 @@ const StandardTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
                 control={control}
                 render={({ field }) => (
                   <Input
-                    type="number"
                     placeholder="Weight"
                     labelClassName="text-xs"
                     error={errors.standardTL && errors.standardTL[index]?.weight?.message}
@@ -502,6 +309,8 @@ const StandardTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
 }
 
 const HazmatTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => {
+  const [incoterm, setIncoterm] = useState<Option>()
+
   const {
     watch,
     setValue,
@@ -516,6 +325,10 @@ const HazmatTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) =>
     control,
     name: 'hazmatTL'
   })
+
+  useEffect(() => {
+    setIncoterm(findOption(incotermOptions, watch('incoterm')))
+  }, [watch('incoterm')])
 
   const onAdd = async () => {
     const validated = await trigger('hazmatTL')
@@ -576,17 +389,16 @@ const HazmatTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) =>
                 control={control}
                 render={({ field }) => (
                   <Input
-                    type="number"
                     placeholder=""
                     error={errors.hazmatTL && errors.hazmatTL[index]?.noOfTrucks?.message}
-                    containerClassName="lg:w-[140px]"
+                    containerClassName="lg:w-[180px]"
                     {...field}
                   />
                 )}
               />
             </div>
 
-            <div className="col-span-3 flex flex-col gap-2">
+            <div className="col-span-3 flex flex-col gap-1">
               <div className="text-sm flex items-center gap-5 ">
                 Weight per unit
                 <Check
@@ -602,7 +414,6 @@ const HazmatTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) =>
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="number"
                       placeholder="Weight"
                       labelClassName="text-xs"
                       error={errors.hazmatTL && errors.hazmatTL[index]?.weight?.message}
@@ -631,56 +442,62 @@ const HazmatTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) =>
                 />
               </div>
             </div>
-            <div className="col-span-2 flex flex-col gap-2">
-              <div className="text-sm">Select Incoterm </div>
-              <Controller
-                name={`hazmatTL.${index}.incoterm`}
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <Select
-                    placeholder=""
-                    options={incotermOptions}
-                    error={errors.hazmatTL && errors.hazmatTL[index]?.incoterm?.message}
-                    containerClassName="lg:w-[180px]"
-                    {...field}
-                    value={findOption(incotermOptions, watch(`hazmatTL.${index}.incoterm`))}
-                    onChange={({ value }) => setValue(`hazmatTL.${index}.incoterm`, value, { shouldValidate: true })}
-                  />
-                )}
-              />
-            </div>
+            <Button className="h-fit w-fit self-end p-0 " size="sm" onClick={() => remove(index)}>
+              x
+            </Button>
           </div>
         ))}
-        <div className="absolute right-4 bottom-7 flex items-center justify-end mt-6 gap-4">
-          <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
-            <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
-            Add Another Field
-          </Button>
+        <div className="flex justify-between items-center w-full">
+          <div className="col-span-2 flex flex-col gap-2">
+            <div className="text-sm">Select Incoterm </div>
+            <Controller
+              name={`incoterm`}
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <Select
+                  placeholder=""
+                  options={incotermOptions}
+                  error={errors.incoterm?.message}
+                  containerClassName=""
+                  {...field}
+                  value={findOption(incotermOptions, watch(`incoterm`))}
+                  onChange={({ value, label, description }) => {
+                    setIncoterm({ label, value, description })
+                    setValue(`incoterm`, value, { shouldValidate: true })
+                  }}
+                />
+              )}
+            />
+          </div>
+
+          <div className=" flex items-center justify-end mt-6 gap-4">
+            <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
+              <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
+              Add Another Field
+            </Button>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 mt-3">
-        <div className="flex gap-3 font-bold p-2">
-          <div className="basis-2/12">Incoterm</div>
-          <div className="basis-10/12">Description</div>
+      {incoterm?.value && (
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-3 font-bold p-2">
+            <div className="basis-2/12">Incoterm</div>
+            <div className="basis-10/12">Description</div>
+          </div>
+          <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
+            <div className="basis-2/12">{incoterm?.label}</div>
+            <div className="basis-10/12 text-sm">{incoterm?.description}</div>
+          </div>
         </div>
-        <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
-          {
-            <>
-              <div className="basis-2/12">Class 3: Flammable Liquids:</div>
-              <div className="basis-10/12 text-sm">
-                Liquids that have a flashpoint below 140°F (60°C) and can easily catch fire. Examples include gasoline,
-                alcohol, and some paints.
-              </div>
-            </>
-          }
-        </div>
-      </div>
+      )}
     </>
   )
 }
 
 const Drayage = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => {
+  const [incoterm, setIncoterm] = useState<Option>()
+
   const {
     watch,
     setValue,
@@ -696,6 +513,9 @@ const Drayage = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => 
     name: 'drayage'
   })
 
+  useEffect(() => {
+    setIncoterm(findOption(incotermOptions, watch('incoterm')))
+  }, [watch('incoterm')])
   const onAdd = async () => {
     const validated = await trigger('drayage')
     if (validated) {
@@ -764,7 +584,6 @@ const Drayage = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => 
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="number"
                       placeholder="Weight"
                       labelClassName="text-xs"
                       error={errors.drayage && errors.drayage[index]?.weight?.message}
@@ -799,7 +618,6 @@ const Drayage = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => 
                 control={control}
                 render={({ field }) => (
                   <Input
-                    type="number"
                     placeholder=""
                     error={errors.drayage && errors.drayage[index]?.noOfTrucks?.message}
                     containerClassName=""
@@ -808,58 +626,62 @@ const Drayage = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => 
                 )}
               />
             </div>
-            <div className="col-span-2 flex flex-col gap-2">
-              <div className="text-sm">Select Incoterm </div>
-              <Controller
-                name={`drayage.${index}.incoterm`}
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <Select
-                    placeholder=""
-                    options={incotermOptions}
-                    error={errors.drayage && errors.drayage[index]?.incoterm?.message}
-                    containerClassName="lg:w-[180px]"
-                    {...field}
-                    value={findOption(incotermOptions, watch(`drayage.${index}.incoterm`))}
-                    onChange={({ value }) => setValue(`drayage.${index}.incoterm`, value, { shouldValidate: true })}
-                  />
-                )}
-              />
-            </div>
+            <Button className="h-fit w-fit self-end p-0 " size="sm" onClick={() => remove(index)}>
+              x
+            </Button>
           </div>
         ))}
-        <div className="absolute right-4 bottom-7 flex items-center justify-end mt-6 gap-4">
-          <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
-            <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
-            Add Another Field
-          </Button>
+        <div className="flex justify-between items-center w-full">
+          <div className="col-span-2 flex flex-col gap-2">
+            <div className="text-sm">Select Incoterm </div>
+            <Controller
+              name={`incoterm`}
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <Select
+                  placeholder=""
+                  options={incotermOptions}
+                  error={errors.incoterm?.message}
+                  containerClassName=""
+                  {...field}
+                  value={findOption(incotermOptions, watch(`incoterm`))}
+                  onChange={({ value, label, description }) => {
+                    setIncoterm({ label, value, description })
+                    setValue(`incoterm`, value, { shouldValidate: true })
+                  }}
+                />
+              )}
+            />
+          </div>
+
+          <div className=" flex items-center justify-end mt-6 gap-4">
+            <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
+              <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
+              Add Another Field
+            </Button>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 mt-3">
-        <div className="flex gap-3 font-bold p-2">
-          <div className="basis-2/12">Incoterm</div>
-          <div className="basis-10/12">Description</div>
+      {incoterm?.value && (
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-3 font-bold p-2">
+            <div className="basis-2/12">Incoterm</div>
+            <div className="basis-10/12">Description</div>
+          </div>
+          <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
+            <div className="basis-2/12">{incoterm?.label}</div>
+            <div className="basis-10/12 text-sm">{incoterm?.description}</div>
+          </div>
         </div>
-        <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
-          {
-            <>
-              <div className="basis-2/12">Savannah GA</div>
-              <div className="basis-10/12 text-sm">
-                Georgia Port Authority: Gardern City Terminal
-                <br />
-                <br />
-                Address: 55N Lathrop Ave, Savannah, GA 31401
-              </div>
-            </>
-          }
-        </div>
-      </div>
+      )}
     </>
   )
 }
 
 const OversizeTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) => {
+  const [incoterm, setIncoterm] = useState<Option>()
+
   const {
     watch,
     setValue,
@@ -874,7 +696,9 @@ const OversizeTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
     control,
     name: 'oversizeTL'
   })
-
+  useEffect(() => {
+    setIncoterm(findOption(incotermOptions, watch('incoterm')))
+  }, [watch('incoterm')])
   const onAdd = async () => {
     const validated = await trigger('oversizeTL')
     if (validated) {
@@ -943,7 +767,6 @@ const OversizeTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="number"
                       placeholder="Weight"
                       labelClassName="text-xs"
                       error={errors.oversizeTL && errors.oversizeTL[index]?.weight?.message}
@@ -980,7 +803,6 @@ const OversizeTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
                 control={control}
                 render={({ field }) => (
                   <Input
-                    type="number"
                     placeholder=""
                     error={errors.oversizeTL && errors.oversizeTL[index]?.noOfTrucks?.message}
                     containerClassName=""
@@ -989,53 +811,55 @@ const OversizeTL = ({ methods }: { methods: UseFormReturn<FtlLoadTypeInputs> }) 
                 )}
               />
             </div>
-            <div className="col-span-2 flex flex-col gap-2">
-              <div className="text-sm">Select Incoterm </div>
-              <Controller
-                name={`oversizeTL.${index}.incoterm`}
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                  <Select
-                    placeholder=""
-                    options={incotermOptions}
-                    error={errors.oversizeTL && errors.oversizeTL[index]?.incoterm?.message}
-                    containerClassName="lg:w-[180px]"
-                    {...field}
-                    value={findOption(incotermOptions, watch(`oversizeTL.${index}.incoterm`))}
-                    onChange={({ value }) => setValue(`oversizeTL.${index}.incoterm`, value, { shouldValidate: true })}
-                  />
-                )}
-              />
-            </div>
+            <Button className="h-fit w-fit self-end p-0 " size="sm" onClick={() => remove(index)}>
+              x
+            </Button>
           </div>
         ))}
-        <div className="absolute right-4 bottom-7 flex items-center justify-end mt-6 gap-4">
-          <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
-            <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
-            Add Another Field
-          </Button>
+        <div className="flex justify-between items-center w-full">
+          <div className="col-span-2 flex flex-col gap-2">
+            <div className="text-sm">Select Incoterm </div>
+            <Controller
+              name={`incoterm`}
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <Select
+                  placeholder=""
+                  options={incotermOptions}
+                  error={errors.incoterm?.message}
+                  containerClassName=""
+                  {...field}
+                  value={findOption(incotermOptions, watch(`incoterm`))}
+                  onChange={({ value, label, description }) => {
+                    setIncoterm({ label, value, description })
+                    setValue(`incoterm`, value, { shouldValidate: true })
+                  }}
+                />
+              )}
+            />
+          </div>
+
+          <div className=" flex items-center justify-end mt-6 gap-4">
+            <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
+              <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
+              Add Another Field
+            </Button>
+          </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 mt-3">
-        <div className="flex gap-3 font-bold p-2">
-          <div className="basis-2/12">Incoterm</div>
-          <div className="basis-10/12">Description</div>
+      {incoterm?.value && (
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-3 font-bold p-2">
+            <div className="basis-2/12">Incoterm</div>
+            <div className="basis-10/12">Description</div>
+          </div>
+          <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
+            <div className="basis-2/12">{incoterm?.label}</div>
+            <div className="basis-10/12 text-sm">{incoterm?.description}</div>
+          </div>
         </div>
-        <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
-          {
-            <>
-              <div className="basis-2/12">Over-weight/Over-dimensional</div>
-              <div className="basis-10/12 text-sm">
-                Over-weight means the exceeding of statutory weight limits for over the road trucking.
-                <br />
-                <br />
-                Over-dimensional or “oversize” means the exceeding of statutory length, width or height limits.
-              </div>
-            </>
-          }
-        </div>
-      </div>
+      )}
     </>
   )
 }

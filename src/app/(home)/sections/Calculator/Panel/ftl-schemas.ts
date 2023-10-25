@@ -98,8 +98,7 @@ export const ftlLoadTypeSchema = yup.object().shape({
       noOfTrucks: yup.string().required(),
       weight: yup.string().required(),
       weightUnit: yup.string().required(),
-      includesPackaging: yup.boolean(),
-      incoterm: yup.string().required()
+      includesPackaging: yup.boolean()
     })
   ),
 
@@ -110,8 +109,7 @@ export const ftlLoadTypeSchema = yup.object().shape({
       noOfTrucks: yup.string().required(),
       weight: yup.string().required(),
       weightUnit: yup.string().required(),
-      addExtraPickups: yup.boolean(),
-      incoterm: yup.string().required()
+      addExtraPickups: yup.boolean()
     })
   ),
 
@@ -122,11 +120,10 @@ export const ftlLoadTypeSchema = yup.object().shape({
       noOfTrucks: yup.string().required(),
       weight: yup.string().required(),
       weightUnit: yup.string().required(),
-      addExtraPickups: yup.boolean(),
-      incoterm: yup.string().required()
+      addExtraPickups: yup.boolean()
     })
   ),
-
+  incoterm: yup.string().required(),
   containsAlcohol: yup.boolean(),
   alcoholRecipientType: yup.string().optional(),
   containsDryIce: yup.boolean(),

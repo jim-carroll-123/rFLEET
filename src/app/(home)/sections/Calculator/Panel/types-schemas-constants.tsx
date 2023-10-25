@@ -38,7 +38,6 @@ export type OcenanField = {
   weight: string
   weightUnit: string
   includesPackaging: boolean
-  incoterm: string
 }
 
 export type OcenanFclField = {
@@ -49,7 +48,6 @@ export type OcenanFclField = {
   weightUnit: string
   weightType: string
   addExtraPickups: boolean
-  incoterm: string
 }
 
 export type AirField = {
@@ -62,12 +60,11 @@ export type AirField = {
   weight: string
   weightUnit: string
   includesPackaging: boolean
-  incoterm: string
 }
 
 export const initialLTLField: LTLField = {
   dimensionUnit: 'in',
-  handlingUnit: 'Pallet',
+  handlingUnit: 'Pallet(s)',
   height: '',
   length: '',
   noOfUnits: '',
@@ -77,15 +74,14 @@ export const initialLTLField: LTLField = {
 
 export const initialOceanField: OcenanField = {
   dimensionUnit: 'in',
-  handlingUnit: 'Pallet',
+  handlingUnit: 'Pallet(s)',
   height: '',
   length: '',
   noOfUnits: '',
   weight: '',
   width: '',
   weightUnit: 'in',
-  includesPackaging: false,
-  incoterm: 'Pallet'
+  includesPackaging: false
 }
 
 export const initialOceanFclField: OcenanFclField = {
@@ -94,21 +90,19 @@ export const initialOceanFclField: OcenanFclField = {
   weight: '',
   weightUnit: 'in',
   weightType: 'Overweight',
-  addExtraPickups: false,
-  incoterm: 'EXE - Ex Works'
+  addExtraPickups: false
 }
 
 export const initialAirField: AirField = {
   dimensionUnit: 'in',
-  handlingUnit: 'Pallet',
+  handlingUnit: 'Pallet(s)',
   height: '',
   length: '',
   noOfUnits: '',
   weight: '',
   width: '',
   weightUnit: 'in',
-  includesPackaging: false,
-  incoterm: 'CIF'
+  includesPackaging: false
 }
 
 export const initialField: Field = {
@@ -276,7 +270,7 @@ export const ltlLoadTypeSchema = yup.object().shape({
       dimensionUnit: yup.string().required(),
       noOfUnits: yup.string().required(),
 
-      weight: yup.string().required('Height is required')
+      weight: yup.string().required('Weight is required')
     })
   ),
   containsAlcohol: yup.boolean(),
@@ -297,10 +291,9 @@ export const oceanLoadTypeSchema = yup.object().shape({
       dimensionUnit: yup.string().required(),
       noOfUnits: yup.string().required(),
 
-      weight: yup.string().required('Height is required'),
+      weight: yup.string().required('Weight is required'),
       weightUnit: yup.string().required(),
-      includesPackaging: yup.boolean(),
-      incoterm: yup.string().required()
+      includesPackaging: yup.boolean()
     })
   ),
   fclFields: yup.array().of(
@@ -310,10 +303,10 @@ export const oceanLoadTypeSchema = yup.object().shape({
       weight: yup.string().required(),
       weightUnit: yup.string().required(),
       weightType: yup.string().required(),
-      addExtraPickups: yup.boolean(),
-      incoterm: yup.string().required()
+      addExtraPickups: yup.boolean()
     })
   ),
+  incoterm: yup.string().required(),
   containsAlcohol: yup.boolean(),
   alcoholRecipientType: yup.string().optional(),
   containsDryIce: yup.boolean(),
@@ -334,21 +327,10 @@ export const airLoadTypeSchema = yup.object().shape({
 
       weight: yup.string().required('Height is required'),
       weightUnit: yup.string().required(),
-      includesPackaging: yup.boolean(),
-      incoterm: yup.string().required()
+      includesPackaging: yup.boolean()
     })
   ),
-  fclFields: yup.array().of(
-    yup.object().shape({
-      containerType: yup.string().required(),
-      noOfUnits: yup.string().required(),
-      weight: yup.string().required(),
-      weightUnit: yup.string().required(),
-      weightType: yup.string().required(),
-      addExtraPickups: yup.boolean(),
-      incoterm: yup.string().required()
-    })
-  ),
+  incoterm: yup.string().required(),
   containsAlcohol: yup.boolean(),
   alcoholRecipientType: yup.string().optional(),
   containsDryIce: yup.boolean(),
