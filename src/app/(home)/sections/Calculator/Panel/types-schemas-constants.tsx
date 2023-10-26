@@ -1,4 +1,5 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
+
 
 export type Field = {
   carrierProvider: string
@@ -62,7 +63,8 @@ export const fromSchema = yup.object({
   fromCountry: yup.string().required(),
   fromAddress: yup.string().required(),
   fromCity: yup.string().required(),
-  fromPostalCode: yup.string().required()
+  fromPostalCode: yup.string().required(),
+  fromState: yup.string().required()
 })
 
 export const toSchema = yup.object({
@@ -70,7 +72,8 @@ export const toSchema = yup.object({
   toCountry: yup.string().required(),
   toAddress: yup.string().required(),
   toCity: yup.string().required(),
-  toPostalCode: yup.string().required()
+  toPostalCode: yup.string().required(),
+  toState: yup.string().required()
 })
 
 export const loadTypeSchema: any & { fields: Field[] } = yup.object({

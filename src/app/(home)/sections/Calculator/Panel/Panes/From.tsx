@@ -86,6 +86,7 @@ export const From = ({ methods, onSubmit }: Props) => {
         setValue('fromCity', data[0].normalizedAddress.cityLocality, { shouldValidate: true })
         setValue('fromAddress', data[0].normalizedAddress.addressLine1, { shouldValidate: true })
         setValue('fromPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
+        setValue('fromState', data[0].normalizedAddress.stateProvince, { shouldValidate: true })
         handleSubmit(onSubmit)()
       } else {
         alert('The address is not valid. Please check it and try again.')

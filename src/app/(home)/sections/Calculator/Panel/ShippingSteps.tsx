@@ -22,29 +22,26 @@ const handleSubmit = async (data: any) => {
       shipTo: {
         name: 'Amanda Miller',
         phone: '555-555-5555',
-        addressLine1: '525 S Winchester Blvd',
-        cityLocality: 'San Jose',
-        stateProvince: 'CA',
-        postalCode: '95128',
-        countryCode: 'US',
-        addressResidentialIndicator: 'yes'
+        addressLine1: data.toAddress,
+        stateProvince: data.toState,
+        cityLocality: data.toCity,
+        postalCode: data.toPostalCode,
+        countryCode: data.toCountry
       },
       shipFrom: {
         companyName: 'Example Corp.',
         name: 'John Doe',
         phone: '111-111-1111',
-        addressLine1: '4009 Marathon Blvd',
-        addressLine2: 'Suite 300',
-        cityLocality: 'Austin',
-        stateProvince: 'TX',
-        postalCode: '78756',
-        countryCode: 'US',
-        addressResidentialIndicator: 'no'
+        addressLine1: data.fromAddress,
+        stateProvince: data.fromState,
+        cityLocality: data.fromCity,
+        postalCode: data.fromPostalCode,
+        countryCode: data.fromCountry
       },
       packages: [
         {
           weight: {
-            value: 1.0,
+            value: data.fields[0].weight,
             unit: 'ounce'
           }
         }
@@ -61,7 +58,7 @@ const handleSubmit = async (data: any) => {
       body: JSON.stringify(datatest)
     })
 
-    console.log('Da Data: ', datatest)
+    console.log('Da Data: ', data)
     const responseData = await response.json()
     console.log('the response: ', responseData)
   } catch (error) {

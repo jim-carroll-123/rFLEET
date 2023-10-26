@@ -12,6 +12,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
+
+
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LTLLoadType } from './Panes/LTLLoadType'
@@ -35,6 +37,7 @@ import {
   toSchema
 } from './types-schemas-constants'
 
+
 type shippingMethodType = { label: string; value: string }
 
 export const Panel = () => {
@@ -54,7 +57,8 @@ export const Panel = () => {
       fromCountry: '',
       fromAddress: '',
       fromCity: '',
-      fromPostalCode: ''
+      fromPostalCode: '',
+      fromState: ''
     }
   })
 
@@ -66,7 +70,8 @@ export const Panel = () => {
       toCountry: '',
       toAddress: '',
       toCity: '',
-      toPostalCode: ''
+      toPostalCode: '',
+      toState: ''
     }
   })
 
