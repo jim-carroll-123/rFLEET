@@ -1,14 +1,77 @@
-'use client'
+'use client';
 
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
-import { cn } from '@lib/utils'
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
+import { cn } from '@lib/utils';
+
 
 interface ShippingStepsProps {
   shippingStepId: string
   data: any
+}
+
+const handleSubmit = async (data: any) => {
+  const datatest = {
+    rateOptions: {
+      carrierIds: ['se-5107649']
+    },
+    shipment: {
+      validateAddress: 'no_validation',
+      shipTo: {
+        name: 'Amanda Miller',
+        phone: '555-555-5555',
+        addressLine1: '525 S Winchester Blvd',
+        cityLocality: 'San Jose',
+        stateProvince: 'CA',
+        postalCode: '95128',
+        countryCode: 'US',
+        addressResidentialIndicator: 'yes'
+      },
+      shipFrom: {
+        companyName: 'Example Corp.',
+        name: 'John Doe',
+        phone: '111-111-1111',
+        addressLine1: '4009 Marathon Blvd',
+        addressLine2: 'Suite 300',
+        cityLocality: 'Austin',
+        stateProvince: 'TX',
+        postalCode: '78756',
+        countryCode: 'US',
+        addressResidentialIndicator: 'no'
+      },
+      packages: [
+        {
+          weight: {
+            value: 1.0,
+            unit: 'ounce'
+          }
+        }
+      ]
+    }
+  }
+
+  try {
+    const response = await fetch('/api/shipengine/rates/estimate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datatest)
+    })
+
+    console.log('Da Data: ', datatest)
+    const responseData = await response.json()
+    console.log('the response: ', responseData)
+  } catch (error) {
+    alert('Error')
+  }
+}
+
+const handleButtonClick = (e: { preventDefault: () => void }, data: any) => {
+  e.preventDefault()
+  handleSubmit(data)
 }
 
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
@@ -93,7 +156,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         </div>
       </div>
       <div className="lg:pt-[32px]">
-        <Button size="sm" glossy className="lg:w-auto w-full" onClick={() => console.log("Sending data: ", data)}>
+        <Button size="sm" glossy className="lg:w-auto w-full" onClick={(e) => handleButtonClick(e, data)}>
           Search
         </Button>
       </div>

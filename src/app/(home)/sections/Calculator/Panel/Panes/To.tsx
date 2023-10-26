@@ -1,22 +1,27 @@
-'use client'
+'use client';
 
-import { SubmitHandler, UseFormReturn } from 'react-hook-form'
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import ArrowRight from '@assets/icons/arrow-right.svg'
-import BusinessAddress from '@assets/icons/business-address.svg'
-import ConsolidationStation from '@assets/icons/consolidation-station.svg'
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
-import FulfillmentCenter from '@assets/icons/fulfillment-center.svg'
-import PortAirport from '@assets/icons/port_airport.svg'
-import ResidentialAddress from '@assets/icons/residential-address.svg'
-import User from '@assets/icons/user.svg'
-import { Button } from '@components/ui/Button'
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelect'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Input } from '@components/ui/Input'
-import { Select, findOption } from '@components/ui/Select'
 
-import { ToInputs } from '../types-schemas-constants'
+
+import ArrowRight from '@assets/icons/arrow-right.svg';
+import BusinessAddress from '@assets/icons/business-address.svg';
+import ConsolidationStation from '@assets/icons/consolidation-station.svg';
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
+import FulfillmentCenter from '@assets/icons/fulfillment-center.svg';
+import PortAirport from '@assets/icons/port_airport.svg';
+import ResidentialAddress from '@assets/icons/residential-address.svg';
+import User from '@assets/icons/user.svg';
+import { Button } from '@components/ui/Button';
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelect';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Input } from '@components/ui/Input';
+import { Select, findOption } from '@components/ui/Select';
+
+
+
+import { ToInputs } from '../types-schemas-constants';
+
 
 const toTypes = [
   {
@@ -101,7 +106,7 @@ export const To = ({ methods, onSubmit }: Props) => {
     }
   }
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     handleValidation()
   }
