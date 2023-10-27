@@ -2,12 +2,17 @@
 
 import { useState } from 'react'
 
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { GradientHR } from '@components/ui/GradientHR'
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { GradientHR } from '@components/ui/GradientHR';
 import { Tab } from '@components/ui/TabPane';
 import countries from '@json/countries.json';
 import { cn } from '@lib/utils';
+
+
+
+import { Field } from './types-schemas-constants';
+
 
 interface ShippingStepsProps {
   shippingStepId: string
@@ -75,6 +80,9 @@ const handleButtonClick = (e: { preventDefault: () => void }, data: any) => {
 
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const [isDisplayRate, setDisplayRate] = useState(false)
+
+  const fields: Field[] = data.fields
+
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-d-16">
@@ -85,6 +93,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               label="Origin"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
+              setDisplayRate={setDisplayRate}
             >
               {data.fromType ? (
                 <div className="flex items-center gap-d-10 text-white font-bold">
@@ -107,6 +116,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               label="Destination"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
+              setDisplayRate={setDisplayRate}
             >
               {data.toType ? (
                 <div className="flex items-center gap-d-10 text-white font-bold">
@@ -129,6 +139,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               label="Load Type"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
+              setDisplayRate={setDisplayRate}
             >
               {data.parcelType ? (
                 <div className="flex items-center gap-d-10 text-white font-bold">
@@ -145,6 +156,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               label="Goods/Commodity"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
+              setDisplayRate={setDisplayRate}
             >
               Goods/Commodity
             </ShippingStep>
@@ -166,7 +178,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               setDisplayRate(true)
             }}
           >
-            Search
+            <Tab target="tab">Search</Tab>
           </Button>
         </div>
       </div>
@@ -174,8 +186,28 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       {isDisplayRate && (
         <>
           <GradientHR />
-          <div>Load Details</div>
-          <div>Details go here</div>
+          <div className="my-5 text-white font-poppins text-base font-bold leading-6">Load Details</div>
+          {/* {fields.length > 1 && (
+            <>
+              {fields.slice(0, fields.length - 1).map((el, index) => ( */}
+          <div className="flex border border-white rounded-d-6 mb-5">
+            <div className="shrink-0 text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">Load 44</div>
+            <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">5 Boxes/Crates</div>
+            <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">4X4</div>
+            <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[20px] py-[15px] hover:cursor-pointer">
+              {/* <Delete
+                      onClick={() => {
+                        let newArray = [...fields]
+                        newArray.splice(index, 1)
+                        setValue('fields', newArray, { shouldValidate: true })
+                      }}
+                    /> */}
+            </div>
+          </div>
+          {/* ))}
+            </>
+          )} */}
+          <GradientHR />
         </>
       )}
     </>
@@ -187,9 +219,17 @@ interface ShippingStepProps extends React.HTMLAttributes<HTMLDivElement> {
   label: string
   shippingStepId: string
   children: React.ReactNode
+  setDisplayRate: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const ShippingStep = ({ target, label, className, children, shippingStepId }: ShippingStepProps) => {
+export const ShippingStep = ({
+  target,
+  label,
+  className,
+  children,
+  shippingStepId,
+  setDisplayRate
+}: ShippingStepProps) => {
   return (
     <div>
       <div className={cn('lg:mb-[8px] mb-[6px]', target === shippingStepId ? 'text-white' : 'text-gray')}>
@@ -197,6 +237,9 @@ export const ShippingStep = ({ target, label, className, children, shippingStepI
       </div>
       <Tab
         target={target}
+        onClick={() => {
+          setDisplayRate(false)
+        }}
         className={cn(
           'w-full lg:py-[10px] py-[8px] border-2 border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent lg:pl-[12px] pl-[8px] lg:pr-[12px] pr-[8px]',
           className,
