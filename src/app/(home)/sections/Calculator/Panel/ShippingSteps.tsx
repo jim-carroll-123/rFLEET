@@ -210,6 +210,56 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </>
           )} */}
           <GradientHR />
+        
+            {[1, 2].map(() => (
+              <div className="sender-info my-4">
+                <h3>Sender</h3>
+                <p>ABC Corporation</p>
+                <p>151 Merrimac t, Pittsburgh, PA 15211, United States</p>
+                <label><input type="checkbox" /> Use as return Address</label>
+              </div>
+            ))}
+
+            <div className="shipping-options flex">
+              {/* Best Value */}
+              <div className="option">
+                <h4>Best Value</h4>
+                <span>2-4 days</span>
+                <span>$1,575</span>
+                </div>
+
+                          {/* Quickest */}
+          <div className="option">
+            <h4>Quickest</h4>
+            <span>2-4 days</span>
+            <span>$1,575</span>
+          </div>
+
+          {/* Cheapest */}
+          <div className="option">
+            <h4>Cheapest</h4>
+            <span>2-4 days</span>
+            <span>$1,575</span>
+          </div>
+        </div>
+
+        {/* FedEx Shipping Details */}
+        <div className="fedex-details">
+          <h4>FedEx</h4>
+          <span>Est. 5 business days</span>
+          <div className="route">
+            <span>15211, Pittsburgh</span>
+            <span>123, Dhaka</span>
+          </div>
+          <div className="price-time">
+            <span>$312.81</span>
+            <span>Rate expires: Sep 16, 2023 05:58 (UTC)</span>
+          </div>
+          <p>*Any Pickup request received after 2 PM shipper's local time will be scheduled for the following business day.</p>
+        </div>
+
+        <GradientHR />
+
         </>
       )}
     </>
