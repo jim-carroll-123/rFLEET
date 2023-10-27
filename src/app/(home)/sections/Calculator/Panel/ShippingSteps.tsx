@@ -211,14 +211,32 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           )} */}
           <GradientHR />
         
-            {[1, 2].map(() => (
-              <div className="sender-info my-4">
-                <h3>Sender</h3>
-                <p>ABC Corporation</p>
-                <p>151 Merrimac t, Pittsburgh, PA 15211, United States</p>
-                <label><input type="checkbox" /> Use as return Address</label>
+            
+            <div className='flex flex-row'>
+              
+              <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border shadow-md">
+                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
+                <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">151 Merrimac t, Pittsburgh, PA 15211, United States</p>
+                <div className="flex items-center">
+                  <input type="checkbox" className="w-4 h-4 mr-2" />
+                  <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
+                </div>
+
               </div>
-            ))}
+
+              <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border shadow-md">
+                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
+                <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">151 Merrimac t, Pittsburgh, PA 15211, United States</p>
+                <div className="flex items-center">
+                  <input type="checkbox" className="w-4 h-4 mr-2" />
+                  <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
+                </div>
+              </div>
+
+            </div>
+            
 
             <div className="shipping-options flex">
               {/* Best Value */}
