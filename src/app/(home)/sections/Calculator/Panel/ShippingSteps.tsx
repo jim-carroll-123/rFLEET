@@ -169,6 +169,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           </div>
         </div>
         <div className="lg:pt-[32px]">
+          <Tab target="tab">
           <Button
             size="sm"
             glossy
@@ -178,8 +179,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               setDisplayRate(true)
             }}
           >
-            <Tab target="tab">Search</Tab>
+            Search
           </Button>
+          </Tab>
         </div>
       </div>
 
