@@ -15,49 +15,7 @@ import { GlobeLoader } from '@components/ui/Loaders'
 import { Modal } from '@components/ui/Modal'
 import { Title } from '@components/ui/Typography'
 
-import { CarrierEquipment } from './CarrierEquipment'
-import { CompanyInfo } from './CompanyInfo'
-import { CompanyValidation } from './CompanyValidation'
-import { ContactForm } from './ContactForm'
-import { Contacts } from './Contacts'
-import { DriverForm } from './DriverForm'
-import { DriverInfo } from './DriverInfo'
-import { InsurancePolicy } from './InsurancePolicy'
-import { InsurancePolicyForm } from './InsurancePolicyForm'
-import { PayeeInfo } from './PayeeInfo'
-import { PreferedLanes } from './PreferredLanes'
-import { TermsAndConditions } from './TermsAndConditions'
-
 export const OnboardingSection = () => {
-  const [onboardingModalOpen, setOnboardingModalOpen] = useState<boolean>(false)
-  const [loadingNext, setLoadingNext] = useState<boolean>(false)
-  const [activeFormIndex, setActiveFormIndex] = useState<number>(0)
-
-  const gotoNextForm = () => {
-    setLoadingNext(true)
-    setTimeout(() => {
-      setActiveFormIndex((prev) => prev + 1)
-      setLoadingNext(false)
-    }, 1000)
-  }
-
-  useEffect(() => {
-    setActiveFormIndex(0)
-  }, [onboardingModalOpen])
-
-  const onboardingForms: {
-    [key: number]: JSX.Element
-  } = {
-    0: <CompanyInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    1: <TermsAndConditions onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    2: <PayeeInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    3: <CompanyValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    4: <CarrierEquipment onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    5: <DriverInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    6: <PreferedLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    7: <InsurancePolicy onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    8: <Contacts onClose={() => setOnboardingModalOpen(false)} />
-  }
   return (
     <section id="onboarding-section">
       <ParallaxBanner className="parallax-banner" layers={[{ image: bgWireframeGlobe.src, speed: -20 }]}>
@@ -169,17 +127,6 @@ export const OnboardingSection = () => {
           </div>
         </div>
       </ParallaxBanner>
-      {loadingNext ? (
-        <GlobeLoader />
-      ) : (
-        <Modal
-          open={onboardingModalOpen}
-          onClose={() => setOnboardingModalOpen(false)}
-          className="max-h-[96vh]  my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
-        >
-          {onboardingForms[activeFormIndex]}
-        </Modal>
-      )}
     </section>
   )
 }

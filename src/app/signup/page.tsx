@@ -35,6 +35,11 @@ const profileTypes = [
   }
 ]
 
+const onboardingPages: any = {
+  'Truck Company / Owner-Operator': '/carrier-onboarding',
+  'Vendors and Services': '/shipper-onboarding'
+}
+
 export default function Index() {
   const [profileType, setProfileType] = useState<Option>()
   const searchParams = useSearchParams()
@@ -73,6 +78,7 @@ export default function Index() {
               <Input label="Email" placeholder="Enter your email address" leftIcon="email" />
               <div>
                 <Input
+                  type="password"
                   label="Password"
                   placeholder="Enter your email password"
                   leftIcon="lock"
@@ -85,7 +91,7 @@ export default function Index() {
               <div className="flex justify-between">
                 <Check label="I agree to all the Term and Condition and Privacy Policy" />
               </div>
-              <Link href="/verify-email">
+              <Link href={profileType?.value ? onboardingPages[profileType?.value] : '/verify-email'}>
                 <Button full>Get Started</Button>
               </Link>
             </div>
