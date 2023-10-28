@@ -295,16 +295,19 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
           <div className="bg-gradient-rate-card rounded-lg p-4 my-5 border border-[#4f5684]">
             <div className="flex mx-auto">
-              <div className="p-4 pr-14 flex">
-                <div className="bg-white p-3 rounded-sm">
+              <div className="flex w-[30%]">
+                <div className="bg-white p-3 px-10 rounded-sm">
                   <IconFedEx />
                 </div>
               </div>
               <div className="p-2">
                 <LineRate />
               </div>
-              <div className="p-4 ">
-                <div className="pb-6 flex flex-row">Est. <div className='text-white font-poppins text-sm font-semibold leading-4'>5 business days</div></div>
+              <div className="p-4 w-[60%]">
+                <div className='pb-6 flex flex-row'>
+                  <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
+                  <div className='text-white font-poppins text-sm font-semibold leading-4'>5 business days</div>
+                </div>
                 <div className="flex flex-row">
                   <Location />
                   <div className="ml-2 mr-6">15211, Pittsburg</div>
@@ -320,7 +323,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               <div className="p-4 pl-14 flex flex-row">
                 <div className="">
                   <div className='flex flex-row'>
-                    <div className='text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6'>$312.81</div>
+                    <div className='text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 '>$312.81</div>
                     <Button
                       size="sm"
                       className="lg:w-auto w-full h-10"
@@ -328,7 +331,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                       Select
                     </Button>
                   </div>
-                  <span>Rate expires: Sep 16, 2023 05:58 (UTC)</span>
+                  <div className='flex flex-row'>
+                    <div className='text-white font-poppins text-sm font-normal leading-4 pr-2 pt-[2px]'>Rate expires: </div>
+                    <div className='text-white font-poppins text-base font-medium leading-5'>Sep 16, 2023 05:58 (UTC)</div>
+                  </div>
                 </div>
               </div>
             </div>
