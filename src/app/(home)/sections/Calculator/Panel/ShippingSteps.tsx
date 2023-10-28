@@ -212,15 +212,15 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       {isDisplayRate && (
         <>
           <GradientHR />
-          <div className="my-5 text-white font-poppins text-base font-bold leading-6">Load Details</div>
+          <div className="my-5 text-white font-poppins text-[16px] font-bold leading-6">Load Details</div>
           {/* {fields.length > 1 && (
             <>
               {fields.slice(0, fields.length - 1).map((el, index) => ( */}
           <div className="flex border border-white rounded-d-6 mb-5">
-            <div className="shrink-0 text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">Load 44</div>
-            <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">5 Boxes/Crates</div>
-            <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">4X4</div>
-            <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[20px] py-[15px] hover:cursor-pointer">
+            <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
+            <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">2 Boxes/Crates</div>
+            <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">80X80X80 CM 10KG</div>
+            <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
               <Delete
               // onClick={() => {
               //   let newArray = [...fields]
@@ -257,7 +257,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
             <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 border border-[#4f5684] shadow-md">
               <div className="flex flex-row">
-                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Receiver</h3>
                 <div className="ml-auto">
                   <Button size="sm">
                     <Pencil />
