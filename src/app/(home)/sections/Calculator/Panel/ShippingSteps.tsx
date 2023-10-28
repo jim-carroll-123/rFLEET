@@ -293,7 +293,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </div>
           </div>
 
-          <div className="bg-gradient-rate-card rounded-lg p-4 my-5 mr-5 border border-[#4f5684]">
+          <div className="bg-gradient-rate-card rounded-lg p-4 my-5 border border-[#4f5684]">
             <div className="flex mx-auto">
               <div className="p-4 pr-14 flex">
                 <div className="bg-white p-3 rounded-sm">
@@ -304,12 +304,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <LineRate />
               </div>
               <div className="p-4 ">
-                <div className="pb-6">Est. 5 business days</div>
+                <div className="pb-6 flex flex-row">Est. <div className='text-white font-poppins text-sm font-semibold leading-4'>5 business days</div></div>
                 <div className="flex flex-row">
                   <Location />
-                  <div className="ml-1 mr-4">15211, Pittsburg</div>
+                  <div className="ml-2 mr-6">15211, Pittsburg</div>
                   <Plane />
-                  <div className="mx-2"></div>
+                  <div className="mx-2 mr-5 "></div>
                   <Location />
                   <div className="ml-2">1213, Dhaka</div>
                 </div>
@@ -318,8 +318,16 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <LineRate />
               </div>
               <div className="p-4 pl-14 flex flex-row">
-                <div className="price-time">
-                  <span>$312.81</span>
+                <div className="">
+                  <div className='flex flex-row'>
+                    <div className='text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6'>$312.81</div>
+                    <Button
+                      size="sm"
+                      className="lg:w-auto w-full h-10"
+                    >
+                      Select
+                    </Button>
+                  </div>
                   <span>Rate expires: Sep 16, 2023 05:58 (UTC)</span>
                 </div>
               </div>
