@@ -4,25 +4,23 @@ import { useState } from 'react';
 
 
 
-import IconFedEx from '@assets/icons/fedex.svg';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
-import { Circle } from '@components/ui/Circle';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRate';
-import { Location } from '@components/ui/Location';
+import Delete from '@assets/icons/delete.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import { Button } from '@components/ui/Button'
+import { Check } from '@components/ui/Check'
+import { Circle } from '@components/ui/Circle'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRate'
+import { Location } from '@components/ui/Location'
 import { Pencil } from '@components/ui/Pencil'
 import { Plane } from '@components/ui/Plane'
 import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
+import { Tab } from '@components/ui/TabPane'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
-
-
-import { Field } from './types-schemas-constants';
-
+import { Field } from './types-schemas-constants'
 
 interface ShippingStepsProps {
   shippingStepId: string
@@ -90,6 +88,12 @@ const handleButtonClick = (e: { preventDefault: () => void }, data: any) => {
 
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const [isDisplayRate, setDisplayRate] = useState(false)
+
+  const [bgColor, setBgColor] = useState('')
+
+  const handleClick = () => {
+    setBgColor('bg-blue-500 cursor-pointer')
+  }
 
   const fields: Field[] = data.fields
 
@@ -207,13 +211,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">5 Boxes/Crates</div>
             <div className="grow text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">4X4</div>
             <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[20px] py-[15px] hover:cursor-pointer">
-              {/* <Delete
-                      onClick={() => {
-                        let newArray = [...fields]
-                        newArray.splice(index, 1)
-                        setValue('fields', newArray, { shouldValidate: true })
-                      }}
-                    /> */}
+              <Delete
+              // onClick={() => {
+              //   let newArray = [...fields]
+              //   newArray.splice(index, 1)
+              //   setValue('fields', newArray, { shouldValidate: true })
+              // }}
+              />
             </div>
           </div>
           {/* ))}
@@ -241,7 +245,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               </div>
             </div>
 
-            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
+            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 border border-[#4f5684] shadow-md">
               <div className="flex flex-row">
                 <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
                 <div className="ml-auto">
@@ -266,7 +270,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           <div className="flex border border-white rounded-d-6 my-5 justify-content-center">
             <div className="flex mx-auto">
               {/* Best Value */}
-              <div className="p-4 pr-14 flex flex-row">
+              <div className={`p-4 pr-14 flex flex-row ${bgColor}`} onClick={handleClick}>
                 <span>Best Value</span>
                 <span className="p-2">
                   <Circle />
@@ -277,12 +281,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 </span>
                 <span>$1,575</span>
               </div>
+
               <div className="p-2">
                 <Line />
               </div>
 
               {/* Quickest */}
-              <div className="p-4 px-14 flex flex-row">
+              <div className={`p-4 pr-14 flex flex-row ${bgColor}`} onClick={handleClick}>
                 <span>Quickest</span>
                 <span className="p-2">
                   <Circle />
@@ -298,7 +303,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               </div>
 
               {/* Cheapest */}
-              <div className="p-4 pl-14 flex flex-row">
+              <div className={`p-4 pr-14 flex flex-row ${bgColor}`} onClick={handleClick}>
                 <span>Cheapest</span>
                 <span className="p-2">
                   <Circle />
@@ -315,19 +320,80 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           <div className="bg-gradient-rate-card rounded-lg p-4 pr-0 border border-[#4f5684]">
             <div className="flex mx-auto">
               <div className="w-[25%]">
-                <div className='border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card'>Best Value</div>
-                <div className='flex flex-row mt-8'>
+                <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                  Best Value
+                </div>
+                <div className="flex flex-row mt-8">
                   <div className="bg-white w-[200px] rounded-sm">
-                    <div className='p-3 pl-14'>
+                    <div className="p-3 pl-14">
                       <IconFedEx />
                     </div>
                   </div>
-                  <div className='mt-3 ml-2'>
-                    <Star/>
+                  <div className="mt-3 ml-2">
+                    <Star />
                   </div>
-                  <div className='mt-4 ml-1 mr-2'>
-                    (4.5)
+                  <div className="mt-4 ml-1 mr-2">(4.5)</div>
+                </div>
+              </div>
+              <div className="p-2">
+                <LineRate />
+              </div>
+              <div className="p-4 mt-3 w-[47%]">
+                <div className="pb-6 flex flex-row">
+                  <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
+                  <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
+                </div>
+                <div className="flex flex-row">
+                  <Location />
+                  <div className="ml-2 mr-6">15211, Pittsburg</div>
+                  <Plane />
+                  <div className="mx-2 mr-5 "></div>
+                  <Location />
+                  <div className="ml-2">1213, Dhaka</div>
+                </div>
+              </div>
+              <div className="p-2">
+                <LineRate />
+              </div>
+              <div className="py-4 pt-6 flex flex-row">
+                <div className="ml-2">
+                  <div className="flex flex-row">
+                    <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
+                      $312.81
+                    </div>
+                    <Button size="md" className="lg:w-auto w-full h-10">
+                      Select
+                    </Button>
                   </div>
+                  <div className="flex flex-row">
+                    <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
+                      Rate expires:{' '}
+                    </div>
+                    <div className="text-white font-poppins text-[14px] font-medium leading-5">
+                      Sep 16, 2023 05:58 (UTC)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gradient-rate-card rounded-lg p-4 mt-4 pr-0 border border-[#4f5684]">
+            <div className="flex mx-auto">
+              <div className="w-[25%]">
+                <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                  Best Value
+                </div>
+                <div className="flex flex-row mt-8">
+                  <div className="bg-white w-[200px] rounded-sm">
+                    <div className="p-3 pl-14">
+                      <IconFedEx />
+                    </div>
+                  </div>
+                  <div className="mt-3 ml-2">
+                    <Star />
+                  </div>
+                  <div className="mt-4 ml-1 mr-2">(4.5)</div>
                 </div>
               </div>
               <div className="p-2">
