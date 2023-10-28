@@ -4,23 +4,26 @@ import { useState } from 'react';
 
 
 
-import Delete from '@assets/icons/delete.svg'
-import IconFedEx from '@assets/icons/fedex.svg'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Circle } from '@components/ui/Circle'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Line } from '@components/ui/Line'
-import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
-import { cn } from '@lib/utils'
+import Delete from '@assets/icons/delete.svg';
+import IconFedEx from '@assets/icons/fedex.svg';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Circle } from '@components/ui/Circle';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Line } from '@components/ui/Line';
+import { LineRate } from '@components/ui/LineRate';
+import { Location } from '@components/ui/Location';
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
+import { cn } from '@lib/utils';
 
-import { Field } from './types-schemas-constants'
+
+
+import { Field } from './types-schemas-constants';
+
 
 interface ShippingStepsProps {
   shippingStepId: string
@@ -89,10 +92,17 @@ const handleButtonClick = (e: { preventDefault: () => void }, data: any) => {
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const [isDisplayRate, setDisplayRate] = useState(false)
 
-  const [bgColor, setBgColor] = useState('')
+  const [selected, setSelected] = useState<number | null>(null)
 
-  const handleClick = () => {
-    setBgColor('bg-blue-500 cursor-pointer')
+  const handleClick = (index: number) => {
+    setSelected(index)
+  }
+
+  const getBgColor = (index: number) => {
+    if (selected === index) {
+      return 'bg-blue-500'
+    }
+    return ''
   }
 
   const fields: Field[] = data.fields
@@ -267,10 +277,15 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
           <GradientHR />
 
-          <div className="flex border border-white rounded-d-6 my-5 justify-content-center">
-            <div className="flex mx-auto">
+          <div className="flex border border-white rounded-d-6 my-5 p-1 justify-content-center">
+            <div className="flex w-[100%]">
               {/* Best Value */}
-              <div className={`p-4 pr-14 flex flex-row ${bgColor}`} onClick={handleClick}>
+              <div
+                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                  0
+                )}`}
+                onClick={() => handleClick(0)}
+              >
                 <span>Best Value</span>
                 <span className="p-2">
                   <Circle />
@@ -282,12 +297,17 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <span>$1,575</span>
               </div>
 
-              <div className="p-2">
+              <div className="p-1 pt-2">
                 <Line />
               </div>
 
               {/* Quickest */}
-              <div className={`p-4 pr-14 flex flex-row ${bgColor}`} onClick={handleClick}>
+              <div
+                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                  1
+                )}`}
+                onClick={() => handleClick(1)}
+              >
                 <span>Quickest</span>
                 <span className="p-2">
                   <Circle />
@@ -298,12 +318,15 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 </span>
                 <span>$1,575</span>
               </div>
-              <div className="p-2">
+              <div className="p-1 pt-2">
                 <Line />
               </div>
 
               {/* Cheapest */}
-              <div className={`p-4 pr-14 flex flex-row ${bgColor}`} onClick={handleClick}>
+              <div
+                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(2)}`}
+                onClick={() => handleClick(2)}
+              >
                 <span>Cheapest</span>
                 <span className="p-2">
                   <Circle />
