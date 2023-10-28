@@ -4,16 +4,17 @@ import { useState } from 'react';
 
 
 
-import IconFedEx from '@assets/icons/fedex.svg'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Circle } from '@components/ui/Circle'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Line } from '@components/ui/Line'
-import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
+import IconFedEx from '@assets/icons/fedex.svg';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Circle } from '@components/ui/Circle';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Line } from '@components/ui/Line';
+import { LineRate } from '@components/ui/LineRate';
+import { Location } from '@components/ui/Location';
 import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane';
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
 import { Tab } from '@components/ui/TabPane';
 import countries from '@json/countries.json';
 import { cn } from '@lib/utils';
@@ -313,15 +314,26 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
           <div className="bg-gradient-rate-card rounded-lg p-4 pr-0 my-5 border border-[#4f5684]">
             <div className="flex mx-auto">
-              <div className="flex w-[25%]">
-                <div className="bg-white p-3 px-10 rounded-sm">
-                  <IconFedEx />
+              <div className="w-[25%]">
+                <div className='border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card'>Best Value</div>
+                <div className='flex flex-row mt-8'>
+                  <div className="bg-white w-[200px] rounded-sm">
+                    <div className='p-3 pl-14'>
+                      <IconFedEx />
+                    </div>
+                  </div>
+                  <div className='mt-3 ml-2'>
+                    <Star/>
+                  </div>
+                  <div className='mt-4 ml-1 mr-2'>
+                    (4.5)
+                  </div>
                 </div>
               </div>
               <div className="p-2">
                 <LineRate />
               </div>
-              <div className="p-4 w-[47%]">
+              <div className="p-4 mt-3 w-[47%]">
                 <div className="pb-6 flex flex-row">
                   <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                   <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
