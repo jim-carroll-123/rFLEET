@@ -4,33 +4,32 @@ import { useState } from 'react';
 
 
 
-import Delete from '@assets/icons/delete.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
-import { Circle } from '@components/ui/Circle';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRate';
-import { Location } from '@components/ui/Location';
-import { Pencil } from '@components/ui/Pencil';
-import { Plane } from '@components/ui/Plane';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
+import { set } from 'mongoose'
 
+import Delete from '@assets/icons/delete.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import { Button } from '@components/ui/Button'
+import { Check } from '@components/ui/Check'
+import { Circle } from '@components/ui/Circle'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRate'
+import { Location } from '@components/ui/Location'
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
-
-import { Field } from './types-schemas-constants';
-
+import { Field } from './types-schemas-constants'
 
 interface ShippingStepsProps {
   shippingStepId: string
   data: any
 }
 
-const handleSubmit = async (data: any) => {
+const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAction<any>>) => {
   const datatest = {
     rateOptions: {
       carrierIds: ['se-5107649']
@@ -79,19 +78,24 @@ const handleSubmit = async (data: any) => {
     console.log('Da Data: ', data)
     const responseData = await response.json()
     console.log('the response: ', responseData)
+    setRates(responseData)
   } catch (error) {
     alert('Error')
   }
 }
 
-const handleButtonClick = (e: { preventDefault: () => void }, data: any) => {
+const handleButtonClick = (
+  e: { preventDefault: () => void },
+  data: any,
+  setRates: React.Dispatch<React.SetStateAction<any>>
+) => {
   e.preventDefault()
-  handleSubmit(data)
+  handleSubmit(data, setRates)
 }
 
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const [isDisplayRate, setDisplayRate] = useState(false)
-
+  const [rates, setRates] = useState({})
   const [selected, setSelected] = useState<number | null>(null)
 
   const handleClick = (index: number) => {
@@ -106,7 +110,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   }
 
   const fields: Field[] = data.fields
-
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-d-16">
@@ -199,7 +202,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               glossy
               className="lg:w-auto w-full"
               onClick={(e) => {
-                handleButtonClick(e, data)
+                handleButtonClick(e, data, setRates)
                 setDisplayRate(true)
               }}
             >
@@ -245,9 +248,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </Button>
                 </div>
               </div>
-              <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
+              <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
+                {rates.shipFrom?.name}
+              </h4>
               <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
-                151 Merrimac t, Pittsburgh, PA 15211, United States
+                {rates.shipFrom?.addressLine1}, {rates.shipFrom?.cityLocality}, {rates.shipFrom?.stateProvince}{' '}
+                {rates.shipFrom?.postalCode}, {rates.shipFrom?.countryCode}
               </p>
               <div className="flex items-center">
                 <input type="checkbox" className="w-4 h-4 mr-2" />
@@ -264,9 +270,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </Button>
                 </div>
               </div>
-              <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
+              <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">{rates.shipTo?.name}</h4>
               <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
-                151 Merrimac t, Pittsburgh, PA 15211, United States
+                {rates.shipTo?.addressLine1}, {rates.shipTo?.cityLocality}, {rates.shipTo?.stateProvince}{' '}
+                {rates.shipTo?.postalCode}, {rates.shipTo?.countryCode}
               </p>
               <div className="flex items-center">
                 <input type="checkbox" className="w-4 h-4 mr-2" />
@@ -324,7 +331,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
               {/* Cheapest */}
               <div
-                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(2)}`}
+                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                  2
+                )}`}
                 onClick={() => handleClick(2)}
               >
                 <span>Cheapest</span>
@@ -340,127 +349,68 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </div>
           </div>
 
-          <div className="bg-gradient-rate-card rounded-lg p-4 pr-0 border border-[#4f5684]">
-            <div className="flex mx-auto">
-              <div className="w-[25%]">
-                <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
-                  Best Value
-                </div>
-                <div className="flex flex-row mt-8">
-                  <div className="bg-white w-[200px] rounded-sm">
-                    <div className="p-3 pl-14">
-                      <IconFedEx />
-                    </div>
+          {rates.rateResponse?.rates.map((rate: any, index: number) => (
+            <div className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
+              <div className="flex mx-auto">
+                <div className="w-[25%]">
+                  <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                    Best Value
                   </div>
-                  <div className="mt-3 ml-2">
-                    <Star />
-                  </div>
-                  <div className="mt-4 ml-1 mr-2">(4.5)</div>
-                </div>
-              </div>
-              <div className="p-2">
-                <LineRate />
-              </div>
-              <div className="p-4 mt-3 w-[47%]">
-                <div className="pb-6 flex flex-row">
-                  <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                  <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
-                </div>
-                <div className="flex flex-row">
-                  <Location />
-                  <div className="ml-2 mr-6">15211, Pittsburg</div>
-                  <Plane />
-                  <div className="mx-2 mr-5 "></div>
-                  <Location />
-                  <div className="ml-2">1213, Dhaka</div>
-                </div>
-              </div>
-              <div className="p-2">
-                <LineRate />
-              </div>
-              <div className="py-4 pt-6 flex flex-row">
-                <div className="ml-2">
-                  <div className="flex flex-row">
-                    <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
-                      $312.81
+                  <div className="flex flex-row mt-8">
+                    <div className="bg-white w-[200px] rounded-sm">
+                      <div className="p-3 pl-14">
+                        <IconFedEx />
+                      </div>
                     </div>
-                    <Button size="md" className="lg:w-auto w-full h-10">
-                      Select
-                    </Button>
+                    <div className="mt-3 ml-2">
+                      <Star />
+                    </div>
+                    <div className="mt-4 ml-1 mr-2">(4.5)</div>
+                  </div>
+                </div>
+                <div className="p-2">
+                  <LineRate />
+                </div>
+                <div className="p-4 mt-3 w-[47%]">
+                  <div className="pb-6 flex flex-row">
+                    <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
+                    <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
                   </div>
                   <div className="flex flex-row">
-                    <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
-                      Rate expires:{' '}
+                    <Location />
+                    <div className="ml-2 mr-6">15211, Pittsburg</div>
+                    <Plane />
+                    <div className="mx-2 mr-5 "></div>
+                    <Location />
+                    <div className="ml-2">1213, Dhaka</div>
+                  </div>
+                </div>
+                <div className="p-2">
+                  <LineRate />
+                </div>
+                <div className="py-4 pt-6 flex flex-row">
+                  <div className="ml-2">
+                    <div className="flex flex-row">
+                      <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
+                        ${rates.rateResponse?.rates[index].shippingAmount?.amount}
+                      </div>
+                      <Button size="md" className="lg:w-auto w-full h-10">
+                        Select
+                      </Button>
                     </div>
-                    <div className="text-white font-poppins text-[14px] font-medium leading-5">
-                      Sep 16, 2023 05:58 (UTC)
+                    <div className="flex flex-row">
+                      <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
+                        Rate expires:{' '}
+                      </div>
+                      <div className="text-white font-poppins text-[14px] font-medium leading-5">
+                        Sep 16, 2023 05:58 (UTC)
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="bg-gradient-rate-card rounded-lg p-4 mt-4 pr-0 border border-[#4f5684]">
-            <div className="flex mx-auto">
-              <div className="w-[25%]">
-                <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
-                  Best Value
-                </div>
-                <div className="flex flex-row mt-8">
-                  <div className="bg-white w-[200px] rounded-sm">
-                    <div className="p-3 pl-14">
-                      <IconFedEx />
-                    </div>
-                  </div>
-                  <div className="mt-3 ml-2">
-                    <Star />
-                  </div>
-                  <div className="mt-4 ml-1 mr-2">(4.5)</div>
-                </div>
-              </div>
-              <div className="p-2">
-                <LineRate />
-              </div>
-              <div className="p-4 mt-3 w-[47%]">
-                <div className="pb-6 flex flex-row">
-                  <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                  <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
-                </div>
-                <div className="flex flex-row">
-                  <Location />
-                  <div className="ml-2 mr-6">15211, Pittsburg</div>
-                  <Plane />
-                  <div className="mx-2 mr-5 "></div>
-                  <Location />
-                  <div className="ml-2">1213, Dhaka</div>
-                </div>
-              </div>
-              <div className="p-2">
-                <LineRate />
-              </div>
-              <div className="py-4 pt-6 flex flex-row">
-                <div className="ml-2">
-                  <div className="flex flex-row">
-                    <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
-                      $312.81
-                    </div>
-                    <Button size="md" className="lg:w-auto w-full h-10">
-                      Select
-                    </Button>
-                  </div>
-                  <div className="flex flex-row">
-                    <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
-                      Rate expires:{' '}
-                    </div>
-                    <div className="text-white font-poppins text-[14px] font-medium leading-5">
-                      Sep 16, 2023 05:58 (UTC)
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </>
       )}
     </>
