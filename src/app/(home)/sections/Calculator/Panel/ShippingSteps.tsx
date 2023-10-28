@@ -12,12 +12,16 @@ import { GradientHR } from '@components/ui/GradientHR'
 import { Line } from '@components/ui/Line'
 import { LineRate } from '@components/ui/LineRate'
 import { Location } from '@components/ui/Location'
-import { Plane } from '@components/ui/Plane'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
-import { cn } from '@lib/utils'
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
+import { cn } from '@lib/utils';
 
-import { Field } from './types-schemas-constants'
+
+
+import { Field } from './types-schemas-constants';
+
 
 interface ShippingStepsProps {
   shippingStepId: string
@@ -184,7 +188,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 setDisplayRate(true)
               }}
             >
-              Search
+              {isDisplayRate ? <Pencil /> : 'Search'}
             </Button>
           </Tab>
         </div>
@@ -218,7 +222,14 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
           <div className="flex flex-row">
             <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
-              <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+              <div className="flex flex-row">
+                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                <div className="ml-auto">
+                  <Button size="sm">
+                    <Pencil />
+                  </Button>
+                </div>
+              </div>
               <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
               <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
                 151 Merrimac t, Pittsburgh, PA 15211, United States
@@ -230,7 +241,14 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </div>
 
             <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
-              <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+              <div className="flex flex-row">
+                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                <div className="ml-auto">
+                  <Button size="sm">
+                    <Pencil />
+                  </Button>
+                </div>
+              </div>
               <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
               <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
                 151 Merrimac t, Pittsburgh, PA 15211, United States
@@ -293,9 +311,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </div>
           </div>
 
-          <div className="bg-gradient-rate-card rounded-lg p-4 my-5 border border-[#4f5684]">
+          <div className="bg-gradient-rate-card rounded-lg p-4 pr-0 my-5 border border-[#4f5684]">
             <div className="flex mx-auto">
-              <div className="flex w-[30%]">
+              <div className="flex w-[25%]">
                 <div className="bg-white p-3 px-10 rounded-sm">
                   <IconFedEx />
                 </div>
@@ -303,10 +321,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               <div className="p-2">
                 <LineRate />
               </div>
-              <div className="p-4 w-[60%]">
-                <div className='pb-6 flex flex-row'>
+              <div className="p-4 w-[47%]">
+                <div className="pb-6 flex flex-row">
                   <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                  <div className='text-white font-poppins text-sm font-semibold leading-4'>5 business days</div>
+                  <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
                 </div>
                 <div className="flex flex-row">
                   <Location />
@@ -320,20 +338,23 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               <div className="p-2">
                 <LineRate />
               </div>
-              <div className="p-4 pl-14 flex flex-row">
-                <div className="">
-                  <div className='flex flex-row'>
-                    <div className='text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 '>$312.81</div>
-                    <Button
-                      size="sm"
-                      className="lg:w-auto w-full h-10"
-                    >
+              <div className="py-4 pt-6 flex flex-row">
+                <div className="ml-2">
+                  <div className="flex flex-row">
+                    <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
+                      $312.81
+                    </div>
+                    <Button size="md" className="lg:w-auto w-full h-10">
                       Select
                     </Button>
                   </div>
-                  <div className='flex flex-row'>
-                    <div className='text-white font-poppins text-sm font-normal leading-4 pr-2 pt-[2px]'>Rate expires: </div>
-                    <div className='text-white font-poppins text-base font-medium leading-5'>Sep 16, 2023 05:58 (UTC)</div>
+                  <div className="flex flex-row">
+                    <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
+                      Rate expires:{' '}
+                    </div>
+                    <div className="text-white font-poppins text-[14px] font-medium leading-5">
+                      Sep 16, 2023 05:58 (UTC)
+                    </div>
                   </div>
                 </div>
               </div>
