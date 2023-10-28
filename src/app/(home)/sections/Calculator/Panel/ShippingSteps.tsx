@@ -4,11 +4,15 @@ import { useState } from 'react';
 
 
 
+import IconFedEx from '@assets/icons/fedex.svg'
 import { Button } from '@components/ui/Button'
 import { Check } from '@components/ui/Check'
 import { Circle } from '@components/ui/Circle'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRate'
+import { Location } from '@components/ui/Location'
+import { Plane } from '@components/ui/Plane'
 import { Tab } from '@components/ui/TabPane'
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
@@ -213,7 +217,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           <GradientHR />
 
           <div className="flex flex-row">
-            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border shadow-md">
+            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
               <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
               <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
               <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
@@ -225,7 +229,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               </div>
             </div>
 
-            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border shadow-md">
+            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
               <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
               <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">ABC Corporation</h4>
               <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
@@ -243,7 +247,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           <div className="flex border border-white rounded-d-6 my-5 justify-content-center">
             <div className="flex mx-auto">
               {/* Best Value */}
-              <div className="p-4 flex flex-row">
+              <div className="p-4 pr-14 flex flex-row">
                 <span>Best Value</span>
                 <span className="p-2">
                   <Circle />
@@ -259,7 +263,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               </div>
 
               {/* Quickest */}
-              <div className="p-4 flex flex-row">
+              <div className="p-4 px-14 flex flex-row">
                 <span>Quickest</span>
                 <span className="p-2">
                   <Circle />
@@ -275,7 +279,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               </div>
 
               {/* Cheapest */}
-              <div className="p-4 flex flex-row">
+              <div className="p-4 pl-14 flex flex-row">
                 <span>Cheapest</span>
                 <span className="p-2">
                   <Circle />
@@ -289,25 +293,38 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </div>
           </div>
 
-          {/* FedEx Shipping Details */}
-          <div className="fedex-details">
-            <h4>FedEx</h4>
-            <span>Est. 5 business days</span>
-            <div className="route">
-              <span>15211, Pittsburgh</span>
-              <span>123, Dhaka</span>
+          <div className="bg-gradient-rate-card rounded-lg p-4 my-5 mr-5 border border-[#4f5684]">
+            <div className="flex mx-auto">
+              <div className="p-4 pr-14 flex">
+                <div className="bg-white p-3 rounded-sm">
+                  <IconFedEx />
+                </div>
+              </div>
+              <div className="p-2">
+                <LineRate />
+              </div>
+              <div className="p-4 ">
+                <div className="pb-6">Est. 5 business days</div>
+                <div className="flex flex-row">
+                  <Location />
+                  <div className="ml-1 mr-4">15211, Pittsburg</div>
+                  <Plane />
+                  <div className="mx-2"></div>
+                  <Location />
+                  <div className="ml-2">1213, Dhaka</div>
+                </div>
+              </div>
+              <div className="p-2">
+                <LineRate />
+              </div>
+              <div className="p-4 pl-14 flex flex-row">
+                <div className="price-time">
+                  <span>$312.81</span>
+                  <span>Rate expires: Sep 16, 2023 05:58 (UTC)</span>
+                </div>
+              </div>
             </div>
-            <div className="price-time">
-              <span>$312.81</span>
-              <span>Rate expires: Sep 16, 2023 05:58 (UTC)</span>
-            </div>
-            <p>
-              *Any Pickup request received after 2 PM shipper's local time will be scheduled for the following business
-              day.
-            </p>
           </div>
-
-          <GradientHR />
         </>
       )}
     </>
@@ -350,18 +367,6 @@ export const ShippingStep = ({
       >
         {children}
       </Tab>
-    </div>
-  )
-}
-
-const ShippingOption = ({ label, duration, price }) => {
-  return (
-    <div className="p-4 border rounded shadow-md bg-white">
-      <p className="text-blue-600 font-bold">{label}</p>
-      <div className="flex justify-between mt-2">
-        <p>{duration}</p>
-        <p className="font-bold">${price}</p>
-      </div>
     </div>
   )
 }

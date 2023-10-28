@@ -197,6 +197,8 @@ const config: Config = {
 
         'gradient-rate-card': 'linear-gradient(117deg, #1C194B 0.9%, rgba(47, 128, 237, 0.20) 100%)',
 
+        'scm-application-gradient': 'var(--scm-application-gradiant-strock-gradiant, rgba(255, 255, 255, 0.30))',
+
         'gradient-for-onboarding-section':
           'linear-gradient(180deg, rgba(8,0,9,1) 0%, rgba(8,0,9,1) 6%, rgba(8,0,9,0) 16%, rgba(8,0,9,0) 80%, rgba(8,0,9,0.8) 100%)',
 
