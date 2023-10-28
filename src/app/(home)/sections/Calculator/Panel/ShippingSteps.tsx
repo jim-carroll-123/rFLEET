@@ -312,7 +312,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             </div>
           </div>
 
-          <div className="bg-gradient-rate-card rounded-lg p-4 pr-0 my-5 border border-[#4f5684]">
+          <div className="bg-gradient-rate-card rounded-lg p-4 pr-0 border border-[#4f5684]">
             <div className="flex mx-auto">
               <div className="w-[25%]">
                 <div className='border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card'>Best Value</div>
