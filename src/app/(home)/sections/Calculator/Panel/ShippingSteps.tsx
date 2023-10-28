@@ -374,15 +374,15 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <div className="p-4 mt-3 w-[47%]">
                   <div className="pb-6 flex flex-row">
                     <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                    <div className="text-white font-poppins text-sm font-semibold leading-4">5 business days</div>
+                    <div className="text-white font-poppins text-sm font-semibold leading-4">{rates.rateResponse?.rates[index].carrierDeliveryDays} business days</div>
                   </div>
                   <div className="flex flex-row">
                     <Location />
-                    <div className="ml-2 mr-6">15211, Pittsburg</div>
+                    <div className="ml-2 mr-6">{rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}</div>
                     <Plane />
                     <div className="mx-2 mr-5 "></div>
                     <Location />
-                    <div className="ml-2">1213, Dhaka</div>
+                    <div className="ml-2">{rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}</div>
                   </div>
                 </div>
                 <div className="p-2">
