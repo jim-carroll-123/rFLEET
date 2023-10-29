@@ -267,9 +267,17 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               <div className="flex flex-row">
                 <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
                 <div className="ml-auto">
+                <Tab
+                  target="tab-ship-origin"
+                  onClick={() => {
+                    setDisplayRate(false)
+                  }}
+                >
                   <Button size="sm">
-                    <Pencil />
-                  </Button>
+                      <Pencil />
+                    </Button>
+                </Tab>
+             
                 </div>
               </div>
               <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
@@ -289,9 +297,16 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               <div className="flex flex-row">
                 <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Receiver</h3>
                 <div className="ml-auto">
+                <Tab
+                  target="tab-ship-destination"
+                  onClick={() => {
+                    setDisplayRate(false)
+                  }}
+                >
                   <Button size="sm">
-                    <Pencil />
-                  </Button>
+                      <Pencil />
+                    </Button>
+                </Tab>
                 </div>
               </div>
               <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">{rates.shipTo?.name}</h4>
@@ -380,9 +395,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
                     Best Value
                   </div>
-                  <div className="flex flex-row mt-8">
+                  <div className="flex flex-row mt-4">
                     <div className="bg-white w-[200px] rounded-sm">
-                      <div className="p-3 pl-14">
+                      <div className="p-3 flex justify-center items-center">
                         {carrierProviderIcons[rates.rateResponse?.rates[index].serviceType?.trim().split(' ')[0]]}
                       </div>
                     </div>
@@ -392,7 +407,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                     <div className="mt-4 ml-1 mr-2">(4.5)</div>
                   </div>
-                  <div>{rates.rateResponse?.rates[index].serviceType} </div>
+                  <div className="w-[200px] pt-1 flex justify-center items-center">{rates.rateResponse?.rates[index].serviceType} </div>
                 </div>
                 <div className="p-2">
                   <LineRate />
@@ -423,9 +438,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <div className="py-4 pt-6 flex flex-row">
                   <div className="ml-2">
                     <div className="flex flex-row">
-                      <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
-                        ${rates.rateResponse?.rates[index].shippingAmount?.amount}
-                      </div>
+                    <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
+                        ${Number(rates.rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(2)}
+                    </div>
+
                       <Button size="md" className="lg:w-auto w-full h-10">
                         Select
                       </Button>
