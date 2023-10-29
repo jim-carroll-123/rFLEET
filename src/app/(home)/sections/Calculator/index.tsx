@@ -12,7 +12,7 @@ export const CalculatorSection = () => {
   return (
     <section id="calculator-section" className="relative">
       <ParallaxBanner
-        className="parallax-banner h-[1277px]"
+        className="parallax-banner lg:h-[738px] md:h-[1118px] sm:h-[1277px] h-[1044px]"
         layers={[{ image: planetEarth.src, speed: -20 }]}
         //parallax-banner lg:h-[738px] md:h-[1118px] sm:h-[1277px] h-[1044px]
       />

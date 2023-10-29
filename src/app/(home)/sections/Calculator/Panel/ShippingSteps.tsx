@@ -231,7 +231,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       </div>
 
       {isDisplayRate && (
-        <>
+        <div className="backdrop-blur -mx-[24px] px-[24px] -mb-[24px] pb-[24px]">
           <GradientHR />
           <div className="my-5 text-white font-poppins text-[16px] font-bold leading-6">Load Details</div>
           {/* {fields.length > 1 && (
@@ -519,7 +519,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               Invalid Rate
             </div>
           ))}
-        </>
+        </div>
       )}
     </>
   )

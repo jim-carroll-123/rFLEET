@@ -169,7 +169,8 @@ export const Panel = () => {
   }
 
   return (
-    <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[18px] lg:p-[24px] rounded-[20px]">
+    <div className="relative border bg-gradient-blur-dialog border-solid border-[#ffffff30] lg:p-[24px] rounded-[20px]">
+      {/* {bg-gradient-blur-dialog backdrop-blur-[12px]} */}
       <ButtonSelect
         options={shippingMethods}
         value={shippingMethod}
