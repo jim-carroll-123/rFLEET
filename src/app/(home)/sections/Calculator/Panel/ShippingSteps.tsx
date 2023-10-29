@@ -239,12 +239,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               {fields.slice(0, fields.length - 1).map((el, index) => ( */}
           <div className="flex border border-white rounded-d-6 mb-5">
             <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
-            <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">{rates.packages[0]?.packageCode}</div>
+            <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">{rates.packages?.[0].packageCode}</div>
             <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
-              {rates.packages[0]?.dimensions.length}X{rates.packages[0]?.dimensions.width}X
-              {rates.packages[0]?.dimensions.height} {rates.packages[0]?.dimensions.unit}
+              {rates.packages?.[0].dimensions.length}X{rates.packages?.[0].dimensions.width}X
+              {rates.packages?.[0].dimensions.height} {rates.packages?.[0].dimensions.unit}
               {' / '}
-              {rates.packages[0]?.weight.value} {rates.packages[0]?.weight.unit}
+              {rates.packages?.[0].weight.value} {rates.packages?.[0].weight.unit}
               {'s'}
             </div>
             <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
