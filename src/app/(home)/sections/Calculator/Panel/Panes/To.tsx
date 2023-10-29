@@ -75,7 +75,8 @@ export const To = ({ methods, onSubmit }: Props) => {
         addressLine1: watch('toAddress'),
         cityLocality: watch('toCity'),
         postalCode: watch('toPostalCode'),
-        countryCode: watch('toCountry')
+        countryCode: watch('toCountry'),
+        name: watch('toName')
       }
     ]
 
@@ -98,6 +99,7 @@ export const To = ({ methods, onSubmit }: Props) => {
         setValue('toAddress', data[0].normalizedAddress.addressLine1, { shouldValidate: true })
         setValue('toPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
         setValue('toState', data[0].normalizedAddress.stateProvince, { shouldValidate: true })
+        setValue('toName', data[0].normalizedAddress.name, { shouldValidate: true })
         handleSubmit(onSubmit)()
       } else {
         alert('The address is not valid. Please check it and try again.')
@@ -138,13 +140,23 @@ export const To = ({ methods, onSubmit }: Props) => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">City</div>
             <Input
               value={watch('toCity')}
               onChange={(value) => setValue('toCity', value, { shouldValidate: true })}
               placeholder="Enter the City"
               error={errors.toCity?.message}
+            />
+          </div> */}
+
+          <div>
+            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
+            <Input
+              value={watch('toPostalCode')}
+              onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
+              placeholder="Enter Postal Code"
+              error={errors.toPostalCode?.message}
             />
           </div>
 
@@ -159,14 +171,16 @@ export const To = ({ methods, onSubmit }: Props) => {
           </div>
 
           <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
+            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Name / Company (Optional)</div>
             <Input
-              value={watch('toPostalCode')}
-              onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
-              placeholder="Enter Postal Code"
-              error={errors.toPostalCode?.message}
+              value={watch('toName')}
+              onChange={(value) => setValue('toName', value, { shouldValidate: true })}
+              placeholder="Enter Name"
+              error={errors.toName?.message}
             />
           </div>
+
+          
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
           <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">

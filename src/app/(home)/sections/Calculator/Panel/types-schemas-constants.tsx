@@ -64,7 +64,8 @@ export const fromSchema = yup.object({
   fromAddress: yup.string().required(),
   fromCity: yup.string().required(),
   fromPostalCode: yup.string().required(),
-  fromState: yup.string().required()
+  fromState: yup.string().required(),
+  fromName: yup.string().required()
 })
 
 export const toSchema = yup.object({
@@ -73,7 +74,8 @@ export const toSchema = yup.object({
   toAddress: yup.string().required(),
   toCity: yup.string().required(),
   toPostalCode: yup.string().required(),
-  toState: yup.string().required()
+  toState: yup.string().required(),
+  toName: yup.string().required()
 })
 
 export const loadTypeSchema: any & { fields: Field[] } = yup.object({

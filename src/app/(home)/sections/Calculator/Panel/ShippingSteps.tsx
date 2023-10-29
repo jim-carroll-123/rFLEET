@@ -17,15 +17,18 @@ import { Circle } from '@components/ui/Circle'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Line } from '@components/ui/Line'
 import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
-import { cn } from '@lib/utils'
+import { Location } from '@components/ui/Location';
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
+import { cn } from '@lib/utils';
 
-import { Field } from './types-schemas-constants'
+
+
+import { Field } from './types-schemas-constants';
+
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
@@ -46,7 +49,7 @@ const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAc
     shipment: {
       validateAddress: 'no_validation',
       shipTo: {
-        name: 'Amanda Miller',
+        name: data.toName,
         phone: '555-555-5555',
         addressLine1: data.toAddress,
         stateProvince: data.toState,
@@ -56,7 +59,7 @@ const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAc
       },
       shipFrom: {
         companyName: 'Example Corp.',
-        name: 'John Doe',
+        name: data.fromName,
         phone: '111-111-1111',
         addressLine1: data.fromAddress,
         stateProvince: data.fromState,
@@ -69,6 +72,12 @@ const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAc
           weight: {
             value: data.fields[0].weight,
             unit: 'ounce'
+          },
+          dimensions: {
+            unit: 'inch',
+            length: data.fields[0].length,
+            width: data.fields[0].width,
+            height: data.fields[0].height
           }
         }
       ]
@@ -230,8 +239,14 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               {fields.slice(0, fields.length - 1).map((el, index) => ( */}
           <div className="flex border border-white rounded-d-6 mb-5">
             <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
-            <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">2 Boxes/Crates</div>
-            <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">80X80X80 CM 10KG</div>
+            <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">{rates.packages[0]?.packageCode}</div>
+            <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
+              {rates.packages[0]?.dimensions.length}X{rates.packages[0]?.dimensions.width}X
+              {rates.packages[0]?.dimensions.height} {rates.packages[0]?.dimensions.unit}
+              {' / '}
+              {rates.packages[0]?.weight.value} {rates.packages[0]?.weight.unit}
+              {'s'}
+            </div>
             <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
               <Delete
               // onClick={() => {
@@ -367,7 +382,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </div>
                   <div className="flex flex-row mt-8">
                     <div className="bg-white w-[200px] rounded-sm">
-                      <div className="p-3 pl-14">{carrierProviderIcons[rates.rateResponse?.rates[index].serviceType?.trim().split(' ')[0]]}</div>
+                      <div className="p-3 pl-14">
+                        {carrierProviderIcons[rates.rateResponse?.rates[index].serviceType?.trim().split(' ')[0]]}
+                      </div>
                     </div>
 
                     <div className="mt-3 ml-2">
@@ -424,7 +441,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </div>
                 </div>
               </div>
-             
             </div>
           ))}
 
@@ -437,7 +453,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </div>
                   <div className="flex flex-row mt-8">
                     <div className="bg-white w-[200px] rounded-sm">
-                      <div className="p-3 pl-14">{carrierProviderIcons[rates.rateResponse?.invalidRates[index].serviceType?.trim().split(' ')[0]]}</div>
+                      <div className="p-3 pl-14">
+                        {
+                          carrierProviderIcons[
+                            rates.rateResponse?.invalidRates[index].serviceType?.trim().split(' ')[0]
+                          ]
+                        }
+                      </div>
                     </div>
 
                     <div className="mt-3 ml-2">

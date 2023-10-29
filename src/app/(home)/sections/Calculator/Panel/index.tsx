@@ -58,7 +58,8 @@ export const Panel = () => {
       fromAddress: '',
       fromCity: '',
       fromPostalCode: '',
-      fromState: ''
+      fromState: '',
+      fromName: ''
     }
   })
 
@@ -71,6 +72,7 @@ export const Panel = () => {
       toAddress: '',
       toCity: '',
       toPostalCode: '',
+      toName: '',
       toState: ''
     }
   })
