@@ -407,13 +407,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   <div className="flex flex-row">
                     <Location />
                     <div className="ml-2 mr-6">
-                      {rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}
+                      {rates.shipFrom?.postalCode?.trim().split('-')[0]}, {rates.shipFrom?.cityLocality}
                     </div>
                     <Plane />
                     <div className="mx-2 mr-5 "></div>
                     <Location />
                     <div className="ml-2">
-                      {rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}
+                      {rates.shipTo?.postalCode?.trim().split('-')[0]}, {rates.shipTo?.cityLocality}
                     </div>
                   </div>
                 </div>
