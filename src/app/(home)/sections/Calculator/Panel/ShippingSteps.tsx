@@ -7,7 +7,10 @@ import { useState } from 'react';
 import { set } from 'mongoose'
 
 import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
 import IconFedEx from '@assets/icons/fedex.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
 import { Button } from '@components/ui/Button'
 import { Check } from '@components/ui/Check'
 import { Circle } from '@components/ui/Circle'
@@ -24,6 +27,12 @@ import { cn } from '@lib/utils'
 
 import { Field } from './types-schemas-constants'
 
+const carrierProviderIcons: any = {
+  USPS: <IconPostalService />,
+  FedEx: <IconFedEx />,
+  DHL: <IconDHL />,
+  UPS: <img src={uPsLogo.src} />
+}
 interface ShippingStepsProps {
   shippingStepId: string
   data: any
@@ -358,15 +367,15 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </div>
                   <div className="flex flex-row mt-8">
                     <div className="bg-white w-[200px] rounded-sm">
-                      <div className="p-3 pl-14">
-                        <IconFedEx />
-                      </div>
+                      <div className="p-3 pl-14">{carrierProviderIcons[rates.rateResponse?.rates[index].serviceType?.trim().split(' ')[0]]}</div>
                     </div>
+
                     <div className="mt-3 ml-2">
                       <Star />
                     </div>
                     <div className="mt-4 ml-1 mr-2">(4.5)</div>
                   </div>
+                  <div>{rates.rateResponse?.rates[index].serviceType} </div>
                 </div>
                 <div className="p-2">
                   <LineRate />
@@ -374,15 +383,21 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <div className="p-4 mt-3 w-[47%]">
                   <div className="pb-6 flex flex-row">
                     <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                    <div className="text-white font-poppins text-sm font-semibold leading-4">{rates.rateResponse?.rates[index].carrierDeliveryDays} business days</div>
+                    <div className="text-white font-poppins text-sm font-semibold leading-4">
+                      {rates.rateResponse?.rates[index].carrierDeliveryDays} business days
+                    </div>
                   </div>
                   <div className="flex flex-row">
                     <Location />
-                    <div className="ml-2 mr-6">{rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}</div>
+                    <div className="ml-2 mr-6">
+                      {rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}
+                    </div>
                     <Plane />
                     <div className="mx-2 mr-5 "></div>
                     <Location />
-                    <div className="ml-2">{rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}</div>
+                    <div className="ml-2">
+                      {rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}
+                    </div>
                   </div>
                 </div>
                 <div className="p-2">
