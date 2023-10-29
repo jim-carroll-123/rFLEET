@@ -4,31 +4,30 @@ import { useState } from 'react';
 
 
 
-import { set } from 'mongoose'
+import { set } from 'mongoose';
 
-import Delete from '@assets/icons/delete.svg'
-import IconDHL from '@assets/icons/dhl.svg'
-import IconFedEx from '@assets/icons/fedex.svg'
-import IconPostalService from '@assets/icons/postal-service.svg'
-import uPsLogo from '@assets/images/UPS-logo.png'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Circle } from '@components/ui/Circle'
-import { GradientHR } from '@components/ui/GradientHR'
+
+
+import Delete from '@assets/icons/delete.svg';
+import IconDHL from '@assets/icons/dhl.svg';
+import IconFedEx from '@assets/icons/fedex.svg';
+import IconPostalService from '@assets/icons/postal-service.svg';
+import uPsLogo from '@assets/images/UPS-logo.png';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Circle } from '@components/ui/Circle';
+import { GradientHR } from '@components/ui/GradientHR';
 import { Line } from '@components/ui/Line'
 import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location';
-import { Pencil } from '@components/ui/Pencil';
-import { Plane } from '@components/ui/Plane';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
+import { Location } from '@components/ui/Location'
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
-
-
-import { Field } from './types-schemas-constants';
-
+import { Field } from './types-schemas-constants'
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
@@ -41,7 +40,11 @@ interface ShippingStepsProps {
   data: any
 }
 
-const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAction<any>>) => {
+const handleSubmit = async (
+  data: any,
+  setRates: React.Dispatch<React.SetStateAction<any>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+) => {
   const datatest = {
     rateOptions: {
       carrierIds: ['se-5107649']
@@ -97,6 +100,7 @@ const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAc
     const responseData = await response.json()
     console.log('the response: ', responseData)
     setRates(responseData)
+    setIsLoading(false)
   } catch (error) {
     alert('Error')
   }
@@ -105,15 +109,18 @@ const handleSubmit = async (data: any, setRates: React.Dispatch<React.SetStateAc
 const handleButtonClick = (
   e: { preventDefault: () => void },
   data: any,
-  setRates: React.Dispatch<React.SetStateAction<any>>
+  setRates: React.Dispatch<React.SetStateAction<any>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   e.preventDefault()
-  handleSubmit(data, setRates)
+  handleSubmit(data, setRates, setIsLoading)
 }
 
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const [isDisplayRate, setDisplayRate] = useState(false)
   const [rates, setRates] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
   const [selected, setSelected] = useState<number | null>(null)
 
   const handleClick = (index: number) => {
@@ -220,7 +227,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               glossy
               className="lg:w-auto w-full"
               onClick={(e) => {
-                handleButtonClick(e, data, setRates)
+                if (Object.keys(rates).length > 0) {
+                  setRates((prevState) => ({ ...prevState, isLoading: true }))
+                }
+                handleButtonClick(e, data, setRates, setIsLoading)
                 setDisplayRate(true)
               }}
             >
@@ -229,312 +239,332 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
           </Tab>
         </div>
       </div>
-
-      {isDisplayRate && (
-        <div className="backdrop-blur -mx-[24px] px-[24px] -mb-[24px] pb-[24px]">
-          <GradientHR />
-          <div className="my-5 text-white font-poppins text-[16px] font-bold leading-6">Load Details</div>
-          {/* {fields.length > 1 && (
-            <>
-              {fields.slice(0, fields.length - 1).map((el, index) => ( */}
-          <div className="flex border border-white rounded-d-6 mb-5">
-            <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
-            <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">{rates.packages?.[0].packageCode}</div>
-            <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
-              {rates.packages?.[0].dimensions.length}X{rates.packages?.[0].dimensions.width}X
-              {rates.packages?.[0].dimensions.height} {rates.packages?.[0].dimensions.unit}
-              {' / '}
-              {rates.packages?.[0].weight.value} {rates.packages?.[0].weight.unit}
-              {'s'}
-            </div>
-            <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
-              <Delete
-              // onClick={() => {
-              //   let newArray = [...fields]
-              //   newArray.splice(index, 1)
-              //   setValue('fields', newArray, { shouldValidate: true })
-              // }}
-              />
-            </div>
-          </div>
-          {/* ))}
-            </>
-          )} */}
-          <GradientHR />
-
-          <div className="flex flex-row">
-            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
-              <div className="flex flex-row">
-                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
-                <div className="ml-auto">
-                <Tab
-                  target="tab-ship-origin"
-                  onClick={() => {
-                    setDisplayRate(false)
-                  }}
-                >
-                  <Button size="sm">
-                      <Pencil />
-                    </Button>
-                </Tab>
-             
-                </div>
-              </div>
-              <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
-                {rates.shipFrom?.name}
-              </h4>
-              <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
-                {rates.shipFrom?.addressLine1}, {rates.shipFrom?.cityLocality}, {rates.shipFrom?.stateProvince}{' '}
-                {rates.shipFrom?.postalCode}, {rates.shipFrom?.countryCode}
-              </p>
-              <div className="flex items-center">
-                <input type="checkbox" className="w-4 h-4 mr-2" />
-                <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
-              </div>
-            </div>
-
-            <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 border border-[#4f5684] shadow-md">
-              <div className="flex flex-row">
-                <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Receiver</h3>
-                <div className="ml-auto">
-                <Tab
-                  target="tab-ship-destination"
-                  onClick={() => {
-                    setDisplayRate(false)
-                  }}
-                >
-                  <Button size="sm">
-                      <Pencil />
-                    </Button>
-                </Tab>
-                </div>
-              </div>
-              <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">{rates.shipTo?.name}</h4>
-              <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
-                {rates.shipTo?.addressLine1}, {rates.shipTo?.cityLocality}, {rates.shipTo?.stateProvince}{' '}
-                {rates.shipTo?.postalCode}, {rates.shipTo?.countryCode}
-              </p>
-              <div className="flex items-center">
-                <input type="checkbox" className="w-4 h-4 mr-2" />
-                <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
-              </div>
-            </div>
-          </div>
-
-          <GradientHR />
-
-          <div className="flex border border-white rounded-d-6 my-5 p-1 justify-content-center">
-            <div className="flex w-[100%]">
-              {/* Best Value */}
-              <div
-                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
-                  0
-                )}`}
-                onClick={() => handleClick(0)}
-              >
-                <span>Best Value</span>
-                <span className="p-2">
-                  <Circle />
-                </span>
-                <span>2-4 days</span>
-                <span className="p-2">
-                  <Circle />
-                </span>
-                <span>$1,575</span>
-              </div>
-
-              <div className="p-1 pt-2">
-                <Line />
-              </div>
-
-              {/* Quickest */}
-              <div
-                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
-                  1
-                )}`}
-                onClick={() => handleClick(1)}
-              >
-                <span>Quickest</span>
-                <span className="p-2">
-                  <Circle />
-                </span>
-                <span>2-4 days</span>
-                <span className="p-2">
-                  <Circle />
-                </span>
-                <span>$1,575</span>
-              </div>
-              <div className="p-1 pt-2">
-                <Line />
-              </div>
-
-              {/* Cheapest */}
-              <div
-                className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
-                  2
-                )}`}
-                onClick={() => handleClick(2)}
-              >
-                <span>Cheapest</span>
-                <span className="p-2">
-                  <Circle />
-                </span>
-                <span>2-4 days</span>
-                <span className="p-2">
-                  <Circle />
-                </span>
-                <span>$1,575</span>
-              </div>
-            </div>
-          </div>
-
-          {rates.rateResponse?.rates.map((rate: any, index: number) => (
-            <div className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
-              <div className="flex mx-auto">
-                <div className="w-[25%]">
-                  <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
-                    Best Value
-                  </div>
-                  <div className="flex flex-row mt-4">
-                    <div className="bg-white w-[200px] rounded-sm">
-                      <div className="p-3 flex justify-center items-center">
-                        {carrierProviderIcons[rates.rateResponse?.rates[index].serviceType?.trim().split(' ')[0]]}
-                      </div>
+      {isLoading ? (
+        <div>Loading..</div>
+      ) : (
+        <div>
+          {Object.keys(rates).length === 0 ? (
+            <div>No Data</div>
+          ) : (
+            <div>
+              {isDisplayRate && (
+                <div className="backdrop-blur -mx-[24px] px-[24px] -mb-[24px] pb-[24px]">
+                  <GradientHR />
+                  <div className="my-5 text-white font-poppins text-[16px] font-bold leading-6">Load Details</div>
+                  {/* {fields.length > 1 && (
+                <>
+                  {fields.slice(0, fields.length - 1).map((el, index) => ( */}
+                  <div className="flex border border-white rounded-d-6 mb-5">
+                    <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
+                    <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
+                      {rates.packages?.[0].packageCode}
                     </div>
-
-                    <div className="mt-3 ml-2">
-                      <Star />
+                    <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
+                      {rates.packages?.[0].dimensions.length}X{rates.packages?.[0].dimensions.width}X
+                      {rates.packages?.[0].dimensions.height} {rates.packages?.[0].dimensions.unit}
+                      {' / '}
+                      {rates.packages?.[0].weight.value} {rates.packages?.[0].weight.unit}
+                      {'s'}
                     </div>
-                    <div className="mt-4 ml-1 mr-2">(4.5)</div>
-                  </div>
-                  <div className="w-[200px] pt-1 flex justify-center items-center">{rates.rateResponse?.rates[index].serviceType} </div>
-                </div>
-                <div className="p-2">
-                  <LineRate />
-                </div>
-                <div className="p-4 mt-3 w-[47%]">
-                  <div className="pb-6 flex flex-row">
-                    <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                    <div className="text-white font-poppins text-sm font-semibold leading-4">
-                      {rates.rateResponse?.rates[index].carrierDeliveryDays} business days
+                    <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
+                      <Delete
+                      // onClick={() => {
+                      //   let newArray = [...fields]
+                      //   newArray.splice(index, 1)
+                      //   setValue('fields', newArray, { shouldValidate: true })
+                      // }}
+                      />
                     </div>
                   </div>
+                  {/* ))}
+                </>
+              )} */}
+                  <GradientHR />
+
                   <div className="flex flex-row">
-                    <Location />
-                    <div className="ml-2 mr-6">
-                      {rates.shipFrom?.postalCode?.trim().split('-')[0]}, {rates.shipFrom?.cityLocality}
-                    </div>
-                    <Plane />
-                    <div className="mx-2 mr-5 "></div>
-                    <Location />
-                    <div className="ml-2">
-                      {rates.shipTo?.postalCode?.trim().split('-')[0]}, {rates.shipTo?.cityLocality}
-                    </div>
-                  </div>
-                </div>
-                <div className="p-2">
-                  <LineRate />
-                </div>
-                <div className="py-4 pt-6 flex flex-row">
-                  <div className="ml-2">
-                    <div className="flex flex-row">
-                    <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-                        ${Number(rates.rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(2)}
+                    <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
+                      <div className="flex flex-row">
+                        <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                        <div className="ml-auto">
+                          <Tab
+                            target="tab-ship-origin"
+                            onClick={() => {
+                              setDisplayRate(false)
+                            }}
+                          >
+                            <Button size="sm">
+                              <Pencil />
+                            </Button>
+                          </Tab>
+                        </div>
+                      </div>
+                      <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
+                        {rates.shipFrom?.name}
+                      </h4>
+                      <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
+                        {rates.shipFrom?.addressLine1}, {rates.shipFrom?.cityLocality}, {rates.shipFrom?.stateProvince}{' '}
+                        {rates.shipFrom?.postalCode}, {rates.shipFrom?.countryCode}
+                      </p>
+                      <div className="flex items-center">
+                        <input type="checkbox" className="w-4 h-4 mr-2" />
+                        <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
+                      </div>
                     </div>
 
-                      <Button size="md" className="lg:w-auto w-full h-10">
-                        Select
-                      </Button>
-                    </div>
-                    <div className="flex flex-row">
-                      <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
-                        Rate expires:{' '}
+                    <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 border border-[#4f5684] shadow-md">
+                      <div className="flex flex-row">
+                        <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Receiver</h3>
+                        <div className="ml-auto">
+                          <Tab
+                            target="tab-ship-destination"
+                            onClick={() => {
+                              setDisplayRate(false)
+                            }}
+                          >
+                            <Button size="sm">
+                              <Pencil />
+                            </Button>
+                          </Tab>
+                        </div>
                       </div>
-                      <div className="text-white font-poppins text-[14px] font-medium leading-5">
-                        Sep 16, 2023 05:58 (UTC)
+                      <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
+                        {rates.shipTo?.name}
+                      </h4>
+                      <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
+                        {rates.shipTo?.addressLine1}, {rates.shipTo?.cityLocality}, {rates.shipTo?.stateProvince}{' '}
+                        {rates.shipTo?.postalCode}, {rates.shipTo?.countryCode}
+                      </p>
+                      <div className="flex items-center">
+                        <input type="checkbox" className="w-4 h-4 mr-2" />
+                        <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
                       </div>
                     </div>
                   </div>
+
+                  <GradientHR />
+
+                  <div className="flex border border-white rounded-d-6 my-5 p-1 justify-content-center">
+                    <div className="flex w-[100%]">
+                      {/* Best Value */}
+                      <div
+                        className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                          0
+                        )}`}
+                        onClick={() => handleClick(0)}
+                      >
+                        <span>Best Value</span>
+                        <span className="p-2">
+                          <Circle />
+                        </span>
+                        <span>2-4 days</span>
+                        <span className="p-2">
+                          <Circle />
+                        </span>
+                        <span>$1,575</span>
+                      </div>
+
+                      <div className="p-1 pt-2">
+                        <Line />
+                      </div>
+
+                      {/* Quickest */}
+                      <div
+                        className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                          1
+                        )}`}
+                        onClick={() => handleClick(1)}
+                      >
+                        <span>Quickest</span>
+                        <span className="p-2">
+                          <Circle />
+                        </span>
+                        <span>2-4 days</span>
+                        <span className="p-2">
+                          <Circle />
+                        </span>
+                        <span>$1,575</span>
+                      </div>
+                      <div className="p-1 pt-2">
+                        <Line />
+                      </div>
+
+                      {/* Cheapest */}
+                      <div
+                        className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                          2
+                        )}`}
+                        onClick={() => handleClick(2)}
+                      >
+                        <span>Cheapest</span>
+                        <span className="p-2">
+                          <Circle />
+                        </span>
+                        <span>2-4 days</span>
+                        <span className="p-2">
+                          <Circle />
+                        </span>
+                        <span>$1,575</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {rates.rateResponse?.rates.map((rate: any, index: number) => (
+                    <div className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
+                      <div className="flex mx-auto">
+                        <div className="w-[25%]">
+                          <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                            Best Value
+                          </div>
+                          <div className="flex flex-row mt-4">
+                            <div className="bg-white w-[200px] rounded-sm">
+                              <div className="p-3 flex justify-center items-center">
+                                {
+                                  carrierProviderIcons[
+                                    rates.rateResponse?.rates[index].serviceType?.trim().split(' ')[0]
+                                  ]
+                                }
+                              </div>
+                            </div>
+
+                            <div className="mt-3 ml-2">
+                              <Star />
+                            </div>
+                            <div className="mt-4 ml-1 mr-2">(4.5)</div>
+                          </div>
+                          <div className="w-[200px] pt-1 flex justify-center items-center">
+                            {rates.rateResponse?.rates[index].serviceType}{' '}
+                          </div>
+                        </div>
+                        <div className="p-2">
+                          <LineRate />
+                        </div>
+                        <div className="p-4 mt-3 w-[47%]">
+                          <div className="pb-6 flex flex-row">
+                            <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
+                            <div className="text-white font-poppins text-sm font-semibold leading-4">
+                              {rates.rateResponse?.rates[index].carrierDeliveryDays} business days
+                            </div>
+                          </div>
+                          <div className="flex flex-row">
+                            <Location />
+                            <div className="ml-2 mr-6">
+                              {rates.shipFrom?.postalCode?.trim().split('-')[0]}, {rates.shipFrom?.cityLocality}
+                            </div>
+                            <Plane />
+                            <div className="mx-2 mr-5 "></div>
+                            <Location />
+                            <div className="ml-2">
+                              {rates.shipTo?.postalCode?.trim().split('-')[0]}, {rates.shipTo?.cityLocality}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="p-2">
+                          <LineRate />
+                        </div>
+                        <div className="py-4 pt-6 flex flex-row">
+                          <div className="ml-2">
+                            <div className="flex flex-row">
+                              <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
+                                ${Number(rates.rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(2)}
+                              </div>
+
+                              <Button size="md" className="lg:w-auto w-full h-10">
+                                Select
+                              </Button>
+                            </div>
+                            <div className="flex flex-row">
+                              <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
+                                Rate expires:{' '}
+                              </div>
+                              <div className="text-white font-poppins text-[14px] font-medium leading-5">
+                                Sep 16, 2023 05:58 (UTC)
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                  {rates.rateResponse?.invalidRates.map((rate: any, index: number) => (
+                    <div className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
+                      <div className="flex mx-auto">
+                        <div className="w-[25%]">
+                          <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                            Best Value
+                          </div>
+                          <div className="flex flex-row mt-8">
+                            <div className="bg-white w-[200px] rounded-sm">
+                              <div className="p-3 pl-14">
+                                {
+                                  carrierProviderIcons[
+                                    rates.rateResponse?.invalidRates[index].serviceType?.trim().split(' ')[0]
+                                  ]
+                                }
+                              </div>
+                            </div>
+
+                            <div className="mt-3 ml-2">
+                              <Star />
+                            </div>
+                            <div className="mt-4 ml-1 mr-2">(4.5)</div>
+                          </div>
+                          <div>{rates.rateResponse?.rates[index].serviceType} </div>
+                        </div>
+                        <div className="p-2">
+                          <LineRate />
+                        </div>
+                        <div className="p-4 mt-3 w-[47%]">
+                          <div className="pb-6 flex flex-row">
+                            <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
+                            <div className="text-white font-poppins text-sm font-semibold leading-4">
+                              {rates.rateResponse?.invalidRates[index].carrierDeliveryDays} business days
+                            </div>
+                          </div>
+                          <div className="flex flex-row">
+                            <Location />
+                            <div className="ml-2 mr-6">
+                              {rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}
+                            </div>
+                            <Plane />
+                            <div className="mx-2 mr-5 "></div>
+                            <Location />
+                            <div className="ml-2">
+                              {rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="p-2">
+                          <LineRate />
+                        </div>
+                        <div className="py-4 pt-6 flex flex-row">
+                          <div className="ml-2">
+                            <div className="flex flex-row">
+                              <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
+                                ${rates.rateResponse?.rates[index].shippingAmount?.amount}
+                              </div>
+                              <Button size="md" className="lg:w-auto w-full h-10">
+                                Select
+                              </Button>
+                            </div>
+                            <div className="flex flex-row">
+                              <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
+                                Rate expires:{' '}
+                              </div>
+                              <div className="text-white font-poppins text-[14px] font-medium leading-5">
+                                Sep 16, 2023 05:58 (UTC)
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      Invalid Rate
+                    </div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
-          ))}
-
-          {rates.rateResponse?.invalidRates.map((rate: any, index: number) => (
-            <div className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
-              <div className="flex mx-auto">
-                <div className="w-[25%]">
-                  <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
-                    Best Value
-                  </div>
-                  <div className="flex flex-row mt-8">
-                    <div className="bg-white w-[200px] rounded-sm">
-                      <div className="p-3 pl-14">
-                        {
-                          carrierProviderIcons[
-                            rates.rateResponse?.invalidRates[index].serviceType?.trim().split(' ')[0]
-                          ]
-                        }
-                      </div>
-                    </div>
-
-                    <div className="mt-3 ml-2">
-                      <Star />
-                    </div>
-                    <div className="mt-4 ml-1 mr-2">(4.5)</div>
-                  </div>
-                  <div>{rates.rateResponse?.rates[index].serviceType} </div>
-                </div>
-                <div className="p-2">
-                  <LineRate />
-                </div>
-                <div className="p-4 mt-3 w-[47%]">
-                  <div className="pb-6 flex flex-row">
-                    <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
-                    <div className="text-white font-poppins text-sm font-semibold leading-4">
-                      {rates.rateResponse?.invalidRates[index].carrierDeliveryDays} business days
-                    </div>
-                  </div>
-                  <div className="flex flex-row">
-                    <Location />
-                    <div className="ml-2 mr-6">
-                      {rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}
-                    </div>
-                    <Plane />
-                    <div className="mx-2 mr-5 "></div>
-                    <Location />
-                    <div className="ml-2">
-                      {rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}
-                    </div>
-                  </div>
-                </div>
-                <div className="p-2">
-                  <LineRate />
-                </div>
-                <div className="py-4 pt-6 flex flex-row">
-                  <div className="ml-2">
-                    <div className="flex flex-row">
-                      <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
-                        ${rates.rateResponse?.rates[index].shippingAmount?.amount}
-                      </div>
-                      <Button size="md" className="lg:w-auto w-full h-10">
-                        Select
-                      </Button>
-                    </div>
-                    <div className="flex flex-row">
-                      <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
-                        Rate expires:{' '}
-                      </div>
-                      <div className="text-white font-poppins text-[14px] font-medium leading-5">
-                        Sep 16, 2023 05:58 (UTC)
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              Invalid Rate
-            </div>
-          ))}
+          )}
         </div>
       )}
     </>
