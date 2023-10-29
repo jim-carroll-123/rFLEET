@@ -424,6 +424,77 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </div>
                 </div>
               </div>
+             
+            </div>
+          ))}
+
+          {rates.rateResponse?.invalidRates.map((rate: any, index: number) => (
+            <div className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
+              <div className="flex mx-auto">
+                <div className="w-[25%]">
+                  <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                    Best Value
+                  </div>
+                  <div className="flex flex-row mt-8">
+                    <div className="bg-white w-[200px] rounded-sm">
+                      <div className="p-3 pl-14">{carrierProviderIcons[rates.rateResponse?.invalidRates[index].serviceType?.trim().split(' ')[0]]}</div>
+                    </div>
+
+                    <div className="mt-3 ml-2">
+                      <Star />
+                    </div>
+                    <div className="mt-4 ml-1 mr-2">(4.5)</div>
+                  </div>
+                  <div>{rates.rateResponse?.rates[index].serviceType} </div>
+                </div>
+                <div className="p-2">
+                  <LineRate />
+                </div>
+                <div className="p-4 mt-3 w-[47%]">
+                  <div className="pb-6 flex flex-row">
+                    <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
+                    <div className="text-white font-poppins text-sm font-semibold leading-4">
+                      {rates.rateResponse?.invalidRates[index].carrierDeliveryDays} business days
+                    </div>
+                  </div>
+                  <div className="flex flex-row">
+                    <Location />
+                    <div className="ml-2 mr-6">
+                      {rates.shipFrom?.postalCode}, {rates.shipFrom?.cityLocality}
+                    </div>
+                    <Plane />
+                    <div className="mx-2 mr-5 "></div>
+                    <Location />
+                    <div className="ml-2">
+                      {rates.shipTo?.postalCode}, {rates.shipTo?.cityLocality}
+                    </div>
+                  </div>
+                </div>
+                <div className="p-2">
+                  <LineRate />
+                </div>
+                <div className="py-4 pt-6 flex flex-row">
+                  <div className="ml-2">
+                    <div className="flex flex-row">
+                      <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6 ">
+                        ${rates.rateResponse?.rates[index].shippingAmount?.amount}
+                      </div>
+                      <Button size="md" className="lg:w-auto w-full h-10">
+                        Select
+                      </Button>
+                    </div>
+                    <div className="flex flex-row">
+                      <div className="text-white font-poppins text-[12px] font-normal leading-4 pr-2 pt-[2px]">
+                        Rate expires:{' '}
+                      </div>
+                      <div className="text-white font-poppins text-[14px] font-medium leading-5">
+                        Sep 16, 2023 05:58 (UTC)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              Invalid Rate
             </div>
           ))}
         </>
