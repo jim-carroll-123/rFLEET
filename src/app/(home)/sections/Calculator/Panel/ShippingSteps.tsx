@@ -17,15 +17,17 @@ import { Button } from '@components/ui/Button';
 import { Check } from '@components/ui/Check';
 import { Circle } from '@components/ui/Circle';
 import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line'
-import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
-import { cn } from '@lib/utils'
+import { Line } from '@components/ui/Line';
+import { LineRate } from '@components/ui/LineRate';
+import { Location } from '@components/ui/Location';
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
+import { cn } from '@lib/utils';
+
+
 
 import { Field } from './types-schemas-constants'
 
@@ -45,49 +47,49 @@ const handleSubmit = async (
   setRates: React.Dispatch<React.SetStateAction<any>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  const datatest = {
-    rateOptions: {
-      carrierIds: ['se-5107649']
-    },
-    shipment: {
-      validateAddress: 'no_validation',
-      shipTo: {
-        name: data.toName,
-        phone: '555-555-5555',
-        addressLine1: data.toAddress,
-        stateProvince: data.toState,
-        cityLocality: data.toCity,
-        postalCode: data.toPostalCode,
-        countryCode: data.toCountry
-      },
-      shipFrom: {
-        companyName: 'Example Corp.',
-        name: data.fromName,
-        phone: '111-111-1111',
-        addressLine1: data.fromAddress,
-        stateProvince: data.fromState,
-        cityLocality: data.fromCity,
-        postalCode: data.fromPostalCode,
-        countryCode: data.fromCountry
-      },
-      packages: [
-        {
-          weight: {
-            value: data.fields[0].weight,
-            unit: 'ounce'
-          },
-          dimensions: {
-            unit: 'inch',
-            length: data.fields[0].length,
-            width: data.fields[0].width,
-            height: data.fields[0].height
-          }
-        }
-      ]
-    }
-  }
-
   try {
+    const datatest = {
+      rateOptions: {
+        carrierIds: ['se-5107649']
+      },
+      shipment: {
+        validateAddress: 'no_validation',
+        shipTo: {
+          name: data.toName,
+          phone: '555-555-5555',
+          addressLine1: data.toAddress,
+          stateProvince: data.toState,
+          cityLocality: data.toCity,
+          postalCode: data.toPostalCode,
+          countryCode: data.toCountry
+        },
+        shipFrom: {
+          companyName: 'Example Corp.',
+          name: data.fromName,
+          phone: '111-111-1111',
+          addressLine1: data.fromAddress,
+          stateProvince: data.fromState,
+          cityLocality: data.fromCity,
+          postalCode: data.fromPostalCode,
+          countryCode: data.fromCountry
+        },
+        packages: [
+          {
+            weight: {
+              value: data.fields[0].weight,
+              unit: 'ounce'
+            },
+            dimensions: {
+              unit: 'inch',
+              length: data.fields?.[0].length,
+              width: data.fields?.[0].width,
+              height: data.fields?.[0].height
+            }
+          }
+        ]
+      }
+    }
+
     const response = await fetch('/api/shipengine/rates/estimate', {
       method: 'POST',
       headers: {
@@ -102,7 +104,8 @@ const handleSubmit = async (
     setRates(responseData)
     setIsLoading(false)
   } catch (error) {
-    alert('Error')
+    setIsLoading(false)
+    alert('Please fill out all the fields.')
   }
 }
 
@@ -227,9 +230,8 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               glossy
               className="lg:w-auto w-full"
               onClick={(e) => {
-                if (Object.keys(rates).length > 0) {
-                  setRates((prevState) => ({ ...prevState, isLoading: true }))
-                }
+                setIsLoading(true)
+
                 handleButtonClick(e, data, setRates, setIsLoading)
                 setDisplayRate(true)
               }}
@@ -240,7 +242,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         </div>
       </div>
       {isLoading ? (
-        <div>Loading..</div>
+        <div>Loading...</div>
       ) : (
         <div>
           {Object.keys(rates).length === 0 ? (
