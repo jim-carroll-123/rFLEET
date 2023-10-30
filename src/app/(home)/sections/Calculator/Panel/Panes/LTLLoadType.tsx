@@ -16,6 +16,7 @@ import { Select, findOption } from '@components/ui/Select'
 
 import { dimensionUnits, handlingUnits } from '../options'
 import { LTLField, LtlLoadTypeInputs, initialLTLField } from '../types-schemas-constants'
+import AdditionalServices from './AdditionalServices'
 
 interface Props {
   methods: UseFormReturn<LtlLoadTypeInputs>
@@ -79,32 +80,56 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
       let averageShipingClass = 0
       let totalWeight = 0
       if (fieldsValues && fieldsValues.length > 0) {
-        totalCubicFeet = fieldsValues.reduce((total, fieldValue) => total + calculateCubicFeet(fieldValue), 0)
-        totalWeight = fieldsValues.reduce((total, fieldValue) => total + Number(fieldValue.width), 0)
+        totalCubicFeet = fieldsValues.reduce((total, fieldValue) => total + calculateCubicInches(fieldValue), 0) / 1728
+        totalWeight = fieldsValues.reduce((total, fieldValue) => total + Number(fieldValue.weight), 0)
         estimatedDensity = totalWeight / totalCubicFeet
-
+        averageShipingClass = findAverageShippingClass(estimatedDensity)
         setDensityResult({ averageShipingClass, estimatedDensity, totalCubicFeet })
       }
     }
   }
 
   // Function to calculate cubic feet for a field
-  const calculateCubicFeet = (fieldValue: any) => {
-    let lengthInFeet, widthInFeet, heightInFeet
+  const calculateCubicInches = (fieldValue: any) => {
+    let length, width, height
     if (fieldValue.dimensionUnit === 'in') {
-      lengthInFeet = parseFloat(fieldValue.length) / 12
-      widthInFeet = parseFloat(fieldValue.width) / 12
-      heightInFeet = parseFloat(fieldValue.height) / 12
+      length = parseFloat(fieldValue.length)
+      width = parseFloat(fieldValue.width)
+      height = parseFloat(fieldValue.height)
     } else if (fieldValue.dimensionUnit === 'cm') {
-      lengthInFeet = parseFloat(fieldValue.length) / 30.48
-      widthInFeet = parseFloat(fieldValue.width) / 30.48
-      heightInFeet = parseFloat(fieldValue.height) / 30.48
+      length = parseFloat(fieldValue.length) / 2.54
+      width = parseFloat(fieldValue.width) / 2.54
+      height = parseFloat(fieldValue.height) / 2.54
     } else {
       console.error('Unsupported dimension unit: ' + fieldValue.dimensionUnit)
       return 0
     }
 
-    return lengthInFeet * widthInFeet * heightInFeet * parseFloat(fieldValue.noOfUnits)
+    return length * width * height
+  }
+
+  const findAverageShippingClass = (val: number) => {
+    return val < 1
+      ? 400
+      : val < 2
+      ? 300
+      : val < 4
+      ? 250
+      : val < 6
+      ? 175
+      : val < 8
+      ? 125
+      : val < 10
+      ? 100
+      : val < 12
+      ? 92.5
+      : val < 15
+      ? 85
+      : val < 22.5
+      ? 70
+      : val < 30
+      ? 65
+      : 60
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
@@ -144,6 +169,7 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
                 render={({ field }) => (
                   <Select
                     placeholder=""
+                    searchable
                     options={handlingUnits}
                     error={errors.fields && errors.fields[index]?.handlingUnit?.message}
                     containerClassName="lg:w-[140px]"
@@ -165,7 +191,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="number"
                       placeholder="L"
                       error={errors.fields && errors.fields[index]?.length?.message}
                       containerClassName="lg:w-[80px]"
@@ -183,7 +208,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="number"
                       placeholder="W"
                       error={errors.fields && errors.fields[index]?.width?.message}
                       containerClassName="lg:w-[80px]"
@@ -199,7 +223,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
                   control={control}
                   render={({ field }) => (
                     <Input
-                      type="number"
                       placeholder="H"
                       error={errors.fields && errors.fields[index]?.height?.message}
                       containerClassName="lg:w-[80px]"
@@ -237,7 +260,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
                 control={control}
                 render={({ field }) => (
                   <Input
-                    type="number"
                     placeholder=""
                     error={errors.fields && errors.fields[index]?.noOfUnits?.message}
                     containerClassName="lg:w-[140px]"
@@ -254,7 +276,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
                 control={control}
                 render={({ field }) => (
                   <Input
-                    type="number"
                     placeholder="Weight"
                     error={errors.fields && errors.fields[index]?.weight?.message}
                     containerClassName="lg:w-[150px]"
@@ -300,204 +321,13 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
             Total Cubic Feet <div>{densityResult.totalCubicFeet?.toFixed(2)}</div>
           </div>
           <div className="basis-2/5 flex flex-col gap-4">
-            Average Shipping Class <div>{densityResult.averageShipingClass?.toFixed(2)}</div>
+            Average Shipping Class <div>{densityResult.averageShipingClass}</div>
           </div>
         </div>
       </div>
 
       <GradientHR />
-      <div className="flex flex-col gap-4">
-        <div className="text-body-lg font-semibold">Additional Service Options</div>
-        <GradientCard>
-          <div className="grid grid-cols-3 w-full">
-            <div className="items-start flex flex-col gap-4">
-              <div className="uppercase">Pickup</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Liftgate-Ground Pickup"
-                  label="Liftgate-Ground Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Inside Pickup"
-                  label="Inside Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Liftgate-Ground Pickup"
-                  label="Liftgate-Ground Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Limited Access Pickup"
-                  label="Limited Access Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Residential Pickup"
-                  label="Residential Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Appointment for Pickup"
-                  label="Appointment for Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Airport Pickup"
-                  label="Airport Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Secure Shipment Divider"
-                  label="Secure Shipment Divider"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Threshold Pickup"
-                  label="Threshold Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Trade Show Pickup"
-                  label="Trade Show Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start gap-4">
-              <div className="uppercase">Delivery</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Liftgate-Ground Delivery"
-                  label="Liftgate-Ground Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Inside Delivery"
-                  label="Inside Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Liftgate-Ground Delivery"
-                  label="Liftgate-Ground Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Limited Access Delivery"
-                  label="Limited Access Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Residential Delivery"
-                  label="Residential Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Appointment for Pickup"
-                  label="Appointment for Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Airport Pickup"
-                  label="Airport Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Secure Shipment Divider"
-                  label="Secure Shipment Divider"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Threshold Pickup"
-                  label="Threshold Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Trade Show Pickup"
-                  label="Trade Show Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start gap-4">
-              <div className="uppercase">Other</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Do not Stack"
-                  label="Do not Stack"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Flatbed Delivery"
-                  label="Flatbed Delivery"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Arrival Notification"
-                  label="Arrival Notification"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Customs Clearance"
-                  label="Customs Clearance"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Freeze Protection"
-                  label="Freeze Protection"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Pickup/Delivery at Port"
-                  label="Pickup/Delivery at Port"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-          </div>
-        </GradientCard>
-      </div>
+      <AdditionalServices methods={methods} />
       <div className="flex flex-col gap-d-16 mt-0">
         <Controller
           name="containsAlcohol"
@@ -556,7 +386,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
         />
         {watch('containsDryIce') && (
           <Input
-            type="number"
             placeholder="e.g.0.1"
             label="Dry ice weight (lb)*"
             value={watch('dryIceWeight')}

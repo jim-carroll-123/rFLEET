@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 import planetEarth from '@assets/images/bg-planet-earth.jpeg'
 import { Button } from '@components/ui/Button'
@@ -29,13 +30,25 @@ const profileTypes = [
     value: 'Passenger Vehicle Drivers (local)'
   },
   {
-    label: 'Agents, Brokers, and Freight Forwarders',
-    value: 'Agents, Brokers, and Freight Forwarders'
+    label: 'Commercial Truck Drivers',
+    value: 'Commercial Truck Drivers'
   }
 ]
 
+const onboardingPages: any = {
+  'Truck Company / Owner-Operator': '/carrier-onboarding',
+  'Vendors and Services': '/shipper-onboarding'
+}
+
 export default function Index() {
   const [profileType, setProfileType] = useState<Option>()
+  const searchParams = useSearchParams()
+
+  const defaultProfileType = searchParams.get('type')
+
+  useEffect(() => {
+    if (defaultProfileType) setProfileType({ value: defaultProfileType, label: defaultProfileType })
+  }, [defaultProfileType])
 
   return (
     <main className="relative flex" style={{ background: `url(${planetEarth.src}) no-repeat center / cover` }}>
@@ -55,6 +68,7 @@ export default function Index() {
                 <Input label="Last Name" placeholder="Enter your last name" />
               </div>
               <Select
+                disabled={defaultProfileType != null}
                 label="Type of Profile"
                 placeholder="Select a type of your profile"
                 options={profileTypes}
@@ -64,6 +78,7 @@ export default function Index() {
               <Input label="Email" placeholder="Enter your email address" leftIcon="email" />
               <div>
                 <Input
+                  type="password"
                   label="Password"
                   placeholder="Enter your email password"
                   leftIcon="lock"
@@ -76,7 +91,7 @@ export default function Index() {
               <div className="flex justify-between">
                 <Check label="I agree to all the Term and Condition and Privacy Policy" />
               </div>
-              <Link href="/verify-email">
+              <Link href={profileType?.value ? onboardingPages[profileType?.value] : '/verify-email'}>
                 <Button full>Get Started</Button>
               </Link>
             </div>

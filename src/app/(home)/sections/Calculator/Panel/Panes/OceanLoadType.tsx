@@ -12,10 +12,11 @@ import { Check } from '@components/ui/Check'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Radio } from '@components/ui/Radio'
-import { Select, findOption } from '@components/ui/Select'
+import { Option, Select, findOption } from '@components/ui/Select'
 
 import { containerTypes, dimensionUnits, handlingUnits, incotermOptions, weightTypes, weightUnits } from '../options'
 import { LTLField, OceanLoadTypeInputs, initialOceanFclField, initialOceanField } from '../types-schemas-constants'
+import AdditionalServices from './AdditionalServices'
 
 interface Props {
   methods: UseFormReturn<OceanLoadTypeInputs>
@@ -33,6 +34,7 @@ const ContainerLoadTypes = [
   }
 ]
 export const OceanLoadType = ({ methods, onSubmit }: Props) => {
+  const [incoterm, setIncoterm] = useState<Option>()
   const {
     watch,
     setValue,
@@ -101,7 +103,7 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
         {watch('containerLoadType') == 'LCL' && (
           <div>
             {fields.map((item, index) => (
-              <div key={index} className="grid lg:grid-cols-10 grid-cols-1  gap-4 my-4">
+              <div key={index} className="grid lg:grid-cols-12 grid-cols-1  gap-3 my-4">
                 <div className="col-span-2 flex flex-col gap-2">
                   <div className="text-sm">Handling Unit </div>
                   <Controller
@@ -113,7 +115,7 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                         placeholder=""
                         options={handlingUnits}
                         error={errors.fields && errors.fields[index]?.handlingUnit?.message}
-                        containerClassName="lg:w-[180px]"
+                        containerClassName="lg:w-[160px]"
                         {...field}
                         value={findOption(handlingUnits, watch(`fields.${index}.handlingUnit`))}
                         onChange={({ value }) =>
@@ -128,22 +130,21 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                     Dimensions <span className="text-xs font-light">Enter dimensions of package</span>{' '}
                   </div>
 
-                  <div className="flex gap-d-16 items-center">
+                  <div className="flex gap-2 items-center">
                     <Controller
                       name={`fields.${index}.length`}
                       control={control}
                       render={({ field }) => (
                         <Input
-                          type="number"
                           placeholder="L"
                           error={errors.fields && errors.fields[index]?.length?.message}
-                          containerClassName="lg:w-[90px]"
+                          containerClassName="lg:w-[80px]"
                           {...field}
                         />
                       )}
                     />
 
-                    <div className="flex items-center flex-1">
+                    <div className="flex items-center ">
                       <X />
                     </div>
 
@@ -152,10 +153,9 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                       control={control}
                       render={({ field }) => (
                         <Input
-                          type="number"
                           placeholder="W"
                           error={errors.fields && errors.fields[index]?.width?.message}
-                          containerClassName="lg:w-[90px]"
+                          containerClassName="lg:w-[80px]"
                           {...field}
                         />
                       )}
@@ -168,10 +168,9 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                       control={control}
                       render={({ field }) => (
                         <Input
-                          type="number"
                           placeholder="H"
                           error={errors.fields && errors.fields[index]?.height?.message}
-                          containerClassName="lg:w-[90px]"
+                          containerClassName="lg:w-[80px]"
                           {...field}
                         />
                       )}
@@ -197,96 +196,73 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                     />
                   </div>
                 </div>
-
-                <div className="col-span-3 flex flex-col gap-2">
-                  <div className="text-sm flex items-center gap-5 ">
-                    Weight per unit
-                    <Check
-                      label="Inclides packaging"
-                      labelClassName="text-xs my-auto"
-                      checked={watch(`fields.${index}.includesPackaging`)}
-                      onChange={(checked) => setValue(`fields.${index}.includesPackaging`, checked)}
-                    />
+                <div className="col-span-5 flex gap-2">
+                  <div className=" flex flex-col gap-1">
+                    <div className="text-sm flex items-center gap-5 ">
+                      Weight per unit
+                      <Check
+                        label="Inclides packaging"
+                        labelClassName="text-xs my-auto"
+                        checked={watch(`fields.${index}.includesPackaging`)}
+                        onChange={(checked) => setValue(`fields.${index}.includesPackaging`, checked)}
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Controller
+                        name={`fields.${index}.weight`}
+                        control={control}
+                        render={({ field }) => (
+                          <Input
+                            placeholder="Weight"
+                            labelClassName="text-xs"
+                            error={errors.fields && errors.fields[index]?.weight?.message}
+                            containerClassName="lg:w-[160px]"
+                            {...field}
+                          />
+                        )}
+                      />
+                      <Controller
+                        name={`fields.${index}.weightUnit`}
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                          <Select
+                            placeholder="Select"
+                            options={weightUnits}
+                            error={errors.fields && errors.fields[index]?.weightUnit?.message}
+                            containerClassName="lg:w-[100px]"
+                            {...field}
+                            value={findOption(weightUnits, watch(`fields.${index}.weightUnit`))}
+                            onChange={({ value }) =>
+                              setValue(`fields.${index}.weightUnit`, value, { shouldValidate: true })
+                            }
+                          />
+                        )}
+                      />
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="col-span-1 flex flex-col gap-2">
+                    <div className="text-sm"># of units </div>
+
                     <Controller
-                      name={`fields.${index}.weight`}
+                      name={`fields.${index}.noOfUnits`}
                       control={control}
                       render={({ field }) => (
                         <Input
-                          type="number"
-                          placeholder="Weight"
-                          labelClassName="text-xs"
-                          error={errors.fields && errors.fields[index]?.weight?.message}
-                          containerClassName="lg:w-[190px]"
-                          {...field}
-                        />
-                      )}
-                    />
-                    <Controller
-                      name={`fields.${index}.weightUnit`}
-                      control={control}
-                      defaultValue=""
-                      render={({ field }) => (
-                        <Select
                           placeholder=""
-                          options={weightUnits}
-                          error={errors.fields && errors.fields[index]?.weightUnit?.message}
-                          containerClassName="lg:w-[100px]"
+                          error={errors.fields && errors.fields[index]?.noOfUnits?.message}
+                          containerClassName="lg:w-[120px]"
                           {...field}
-                          value={findOption(weightUnits, watch(`fields.${index}.weightUnit`))}
-                          onChange={({ value }) =>
-                            setValue(`fields.${index}.weightUnit`, value, { shouldValidate: true })
-                          }
                         />
                       )}
                     />
                   </div>
-                </div>
-                <div className="col-span-2 flex flex-col gap-2">
-                  <div className="text-sm">Select Incoterm </div>
-                  <Controller
-                    name={`fields.${index}.incoterm`}
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <Select
-                        placeholder=""
-                        options={incotermOptions}
-                        error={errors.fields && errors.fields[index]?.incoterm?.message}
-                        containerClassName="lg:w-[180px]"
-                        {...field}
-                        value={findOption(incotermOptions, watch(`fields.${index}.incoterm`))}
-                        onChange={({ value }) => setValue(`fields.${index}.incoterm`, value, { shouldValidate: true })}
-                      />
-                    )}
-                  />
-                </div>
-                <div className="col-span-2 flex flex-col gap-2">
-                  <div className="text-sm"># of units </div>
-
-                  <Controller
-                    name={`fields.${index}.noOfUnits`}
-                    control={control}
-                    render={({ field }) => (
-                      <Input
-                        type="number"
-                        placeholder=""
-                        error={errors.fields && errors.fields[index]?.noOfUnits?.message}
-                        containerClassName="lg:w-[140px]"
-                        {...field}
-                      />
-                    )}
-                  />
+                  <Button className="h-fit self-end p-0 " size="sm" onClick={() => remove(index)}>
+                    x
+                  </Button>
                 </div>
               </div>
             ))}
-            <div className="absolute right-4 bottom-7 flex items-center justify-end mt-6 gap-4">
-              <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
-                <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
-                Add Another Field
-              </Button>
-            </div>
           </div>
         )}
         {watch('containerLoadType') == 'FCL' && (
@@ -332,11 +308,10 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                       control={control}
                       render={({ field }) => (
                         <Input
-                          type="number"
                           placeholder="Weight"
                           labelClassName="text-xs"
                           error={errors.fclFields && errors.fclFields[index]?.weight?.message}
-                          containerClassName="lg:w-[190px]"
+                          containerClassName="lg:w-[180px]"
                           {...field}
                         />
                       )}
@@ -347,10 +322,10 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                       defaultValue=""
                       render={({ field }) => (
                         <Select
-                          placeholder=""
+                          placeholder="Select"
                           options={weightUnits}
                           error={errors.fclFields && errors.fclFields[index]?.weightUnit?.message}
-                          containerClassName="lg:w-[100px]"
+                          containerClassName="lg:w-[110px]"
                           {...field}
                           value={findOption(weightUnits, watch(`fclFields.${index}.weightUnit`))}
                           onChange={({ value }) =>
@@ -380,280 +355,86 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
                     />
                   </div>
                 </div>
-                <div className="col-span-2 flex flex-col gap-2">
-                  <div className="text-sm"># of units </div>
+                <div className="col-span-2  flex gap-2">
+                  <div className="flex flex-col gap-2">
+                    <div className="text-sm"># of units </div>
 
-                  <Controller
-                    name={`fclFields.${index}.noOfUnits`}
-                    control={control}
-                    render={({ field }) => (
-                      <Input
-                        type="number"
-                        placeholder=""
-                        error={errors.fclFields && errors.fclFields[index]?.noOfUnits?.message}
-                        containerClassName="w-full"
-                        {...field}
-                      />
-                    )}
-                  />
-                </div>
-
-                <div className="col-span-2 flex flex-col gap-2">
-                  <div className="text-sm">Select Incoterm </div>
-                  <Controller
-                    name={`fclFields.${index}.incoterm`}
-                    control={control}
-                    defaultValue=""
-                    render={({ field }) => (
-                      <Select
-                        placeholder=""
-                        options={incotermOptions}
-                        error={errors.fclFields && errors.fclFields[index]?.incoterm?.message}
-                        containerClassName="w-full"
-                        {...field}
-                        value={findOption(incotermOptions, watch(`fclFields.${index}.incoterm`))}
-                        onChange={({ value }) =>
-                          setValue(`fclFields.${index}.incoterm`, value, { shouldValidate: true })
-                        }
-                      />
-                    )}
-                  />
+                    <Controller
+                      name={`fclFields.${index}.noOfUnits`}
+                      control={control}
+                      render={({ field }) => (
+                        <Input
+                          placeholder=""
+                          error={errors.fclFields && errors.fclFields[index]?.noOfUnits?.message}
+                          containerClassName="w-full"
+                          {...field}
+                        />
+                      )}
+                    />
+                  </div>
+                  <Button className="h-fit self-end p-0 " size="sm" onClick={() => fclRemove(index)}>
+                    x
+                  </Button>
                 </div>
               </div>
             ))}
-            <div className="absolute right-4 bottom-7 flex items-center  justify-end mt-6 gap-4">
+          </div>
+        )}
+        <div className="flex justify-between items-center w-full">
+          <div className="col-span-2 flex flex-col gap-2">
+            <div className="text-sm">Select Incoterm </div>
+            <Controller
+              name={`incoterm`}
+              control={control}
+              defaultValue=""
+              render={({ field }) => (
+                <Select
+                  placeholder=""
+                  options={incotermOptions}
+                  error={errors.incoterm?.message}
+                  containerClassName=""
+                  {...field}
+                  value={findOption(incotermOptions, watch(`incoterm`))}
+                  onChange={({ value, label, description }) => {
+                    setIncoterm({ label, value, description })
+                    setValue(`incoterm`, value, { shouldValidate: true })
+                  }}
+                />
+              )}
+            />
+          </div>
+
+          <div className=" flex items-center justify-end mt-6 gap-4">
+            {watch('containerLoadType') == 'LCL' && (
+              <Button type="button" onClick={onAdd} size="sm" className="lg:w-auto w-full h-fit  ">
+                <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
+                Add Another Field
+              </Button>
+            )}
+
+            {watch('containerLoadType') == 'FCL' && (
               <Button type="button" onClick={onFclAdd} size="sm" className="lg:w-auto w-full h-fit  ">
                 <BiPlus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
                 Add Another Field
               </Button>
-            </div>
+            )}
           </div>
-        )}
-      </div>
-      <div className="flex flex-col gap-2">
-        <div className="flex gap-3 font-bold p-2">
-          <div className="basis-2/12">Incoterm</div>
-          <div className="basis-10/12">Description</div>
-        </div>
-        <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
-          {watch('containerLoadType') == 'LCL' ? (
-            <>
-              <div className="basis-2/12">CIF - Cost, Insurance and Freight:</div>
-              <div className="basis-10/12 text-sm">
-                (Named Port of Destination) Similar to CFR, but the seller also arranges and pays for insurance coverage
-                against the buyers risk of loss or damage during transportation.
-                <br /> <br />
-                Example: The seller delivers the goods on board the vessel and ensures they are insured during transit
-                until they reach the destination port.0
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="basis-2/12">EXE - Exe Works</div>
-              <div className="basis-10/12 text-sm">
-                The seller makes the goods available at their premises, and the buyer is responsible for all
-                transportation, export, and import arrangements.
-                <br /> <br />
-                Example: The seller delivers the goods to their factory gate, and the buyer is responsible for picking
-                up the goods and handling all further transportation.
-              </div>
-            </>
-          )}
         </div>
       </div>
+      {incoterm?.value && (
+        <div className="flex flex-col gap-2">
+          <div className="flex gap-3 font-bold p-2">
+            <div className="basis-2/12">Incoterm</div>
+            <div className="basis-10/12">Description</div>
+          </div>
+          <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
+            <div className="basis-2/12">{incoterm?.label}</div>
+            <div className="basis-10/12 text-sm">{incoterm?.description}</div>
+          </div>
+        </div>
+      )}
       <GradientHR />
-      <div className="flex flex-col gap-4">
-        <div className="text-body-lg font-semibold">Additional Service Options</div>
-        <GradientCard>
-          <div className="grid grid-cols-3 w-full">
-            <div className="items-start flex flex-col gap-4">
-              <div className="uppercase">Pickup</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Liftgate-Ground Pickup"
-                  label="Liftgate-Ground Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Inside Pickup"
-                  label="Inside Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Liftgate-Ground Pickup"
-                  label="Liftgate-Ground Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Limited Access Pickup"
-                  label="Limited Access Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Residential Pickup"
-                  label="Residential Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Appointment for Pickup"
-                  label="Appointment for Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Airport Pickup"
-                  label="Airport Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Secure Shipment Divider"
-                  label="Secure Shipment Divider"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Threshold Pickup"
-                  label="Threshold Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Trade Show Pickup"
-                  label="Trade Show Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start gap-4">
-              <div className="uppercase">Delivery</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Liftgate-Ground Delivery"
-                  label="Liftgate-Ground Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Inside Delivery"
-                  label="Inside Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Liftgate-Ground Delivery"
-                  label="Liftgate-Ground Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Limited Access Delivery"
-                  label="Limited Access Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Residential Delivery"
-                  label="Residential Delivery"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Appointment for Pickup"
-                  label="Appointment for Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Airport Pickup"
-                  label="Airport Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Secure Shipment Divider"
-                  label="Secure Shipment Divider"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Threshold Pickup"
-                  label="Threshold Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Trade Show Pickup"
-                  label="Trade Show Pickup"
-                  labelClassName="font-light "
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col items-start gap-4">
-              <div className="uppercase">Other</div>
-
-              <div className="flex flex-col gap-3">
-                <Radio
-                  value="Do not Stack"
-                  label="Do not Stack"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Flatbed Delivery"
-                  label="Flatbed Delivery"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Arrival Notification"
-                  label="Arrival Notification"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Customs Clearance"
-                  label="Customs Clearance"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-                <Radio
-                  value="Freeze Protection"
-                  label="Freeze Protection"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-
-                <Radio
-                  value="Pickup/Delivery at Port"
-                  label="Pickup/Delivery at Port"
-                  labelClassName="font-light"
-                  containerClassName="w-full "
-                />
-              </div>
-            </div>
-          </div>
-        </GradientCard>
-      </div>
+      <AdditionalServices methods={methods} />
       <div className="flex flex-col gap-d-16 mt-0">
         <Controller
           name="containsAlcohol"
@@ -712,7 +493,6 @@ export const OceanLoadType = ({ methods, onSubmit }: Props) => {
         />
         {watch('containsDryIce') && (
           <Input
-            type="number"
             placeholder="e.g.0.1"
             label="Dry ice weight (lb)*"
             value={watch('dryIceWeight')}

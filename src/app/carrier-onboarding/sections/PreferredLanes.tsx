@@ -9,9 +9,13 @@ import { CountrySelect, countryOptions } from '@components/ui/CountrySelect'
 import { GradientHR } from '@components/ui/GradientHR'
 import { Input } from '@components/ui/Input'
 import { Option, Select, findOption } from '@components/ui/Select'
+import allStates from '@json/usaStates.json'
 
 import StatesMap from './StatesMap'
 
+const usaStates: Option[] = allStates.map((obj) => {
+  return { value: obj.name, label: obj.name }
+})
 type Props = {
   onClose?: () => void
   onSubmit?: () => void
@@ -19,9 +23,22 @@ type Props = {
 
 export const PreferedLanes = ({ onClose, onSubmit }: Props) => {
   const [selectedCountry, setSelectedCountry] = useState<string>('')
+
+  const [selectedStates, setSelectedStates] = useState<string[]>([])
   const onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit?.()
+  }
+
+  const updateSelectedStates = (newValue: string) => {
+    const indexOfValue = selectedStates.indexOf(newValue)
+    if (indexOfValue == -1) setSelectedStates([...selectedStates, newValue])
+    else
+      setSelectedStates((prev) => {
+        let items = [...prev]
+        items.splice(indexOfValue, 1)
+        return items
+      })
   }
   return (
     <div className="p-3 flex flex-col h-full">
@@ -40,6 +57,17 @@ export const PreferedLanes = ({ onClose, onSubmit }: Props) => {
           </div>
         </div>
         <div className="pr-3 min-h-[250px] max-h-[350px]  flex-grow overflow-auto scrollbar scrollbar-w-2 scrollbar-track-gray-100 scrollbar-thumb-blue-500">
+          <div className="flex flex-wrap gap-3 my-2 ">
+            {selectedStates.map((cState) => (
+              <div key={cState} className="p-1 px-3 border rounded-lg flex items-center gap-2">
+                {cState}
+                <button type="button" onClick={() => updateSelectedStates(cState)}>
+                  <AiOutlineClose />
+                </button>
+              </div>
+            ))}
+          </div>
+          <GradientHR />
           <div className="my-3">
             <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Select Country</div>
             <CountrySelect
@@ -57,7 +85,14 @@ export const PreferedLanes = ({ onClose, onSubmit }: Props) => {
           </div>
 
           <div className="grid grid-cols-3 gap-3">
-            <Check label={<div className="font-light mt-1">States</div>} />
+            {usaStates.map((cState) => (
+              <Check
+                key={cState.value}
+                checked={selectedStates.indexOf(cState.value) != -1}
+                onChange={() => updateSelectedStates(cState.value)}
+                label={<div className="font-light mt-1">{cState.label}</div>}
+              />
+            ))}
           </div>
         </div>
         <div>
