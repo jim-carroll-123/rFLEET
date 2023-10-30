@@ -3,6 +3,8 @@
 import * as React from 'react'
 import { onlyText } from 'react-children-utilities'
 
+import { string } from 'joi'
+
 import ArrowDown from '@assets/icons/arrow-down.svg'
 import { useOnClickOutside } from '@hooks/utils/useClickOutside'
 import { cn } from '@lib/utils'
@@ -11,6 +13,8 @@ export interface Option {
   label: string | JSX.Element
   value: string
   icon?: any
+  groupLabel?: boolean
+  description?: string
 }
 
 interface Props {
@@ -23,6 +27,7 @@ interface Props {
   full?: boolean
   containerClassName?: string
   labelClassName?: string
+  disabled?: boolean
   onChange?: (newValue: Option) => void | Promise<void>
 }
 
@@ -38,6 +43,7 @@ export const Select = React.forwardRef(
       placeholder,
       error = false,
       searchable = false,
+      disabled = false,
       ...props
     }: Props,
     _
@@ -89,7 +95,9 @@ export const Select = React.forwardRef(
           <label className={cn(`block lg:mb-[8px] mb-[6px] font-medium`, labelClassName)}>{props.label}</label>
         )}
         <div
-          onClick={() => setSelectOpen(!selectOpen)}
+          onClick={() => {
+            disabled ? null : setSelectOpen(!selectOpen)
+          }}
           className={cn(
             'flex justify-between items-center w-full border border-solid shadow-sm lg:rounded-lg rounded-md placeholder:text-white cursor-default',
             error ? 'border-red-600' : selectOpen ? 'border-primary' : 'border-gray-100 hover:border-gray-300'
@@ -115,27 +123,36 @@ export const Select = React.forwardRef(
         {selectOpen && (
           <div className="absolute w-full z-[999] max-h-[354px] overflow-y-auto slick-scroll bg-gradient-blur-dialog backdrop-blur-md backdrop-opacity-100 flex flex-col lg:gap-[4px] gap-[3px] lg:mt-[8px] mt-[6px] lg:p-[8px] p-[6px] border border-solid sm:text-sm lg:rounded-lg rounded-md">
             {filteredOptions.length > 0 &&
-              filteredOptions.map((option, index) => (
-                <div
-                  key={index}
-                  className={cn(
-                    'flex items-center rounded hover:bg-primary',
-                    typeof value != 'string'
-                      ? value?.value === option.value
+              filteredOptions.map((option, index) =>
+                option.groupLabel ? (
+                  <div key={index}>
+                    {option?.icon && (
+                      <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{option.icon}</div>
+                    )}
+                    <div className="font-bold lg:px-[10px] px-[6px] lg:py-[10px] py-[8px]">{option.label}</div>
+                  </div>
+                ) : (
+                  <div
+                    key={index}
+                    className={cn(
+                      'flex items-center rounded hover:bg-primary',
+                      typeof value != 'string'
+                        ? value?.value === option.value
+                          ? 'bg-primary'
+                          : 'cursor-pointer '
+                        : value === option.value
                         ? 'bg-primary'
                         : 'cursor-pointer '
-                      : value === option.value
-                      ? 'bg-primary'
-                      : 'cursor-pointer '
-                  )}
-                  onClick={() => handleOptionClick(option)}
-                >
-                  {option?.icon && (
-                    <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{option.icon}</div>
-                  )}
-                  <div className="lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]">{option.label}</div>
-                </div>
-              ))}
+                    )}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    {option?.icon && (
+                      <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{option.icon}</div>
+                    )}
+                    <div className="lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]">{option.label}</div>
+                  </div>
+                )
+              )}
             {filteredOptions.length === 0 && (
               <div
                 className={cn(

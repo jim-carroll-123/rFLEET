@@ -29,14 +29,81 @@ export type LTLField = {
   noOfUnits: string
   weight: string
 }
+export type OcenanField = {
+  handlingUnit: string
+  length: string
+  width: string
+  height: string
+  dimensionUnit: string
+  noOfUnits: string
+  weight: string
+  weightUnit: string
+  includesPackaging: boolean
+}
+
+export type OcenanFclField = {
+  containerType: string
+
+  noOfUnits: string
+  weight: string
+  weightUnit: string
+  weightType: string
+  addExtraPickups: boolean
+}
+
+export type AirField = {
+  handlingUnit: string
+  length: string
+  width: string
+  height: string
+  dimensionUnit: string
+  noOfUnits: string
+  weight: string
+  weightUnit: string
+  includesPackaging: boolean
+}
+
 export const initialLTLField: LTLField = {
   dimensionUnit: 'in',
-  handlingUnit: 'Pallet',
+  handlingUnit: 'Pallet(s)',
   height: '',
   length: '',
   noOfUnits: '',
   weight: '',
   width: ''
+}
+
+export const initialOceanField: OcenanField = {
+  dimensionUnit: 'in',
+  handlingUnit: 'Pallet(s)',
+  height: '',
+  length: '',
+  noOfUnits: '',
+  weight: '',
+  width: '',
+  weightUnit: 'in',
+  includesPackaging: false
+}
+
+export const initialOceanFclField: OcenanFclField = {
+  containerType: "20' Dry Standard",
+  noOfUnits: '',
+  weight: '',
+  weightUnit: 'in',
+  weightType: 'Overweight',
+  addExtraPickups: false
+}
+
+export const initialAirField: AirField = {
+  dimensionUnit: 'in',
+  handlingUnit: 'Pallet(s)',
+  height: '',
+  length: '',
+  noOfUnits: '',
+  weight: '',
+  width: '',
+  weightUnit: 'in',
+  includesPackaging: false
 }
 
 export const initialField: Field = {
@@ -201,61 +268,6 @@ export const loadTypeSchema: any & { fields: Field[] } = yup.object({
   })
 })
 
-// export const ltlLoadTypeSchema: any & { fields: LTLField[] } = yup.object({
-//   ltlType: yup.string().required(),
-//   fields: yup.array().test({
-//     message: '',
-//     test: (fields: LTLField[] | undefined, context) => {
-//       const errors: any = {}
-//       const { fields: _, ...others } = context.parent
-
-//       if (fields && fields.length > 0) {
-//         const field = fields[fields.length - 1]
-
-//         if (!field.handlingUnit) {
-//           errors.handlingUnit = 'Handling unit must be chosen'
-//         }
-//         if (isNaN(Number(field.length)) || Number(field.length) <= 0) {
-//           errors.length = 'Length must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.width)) || Number(field.width) <= 0) {
-//           errors.width = 'Width must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.height)) || Number(field.height) <= 0) {
-//           errors.height = 'Height must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.weight)) || Number(field.weight) <= 0) {
-//           errors.weight = 'Weight must be a positive number'
-//         }
-
-//         if (isNaN(Number(field.noOfUnits)) || Number(field.noOfUnits) <= 0) {
-//           errors.noOfUnits = 'Number of must be a positive number'
-//         }
-//         if (!field.dimensionUnit) {
-//           errors.dimensionUnit = 'Dimension unit must be chosen'
-//         }
-
-//         // Collect and apply errors
-//         if (Object.keys(errors).length > 0) {
-//           return new yup.ValidationError(errors, null, 'fields')
-//         }
-
-//         return true
-//       }
-
-//       return false
-//     }
-//   }),
-//   containsAlcohol: yup.boolean(),
-//   alcoholRecipientType: yup.string().optional(),
-//   containsDryIce: yup.boolean(),
-//   dryIceWeight: yup.string().optional(),
-//   containsLithium: yup.boolean()
-// })
-
 export const ltlLoadTypeSchema = yup.object().shape({
   ltlType: yup.string().required(),
   fields: yup.array().of(
@@ -267,9 +279,67 @@ export const ltlLoadTypeSchema = yup.object().shape({
       dimensionUnit: yup.string().required(),
       noOfUnits: yup.string().required(),
 
-      weight: yup.string().required('Height is required')
+      weight: yup.string().required('Weight is required')
     })
   ),
+  containsAlcohol: yup.boolean(),
+  alcoholRecipientType: yup.string().optional(),
+  containsDryIce: yup.boolean(),
+  dryIceWeight: yup.string().optional(),
+  containsLithium: yup.boolean()
+})
+
+export const oceanLoadTypeSchema = yup.object().shape({
+  containerLoadType: yup.string().required(),
+  fields: yup.array().of(
+    yup.object().shape({
+      handlingUnit: yup.string().required(),
+      length: yup.string().required('Length is required'),
+      width: yup.string().required('Width is required'),
+      height: yup.string().required('Height is required'),
+      dimensionUnit: yup.string().required(),
+      noOfUnits: yup.string().required(),
+
+      weight: yup.string().required('Weight is required'),
+      weightUnit: yup.string().required(),
+      includesPackaging: yup.boolean()
+    })
+  ),
+  fclFields: yup.array().of(
+    yup.object().shape({
+      containerType: yup.string().required(),
+      noOfUnits: yup.string().required(),
+      weight: yup.string().required(),
+      weightUnit: yup.string().required(),
+      weightType: yup.string().required(),
+      addExtraPickups: yup.boolean()
+    })
+  ),
+  incoterm: yup.string().required(),
+  containsAlcohol: yup.boolean(),
+  alcoholRecipientType: yup.string().optional(),
+  containsDryIce: yup.boolean(),
+  dryIceWeight: yup.string().optional(),
+  containsLithium: yup.boolean()
+})
+
+export const airLoadTypeSchema = yup.object().shape({
+  containerLoadType: yup.string().required(),
+  fields: yup.array().of(
+    yup.object().shape({
+      handlingUnit: yup.string().required(),
+      length: yup.string().required('Length is required'),
+      width: yup.string().required('Width is required'),
+      height: yup.string().required('Height is required'),
+      dimensionUnit: yup.string().required(),
+      noOfUnits: yup.string().required(),
+
+      weight: yup.string().required('Height is required'),
+      weightUnit: yup.string().required(),
+      includesPackaging: yup.boolean()
+    })
+  ),
+  incoterm: yup.string().required(),
   containsAlcohol: yup.boolean(),
   alcoholRecipientType: yup.string().optional(),
   containsDryIce: yup.boolean(),
@@ -292,4 +362,8 @@ export type FromInputs = yup.InferType<typeof fromSchema>
 export type ToInputs = yup.InferType<typeof toSchema>
 export type LoadTypeInputs = yup.InferType<typeof loadTypeSchema>
 export type LtlLoadTypeInputs = yup.InferType<typeof ltlLoadTypeSchema>
+
+export type OceanLoadTypeInputs = yup.InferType<typeof oceanLoadTypeSchema>
+export type AirLoadTypeInputs = yup.InferType<typeof airLoadTypeSchema>
 export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
+
