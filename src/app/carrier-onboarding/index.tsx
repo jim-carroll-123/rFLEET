@@ -1,10 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { AiOutlineClose } from 'react-icons/ai'
 import { ParallaxBanner } from 'react-scroll-parallax'
 
 import Link from 'next/link'
+
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import WalletMoney from '@assets/icons/wallet-money.svg'
 import bgWireframeGlobe from '@assets/images/bg-wireframe-globe.png'
@@ -15,6 +18,8 @@ import { GlobeLoader } from '@components/ui/Loaders'
 import { Modal } from '@components/ui/Modal'
 import { Title } from '@components/ui/Typography'
 
+import { companyInfoInputs, companyInfoSchema } from './schemas/companyInfo'
+import { payeeInfoInputs, payeeInfoSchema } from './schemas/payeeInfo'
 import { CarrierEquipment } from './sections/CarrierEquipment'
 import { CompanyInfo } from './sections/CompanyInfo'
 import { CompanyValidation } from './sections/CompanyValidation'
@@ -41,17 +46,36 @@ export const OnboardingSection = () => {
       setLoadingNext(false)
     }, 1000)
   }
-
   useEffect(() => {
     setActiveFormIndex(0)
   }, [onboardingModalOpen])
 
+  const companyInfoForm = useForm<companyInfoInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(companyInfoSchema),
+    defaultValues: {}
+  })
+  const payeeInfoForm = useForm<payeeInfoInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(payeeInfoSchema),
+    defaultValues: {
+      quickPay: ''
+    }
+  })
+
   const onboardingForms: {
     [key: number]: JSX.Element
   } = {
-    0: <CompanyInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    0: <CompanyInfo form={companyInfoForm} onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     1: <TermsAndConditions onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    2: <PayeeInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    2: (
+      <PayeeInfo
+        companyInfoForm={companyInfoForm}
+        form={payeeInfoForm}
+        onClose={() => setOnboardingModalOpen(false)}
+        onSubmit={gotoNextForm}
+      />
+    ),
     3: <LocationValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     4: <CompanyValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     5: <CarrierEquipment onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,

@@ -13,25 +13,26 @@ export const LocationValidation = ({ onClose, onSubmit }: Props) => {
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false)
   const [location, setLocation] = useState({})
 
-  useEffect(() => {
-    const requestLocationPermission = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords
-            setLocation({ latitude, longitude })
-          },
-          (error) => {
-            console.error(error)
-          }
-        )
-      } else {
-        console.error('Geolocation is not supported by your browser.')
-      }
+  const requestLocationPermission = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords
+          setLocation({ latitude, longitude })
+        },
+        (error) => {
+          console.error(error)
+        }
+      )
+    } else {
+      console.error('Geolocation is not supported by your browser.')
     }
-    requestLocationPermission()
-  }, [])
+  }
 
+  const acceptLocationValidationTerms = (value: boolean) => {
+    if (value) requestLocationPermission()
+    setAcceptedTerms(value)
+  }
   const onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit?.()
@@ -88,7 +89,7 @@ export const LocationValidation = ({ onClose, onSubmit }: Props) => {
             <GradientHR />
           </div>
           <Check
-            onChange={(value) => setAcceptedTerms(value)}
+            onChange={acceptLocationValidationTerms}
             label={<div className="font-light">Accept these terms and conditions</div>}
           />
 

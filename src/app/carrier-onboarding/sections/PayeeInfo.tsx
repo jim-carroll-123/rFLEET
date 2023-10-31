@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, UseFormReturn, useForm } from 'react-hook-form'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BiSolidInfoCircle } from 'react-icons/bi'
 
@@ -13,6 +13,7 @@ import { Modal } from '@components/ui/Modal'
 import { Option, Select, findOption } from '@components/ui/Select'
 import allStates from '@json/usaStates.json'
 
+import { companyInfoInputs } from '../schemas/companyInfo'
 import { payeeInfoInputs, payeeInfoSchema } from '../schemas/payeeInfo'
 
 const usaStates: Option[] = allStates.map((obj) => {
@@ -52,8 +53,10 @@ const factoringCompanies = [
 type Props = {
   onClose?: () => void
   onSubmit?: () => void
+  form: UseFormReturn<payeeInfoInputs>
+  companyInfoForm: UseFormReturn<companyInfoInputs>
 }
-export const PayeeInfo = ({ onClose, onSubmit }: Props) => {
+export const PayeeInfo = ({ onClose, onSubmit, form, companyInfoForm }: Props) => {
   const [factoringCompanyModalOpen, setFactoringCompanyModalOpen] = useState(false)
   const {
     watch,
@@ -63,13 +66,33 @@ export const PayeeInfo = ({ onClose, onSubmit }: Props) => {
     getValues,
     formState: { errors },
     control
-  } = useForm<payeeInfoInputs>({
-    mode: 'onChange',
-    resolver: yupResolver(payeeInfoSchema),
-    defaultValues: {
-      quickPay: ''
+  } = form
+
+  const {
+    watch: watchCompanyValue,
+    setValue: setCompanyValue,
+    getValues: getCompanyValues,
+    getFieldState
+  } = companyInfoForm
+
+  const populateCompanyInfo = (value: boolean) => {
+    if (value) {
+      setValue('companyName', watchCompanyValue('companyName'))
+      setValue('dbaName', watchCompanyValue('dbaName'))
+      setValue('useDbaName', watchCompanyValue('useDbaName'))
+      setValue('phone', watchCompanyValue('companyPhone'))
+      setValue('addressOne', watchCompanyValue('addressOne'))
+      setValue('phoneExtension', watchCompanyValue('phoneExtension'))
+      setValue('addressTwo', watchCompanyValue('addressTwo'))
+      setValue('cellPhone', watchCompanyValue('cellPhone'))
+      setValue('city', watchCompanyValue('city'))
+      setValue('fax', watchCompanyValue('fax'))
+      setValue('state', watchCompanyValue('state'))
+      setValue('zipCode', watchCompanyValue('zipCode'))
     }
-  })
+
+    setValue('sameAsCompanyInfo', value)
+  }
 
   const openFactoringCompanyModal = (value: boolean) => {
     if (value) {
@@ -118,6 +141,7 @@ export const PayeeInfo = ({ onClose, onSubmit }: Props) => {
                     }
                     {...field}
                     checked={watch('sameAsCompanyInfo')}
+                    onChange={populateCompanyInfo}
                   />
                 )}
               />
