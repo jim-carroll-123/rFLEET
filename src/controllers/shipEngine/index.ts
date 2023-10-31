@@ -18,7 +18,7 @@ async function listCarriers() {
     return shipengine.listCarriers()
 }
 
-async function getRateEstimates(params: GetRatesWithShipmentDetailsTypes.Estimate) {
+async function getRateEstimates(params: GetRatesWithShipmentDetailsTypes.Params) {
   try {
     const result = await shipengine.getRatesWithShipmentDetails(params)
 
