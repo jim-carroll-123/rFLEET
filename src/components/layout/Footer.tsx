@@ -17,7 +17,7 @@ export default function Example() {
   const [openVideoModal, setOpenVideoModal] = useState(false)
 
   return (
-    <footer className="relative flex flex-col pt-[75px] pb-[36px] lg:pt-[100px] lg:pb-[48px] bg-dark text-white">
+    <footer className="self-end w-full relative flex flex-col pt-[75px] pb-[36px] lg:pt-[100px] lg:pb-[48px] bg-dark text-white">
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-[48px] lg:mb-[36px]">
           <div className="flex flex-col gap-d-16">
