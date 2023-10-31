@@ -62,7 +62,7 @@ export const SearchSection = () => {
                 How long is the estimated transit time from Atlanta, GA to Seattle, WA?
               </Prompt>
               <Prompt onClick={() => setSearchValue('Take me to my dashboard.')}>
-                Take me to my dashboard.", or "New Quote"
+                Take me to my dashboard, or New Quote
               </Prompt>
             </div>
             {!openChatbotModal && (

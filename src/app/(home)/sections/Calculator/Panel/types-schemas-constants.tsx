@@ -1,4 +1,5 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
+
 
 export type Field = {
   carrierProvider: string
@@ -127,13 +128,21 @@ export const initialField: Field = {
 export const fromSchema = yup.object({
   fromType: yup.string().required(),
   fromCountry: yup.string().required(),
-  fromAddress: yup.string().required()
+  fromAddress: yup.string().required(),
+  fromCity: yup.string().required(),
+  fromPostalCode: yup.string().required(),
+  fromState: yup.string().required(),
+  fromName: yup.string().required()
 })
 
 export const toSchema = yup.object({
   toType: yup.string().required(),
   toCountry: yup.string().required(),
-  toAddress: yup.string().required()
+  toAddress: yup.string().required(),
+  toCity: yup.string().required(),
+  toPostalCode: yup.string().required(),
+  toState: yup.string().required(),
+  toName: yup.string().required()
 })
 
 export const loadTypeSchema: any & { fields: Field[] } = yup.object({
@@ -353,6 +362,8 @@ export type FromInputs = yup.InferType<typeof fromSchema>
 export type ToInputs = yup.InferType<typeof toSchema>
 export type LoadTypeInputs = yup.InferType<typeof loadTypeSchema>
 export type LtlLoadTypeInputs = yup.InferType<typeof ltlLoadTypeSchema>
+
 export type OceanLoadTypeInputs = yup.InferType<typeof oceanLoadTypeSchema>
 export type AirLoadTypeInputs = yup.InferType<typeof airLoadTypeSchema>
 export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
+

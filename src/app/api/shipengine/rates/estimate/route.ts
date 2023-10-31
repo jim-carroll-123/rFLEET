@@ -1,7 +1,14 @@
-import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
-import { apiHandler } from '@lib/api';
 import joi from 'joi';
+import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
+
+
+
 import { shipEngineController } from '@controllers/shipEngine';
+
+
+
+import { apiHandler } from '@lib/api';
+
 
 /**
  * @swagger
@@ -34,10 +41,10 @@ async function getRateEstimates(req: Request) {
     const { rateOptions, shipmentId, shipment } = body;
 
     const response = await shipEngineController.getRateEstimates({
-        rateOptions,
-        shipmentId,
-        shipment
-    } as GetRatesWithShipmentDetailsTypes.Params);
+      rateOptions,
+      shipmentId,
+      shipment
+    } as GetRatesWithShipmentDetailsTypes.Params)
 
     return { response };
 }

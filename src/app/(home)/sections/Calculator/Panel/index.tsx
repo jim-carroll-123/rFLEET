@@ -1,15 +1,20 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { yupResolver } from '@hookform/resolvers/yup'
+
+
+import { yupResolver } from '@hookform/resolvers/yup';
+
+
 
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
 import { AirLoadType } from './Panes/AirLoadType'
 import { FTLLoadType } from './Panes/FTLLoadType'
+
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
 import { LTLLoadType } from './Panes/LTLLoadType'
@@ -41,6 +46,7 @@ import {
   toSchema
 } from './types-schemas-constants'
 
+
 type shippingMethodType = { label: string; value: string }
 
 export const Panel = () => {
@@ -48,13 +54,21 @@ export const Panel = () => {
   const [shippingStepId, setShippingStepId] = useState('')
   const [data, setData] = useState({})
 
+  useEffect(() => {
+    console.log('Updated Data:', data)
+  }, [data])
+
   const fromFormMethods = useForm<FromInputs>({
     mode: 'onChange',
     resolver: yupResolver(fromSchema),
     defaultValues: {
       fromType: '',
       fromCountry: '',
-      fromAddress: ''
+      fromAddress: '',
+      fromCity: '',
+      fromPostalCode: '',
+      fromState: '',
+      fromName: ''
     }
   })
 
@@ -64,7 +78,11 @@ export const Panel = () => {
     defaultValues: {
       toType: '',
       toCountry: '',
-      toAddress: ''
+      toAddress: '',
+      toCity: '',
+      toPostalCode: '',
+      toName: '',
+      toState: ''
     }
   })
 
@@ -138,22 +156,42 @@ export const Panel = () => {
   })
 
   const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('From Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('From Data: ', data)
     setShippingStepId('tab-ship-destination')
   }
 
   const onToFormSubmit: SubmitHandler<ToInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('To Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('To Data: ', data)
     setShippingStepId('tab-ship-load-type')
   }
 
   const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('Load Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('Load Type Data: ', data)
     setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onLtlLoadTypeFormSubmit: SubmitHandler<LtlLoadTypeInputs> = (data) => {
-    setData((prev) => ({ ...prev, ...data }))
+    setData((prev) => {
+      console.log('LTL Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('LTL Load Type Data: ', data)
     setShippingStepId('tab-ship-goods-commodity')
   }
 
@@ -173,7 +211,11 @@ export const Panel = () => {
   }
 
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
-    console.debug(data)
+    setData((prev) => {
+      console.log('Goods Previous data:', prev)
+      return { ...prev, ...data }
+    })
+    console.log('Goods Commodity Data: ', data)
     setShippingStepId('')
   }
 
@@ -186,7 +228,8 @@ export const Panel = () => {
   }
 
   return (
-    <div className="relative bg-gradient-blur-dialog border border-solid border-[#ffffff30] p-[18px] lg:p-[24px] rounded-[20px]">
+    <div className="relative border bg-gradient-blur-dialog border-solid border-[#ffffff30] lg:p-[24px] rounded-[20px]">
+      {/* {bg-gradient-blur-dialog backdrop-blur-[12px]} */}
       <ButtonSelect
         options={shippingMethods}
         value={shippingMethod}
