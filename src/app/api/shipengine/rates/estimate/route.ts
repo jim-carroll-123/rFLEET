@@ -38,11 +38,13 @@ async function getRateEstimates(req: Request) {
 
     const body = await req.json();
 
-    const { estimate } = body
+    const { rateOptions, shipmentId, shipment } = body
 
     const response = await shipEngineController.getRateEstimates({
-      estimate
-    } as GetRatesWithShipmentDetailsTypes.Estimate)
+      rateOptions,
+      shipmentId,
+      shipment
+    } as GetRatesWithShipmentDetailsTypes.Params)
 
     return { response };
 }
