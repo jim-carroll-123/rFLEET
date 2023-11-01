@@ -4,7 +4,9 @@ import { useEffect, useState } from 'react';
 
 
 
-import { set } from 'mongoose'
+import { set } from 'mongoose';
+
+
 
 import Delete from '@assets/icons/delete.svg'
 import IconDHL from '@assets/icons/dhl.svg'
@@ -18,11 +20,11 @@ import { GradientHR } from '@components/ui/GradientHR'
 import { Line } from '@components/ui/Line'
 import { LineRate } from '@components/ui/LineRate'
 import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil';
-import { Plane } from '@components/ui/Plane';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import countries from '@json/countries.json';
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
 
 import { addBestValueRates } from './SortRates/bestValue'
@@ -116,7 +118,7 @@ const handleSubmit = async (
         packages: [
           {
             weight: {
-              value: 30,
+              value: 300,
               unit: 'pound'
             },
             dimensions: {
@@ -418,7 +420,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>{(rates as any).bestRates[0].carrierDeliveryDays} days</span>
+                        <span>{(rates as any).bestRates[0].carrierDeliveryDays?.split(' ')[0]}</span>
                         <span className="p-2">
                           <Circle />
                         </span>
@@ -461,7 +463,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>{(rates as any).cheapestRates[0].carrierDeliveryDays} days</span>
+                        <span>{(rates as any).cheapestRates[0].carrierDeliveryDays?.split(' ')[0]}</span>
                         <span className="p-2">
                           <Circle />
                         </span>
