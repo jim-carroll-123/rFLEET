@@ -1,28 +1,33 @@
 'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import { set } from 'mongoose'
 
-import Delete from '@assets/icons/delete.svg'
-import IconDHL from '@assets/icons/dhl.svg'
-import IconFedEx from '@assets/icons/fedex.svg'
-import IconPostalService from '@assets/icons/postal-service.svg'
-import uPsLogo from '@assets/images/UPS-logo.png'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Circle } from '@components/ui/Circle'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Line } from '@components/ui/Line'
-import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
+
+import { set } from 'mongoose';
+
+
+
+import Delete from '@assets/icons/delete.svg';
+import IconDHL from '@assets/icons/dhl.svg';
+import IconFedEx from '@assets/icons/fedex.svg';
+import IconPostalService from '@assets/icons/postal-service.svg';
+import uPsLogo from '@assets/images/UPS-logo.png';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Circle } from '@components/ui/Circle';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Line } from '@components/ui/Line';
+import { LineRate } from '@components/ui/LineRate';
+import { Location } from '@components/ui/Location';
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
 import { Tab } from '@components/ui/TabPane'
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
 
+import { addCheapestShippingAmounts } from './SortRates/cheapest'
 import { Field } from './types-schemas-constants'
 
 const carrierProviderIcons: any = {
@@ -42,6 +47,47 @@ const handleSubmit = async (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
+    // const datatest = {
+    //   rateOptions: {
+    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
+    //   },
+    //   shipment: {
+    //     validateAddress: 'no_validation',
+    //     shipTo: {
+    //       name: data.toName,
+    //       phone: '555-555-5555',
+    //       addressLine1: data.toAddress,
+    //       stateProvince: data.toState,
+    //       cityLocality: data.toCity,
+    //       postalCode: data.toPostalCode,
+    //       countryCode: data.toCountry
+    //     },
+    //     shipFrom: {
+    //       companyName: 'Example Corp.',
+    //       name: data.fromName,
+    //       phone: '111-111-1111',
+    //       addressLine1: data.fromAddress,
+    //       stateProvince: data.fromState,
+    //       cityLocality: data.fromCity,
+    //       postalCode: data.fromPostalCode,
+    //       countryCode: data.fromCountry
+    //     },
+    //     packages: [
+    //       {
+    //         weight: {
+    //           value: data.fields[0].weight,
+    //           unit: data.fields[0].weightUnit
+    //         },
+    //         dimensions: {
+    //           unit: 'inch',
+    //           length: data.fields?.[0].length,
+    //           width: data.fields?.[0].width,
+    //           height: data.fields?.[0].height
+    //         }
+    //       }
+    //     ]
+    //   }
+    // }
     const datatest = {
       rateOptions: {
         carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
@@ -49,35 +95,35 @@ const handleSubmit = async (
       shipment: {
         validateAddress: 'no_validation',
         shipTo: {
-          name: data.toName,
+          name: 'Luke Skywalker',
           phone: '555-555-5555',
-          addressLine1: data.toAddress,
-          stateProvince: data.toState,
-          cityLocality: data.toCity,
-          postalCode: data.toPostalCode,
-          countryCode: data.toCountry
+          addressLine1: '1001 SW 17TH LN',
+          stateProvince: 'FL',
+          cityLocality: 'GAINESVILLE',
+          postalCode: '32601-0001',
+          countryCode: 'US'
         },
         shipFrom: {
           companyName: 'Example Corp.',
-          name: data.fromName,
+          name: 'Darth Vader',
           phone: '111-111-1111',
-          addressLine1: data.fromAddress,
-          stateProvince: data.fromState,
-          cityLocality: data.fromCity,
-          postalCode: data.fromPostalCode,
-          countryCode: data.fromCountry
+          addressLine1: '303 W 5TH ST',
+          stateProvince: 'TX',
+          cityLocality: 'AUSTIN',
+          postalCode: '78701-3164',
+          countryCode: 'US'
         },
         packages: [
           {
             weight: {
-              value: data.fields[0].weight,
-              unit: data.fields[0].weightUnit
+              value: 30,
+              unit: 'pound'
             },
             dimensions: {
               unit: 'inch',
-              length: data.fields?.[0].length,
-              width: data.fields?.[0].width,
-              height: data.fields?.[0].height
+              length: 12,
+              width: 12,
+              height: 12
             }
           }
         ]
@@ -136,6 +182,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   }
 
   const fields: Field[] = data.fields
+
+  addCheapestShippingAmounts(rates)
+
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-d-16">
@@ -410,13 +459,22 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   </div>
 
-                  {(rates as any).rateResponse?.rates.map((rate: any, index: number) => (
+                  {(rates as any).rateResponse?.rates.slice(0, 5).map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
-                          <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
-                            Best Value
-                          </div>
+                          {index === 0 && (
+                            <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                              {selected === 0
+                                ? 'Best Value'
+                                : selected === 1
+                                ? 'Quickest'
+                                : selected === 2
+                                ? 'Cheapest'
+                                : null}
+                            </div>
+                          )}
+
                           <div className="flex flex-row mt-4">
                             <div className="bg-white w-[200px] rounded-sm">
                               <div className="p-3 flex justify-center items-center">
@@ -471,10 +529,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-                                $
-                                {Number((rates as any).rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(
-                                  2
-                                )}
+                                {selected === 0 ? (
+                                  'Best Value'
+                                ) : selected === 1 ? (
+                                  'Quickest'
+                                ) : selected === 2 ? (
+                                  <div>${Number((rates as any).cheapestShippingAmounts[index] || 0).toFixed(2)}</div>
+                                ) : null}
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
@@ -495,7 +556,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   ))}
 
-                  {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
+                  {/* {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
@@ -573,7 +634,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                       </div>
                       Invalid Rate
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               )}
             </div>
