@@ -118,7 +118,7 @@ const handleSubmit = async (
         packages: [
           {
             weight: {
-              value: 300,
+              value: 1000,
               unit: 'pound'
             },
             dimensions: {
@@ -181,6 +181,22 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       return 'bg-blue-500'
     }
     return ''
+  }
+
+  function getCurrentFormattedDate(): string {
+    const currentDate: Date = new Date()
+
+    currentDate.setUTCDate(currentDate.getUTCDate() + 1)
+
+    const monthNames: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+    const day: string = String(currentDate.getUTCDate()).padStart(2, '0')
+    const month: string = monthNames[currentDate.getUTCMonth()]
+    const year: number = currentDate.getUTCFullYear()
+    const hours: string = String(currentDate.getUTCHours()).padStart(2, '0')
+    const minutes: string = String(currentDate.getUTCMinutes()).padStart(2, '0')
+
+    return `${month} ${day}, ${year} ${hours}:${minutes} (UTC)`
   }
 
   const fields: Field[] = data.fields
@@ -420,11 +436,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>{(rates as any).bestRates[0].carrierDeliveryDays?.split(' ')[0]}</span>
+                        <span>{(rates as any).bestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}</span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>${((rates as any).bestRates[0].shippingAmount.amount || 0).toFixed(2)}</span>
+                        <span>${((rates as any).bestRates[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
 
                       <div className="p-1 pt-2">
@@ -442,11 +458,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>{(rates as any).quickestRates[0].carrierDeliveryDays?.split(' ')[0]}</span>
+                        <span>{(rates as any).quickestRates[0]?.carrierDeliveryDays?.split(' ')[0]}</span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>${((rates as any).quickestRates[0].shippingAmount.amount || 0).toFixed(2)}</span>
+                        <span>${((rates as any).quickestRates[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                       <div className="p-1 pt-2">
                         <Line />
@@ -463,11 +479,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>{(rates as any).cheapestRates[0].carrierDeliveryDays?.split(' ')[0]}</span>
+                        <span>{(rates as any).cheapestRates[0]?.carrierDeliveryDays?.split(' ')[0]}</span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>${((rates as any).cheapestRates[0].shippingAmount.amount || 0).toFixed(2)}</span>
+                        <span>${((rates as any).cheapestRates[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
@@ -552,7 +568,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                                 Rate expires:{' '}
                               </div>
                               <div className="text-white font-poppins text-[14px] font-medium leading-5">
-                                Sep 16, 2023 05:58 (UTC)
+                                {getCurrentFormattedDate()}
                               </div>
                             </div>
                           </div>
