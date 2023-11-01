@@ -1,42 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react'
 
+import { set } from 'mongoose'
 
-
-import { set } from 'mongoose';
-
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
-import { Circle } from '@components/ui/Circle';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRate';
-import { Location } from '@components/ui/Location';
-import { Pencil } from '@components/ui/Pencil';
-import { Plane } from '@components/ui/Plane';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
-
-
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/Button'
+import { Check } from '@components/ui/Check'
+import { Circle } from '@components/ui/Circle'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRate'
+import { Location } from '@components/ui/Location'
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
 import { Field } from './types-schemas-constants'
-
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
   FedEx: <IconFedEx />,
   DHL: <IconDHL />,
-  UPS: <img src={uPsLogo.src} />
+  UPS: <img className="h-12 my-[-10px]" src={uPsLogo.src} />
 }
 interface ShippingStepsProps {
   shippingStepId: string
@@ -78,7 +71,7 @@ const handleSubmit = async (
           {
             weight: {
               value: data.fields[0].weight,
-              unit: 'ounce'
+              unit: data.fields[0].weightUnit
             },
             dimensions: {
               unit: 'inch',
@@ -126,6 +119,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const [isLoading, setIsLoading] = useState(false)
 
   const [selected, setSelected] = useState<number | null>(null)
+
+  useEffect(() => {
+    setSelected(0)
+  }, [])
 
   const handleClick = (index: number) => {
     setSelected(index)
@@ -423,11 +420,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="flex flex-row mt-4">
                             <div className="bg-white w-[200px] rounded-sm">
                               <div className="p-3 flex justify-center items-center">
-                                {
-                                  carrierProviderIcons[
-                                    (rates as any).rateResponse?.rates[index].serviceType?.trim().split(' ')[0]
-                                  ]
-                                }
+                                {carrierProviderIcons[(rates as any).rateResponse?.rates[index].carrierFriendlyName]}
                               </div>
                             </div>
 
@@ -450,7 +443,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-                              {(rates as any).rateResponse?.rates[index].carrierDeliveryDays} business days
+                              {(rates as any).rateResponse?.rates[index].carrierDeliveryDays}
+                              {(rates as any).rateResponse?.rates[index].carrierFriendlyName === 'USPS'
+                                ? ' business days'
+                                : ''}
                             </div>
                           </div>
                           <div className="flex flex-row">
