@@ -18,14 +18,16 @@ import { GradientHR } from '@components/ui/GradientHR'
 import { Line } from '@components/ui/Line'
 import { LineRate } from '@components/ui/LineRate'
 import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
 import { cn } from '@lib/utils'
 
+import { addBestValueRates } from './SortRates/bestValue'
 import { addCheapestShippingAmounts } from './SortRates/cheapest'
+import { addQuickestShippingAmounts } from './SortRates/quickest'
 import { Field } from './types-schemas-constants'
 
 const carrierProviderIcons: any = {
@@ -182,12 +184,14 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const fields: Field[] = data.fields
 
   addCheapestShippingAmounts(rates)
+  addQuickestShippingAmounts(rates)
+  addBestValueRates(rates)
 
   const url =
     selected === 0
-      ? (rates as any).rateResponse?.rates
+      ? (rates as any).bestRates
       : selected === 1
-      ? (rates as any).rateResponse?.rates
+      ? (rates as any).quickestRates
       : selected === 2
       ? (rates as any).cheapestRates
       : undefined
@@ -414,11 +418,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>2-4 days</span>
+                        <span>{(rates as any).bestRates[0].carrierDeliveryDays} days</span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>$1,575</span>
+                        <span>${((rates as any).bestRates[0].shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
 
                       <div className="p-1 pt-2">
@@ -436,11 +440,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>2-4 days</span>
+                        <span>{(rates as any).quickestRates[0].carrierDeliveryDays?.split(' ')[0]}</span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>$1,575</span>
+                        <span>${((rates as any).quickestRates[0].shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                       <div className="p-1 pt-2">
                         <Line />
@@ -457,11 +461,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>2-4 days</span>
+                        <span>{(rates as any).cheapestRates[0].carrierDeliveryDays} days</span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>$1,575</span>
+                        <span>${((rates as any).cheapestRates[0].shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
