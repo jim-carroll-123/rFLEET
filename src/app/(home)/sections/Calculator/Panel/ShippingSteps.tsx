@@ -4,25 +4,23 @@ import { useEffect, useState } from 'react';
 
 
 
-import { set } from 'mongoose';
+import { set } from 'mongoose'
 
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
-import { Circle } from '@components/ui/Circle';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRate';
-import { Location } from '@components/ui/Location';
-import { Pencil } from '@components/ui/Pencil';
-import { Plane } from '@components/ui/Plane';
-import { Star } from '@components/ui/Star';
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/Button'
+import { Check } from '@components/ui/Check'
+import { Circle } from '@components/ui/Circle'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRate'
+import { Location } from '@components/ui/Location'
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
 import { Tab } from '@components/ui/TabPane'
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
@@ -184,6 +182,15 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   const fields: Field[] = data.fields
 
   addCheapestShippingAmounts(rates)
+
+  const url =
+    selected === 0
+      ? (rates as any).rateResponse?.rates
+      : selected === 1
+      ? (rates as any).rateResponse?.rates
+      : selected === 2
+      ? (rates as any).cheapestRates
+      : undefined
 
   return (
     <>
@@ -459,7 +466,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   </div>
 
-                  {(rates as any).rateResponse?.rates.slice(0, 5).map((rate: any, index: number) => (
+                  {url.slice(0, 5).map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
@@ -478,7 +485,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="flex flex-row mt-4">
                             <div className="bg-white w-[200px] rounded-sm">
                               <div className="p-3 flex justify-center items-center">
-                                {carrierProviderIcons[(rates as any).rateResponse?.rates[index].carrierFriendlyName]}
+                                {carrierProviderIcons[url[index].carrierFriendlyName]}
                               </div>
                             </div>
 
@@ -488,10 +495,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             <div className="mt-4 ml-1 mr-2">(4.5)</div>
                           </div>
                           <div className="w-[200px] pt-1 flex justify-center items-center">
-                            {(rates as any).rateResponse?.rates[index].carrierId === 'se-5391275'
-                              ? 'r-' + (rates as any).rateResponse?.rates[index].serviceType
-                              : (rates as any).rateResponse?.rates[index].serviceType}
-                            {/* {(rates as any).rateResponse?.rates[index].carrierId} */}
+                            {url[index].carrierId === 'se-5391275'
+                              ? 'r-' + url[index].serviceType
+                              : url[index].serviceType}
+                            {/* {url[index].carrierId} */}
                           </div>
                         </div>
                         <div className="p-2">
@@ -501,10 +508,8 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-                              {(rates as any).rateResponse?.rates[index].carrierDeliveryDays}
-                              {(rates as any).rateResponse?.rates[index].carrierFriendlyName === 'USPS'
-                                ? ' business days'
-                                : ''}
+                              {url[index].carrierDeliveryDays}
+                              {url[index].carrierFriendlyName === 'USPS' ? ' business days' : ''}
                             </div>
                           </div>
                           <div className="flex flex-row">
@@ -529,13 +534,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-                                {selected === 0 ? (
-                                  'Best Value'
-                                ) : selected === 1 ? (
-                                  'Quickest'
-                                ) : selected === 2 ? (
-                                  <div>${Number((rates as any).cheapestShippingAmounts[index] || 0).toFixed(2)}</div>
-                                ) : null}
+                                ${Number(url[index].shippingAmount?.amount || 0).toFixed(2)}
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
