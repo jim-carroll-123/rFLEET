@@ -48,11 +48,11 @@ export const dimensionUnits = [
 
 export const weightUnits = [
   {
-    label: 'lb',
+    label: 'lbs',
     value: 'lb'
   },
   {
-    label: 'kg',
+    label: 'kgs',
     value: 'kg'
   }
 ]
