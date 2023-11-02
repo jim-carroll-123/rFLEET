@@ -31,6 +31,7 @@ import { CompanyUploads } from './sections/CompanyUploads'
 import { Contacts } from './sections/Contacts'
 import { CustomerAgreement } from './sections/CustomerAgreement'
 import { ShipperEquipment } from './sections/ShipperEquipment'
+import { ShipperProducts } from './sections/ShipperProducts'
 import { ShippingLanes } from './sections/ShippingLanes'
 import { StartOnboarding } from './sections/StartOnboarding'
 import { TermsAndConditions } from './sections/TermsAndConditions'
@@ -56,15 +57,15 @@ export const OnboardingSection = () => {
     [key: number]: JSX.Element
   } = {
     0: <StartOnboarding onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-
     1: <CompanyInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     2: <TermsAndConditions onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     3: <BillingInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    4: <CompanyUploads onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    5: <ShippingLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    6: <Contacts onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    7: <CustomerAgreement onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    8: <ShipperEquipment onClose={() => setOnboardingModalOpen(false)} />
+    4: <ShipperProducts onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    5: <CompanyUploads onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    6: <ShippingLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    7: <Contacts onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    8: <CustomerAgreement onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    9: <ShipperEquipment onClose={() => setOnboardingModalOpen(false)} />
   }
   return (
     <section id="onboarding-section">
@@ -74,7 +75,7 @@ export const OnboardingSection = () => {
         <Modal
           open={onboardingModalOpen}
           onClose={() => setOnboardingModalOpen(true)}
-          className="max-h-[96vh]  my-auto p-4 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
+          className="max-h-[96vh]  my-auto p-4 lg:max-w-[850px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
         >
           {onboardingForms[activeFormIndex]}
         </Modal>
