@@ -1,26 +1,21 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { useEffect, useState } from 'react'
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
+import ArrowRight from '@assets/icons/arrow-right.svg'
+import BusinessAddress from '@assets/icons/business-address.svg'
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
+import PortAirport from '@assets/icons/port_airport.svg'
+import ResidentialAddress from '@assets/icons/residential-address.svg'
+import User from '@assets/icons/user.svg'
+import { Button } from '@components/ui/Button'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelect'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Input } from '@components/ui/Input'
+import { Select, findOption } from '@components/ui/Select'
 
-
-import ArrowRight from '@assets/icons/arrow-right.svg';
-import BusinessAddress from '@assets/icons/business-address.svg';
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
-import PortAirport from '@assets/icons/port_airport.svg';
-import ResidentialAddress from '@assets/icons/residential-address.svg';
-import User from '@assets/icons/user.svg';
-import { Button } from '@components/ui/Button';
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelect';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/Input';
-import { Select, findOption } from '@components/ui/Select';
-
-
-
-import { FromInputs } from '../types-schemas-constants';
-
+import { FromInputs } from '../types-schemas-constants'
 
 const fromTypes = [
   {
@@ -167,8 +162,6 @@ export const From = ({ methods, onSubmit }: Props) => {
               error={errors.fromName?.message}
             />
           </div>
-
-          
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
           <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">

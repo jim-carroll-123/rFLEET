@@ -1,10 +1,7 @@
-import { useRef } from 'react';
+import { useRef } from 'react'
 
-
-
-import SearchIcon from '@assets/icons/search.svg';
-import { Button } from '@components/ui/Button';
-
+import SearchIcon from '@assets/icons/search.svg'
+import { Button } from '@components/ui/Button'
 
 export const SearchInput = ({
   onSearchChange,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
 import { Button, TransparentButton } from '@components/ui/Button'
@@ -9,30 +9,8 @@ type Props = {
   onClose?: () => void
   onSubmit?: () => void
 }
-export const LocationValidation = ({ onClose, onSubmit }: Props) => {
+export const DocusignAgreement = ({ onClose, onSubmit }: Props) => {
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false)
-  const [location, setLocation] = useState({})
-
-  const requestLocationPermission = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords
-          setLocation({ latitude, longitude })
-        },
-        (error) => {
-          console.error(error)
-        }
-      )
-    } else {
-      console.error('Geolocation is not supported by your browser.')
-    }
-  }
-
-  const acceptLocationValidationTerms = (value: boolean) => {
-    if (value) requestLocationPermission()
-    setAcceptedTerms(value)
-  }
   const onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault()
     onSubmit?.()
@@ -89,7 +67,7 @@ export const LocationValidation = ({ onClose, onSubmit }: Props) => {
             <GradientHR />
           </div>
           <Check
-            onChange={acceptLocationValidationTerms}
+            onChange={(value) => setAcceptedTerms(value)}
             label={<div className="font-light">Accept these terms and conditions</div>}
           />
 

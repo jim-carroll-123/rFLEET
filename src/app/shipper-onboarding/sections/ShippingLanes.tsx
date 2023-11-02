@@ -46,8 +46,8 @@ export const ShippingLanes = ({ onClose, onSubmit }: Props) => {
         <div>
           <div className="flex items-center justify-between">
             <div className="flex flex-col">
-              <div className="font-semibold text-lg">Carrier Lanes</div>
-              <div className="font-extralight text-[10px]">Select the lanes this carrier runs.</div>
+              <div className="font-semibold text-lg">Facilities, Warehouses, and Customers</div>
+              <div className="font-extralight text-[10px]">Select the geographical areas to build your network.</div>
             </div>
             <AiOutlineClose onClick={onClose} className=" cursor-pointer" />
           </div>
@@ -80,7 +80,7 @@ export const ShippingLanes = ({ onClose, onSubmit }: Props) => {
           </div>
           <div className="flex items-center justify-center ">
             <div className="w-[400px]">
-              <StatesMap />
+              <StatesMap selectedStates={selectedStates} onClick={(value: string) => updateSelectedStates(value)} />
             </div>
           </div>
 

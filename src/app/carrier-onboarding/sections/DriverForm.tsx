@@ -37,7 +37,32 @@ export const DriverForm = ({ onClose, onSubmit }: Props) => {
             <div className="flex flex-col col-span-2">
               <Input label="Cell Phone" labelClassName="text-[15px]  mt-[8px]" placeholder="Enter driver name" />
             </div>
-            <div className="flex flex-col col-span-2">
+          </div>
+          <div className="grid grid-cols-3 gap-4 my-4">
+            <div className="flex flex-col ">
+              <Input label="Truck#" labelClassName="text-[15px]  mt-[8px]" placeholder="Enter driver truck number" />
+            </div>
+            <div className="flex flex-col justify-end ">
+              <Input label="" labelClassName="text-[15px]  mt-[8px]" placeholder="Enter VIN number" />
+            </div>
+            <div className="flex flex-col justify-end">
+              <Input label="" labelClassName="text-[15px]  mt-[8px]" placeholder="Enter license plate number" />
+            </div>
+
+            <div className="flex flex-col ">
+              <Input
+                label="Trailer#"
+                labelClassName="text-[15px]  mt-[8px]"
+                placeholder="Enter driver trailer number"
+              />
+            </div>
+            <div className="flex flex-col justify-end">
+              <Input label="" labelClassName="text-[15px]  mt-[8px]" placeholder="Enter VIN number" />
+            </div>
+            <div className="flex flex-col justify-end">
+              <Input label="" labelClassName="text-[15px]  mt-[8px]" placeholder="Enter license plate number" />
+            </div>
+            <div className="flex flex-col col-span-3">
               <Input
                 label="Email"
                 type="email"
@@ -45,18 +70,16 @@ export const DriverForm = ({ onClose, onSubmit }: Props) => {
                 placeholder="Enter driver name"
               />
             </div>
-            <div className="flex flex-col col-span-2">
-              <Input
-                label="Driving License Number"
-                labelClassName="text-[15px]  mt-[8px]"
-                placeholder="Enter driver name"
-              />
-            </div>
-
+          </div>
+          <div className="grid grid-cols-4">
             <Check label="Active" labelClassName="font-light " />
             <Check label="Flagged" labelClassName="font-light " />
             <Radio label="Email Instructions" />
             <Radio label="Text Instructions" />
+          </div>
+          <div className="flex flex-col gap-2 my-6">
+            <label htmlFor="notes">Notes</label>
+            <textarea className="rounded-md bg-transparent border" rows={5} id="notes" />
           </div>
         </div>
 

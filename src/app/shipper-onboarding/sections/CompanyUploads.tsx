@@ -72,21 +72,15 @@ export const CompanyUploads = ({ onClose, onSubmit }: Props) => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-3 my-4">
+          <div className="grid grid-cols-2 gap-3 my-4">
             <Check label="Certificate of Good Standing*" labelClassName="font-light text-[13px]" />
-            <Check label="Surety Band" labelClassName="font-light text-[13px]" />
-            <Check label="xxx" labelClassName="font-light text-[13px]" />
-            <Check label="EIN Letter*" labelClassName="font-light text-[13px]" />
-            <Check label="Credit References" labelClassName="font-light text-[13px]" />
-            <Check label="xxx" labelClassName="font-light text-[13px]" />
-            <Check label="Dun & Bradsteet#" labelClassName="font-light text-[13px]" />
-            <Check label="Reseller Agreement" labelClassName="font-light text-[13px]" />
-            <Check label="xxx" labelClassName="font-light text-[13px]" />
-            <Check label="Distribution Agreement" labelClassName="font-light text-[13px]" />
-            <Check label="xxx" labelClassName="font-light text-[13px]" />
-            <Check label="Dun & Bradsteet#" labelClassName="font-light text-[13px]" />
             <Check label="Hazmat License" labelClassName="font-light text-[13px]" />
-            <Check label="xxx" labelClassName="font-light text-[13px]" />
+            <Check label="EIN Letter*" labelClassName="font-light text-[13px]" />
+            <Check label="Surety Bond" labelClassName="font-light text-[13px]" />
+            <Check label="Dun & Bradsteet#" labelClassName="font-light text-[13px]" />
+            <Check label="Credit References" labelClassName="font-light text-[13px]" />
+            <Check label="Distribution Agreement" labelClassName="font-light text-[13px]" />
+            <Check label="Reseller Agreement" labelClassName="font-light text-[13px]" />
           </div>
 
           <div className="w-full h-[2px] bg-gradient-to-br from-cyan-900 to-indigo-900  my-6"></div>

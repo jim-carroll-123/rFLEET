@@ -173,3 +173,13 @@ input {
   animation: fillProgress 1s ease-in-out;
 }
 
+/* Style the calendar picker button */
+input[type="date"]::-webkit-calendar-picker-indicator {
+ font-size: 20px;
+}
+
+/* Style the calendar picker button on Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+
+  font-size: 20px;
+}

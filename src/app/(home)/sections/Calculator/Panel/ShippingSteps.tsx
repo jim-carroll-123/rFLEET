@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -25,6 +26,7 @@ import { Plane } from '@components/ui/Plane';
 import { Star } from '@components/ui/Star';
 import { Tab } from '@components/ui/TabPane';
 import { Truck } from '@components/ui/Truck';
+
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
 
@@ -569,12 +571,14 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
+
                               {url[index].carrierDeliveryDays}
                               {url[index].carrierDeliveryDays === '1'
                                 ? ' day'
                                 : url[index].carrierDeliveryDays.length <= 2
                                 ? ' days'
                                 : null}
+
                             </div>
                           </div>
                           <div className="flex flex-row">
@@ -599,7 +603,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
+
                                 ${Number(url[index].shippingAmount?.amount || 0).toFixed(2)}
+
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
@@ -620,7 +626,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   ))}
 
+
                   {/* {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
+
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">

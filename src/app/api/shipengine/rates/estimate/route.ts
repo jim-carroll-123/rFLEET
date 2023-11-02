@@ -1,14 +1,9 @@
-import joi from 'joi';
-import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
+import joi from 'joi'
+import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details'
 
+import { shipEngineController } from '@controllers/shipEngine'
 
-
-import { shipEngineController } from '@controllers/shipEngine';
-
-
-
-import { apiHandler } from '@lib/api';
-
+import { apiHandler } from '@lib/api'
 
 /**
  * @swagger
@@ -31,22 +26,24 @@ import { apiHandler } from '@lib/api';
  */
 
 module.exports = apiHandler({
-    POST: getRateEstimates
-});
+  POST: getRateEstimates
+})
 
 async function getRateEstimates(req: Request) {
+  const body = await req.json()
 
     const body = await req.json();
 
     const { rateOptions, shipmentId, shipment } = body
 
-    const response = await shipEngineController.getRateEstimates({
-      rateOptions,
-      shipmentId,
-      shipment
-    } as GetRatesWithShipmentDetailsTypes.Params)
 
-    return { response };
+  const response = await shipEngineController.getRateEstimates({
+    rateOptions,
+    shipmentId,
+    shipment
+  } as GetRatesWithShipmentDetailsTypes.Params)
+
+  return { response }
 }
 
 // getRateEstimates.schema = joi.object({

@@ -1,13 +1,9 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
-
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
-
+import { yupResolver } from '@hookform/resolvers/yup'
 
 import { ButtonSelect } from '@components/ui/ButtonSelect';
 import { TabPane } from '@components/ui/TabPane';

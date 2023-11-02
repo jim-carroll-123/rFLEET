@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, UseFormReturn, useForm } from 'react-hook-form'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BiSolidInfoCircle } from 'react-icons/bi'
 
@@ -46,8 +46,9 @@ const companyTypes = [
 type Props = {
   onClose?: () => void
   onSubmit?: () => void
+  form: UseFormReturn<companyInfoInputs>
 }
-export const CompanyInfo = ({ onClose, onSubmit }: Props) => {
+export const CompanyInfo = ({ onClose, onSubmit, form }: Props) => {
   const {
     watch,
     setValue,
@@ -56,11 +57,7 @@ export const CompanyInfo = ({ onClose, onSubmit }: Props) => {
     getValues,
     formState: { errors },
     control
-  } = useForm<companyInfoInputs>({
-    mode: 'onChange',
-    resolver: yupResolver(companyInfoSchema),
-    defaultValues: {}
-  })
+  } = form
   const onSubmitForm: SubmitHandler<companyInfoInputs> = (data) => {
     console.log(data)
     onSubmit?.()

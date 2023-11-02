@@ -1,13 +1,9 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { ParallaxBanner } from 'react-scroll-parallax';
+import { useState } from 'react'
+import { ParallaxBanner } from 'react-scroll-parallax'
 
-
-
-import dynamic from 'next/dynamic';
-
-
+import dynamic from 'next/dynamic'
 
 import ChatbotIcon from '@assets/icons/chatbot.svg'
 import bgEarth from '@assets/images/bg-earth.jpeg'
