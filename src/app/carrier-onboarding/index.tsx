@@ -67,10 +67,7 @@ export const OnboardingSection = () => {
   const onboardingForms: {
     [key: number]: JSX.Element
   } = {
-    //remove this
-    0: <PreferedLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-
-    11: <CompanyInfo form={companyInfoForm} onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    0: <CompanyInfo form={companyInfoForm} onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     1: <TermsAndConditions onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     2: (
       <PayeeInfo
