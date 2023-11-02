@@ -39,11 +39,11 @@ export const parcelShapes = [
 export const dimensionUnits = [
   {
     label: 'in',
-    value: 'in'
+    value: 'inch'
   },
   {
     label: 'cm',
-    value: 'cm'
+    value: 'centimeter'
   }
 ]
 

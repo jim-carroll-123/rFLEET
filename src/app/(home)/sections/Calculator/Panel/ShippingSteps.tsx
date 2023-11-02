@@ -8,23 +8,23 @@ import { set } from 'mongoose';
 
 
 
-import Delete from '@assets/icons/delete.svg'
-import IconDHL from '@assets/icons/dhl.svg'
-import IconFedEx from '@assets/icons/fedex.svg'
-import IconPostalService from '@assets/icons/postal-service.svg'
-import uPsLogo from '@assets/images/UPS-logo.png'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Circle } from '@components/ui/Circle'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Line } from '@components/ui/Line'
-import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane'
-import countries from '@json/countries.json'
+import Delete from '@assets/icons/delete.svg';
+import IconDHL from '@assets/icons/dhl.svg';
+import IconFedEx from '@assets/icons/fedex.svg';
+import IconPostalService from '@assets/icons/postal-service.svg';
+import uPsLogo from '@assets/images/UPS-logo.png';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Circle } from '@components/ui/Circle';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Line } from '@components/ui/Line';
+import { LineRate } from '@components/ui/LineRate';
+import { Location } from '@components/ui/Location';
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
+import { Tab } from '@components/ui/TabPane';
+import countries from '@json/countries.json';
 import { cn } from '@lib/utils'
 
 import { addBestValueRates } from './SortRates/bestValue'
@@ -49,47 +49,6 @@ const handleSubmit = async (
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   try {
-    // const datatest = {
-    //   rateOptions: {
-    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
-    //   },
-    //   shipment: {
-    //     validateAddress: 'no_validation',
-    //     shipTo: {
-    //       name: data.toName,
-    //       phone: '555-555-5555',
-    //       addressLine1: data.toAddress,
-    //       stateProvince: data.toState,
-    //       cityLocality: data.toCity,
-    //       postalCode: data.toPostalCode,
-    //       countryCode: data.toCountry
-    //     },
-    //     shipFrom: {
-    //       companyName: 'Example Corp.',
-    //       name: data.fromName,
-    //       phone: '111-111-1111',
-    //       addressLine1: data.fromAddress,
-    //       stateProvince: data.fromState,
-    //       cityLocality: data.fromCity,
-    //       postalCode: data.fromPostalCode,
-    //       countryCode: data.fromCountry
-    //     },
-    //     packages: [
-    //       {
-    //         weight: {
-    //           value: data.fields[0].weight,
-    //           unit: data.fields[0].weightUnit
-    //         },
-    //         dimensions: {
-    //           unit: 'inch',
-    //           length: data.fields?.[0].length,
-    //           width: data.fields?.[0].width,
-    //           height: data.fields?.[0].height
-    //         }
-    //       }
-    //     ]
-    //   }
-    // }
     const datatest = {
       rateOptions: {
         carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
@@ -97,40 +56,81 @@ const handleSubmit = async (
       shipment: {
         validateAddress: 'no_validation',
         shipTo: {
-          name: 'Luke Skywalker',
+          name: data.toName,
           phone: '555-555-5555',
-          addressLine1: '1001 SW 17TH LN',
-          stateProvince: 'FL',
-          cityLocality: 'GAINESVILLE',
-          postalCode: '32601-0001',
-          countryCode: 'US'
+          addressLine1: data.toAddress,
+          stateProvince: data.toState,
+          cityLocality: data.toCity,
+          postalCode: data.toPostalCode,
+          countryCode: data.toCountry
         },
         shipFrom: {
           companyName: 'Example Corp.',
-          name: 'Darth Vader',
+          name: data.fromName,
           phone: '111-111-1111',
-          addressLine1: '303 W 5TH ST',
-          stateProvince: 'TX',
-          cityLocality: 'AUSTIN',
-          postalCode: '78701-3164',
-          countryCode: 'US'
+          addressLine1: data.fromAddress,
+          stateProvince: data.fromState,
+          cityLocality: data.fromCity,
+          postalCode: data.fromPostalCode,
+          countryCode: data.fromCountry
         },
         packages: [
           {
             weight: {
-              value: 1000,
-              unit: 'pound'
+              value: data.fields[0].weight,
+              unit: data.fields[0].weightUnit
             },
             dimensions: {
-              unit: 'inch',
-              length: 12,
-              width: 12,
-              height: 12
+              unit: data.fields?.[0].dimensionUnit,
+              length: data.fields?.[0].length,
+              width: data.fields?.[0].width,
+              height: data.fields?.[0].height
             }
           }
         ]
       }
     }
+    // const datatest = {
+    //   rateOptions: {
+    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
+    //   },
+    //   shipment: {
+    //     validateAddress: 'no_validation',
+    //     shipTo: {
+    //       name: 'Luke Skywalker',
+    //       phone: '555-555-5555',
+    //       addressLine1: '1001 SW 17TH LN',
+    //       stateProvince: 'FL',
+    //       cityLocality: 'GAINESVILLE',
+    //       postalCode: '32601-0001',
+    //       countryCode: 'US'
+    //     },
+    //     shipFrom: {
+    //       companyName: 'Example Corp.',
+    //       name: 'Darth Vader',
+    //       phone: '111-111-1111',
+    //       addressLine1: '303 W 5TH ST',
+    //       stateProvince: 'TX',
+    //       cityLocality: 'AUSTIN',
+    //       postalCode: '78701-3164',
+    //       countryCode: 'US'
+    //     },
+    //     packages: [
+    //       {
+    //         weight: {
+    //           value: 1000,
+    //           unit: 'pound'
+    //         },
+    //         dimensions: {
+    //           unit: 'inch',
+    //           length: 12,
+    //           width: 12,
+    //           height: 12
+    //         }
+    //       }
+    //     ]
+    //   }
+    // }
 
     const response = await fetch('/api/shipengine/rates/estimate', {
       method: 'POST',
