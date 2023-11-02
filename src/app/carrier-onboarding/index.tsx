@@ -25,6 +25,7 @@ import { CompanyInfo } from './sections/CompanyInfo'
 import { CompanyValidation } from './sections/CompanyValidation'
 import { ContactForm } from './sections/ContactForm'
 import { Contacts } from './sections/Contacts'
+import { DocusignAgreement } from './sections/DocusignAgreement'
 import { DriverForm } from './sections/DriverForm'
 import { DriverInfo } from './sections/DriverInfo'
 import { InsurancePolicy } from './sections/InsurancePolicy'
@@ -66,10 +67,7 @@ export const OnboardingSection = () => {
   const onboardingForms: {
     [key: number]: JSX.Element
   } = {
-    //remove this
-    0: <CompanyValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-
-    10: <CompanyInfo form={companyInfoForm} onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    0: <CompanyInfo form={companyInfoForm} onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     1: <TermsAndConditions onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     2: (
       <PayeeInfo
@@ -81,11 +79,12 @@ export const OnboardingSection = () => {
     ),
     3: <LocationValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
     4: <CompanyValidation onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    5: <CarrierEquipment onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    6: <DriverInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    7: <PreferedLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    8: <InsurancePolicy onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
-    9: <Contacts onClose={() => setOnboardingModalOpen(false)} />
+    5: <DocusignAgreement onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    6: <CarrierEquipment onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    7: <DriverInfo onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    8: <PreferedLanes onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    9: <InsurancePolicy onClose={() => setOnboardingModalOpen(false)} onSubmit={gotoNextForm} />,
+    10: <Contacts onClose={() => setOnboardingModalOpen(false)} />
   }
   return (
     <section id="onboarding-section">
