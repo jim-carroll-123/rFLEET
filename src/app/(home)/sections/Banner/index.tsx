@@ -52,7 +52,7 @@ export const BannerSection = () => {
           </div>
         </div>
         <div className="col-span-4 text-white lg:py-[60px]">
-          <video width="520" height="520" autoPlay loop muted className='rounded-full'>
+          <video width="520" height="520" autoPlay loop muted className="rounded-full">
             <source src={globeVideo} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

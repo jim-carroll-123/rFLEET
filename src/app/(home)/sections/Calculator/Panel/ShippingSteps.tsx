@@ -1,33 +1,27 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
+import { useState } from 'react'
 
+import { set } from 'mongoose'
 
-
-import { set } from 'mongoose';
-
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
-import { Circle } from '@components/ui/Circle';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRate';
-import { Location } from '@components/ui/Location';
-import { Pencil } from '@components/ui/Pencil';
-import { Plane } from '@components/ui/Plane';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
-
-
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/Button'
+import { Check } from '@components/ui/Check'
+import { Circle } from '@components/ui/Circle'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRate'
+import { Location } from '@components/ui/Location'
+import { Pencil } from '@components/ui/Pencil'
+import { Plane } from '@components/ui/Plane'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
 import { Field } from './types-schemas-constants'
 
@@ -259,13 +253,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   <div className="flex border border-white rounded-d-6 mb-5">
                     <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
                     <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
-                      {((rates as any).packages?.[0]?.packageCode)}
+                      {(rates as any).packages?.[0]?.packageCode}
                     </div>
                     <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
-                    {((rates as any).packages?.[0]?.dimensions.length)}X{((rates as any).packages?.[0]?.dimensions.width)}X
-                    {((rates as any).packages?.[0]?.dimensions.height)} {((rates as any).packages?.[0]?.dimensions.unit)}
+                      {(rates as any).packages?.[0]?.dimensions.length}X{(rates as any).packages?.[0]?.dimensions.width}
+                      X{(rates as any).packages?.[0]?.dimensions.height} {(rates as any).packages?.[0]?.dimensions.unit}
                       {' / '}
-                      {((rates as any).packages?.[0]?.weight.value)} {((rates as any).packages?.[0]?.weight.unit)}
+                      {(rates as any).packages?.[0]?.weight.value} {(rates as any).packages?.[0]?.weight.unit}
                       {'s'}
                     </div>
                     <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
@@ -301,11 +295,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         </div>
                       </div>
                       <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
-                      {(rates as any).shipFrom?.name}
+                        {(rates as any).shipFrom?.name}
                       </h4>
                       <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
-                      {(rates as any).shipFrom?.addressLine1}, {(rates as any).shipFrom?.cityLocality}, {(rates as any).shipFrom?.stateProvince}{' '}
-                      {(rates as any).shipFrom?.postalCode}, {(rates as any).shipFrom?.countryCode}
+                        {(rates as any).shipFrom?.addressLine1}, {(rates as any).shipFrom?.cityLocality},{' '}
+                        {(rates as any).shipFrom?.stateProvince} {(rates as any).shipFrom?.postalCode},{' '}
+                        {(rates as any).shipFrom?.countryCode}
                       </p>
                       <div className="flex items-center">
                         <input type="checkbox" className="w-4 h-4 mr-2" />
@@ -330,11 +325,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         </div>
                       </div>
                       <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
-                      {(rates as any).shipTo?.name}
+                        {(rates as any).shipTo?.name}
                       </h4>
                       <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
-                      {(rates as any).shipTo?.addressLine1}, {(rates as any).shipTo?.cityLocality}, {(rates as any).shipTo?.stateProvince}{' '}
-                      {(rates as any).shipTo?.postalCode}, {(rates as any).shipTo?.countryCode}
+                        {(rates as any).shipTo?.addressLine1}, {(rates as any).shipTo?.cityLocality},{' '}
+                        {(rates as any).shipTo?.stateProvince} {(rates as any).shipTo?.postalCode},{' '}
+                        {(rates as any).shipTo?.countryCode}
                       </p>
                       <div className="flex items-center">
                         <input type="checkbox" className="w-4 h-4 mr-2" />
@@ -434,7 +430,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             <div className="mt-4 ml-1 mr-2">(4.5)</div>
                           </div>
                           <div className="w-[200px] pt-1 flex justify-center items-center">
-                          {(rates as any).rateResponse?.rates[index].serviceType}{' '}
+                            {(rates as any).rateResponse?.rates[index].serviceType}{' '}
                           </div>
                         </div>
                         <div className="p-2">
@@ -444,19 +440,21 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-                            {(rates as any).rateResponse?.rates[index].carrierDeliveryDays} business days
+                              {(rates as any).rateResponse?.rates[index].carrierDeliveryDays} business days
                             </div>
                           </div>
                           <div className="flex flex-row">
                             <Location />
                             <div className="ml-2 mr-6">
-                            {(rates as any).shipFrom?.postalCode?.trim().split('-')[0]}, {(rates as any).shipFrom?.cityLocality}
+                              {(rates as any).shipFrom?.postalCode?.trim().split('-')[0]},{' '}
+                              {(rates as any).shipFrom?.cityLocality}
                             </div>
                             <Plane />
                             <div className="mx-2 mr-5 "></div>
                             <Location />
                             <div className="ml-2">
-                            {(rates as any).shipTo?.postalCode?.trim().split('-')[0]}, {(rates as any).shipTo?.cityLocality}
+                              {(rates as any).shipTo?.postalCode?.trim().split('-')[0]},{' '}
+                              {(rates as any).shipTo?.cityLocality}
                             </div>
                           </div>
                         </div>
@@ -467,7 +465,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-                                ${Number((rates as any).rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(2)}
+                                $
+                                {Number((rates as any).rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(
+                                  2
+                                )}
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
@@ -488,7 +489,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   ))}
 
-                {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
+                  {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
@@ -520,19 +521,19 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-                            {(rates as any).rateResponse?.invalidRates[index].carrierDeliveryDays} business days
+                              {(rates as any).rateResponse?.invalidRates[index].carrierDeliveryDays} business days
                             </div>
                           </div>
                           <div className="flex flex-row">
                             <Location />
                             <div className="ml-2 mr-6">
-                            {(rates as any).shipFrom?.postalCode}, {(rates as any).shipFrom?.cityLocality}
+                              {(rates as any).shipFrom?.postalCode}, {(rates as any).shipFrom?.cityLocality}
                             </div>
                             <Plane />
                             <div className="mx-2 mr-5 "></div>
                             <Location />
                             <div className="ml-2">
-                            {(rates as any).shipTo?.postalCode}, {(rates as any).shipTo?.cityLocality}
+                              {(rates as any).shipTo?.postalCode}, {(rates as any).shipTo?.cityLocality}
                             </div>
                           </div>
                         </div>

@@ -80,7 +80,7 @@ export const PreferedLanes = ({ onClose, onSubmit }: Props) => {
           </div>
           <div className="flex items-center justify-center ">
             <div className="w-[400px]">
-              <StatesMap />
+              <StatesMap selectedStates={selectedStates} onClick={(value: string) => updateSelectedStates(value)} />
             </div>
           </div>
 

@@ -1,5 +1,4 @@
-import * as yup from 'yup';
-
+import * as yup from 'yup'
 
 export type Field = {
   carrierProvider: string
@@ -366,4 +365,3 @@ export type LtlLoadTypeInputs = yup.InferType<typeof ltlLoadTypeSchema>
 export type OceanLoadTypeInputs = yup.InferType<typeof oceanLoadTypeSchema>
 export type AirLoadTypeInputs = yup.InferType<typeof airLoadTypeSchema>
 export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
-
