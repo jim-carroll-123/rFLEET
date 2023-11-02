@@ -405,22 +405,43 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 <div className="flex lg:flex-row flex-col gap-d-16">
                   <div className="flex gap-d-16">
                     <Input
-                      type="number"
-                      placeholder="L"
+                      type="text"
+                      placeholder='L'
                       value={field.length}
                       error={fieldErrors?.length}
-                      onChange={(value) => setFieldItem('length', value)}
+                      onChange={(value: string) => {
+                        if (value === '') {
+                          setFieldItem('length', '');
+                          return;
+                        }
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        if (value === '' || isValidNumber) {
+                          setFieldItem('length', value === '' ? '' : value);
+                        }
+                      }}
                       containerClassName="lg:w-[99px]"
                     />
                     <div className="flex items-center flex-1">
                       <X />
                     </div>
-                    <Input
-                      type="number"
-                      placeholder="W"
+                   
+                     <Input
+                      type="text"
+                      placeholder='W'
                       value={field.width}
                       error={fieldErrors?.width}
-                      onChange={(value) => setFieldItem('width', value)}
+                      onChange={(value: string) => {
+                        if (value === '') {
+                          setFieldItem('width', '');
+                          return;
+                        }
+
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+
+                        if (value === '' || isValidNumber) {
+                          setFieldItem('width', value === '' ? '' : value);
+                        }
+                      }}
                       containerClassName="lg:w-[99px]"
                     />
                   </div>
@@ -428,12 +449,22 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                     <div className="flex items-center flex-1">
                       <X />
                     </div>
+                   
                     <Input
-                      type="number"
-                      placeholder="H"
+                      type="text"
+                      placeholder='H'
                       value={field.height}
                       error={fieldErrors?.height}
-                      onChange={(value) => setFieldItem('height', value)}
+                      onChange={(value: string) => {
+                        if (value === '') {
+                          setFieldItem('height', '');
+                          return;
+                        }
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        if (value === '' || isValidNumber) {
+                          setFieldItem('height', value === '' ? '' : value);
+                        }
+                      }}
                       containerClassName="lg:w-[99px]"
                     />
                     <Select
@@ -519,6 +550,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
             <div className="flex gap-d-16">
               <Input
                   type="text"
+                  placeholder='Weight'
                   value={field.weight}
                   error={fieldErrors?.weight}
                   onChange={(value: string) => {
@@ -527,10 +559,10 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       return;
                     }
 
-                    const isPositiveInteger = /^[1-9]\d*$/.test(value);
+                    const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
 
-                    if (isPositiveInteger) {
-                      setFieldItem('weight', parseInt(value, 10));
+                    if (value === '' || isValidNumber) {
+                      setFieldItem('weight', value === '' ? '' : value);
                     }
                   }}
                 />
