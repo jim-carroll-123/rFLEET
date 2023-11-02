@@ -1,35 +1,45 @@
-'use client'
 
-import { useState } from 'react'
+'use client';
 
-import { set } from 'mongoose'
+import { useEffect, useState } from 'react';
 
-import Delete from '@assets/icons/delete.svg'
-import IconDHL from '@assets/icons/dhl.svg'
-import IconFedEx from '@assets/icons/fedex.svg'
-import IconPostalService from '@assets/icons/postal-service.svg'
-import uPsLogo from '@assets/images/UPS-logo.png'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/Check'
-import { Circle } from '@components/ui/Circle'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Line } from '@components/ui/Line'
-import { LineRate } from '@components/ui/LineRate'
-import { Location } from '@components/ui/Location'
-import { Pencil } from '@components/ui/Pencil'
-import { Plane } from '@components/ui/Plane'
-import { Star } from '@components/ui/Star'
-import { Tab } from '@components/ui/TabPane'
+
+
+import { set } from 'mongoose';
+
+
+
+import Delete from '@assets/icons/delete.svg';
+import IconDHL from '@assets/icons/dhl.svg';
+import IconFedEx from '@assets/icons/fedex.svg';
+import IconPostalService from '@assets/icons/postal-service.svg';
+import uPsLogo from '@assets/images/UPS-logo.png';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/Check';
+import { Circle } from '@components/ui/Circle';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Line } from '@components/ui/Line';
+import { LineRate } from '@components/ui/LineRate';
+import { Location } from '@components/ui/Location';
+import { Pencil } from '@components/ui/Pencil';
+import { Plane } from '@components/ui/Plane';
+import { Star } from '@components/ui/Star';
+import { Tab } from '@components/ui/TabPane';
+import { Truck } from '@components/ui/Truck';
+
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
 
+import { addBestValueRates } from './SortRates/bestValue'
+import { addCheapestShippingAmounts } from './SortRates/cheapest'
+import { addQuickestShippingAmounts } from './SortRates/quickest'
 import { Field } from './types-schemas-constants'
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
   FedEx: <IconFedEx />,
   DHL: <IconDHL />,
-  UPS: <img src={uPsLogo.src} />
+  UPS: <img className="h-12 my-[-10px]" src={uPsLogo.src} />
 }
 interface ShippingStepsProps {
   shippingStepId: string
@@ -41,10 +51,21 @@ const handleSubmit = async (
   setRates: React.Dispatch<React.SetStateAction<any>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
+  var carrierIds = []
+  if (data.fields?.[0].carrierProvider === 'UPS') {
+    carrierIds.push('se-5107720')
+  } else if (data.fields?.[0].carrierProvider === 'USPS') {
+    carrierIds.push('se-5107717', 'se-5107720')
+  } else if (data.fields?.[0].carrierProvider === 'FedEx') {
+    carrierIds.push('se-5107758')
+  } else {
+    carrierIds.push('se-5107717', 'se-5107720', 'se-5107758', 'se-5391275')
+  }
+
   try {
     const datatest = {
       rateOptions: {
-        carrierIds: ['se-5107649']
+        carrierIds: carrierIds
       },
       shipment: {
         validateAddress: 'no_validation',
@@ -71,18 +92,65 @@ const handleSubmit = async (
           {
             weight: {
               value: data.fields[0].weight,
-              unit: 'ounce'
+              unit: data.fields[0].weightUnit
             },
+            // dimensions: {
+            //   unit: data.fields?.[0].dimensionUnit,
+            //   length: data.fields?.[0].length,
+            //   width: data.fields?.[0].width,
+            //   height: data.fields?.[0].height
+            // }
             dimensions: {
               unit: 'inch',
-              length: data.fields?.[0].length,
-              width: data.fields?.[0].width,
-              height: data.fields?.[0].height
+              length: 12,
+              width: 12,
+              height: 12
             }
           }
         ]
       }
     }
+    // const datatest = {
+    //   rateOptions: {
+    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
+    //   },
+    //   shipment: {
+    //     validateAddress: 'no_validation',
+    //     shipTo: {
+    //       name: 'Luke Skywalker',
+    //       phone: '555-555-5555',
+    //       addressLine1: '1001 SW 17TH LN',
+    //       stateProvince: 'FL',
+    //       cityLocality: 'GAINESVILLE',
+    //       postalCode: '32601-0001',
+    //       countryCode: 'US'
+    //     },
+    //     shipFrom: {
+    //       companyName: 'Example Corp.',
+    //       name: 'Darth Vader',
+    //       phone: '111-111-1111',
+    //       addressLine1: '303 W 5TH ST',
+    //       stateProvince: 'TX',
+    //       cityLocality: 'AUSTIN',
+    //       postalCode: '78701-3164',
+    //       countryCode: 'US'
+    //     },
+    //     packages: [
+    //       {
+    //         weight: {
+    //           value: 10,
+    //           unit: 'pound'
+    //         },
+    //         dimensions: {
+    //           unit: 'inch',
+    //           length: 12,
+    //           width: 12,
+    //           height: 12
+    //         }
+    //       }
+    //     ]
+    //   }
+    // }
 
     const response = await fetch('/api/shipengine/rates/estimate', {
       method: 'POST',
@@ -120,6 +188,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
   const [selected, setSelected] = useState<number | null>(null)
 
+  useEffect(() => {
+    setSelected(0)
+  }, [])
+
   const handleClick = (index: number) => {
     setSelected(index)
   }
@@ -131,7 +203,37 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
     return ''
   }
 
+  function getCurrentFormattedDate(): string {
+    const currentDate: Date = new Date()
+
+    currentDate.setUTCDate(currentDate.getUTCDate() + 1)
+
+    const monthNames: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+    const day: string = String(currentDate.getUTCDate()).padStart(2, '0')
+    const month: string = monthNames[currentDate.getUTCMonth()]
+    const year: number = currentDate.getUTCFullYear()
+    const hours: string = String(currentDate.getUTCHours()).padStart(2, '0')
+    const minutes: string = String(currentDate.getUTCMinutes()).padStart(2, '0')
+
+    return `${month} ${day}, ${year} ${hours}:${minutes} (UTC)`
+  }
+
   const fields: Field[] = data.fields
+
+  addCheapestShippingAmounts(rates)
+  addQuickestShippingAmounts(rates)
+  addBestValueRates(rates)
+
+  const url =
+    selected === 0
+      ? (rates as any).bestRates
+      : selected === 1
+      ? (rates as any).quickestRates
+      : selected === 2
+      ? (rates as any).cheapestRates
+      : undefined
+
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-d-16">
@@ -240,7 +342,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       ) : (
         <div>
           {Object.keys(rates).length === 0 ? (
-            <div>No Data</div>
+            <div></div>
           ) : (
             <div>
               {isDisplayRate && (
@@ -354,11 +456,18 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>2-4 days</span>
+                        <span>
+                          {(rates as any).bestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
+                          {(rates as any).bestRates?.[0]?.carrierDeliveryDays === '1'
+                            ? ' day'
+                            : (rates as any).bestRates?.[0]?.carrierDeliveryDays.length <= 2
+                            ? ' days'
+                            : null}
+                        </span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>$1,575</span>
+                        <span>${((rates as any).bestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
 
                       <div className="p-1 pt-2">
@@ -376,11 +485,18 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>2-4 days</span>
+                        <span>
+                          {(rates as any).quickestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
+                          {(rates as any).quickestRates?.[0]?.carrierDeliveryDays === '1'
+                            ? ' day'
+                            : (rates as any).quickestRates?.[0]?.carrierDeliveryDays.length <= 2
+                            ? ' days'
+                            : null}
+                        </span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>$1,575</span>
+                        <span>${((rates as any).quickestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                       <div className="p-1 pt-2">
                         <Line />
@@ -397,30 +513,42 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>2-4 days</span>
+                        <span>
+                          {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
+                          {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays === '1'
+                            ? ' day'
+                            : (rates as any).cheapestRates?.[0]?.carrierDeliveryDays.length <= 2
+                            ? ' days'
+                            : null}
+                        </span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>$1,575</span>
+                        <span>${((rates as any).cheapestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
 
-                  {(rates as any).rateResponse?.rates.map((rate: any, index: number) => (
+                  {url?.slice(0, 5).map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
-                          <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
-                            Best Value
-                          </div>
+                          {index === 0 && (
+                            <div className="border border-[#4f5684] rounded-md w-[70px] text-[10px] leading-4 pl-2 py-1 bg-gradient-rate-card">
+                              {selected === 0
+                                ? 'Best Value'
+                                : selected === 1
+                                ? 'Quickest'
+                                : selected === 2
+                                ? 'Cheapest'
+                                : null}
+                            </div>
+                          )}
+
                           <div className="flex flex-row mt-4">
                             <div className="bg-white w-[200px] rounded-sm">
                               <div className="p-3 flex justify-center items-center">
-                                {
-                                  carrierProviderIcons[
-                                    (rates as any).rateResponse?.rates[index].serviceType?.trim().split(' ')[0]
-                                  ]
-                                }
+                                {carrierProviderIcons[url[index].carrierFriendlyName]}
                               </div>
                             </div>
 
@@ -430,7 +558,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             <div className="mt-4 ml-1 mr-2">(4.5)</div>
                           </div>
                           <div className="w-[200px] pt-1 flex justify-center items-center">
-                            {(rates as any).rateResponse?.rates[index].serviceType}{' '}
+                            {url[index].carrierId === 'se-5391275'
+                              ? 'r-' + url[index].serviceType
+                              : url[index].serviceType}
+                            {/* {url[index].carrierId} */}
                           </div>
                         </div>
                         <div className="p-2">
@@ -440,7 +571,14 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-                              {(rates as any).rateResponse?.rates[index].carrierDeliveryDays} business days
+
+                              {url[index].carrierDeliveryDays}
+                              {url[index].carrierDeliveryDays === '1'
+                                ? ' day'
+                                : url[index].carrierDeliveryDays.length <= 2
+                                ? ' days'
+                                : null}
+
                             </div>
                           </div>
                           <div className="flex flex-row">
@@ -449,7 +587,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                               {(rates as any).shipFrom?.postalCode?.trim().split('-')[0]},{' '}
                               {(rates as any).shipFrom?.cityLocality}
                             </div>
-                            <Plane />
+                            {url[index].serviceType.toLowerCase().includes('air') ? <Plane /> : <Truck />}
                             <div className="mx-2 mr-5 "></div>
                             <Location />
                             <div className="ml-2">
@@ -465,10 +603,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-                                $
-                                {Number((rates as any).rateResponse?.rates[index].shippingAmount?.amount || 0).toFixed(
-                                  2
-                                )}
+
+                                ${Number(url[index].shippingAmount?.amount || 0).toFixed(2)}
+
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
@@ -480,7 +617,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                                 Rate expires:{' '}
                               </div>
                               <div className="text-white font-poppins text-[14px] font-medium leading-5">
-                                Sep 16, 2023 05:58 (UTC)
+                                {getCurrentFormattedDate()}
                               </div>
                             </div>
                           </div>
@@ -489,7 +626,9 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   ))}
 
-                  {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
+
+                  {/* {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
+
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
@@ -512,7 +651,11 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             </div>
                             <div className="mt-4 ml-1 mr-2">(4.5)</div>
                           </div>
-                          <div>{(rates as any).rateResponse?.rates[index].serviceType} </div>
+                          <div>
+                            {' '}
+                            {(rates as any).rateResponse?.rates[index].serviceType} test
+                            {(rates as any).rateResponse?.rates[index].rateId}
+                          </div>
                         </div>
                         <div className="p-2">
                           <LineRate />
@@ -563,7 +706,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                       </div>
                       Invalid Rate
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               )}
             </div>

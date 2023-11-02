@@ -19,7 +19,7 @@ import { Option, Select, findOption } from '@components/ui/Select'
 import { cn } from '@lib/utils'
 
 import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options'
-import { Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
+import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
@@ -66,24 +66,110 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     )
   }
 
-  const carrierSizes: Option[] = [
-    {
-      label: `${field.carrierProvider}®️ Extra Large Box (X1)`,
-      value: 'x1'
-    },
-    {
-      label: `${field.carrierProvider}®️ Extra Large Box (X2)`,
-      value: 'x2'
-    },
-    {
-      label: `${field.carrierProvider}®️ Large Box (L1)`,
-      value: 'l1'
-    },
-    {
-      label: `${field.carrierProvider}®️ Medium Box (M1)`,
-      value: 'm1'
-    }
-  ]
+  var carrierSizes: Option[] = []
+  if(field.carrierProvider === 'Postal Service') {
+     carrierSizes = [
+      {
+        label: `USPS®️ Lightweight Letter`,
+        value: 'USPS®️ Lightweight Letter'
+      },
+      {
+        label: `USPS®️ Small Flat Rate Box`,
+        value: 'USPS®️ Small Flat Rate Box'
+      },
+      {
+        label: `USPS®️ Large Video Box`,
+        value: 'USPS®️ Large Video Box'
+      },
+      {
+        label: `USPS®️ Lightweight Large Envelope`,
+        value: 'USPS®️ Lightweight Large Envelope'
+      },
+      {
+        label: `USPS®️ Small Flat Rate Envelope`,
+        value: 'USPS®️ Small Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Gift Card Flat Rate Envelope`,
+        value: 'USPS®️ Gift Card Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Flat Rate Envelope`,
+        value: 'USPS®️ Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Padded Flate Rate Envelope`,
+        value: 'USPS®️ Padded Flate Rate Envelope'
+      },
+      {
+        label: `USPS®️ Window Flat Rate Envelope`,
+        value: 'USPS®️ Window Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Legal Flat Rate Envelope`,
+        value: 'USPS®️ Legal Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Medium Flat Rate Box 2`,
+        value: 'USPS®️ Medium Flat Rate Box 2'
+      },
+      {
+        label: `USPS®️ Medium Flat Rate Box 1`,
+        value: 'USPS®️ Medium Flat Rate Box 1'
+      },
+      {
+        label: `USPS®️ Large Flat Rate Board Game Box`,
+        value: 'USPS®️ Large Flat Rate Board Game Box'
+      },
+      {
+        label: `USPS®️ Large Flat Rate Box`,
+        value: 'USPS®️ Large Flat Rate Box'
+      }
+    ]
+  }else if(field.carrierProvider === 'FedEx') {
+    carrierSizes = [
+      {
+        label: `FedEx®️ Small Box 1`,
+        value: 'FedEx®️ Small Box 1'
+      },
+      {
+        label: `FedEx®️ Small Box 2`,
+        value: 'FedEx®️ Small Box 2'
+      },
+      {
+        label: `FedEx®️ Medium Box 1`,
+        value: 'FedEx®️ Medium Box 1'
+      },
+      {
+        label: `FedEx®️ Medium Box 2`,
+        value: 'FedEx®️ Medium Box 2'
+      }
+    ]
+  }else if(field.carrierProvider === 'UPS'){
+    carrierSizes = [
+      {
+        label: `UPS®️ Letter`,
+        value: 'UPS®️ Letter'
+      },
+      {
+        label: `UPS®️ Pak Medium`,
+        value: 'UPS®️ Pak Medium'
+      },
+      {
+        label: `UPS®️ Pak Large`,
+        value: 'UPS®️ Pak Large'
+      },
+      {
+        label: `UPS®️ 10KG Box`,
+        value: 'UPS®️ 10KG Box'
+      },
+      {
+        label: `UPS®️ 25KG Box`,
+        value: 'UPS®️ 25KG Box'
+      }
+    ]
+  }
+
 
   const setFieldItem = (key: keyof Field, value: any) => {
     const newField = { ...field, [key]: value }
@@ -98,6 +184,99 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     }
     return
   }
+
+  enum CarrierSize {
+    USPSLL = 'USPS®️ Lightweight Letter',
+    USPSSFRB = 'USPS®️ Small Flat Rate Box',
+    USPSLVB = 'USPS®️ Large Video Box',
+    USPSLLE = 'USPS®️ Lightweight Large Envelope',
+    USPSSFRE = 'USPS®️ Small Flat Rate Envelope',
+    USPSGCFRE = 'USPS®️ Gift Card Flat Rate Envelope',
+    USPSFRE = 'USPS®️ Flat Rate Envelope',
+    USPSPFRE = 'USPS®️ Padded Flate Rate Envelope',
+    USPSWFRE = 'USPS®️ Window Flat Rate Envelope',
+    USPSLFRE = 'USPS®️ Legal Flat Rate Envelope',
+    USPSMFRB2 = 'USPS®️ Medium Flat Rate Box 2',
+    USPSMFRB1 = 'USPS®️ Medium Flat Rate Box 1',
+    USPSLFRBGB = 'USPS®️ Large Flat Rate Board Game Box',
+    USPSLFRB = 'USPS®️ Large Flat Rate Box',
+
+    FEDSB1 = 'FedEx®️ Small Box 1',
+    FEDSB2 = 'FedEx®️ Small Box 2',
+    FEDMB1 = 'FedEx®️ Medium Box 1',
+    FEDMB2 = 'FedEx®️ Medium Box 2',
+
+    UPSL = 'UPS®️ Letter',
+    UPSPM = 'UPS®️ Pak Medium',
+    UPSPL = 'UPS®️ Pak Large',
+    UPS10B = 'UPS®️ 10KG Box',
+    UPS25B = 'UPS®️ 25KG Box',
+  }
+
+  const sizeDimensions: { [key in CarrierSize]: Dimensions } = {
+    [CarrierSize.USPSLL]: { length: '11.5', width: '6.125', height: '0.25', unit: 'in' }, 
+    [CarrierSize.USPSSFRB]: { length: '8.6875', width: '5.4375', height: '1.75', unit: 'in'},
+    [CarrierSize.USPSLVB]: { length: '9.25', width: '6.25', height: '2', unit: 'in'},
+    [CarrierSize.USPSLLE]: { length: '15', width: '12', height: '0.75', unit: 'in'},
+    [CarrierSize.USPSSFRE]: { length: '10', width: '6', height: '3', unit: 'in'},
+    [CarrierSize.USPSGCFRE]: { length: '10', width: '7', height: '3', unit: 'in'},
+    [CarrierSize.USPSFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSPFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSWFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSLFRE]: { length: '15', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSMFRB2]: { length: '14', width: '12', height: '3.5', unit: 'in'},
+    [CarrierSize.USPSMFRB1]: { length: '11.25', width: '8.75', height: '6', unit: 'in'},
+    [CarrierSize.USPSLFRBGB]: { length: '24.0625', width: '11.875', height: '3.125', unit: 'in'},
+    [CarrierSize.USPSLFRB]: { length: '12.25', width: '12.25', height: '6', unit: 'in'},
+
+    [CarrierSize.FEDSB1]: { length: '10.875', width: '1.5', height: '12.375', unit: 'in'},
+    [CarrierSize.FEDSB2]: { length: '8.75', width: '2.625', height: '11.25', unit: 'in'},
+    [CarrierSize.FEDMB1]: { length: '11.5', width: '2.375', height: '13.25', unit: 'in'},
+    [CarrierSize.FEDMB2]: { length: '8.75', width: '4.375', height: '11.25', unit: 'in'},
+
+    [CarrierSize.UPSL]: { length: '14.9375', width: '9.4375', height: '3', unit: 'in'},
+    [CarrierSize.UPSPM]: { length: '16.0625', width: '12.8125', height: '3', unit: 'in'},
+    [CarrierSize.UPSPL]: { length: '17.6875', width: '16.125', height: '3', unit: 'in'},
+    [CarrierSize.UPS10B]: { length: '16.5625', width: '13.375', height: '10.625', unit: 'in'},
+    [CarrierSize.UPS25B]: { length: '19.6875', width: '17.6875', height: '13.375', unit: 'in'},
+  }
+
+
+  const handleCarrierSizeChange = (selectedSizeValue: string) => {
+    // Cast the value to CarrierSize if it is one of its keys, otherwise null
+    const selectedSize = Object.values(CarrierSize).includes(selectedSizeValue as CarrierSize)
+      ? (selectedSizeValue as CarrierSize)
+      : null;
+  
+    if (!selectedSize) {
+      console.error('Invalid carrier size selected.');
+      return;
+    }
+  
+    const dimensions = sizeDimensions[selectedSize];
+    if (!dimensions) {
+      console.error('Selected carrier size does not have defined dimensions.');
+      return;
+    }
+  
+    // Use the correct field index and property names to set the values
+    const fieldIndex = fields.length - 1;
+    setValue(`fields.${fieldIndex}.carrierSize`, selectedSize, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.length`, dimensions.length, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.width`, dimensions.width, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.height`, dimensions.height, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.dimensionUnit`, dimensions.unit, {
+      shouldValidate: true,
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
@@ -209,12 +388,13 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       )}
       {field.carrierProvider && (
         <Select
-          label="Select Carrier Size"
-          options={carrierSizes}
-          value={findOption(carrierSizes, field.carrierSize)}
-          error={fieldErrors?.carrierSize}
-          onChange={({ value }) => setFieldItem('carrierSize', value)}
-        />
+        label="Select Carrier Size"
+        options={carrierSizes}
+        value={field.carrierSize}
+        error={fieldErrors?.carrierSize}
+        onChange={({ value }) => handleCarrierSizeChange(value)}
+      />
+      
       )}
       <div className="lg:grid lg:grid-cols-2 flex flex-col lg:gap-[48px] gap-[12px]">
         {isCustomDimensions && (
@@ -225,22 +405,43 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                 <div className="flex lg:flex-row flex-col gap-d-16">
                   <div className="flex gap-d-16">
                     <Input
-                      type="number"
-                      placeholder="L"
+                      type="text"
+                      placeholder='L'
                       value={field.length}
                       error={fieldErrors?.length}
-                      onChange={(value) => setFieldItem('length', value)}
+                      onChange={(value: string) => {
+                        if (value === '') {
+                          setFieldItem('length', '');
+                          return;
+                        }
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        if (value === '' || isValidNumber) {
+                          setFieldItem('length', value === '' ? '' : value);
+                        }
+                      }}
                       containerClassName="lg:w-[99px]"
                     />
                     <div className="flex items-center flex-1">
                       <X />
                     </div>
-                    <Input
-                      type="number"
-                      placeholder="W"
+                   
+                     <Input
+                      type="text"
+                      placeholder='W'
                       value={field.width}
                       error={fieldErrors?.width}
-                      onChange={(value) => setFieldItem('width', value)}
+                      onChange={(value: string) => {
+                        if (value === '') {
+                          setFieldItem('width', '');
+                          return;
+                        }
+
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+
+                        if (value === '' || isValidNumber) {
+                          setFieldItem('width', value === '' ? '' : value);
+                        }
+                      }}
                       containerClassName="lg:w-[99px]"
                     />
                   </div>
@@ -248,12 +449,22 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                     <div className="flex items-center flex-1">
                       <X />
                     </div>
+                   
                     <Input
-                      type="number"
-                      placeholder="H"
+                      type="text"
+                      placeholder='H'
                       value={field.height}
                       error={fieldErrors?.height}
-                      onChange={(value) => setFieldItem('height', value)}
+                      onChange={(value: string) => {
+                        if (value === '') {
+                          setFieldItem('height', '');
+                          return;
+                        }
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        if (value === '' || isValidNumber) {
+                          setFieldItem('height', value === '' ? '' : value);
+                        }
+                      }}
                       containerClassName="lg:w-[99px]"
                     />
                     <Select
@@ -313,12 +524,23 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         <div className="flex lg:flex-row flex-col lg:gap-[48px] gap-[12px]">
           <div className="flex flex-col gap-d-12">
             <div className="text-caption font-bold"># of Identical Units</div>
-            <Input
-              type="number"
-              value={field.identicalUnitsCount}
-              error={fieldErrors?.identicalUnitsCount}
-              onChange={(value) => setFieldItem('identicalUnitsCount', value)}
-            />
+                <Input
+                  type="text"
+                  value={field.identicalUnitsCount.toString()}
+                  error={fieldErrors?.identicalUnitsCount}
+                  onChange={(value: string) => {
+                    if (value === '') {
+                      setFieldItem('identicalUnitsCount', '');
+                      return;
+                    }
+
+                    const isPositiveInteger = /^[1-9]\d*$/.test(value);
+
+                    if (isPositiveInteger) {
+                      setFieldItem('identicalUnitsCount', parseInt(value, 10));
+                    }
+                  }}
+                />
           </div>
           <div className="flex flex-col gap-d-12">
             <div className="text-caption font-bold">
@@ -327,13 +549,23 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
             </div>
             <div className="flex gap-d-16">
               <Input
-                type="number"
-                placeholder="Weight"
-                value={field.weight}
-                error={fieldErrors?.weight}
-                onChange={(value) => setFieldItem('weight', value)}
-                containerClassName="lg:w-[180px]"
-              />
+                  type="text"
+                  placeholder='Weight'
+                  value={field.weight}
+                  error={fieldErrors?.weight}
+                  onChange={(value: string) => {
+                    if (value === '') {
+                      setFieldItem('weight', '');
+                      return;
+                    }
+
+                    const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+
+                    if (value === '' || isValidNumber) {
+                      setFieldItem('weight', value === '' ? '' : value);
+                    }
+                  }}
+                />
               <Select
                 placeholder=" "
                 options={weightUnits}

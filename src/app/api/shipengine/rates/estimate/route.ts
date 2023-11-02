@@ -32,7 +32,10 @@ module.exports = apiHandler({
 async function getRateEstimates(req: Request) {
   const body = await req.json()
 
-  const { rateOptions, shipmentId, shipment } = body
+    const body = await req.json();
+
+    const { rateOptions, shipmentId, shipment } = body
+
 
   const response = await shipEngineController.getRateEstimates({
     rateOptions,

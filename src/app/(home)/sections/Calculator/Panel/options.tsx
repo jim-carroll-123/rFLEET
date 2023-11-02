@@ -1,6 +1,7 @@
-import Parcel from '@assets/icons/parcel.svg'
-import PolyMailer from '@assets/icons/polymailer.svg'
-import currunciesData from '@json/currencies.json'
+import Parcel from '@assets/icons/parcel.svg';
+import PolyMailer from '@assets/icons/polymailer.svg';
+import currunciesData from '@json/currencies.json';
+
 
 export const shippingMethods = [
   { label: 'Parcel', value: 'Parcel' },
@@ -38,22 +39,22 @@ export const parcelShapes = [
 export const dimensionUnits = [
   {
     label: 'in',
-    value: 'in'
+    value: 'inch'
   },
   {
     label: 'cm',
-    value: 'cm'
+    value: 'centimeter'
   }
 ]
 
 export const weightUnits = [
   {
     label: 'lbs',
-    value: 'lb'
+    value: 'pound'
   },
   {
     label: 'kgs',
-    value: 'kg'
+    value: 'kilogram'
   }
 ]
 

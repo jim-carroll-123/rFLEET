@@ -19,6 +19,14 @@ export type Field = {
   containsLithium: boolean
 }
 
+export type Dimensions = {
+  length: string
+  width: string
+  height: string
+  unit: string
+}
+
+
 export type LTLField = {
   handlingUnit: string
   length: string
@@ -364,4 +372,6 @@ export type LtlLoadTypeInputs = yup.InferType<typeof ltlLoadTypeSchema>
 
 export type OceanLoadTypeInputs = yup.InferType<typeof oceanLoadTypeSchema>
 export type AirLoadTypeInputs = yup.InferType<typeof airLoadTypeSchema>
+
 export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
+

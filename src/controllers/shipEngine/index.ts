@@ -1,7 +1,8 @@
-import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
-import ShipEngine, { ValidateAddressesTypes } from 'shipengine'
+import ShipEngine, { ValidateAddressesTypes } from 'shipengine';
 import { CreateLabelFromRateTypes } from 'shipengine/esm/create-label-from-rate';
 import { CreateLabelFromShipmentDetailsTypes } from 'shipengine/esm/create-label-from-shipment-details';
+import { GetRatesWithShipmentDetailsTypes } from 'shipengine/esm/get-rates-with-shipment-details';
+
 
 export const shipEngineController = {
     listCarriers,
@@ -18,13 +19,13 @@ async function listCarriers() {
 }
 
 async function getRateEstimates(params: GetRatesWithShipmentDetailsTypes.Params) {
-    try {
-      const result = await shipengine.getRatesWithShipmentDetails(params);
+  try {
+    const result = await shipengine.getRatesWithShipmentDetails(params)
 
-      return result;
-    } catch (e: any) {
-      throw "Error creating rates: " + e.message;
-    }
+    return result
+  } catch (e: any) {
+    throw 'Error creating rates: ' + e.message
+  }
 }
 
 async function createLabelFromRate(params: CreateLabelFromRateTypes.Params) {
