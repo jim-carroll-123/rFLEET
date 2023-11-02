@@ -99,24 +99,31 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     return
   }
 
-  const sizeDimensions: { [key: string]: Dimensions } = {
-    x1: { length: '22', width: '18', height: '18', unit: 'in' },
-    x2: { length: '24', width: '20', height: '20', unit: 'in' },
-    l1: { length: '20', width: '16', height: '16', unit: 'in' },
-    m1: { length: '18', width: '14', height: '14', unit: 'in' }
+  enum CarrierSize {
+    X1 = 'x1',
+    X2 = 'x2',
+    L1 = 'l1',
+    M1 = 'm1'
   }
 
-  function setCarrierSizeDimensions(fields: Field, selectedSize: string): void {
-    const dimensions = sizeDimensions[selectedSize]
-    // if (!dimensions) {
-    //   console.error('Selected carrier size does not have defined dimensions.')
-    //   return
-    // }
+  const sizeDimensions: { [key in CarrierSize]: Dimensions } = {
+    [CarrierSize.X1]: { length: '22', width: '18', height: '18', unit: 'in' },
+    [CarrierSize.X2]: { length: '24', width: '20', height: '20', unit: 'in' },
+    [CarrierSize.L1]: { length: '20', width: '16', height: '16', unit: 'in' },
+    [CarrierSize.M1]: { length: '18', width: '14', height: '14', unit: 'in' }
+  }
 
-    fields.length = dimensions.length
-    fields.width = dimensions.width
-    fields.height = dimensions.height
-    fields.dimensionUnit = dimensions.unit
+  function setCarrierSizeDimensions(field: Field, selectedSize: CarrierSize): void {
+    const dimensions = sizeDimensions[selectedSize]
+    if (!dimensions) {
+      console.error('Selected carrier size does not have defined dimensions.')
+      return
+    }
+
+    field.length = dimensions.length
+    field.width = dimensions.width
+    field.height = dimensions.height
+    field.dimensionUnit = dimensions.unit
   }
 
   return (
@@ -229,12 +236,28 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       )}
       {field.carrierProvider && (
         <Select
-          label="Select Carrier Size"
-          options={carrierSizes}
-          value={findOption(carrierSizes, field.carrierSize)}
-          error={fieldErrors?.carrierSize}
-          onChange={({ value }) => setFieldItem('carrierSize', value)}
-        />
+        label="Select Carrier Size"
+        options={carrierSizes}
+        value={findOption(carrierSizes, field.carrierSize)}
+        error={fieldErrors?.carrierSize}
+        onChange={({ value }) => {
+          // First, set the carrier size
+          setFieldItem('carrierSize', value);
+      
+          // Then, set the dimensions based on the selected carrier size
+          setCarrierSizeDimensions(field, value as CarrierSize);
+      
+          // Now you should update the fields with the new dimensions
+          // However, directly mutating 'field' here will not trigger a re-render
+          // 'setFieldItem' updates the state and should trigger a re-render
+          // but it needs to be done for each dimension to work correctly with React's state management
+          setFieldItem('length', field.length);
+          setFieldItem('width', field.width);
+          setFieldItem('height', field.height);
+          setFieldItem('dimensionUnit', field.dimensionUnit);
+        }}
+      />
+      
       )}
       <div className="lg:grid lg:grid-cols-2 flex flex-col lg:gap-[48px] gap-[12px]">
         {isCustomDimensions && (

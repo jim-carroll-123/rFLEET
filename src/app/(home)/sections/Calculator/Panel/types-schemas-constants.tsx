@@ -27,6 +27,7 @@ export type Dimensions = {
   unit: string
 }
 
+
 export type LTLField = {
   handlingUnit: string
   length: string
