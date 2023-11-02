@@ -19,7 +19,7 @@ import { Option, Select, findOption } from '@components/ui/Select'
 import { cn } from '@lib/utils'
 
 import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options'
-import { Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
+import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
@@ -97,6 +97,26 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       setValue('fields', [...fields, { ...initialField }])
     }
     return
+  }
+
+  const sizeDimensions: { [key: string]: Dimensions } = {
+    x1: { length: '22', width: '18', height: '18', unit: 'in' },
+    x2: { length: '24', width: '20', height: '20', unit: 'in' },
+    l1: { length: '20', width: '16', height: '16', unit: 'in' },
+    m1: { length: '18', width: '14', height: '14', unit: 'in' }
+  }
+
+  function setCarrierSizeDimensions(fields: Field, selectedSize: string): void {
+    const dimensions = sizeDimensions[selectedSize]
+    // if (!dimensions) {
+    //   console.error('Selected carrier size does not have defined dimensions.')
+    //   return
+    // }
+
+    fields.length = dimensions.length
+    fields.width = dimensions.width
+    fields.height = dimensions.height
+    fields.dimensionUnit = dimensions.unit
   }
 
   return (

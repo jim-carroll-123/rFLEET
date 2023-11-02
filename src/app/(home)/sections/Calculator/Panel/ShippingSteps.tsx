@@ -24,7 +24,7 @@ import { Pencil } from '@components/ui/Pencil';
 import { Plane } from '@components/ui/Plane';
 import { Star } from '@components/ui/Star';
 import { Tab } from '@components/ui/TabPane';
-import { Truck } from '@components/ui/Truck'
+import { Truck } from '@components/ui/Truck';
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
 
@@ -49,79 +49,55 @@ const handleSubmit = async (
   setRates: React.Dispatch<React.SetStateAction<any>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
+  var carrierIds = []
+  if (data.fields?.[0].carrierProvider === 'UPS') {
+    carrierIds.push('se-5107720')
+  } else if (data.fields?.[0].carrierProvider === 'USPS') {
+    carrierIds.push('se-5107717', 'se-5107720')
+  } else if (data.fields?.[0].carrierProvider === 'FedEx') {
+    carrierIds.push('se-5107758')
+  } else {
+    carrierIds.push('se-5107717', 'se-5107720', 'se-5107758', 'se-5391275')
+  }
+
   try {
-    // const datatest = {
-    //   rateOptions: {
-    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
-    //   },
-    //   shipment: {
-    //     validateAddress: 'no_validation',
-    //     shipTo: {
-    //       name: data.toName,
-    //       phone: '555-555-5555',
-    //       addressLine1: data.toAddress,
-    //       stateProvince: data.toState,
-    //       cityLocality: data.toCity,
-    //       postalCode: data.toPostalCode,
-    //       countryCode: data.toCountry
-    //     },
-    //     shipFrom: {
-    //       companyName: 'Example Corp.',
-    //       name: data.fromName,
-    //       phone: '111-111-1111',
-    //       addressLine1: data.fromAddress,
-    //       stateProvince: data.fromState,
-    //       cityLocality: data.fromCity,
-    //       postalCode: data.fromPostalCode,
-    //       countryCode: data.fromCountry
-    //     },
-    //     packages: [
-    //       {
-    //         weight: {
-    //           value: data.fields[0].weight,
-    //           unit: data.fields[0].weightUnit
-    //         },
-    //         dimensions: {
-    //           unit: data.fields?.[0].dimensionUnit,
-    //           length: data.fields?.[0].length,
-    //           width: data.fields?.[0].width,
-    //           height: data.fields?.[0].height
-    //         }
-    //       }
-    //     ]
-    //   }
-    // }
     const datatest = {
       rateOptions: {
-        carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
+        carrierIds: carrierIds
       },
       shipment: {
         validateAddress: 'no_validation',
         shipTo: {
-          name: 'Luke Skywalker',
+          name: data.toName,
           phone: '555-555-5555',
-          addressLine1: '1001 SW 17TH LN',
-          stateProvince: 'FL',
-          cityLocality: 'GAINESVILLE',
-          postalCode: '32601-0001',
-          countryCode: 'US'
+          addressLine1: data.toAddress,
+          stateProvince: data.toState,
+          cityLocality: data.toCity,
+          postalCode: data.toPostalCode,
+          countryCode: data.toCountry
         },
         shipFrom: {
           companyName: 'Example Corp.',
-          name: 'Darth Vader',
+          name: data.fromName,
           phone: '111-111-1111',
-          addressLine1: '303 W 5TH ST',
-          stateProvince: 'TX',
-          cityLocality: 'AUSTIN',
-          postalCode: '78701-3164',
-          countryCode: 'US'
+          addressLine1: data.fromAddress,
+          stateProvince: data.fromState,
+          cityLocality: data.fromCity,
+          postalCode: data.fromPostalCode,
+          countryCode: data.fromCountry
         },
         packages: [
           {
             weight: {
-              value: 10,
-              unit: 'pound'
+              value: data.fields[0].weight,
+              unit: data.fields[0].weightUnit
             },
+            // dimensions: {
+            //   unit: data.fields?.[0].dimensionUnit,
+            //   length: data.fields?.[0].length,
+            //   width: data.fields?.[0].width,
+            //   height: data.fields?.[0].height
+            // }
             dimensions: {
               unit: 'inch',
               length: 12,
@@ -132,6 +108,47 @@ const handleSubmit = async (
         ]
       }
     }
+    // const datatest = {
+    //   rateOptions: {
+    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
+    //   },
+    //   shipment: {
+    //     validateAddress: 'no_validation',
+    //     shipTo: {
+    //       name: 'Luke Skywalker',
+    //       phone: '555-555-5555',
+    //       addressLine1: '1001 SW 17TH LN',
+    //       stateProvince: 'FL',
+    //       cityLocality: 'GAINESVILLE',
+    //       postalCode: '32601-0001',
+    //       countryCode: 'US'
+    //     },
+    //     shipFrom: {
+    //       companyName: 'Example Corp.',
+    //       name: 'Darth Vader',
+    //       phone: '111-111-1111',
+    //       addressLine1: '303 W 5TH ST',
+    //       stateProvince: 'TX',
+    //       cityLocality: 'AUSTIN',
+    //       postalCode: '78701-3164',
+    //       countryCode: 'US'
+    //     },
+    //     packages: [
+    //       {
+    //         weight: {
+    //           value: 10,
+    //           unit: 'pound'
+    //         },
+    //         dimensions: {
+    //           unit: 'inch',
+    //           length: 12,
+    //           width: 12,
+    //           height: 12
+    //         }
+    //       }
+    //     ]
+    //   }
+    // }
 
     const response = await fetch('/api/shipengine/rates/estimate', {
       method: 'POST',
@@ -323,7 +340,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       ) : (
         <div>
           {Object.keys(rates).length === 0 ? (
-            <div>No Data</div>
+            <div></div>
           ) : (
             <div>
               {isDisplayRate && (
@@ -439,16 +456,16 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         </span>
                         <span>
                           {(rates as any).bestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
-                          {(rates as any).bestRates[0]?.carrierDeliveryDays === '1'
+                          {(rates as any).bestRates?.[0]?.carrierDeliveryDays === '1'
                             ? ' day'
-                            : (rates as any).bestRates[0]?.carrierDeliveryDays.length <= 2
+                            : (rates as any).bestRates?.[0]?.carrierDeliveryDays.length <= 2
                             ? ' days'
                             : null}
                         </span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>${((rates as any).bestRates[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
+                        <span>${((rates as any).bestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
 
                       <div className="p-1 pt-2">
@@ -467,17 +484,17 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <Circle />
                         </span>
                         <span>
-                          {(rates as any).quickestRates[0]?.carrierDeliveryDays?.split(' ')[0]}
-                          {(rates as any).quickestRates[0]?.carrierDeliveryDays === '1'
+                          {(rates as any).quickestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
+                          {(rates as any).quickestRates?.[0]?.carrierDeliveryDays === '1'
                             ? ' day'
-                            : (rates as any).quickestRates[0]?.carrierDeliveryDays.length <= 2
+                            : (rates as any).quickestRates?.[0]?.carrierDeliveryDays.length <= 2
                             ? ' days'
                             : null}
                         </span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>${((rates as any).quickestRates[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
+                        <span>${((rates as any).quickestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                       <div className="p-1 pt-2">
                         <Line />
@@ -495,22 +512,22 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <Circle />
                         </span>
                         <span>
-                          {(rates as any).cheapestRates[0]?.carrierDeliveryDays?.split(' ')[0]}
-                          {(rates as any).cheapestRates[0]?.carrierDeliveryDays === '1'
+                          {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
+                          {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays === '1'
                             ? ' day'
-                            : (rates as any).cheapestRates[0]?.carrierDeliveryDays.length <= 2
+                            : (rates as any).cheapestRates?.[0]?.carrierDeliveryDays.length <= 2
                             ? ' days'
                             : null}
                         </span>
                         <span className="p-2">
                           <Circle />
                         </span>
-                        <span>${((rates as any).cheapestRates[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
+                        <span>${((rates as any).cheapestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                     </div>
                   </div>
 
-                  {url.slice(0, 5).map((rate: any, index: number) => (
+                  {url?.slice(0, 5).map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
