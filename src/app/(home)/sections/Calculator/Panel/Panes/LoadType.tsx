@@ -493,12 +493,23 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         <div className="flex lg:flex-row flex-col lg:gap-[48px] gap-[12px]">
           <div className="flex flex-col gap-d-12">
             <div className="text-caption font-bold"># of Identical Units</div>
-            <Input
-              type="number"
-              value={field.identicalUnitsCount}
-              error={fieldErrors?.identicalUnitsCount}
-              onChange={(value) => setFieldItem('identicalUnitsCount', value)}
-            />
+                <Input
+                  type="text"
+                  value={field.identicalUnitsCount.toString()}
+                  error={fieldErrors?.identicalUnitsCount}
+                  onChange={(value: string) => {
+                    if (value === '') {
+                      setFieldItem('identicalUnitsCount', '');
+                      return;
+                    }
+
+                    const isPositiveInteger = /^[1-9]\d*$/.test(value);
+
+                    if (isPositiveInteger) {
+                      setFieldItem('identicalUnitsCount', parseInt(value, 10));
+                    }
+                  }}
+                />
           </div>
           <div className="flex flex-col gap-d-12">
             <div className="text-caption font-bold">
@@ -507,13 +518,22 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
             </div>
             <div className="flex gap-d-16">
               <Input
-                type="number"
-                placeholder="Weight"
-                value={field.weight}
-                error={fieldErrors?.weight}
-                onChange={(value) => setFieldItem('weight', value)}
-                containerClassName="lg:w-[180px]"
-              />
+                  type="text"
+                  value={field.weight}
+                  error={fieldErrors?.weight}
+                  onChange={(value: string) => {
+                    if (value === '') {
+                      setFieldItem('weight', '');
+                      return;
+                    }
+
+                    const isPositiveInteger = /^[1-9]\d*$/.test(value);
+
+                    if (isPositiveInteger) {
+                      setFieldItem('weight', parseInt(value, 10));
+                    }
+                  }}
+                />
               <Select
                 placeholder=" "
                 options={weightUnits}
