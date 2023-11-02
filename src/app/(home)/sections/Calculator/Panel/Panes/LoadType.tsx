@@ -66,24 +66,110 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     )
   }
 
-  const carrierSizes: Option[] = [
-    {
-      label: `${field.carrierProvider}®️ Extra Large Box (X1)`,
-      value: 'x1'
-    },
-    {
-      label: `${field.carrierProvider}®️ Extra Large Box (X2)`,
-      value: 'x2'
-    },
-    {
-      label: `${field.carrierProvider}®️ Large Box (L1)`,
-      value: 'l1'
-    },
-    {
-      label: `${field.carrierProvider}®️ Medium Box (M1)`,
-      value: 'm1'
-    }
-  ]
+  var carrierSizes: Option[] = []
+  if(field.carrierProvider === 'Postal Service') {
+     carrierSizes = [
+      {
+        label: `USPS®️ Lightweight Letter`,
+        value: 'USPS®️ Lightweight Letter'
+      },
+      {
+        label: `USPS®️ Small Flat Rate Box`,
+        value: 'USPS®️ Small Flat Rate Box'
+      },
+      {
+        label: `USPS®️ Large Video Box`,
+        value: 'USPS®️ Large Video Box'
+      },
+      {
+        label: `USPS®️ Lightweight Large Envelope`,
+        value: 'USPS®️ Lightweight Large Envelope'
+      },
+      {
+        label: `USPS®️ Small Flat Rate Envelope`,
+        value: 'USPS®️ Small Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Gift Card Flat Rate Envelope`,
+        value: 'USPS®️ Gift Card Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Flat Rate Envelope`,
+        value: 'USPS®️ Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Padded Flate Rate Envelope`,
+        value: 'USPS®️ Padded Flate Rate Envelope'
+      },
+      {
+        label: `USPS®️ Window Flat Rate Envelope`,
+        value: 'USPS®️ Window Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Legal Flat Rate Envelope`,
+        value: 'USPS®️ Legal Flat Rate Envelope'
+      },
+      {
+        label: `USPS®️ Medium Flat Rate Box 2`,
+        value: 'USPS®️ Medium Flat Rate Box 2'
+      },
+      {
+        label: `USPS®️ Medium Flat Rate Box 1`,
+        value: 'USPS®️ Medium Flat Rate Box 1'
+      },
+      {
+        label: `USPS®️ Large Flat Rate Board Game Box`,
+        value: 'USPS®️ Large Flat Rate Board Game Box'
+      },
+      {
+        label: `USPS®️ Large Flat Rate Box`,
+        value: 'USPS®️ Large Flat Rate Box'
+      }
+    ]
+  }else if(field.carrierProvider === 'FedEx') {
+    carrierSizes = [
+      {
+        label: `FedEx®️ Small Box 1`,
+        value: 'FedEx®️ Small Box 1'
+      },
+      {
+        label: `FedEx®️ Small Box 2`,
+        value: 'FedEx®️ Small Box 2'
+      },
+      {
+        label: `FedEx®️ Medium Box 1`,
+        value: 'FedEx®️ Medium Box 1'
+      },
+      {
+        label: `FedEx®️ Medium Box 2`,
+        value: 'FedEx®️ Medium Box 2'
+      }
+    ]
+  }else if(field.carrierProvider === 'UPS'){
+    carrierSizes = [
+      {
+        label: `UPS®️ Letter`,
+        value: 'UPS®️ Letter'
+      },
+      {
+        label: `UPS®️ Pak Medium`,
+        value: 'UPS®️ Pak Medium'
+      },
+      {
+        label: `UPS®️ Pak Large`,
+        value: 'UPS®️ Pak Large'
+      },
+      {
+        label: `UPS®️ 10KG Box`,
+        value: 'UPS®️ 10KG Box'
+      },
+      {
+        label: `UPS®️ 25KG Box`,
+        value: 'UPS®️ 25KG Box'
+      }
+    ]
+  }
+
 
   const setFieldItem = (key: keyof Field, value: any) => {
     const newField = { ...field, [key]: value }
@@ -100,31 +186,97 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   }
 
   enum CarrierSize {
-    X1 = 'x1',
-    X2 = 'x2',
-    L1 = 'l1',
-    M1 = 'm1'
+    USPSLL = 'USPS®️ Lightweight Letter',
+    USPSSFRB = 'USPS®️ Small Flat Rate Box',
+    USPSLVB = 'USPS®️ Large Video Box',
+    USPSLLE = 'USPS®️ Lightweight Large Envelope',
+    USPSSFRE = 'USPS®️ Small Flat Rate Envelope',
+    USPSGCFRE = 'USPS®️ Gift Card Flat Rate Envelope',
+    USPSFRE = 'USPS®️ Flat Rate Envelope',
+    USPSPFRE = 'USPS®️ Padded Flate Rate Envelope',
+    USPSWFRE = 'USPS®️ Window Flat Rate Envelope',
+    USPSLFRE = 'USPS®️ Legal Flat Rate Envelope',
+    USPSMFRB2 = 'USPS®️ Medium Flat Rate Box 2',
+    USPSMFRB1 = 'USPS®️ Medium Flat Rate Box 1',
+    USPSLFRBGB = 'USPS®️ Large Flat Rate Board Game Box',
+    USPSLFRB = 'USPS®️ Large Flat Rate Box',
+
+    FEDSB1 = 'FedEx®️ Small Box 1',
+    FEDSB2 = 'FedEx®️ Small Box 2',
+    FEDMB1 = 'FedEx®️ Medium Box 1',
+    FEDMB2 = 'FedEx®️ Medium Box 2',
+
+    UPSL = 'UPS®️ Letter',
+    UPSPM = 'UPS®️ Pak Medium',
+    UPSPL = 'UPS®️ Pak Large',
+    UPS10B = 'UPS®️ 10KG Box',
+    UPS25B = 'UPS®️ 25KG Box',
   }
 
   const sizeDimensions: { [key in CarrierSize]: Dimensions } = {
-    [CarrierSize.X1]: { length: '22', width: '18', height: '18', unit: 'in' },
-    [CarrierSize.X2]: { length: '24', width: '20', height: '20', unit: 'in' },
-    [CarrierSize.L1]: { length: '20', width: '16', height: '16', unit: 'in' },
-    [CarrierSize.M1]: { length: '18', width: '14', height: '14', unit: 'in' }
+    [CarrierSize.USPSLL]: { length: '11.5', width: '6.125', height: '0.25', unit: 'in' }, 
+    [CarrierSize.USPSSFRB]: { length: '8.6875', width: '5.4375', height: '1.75', unit: 'in'},
+    [CarrierSize.USPSLVB]: { length: '9.25', width: '6.25', height: '2', unit: 'in'},
+    [CarrierSize.USPSLLE]: { length: '15', width: '12', height: '0.75', unit: 'in'},
+    [CarrierSize.USPSSFRE]: { length: '10', width: '6', height: '3', unit: 'in'},
+    [CarrierSize.USPSGCFRE]: { length: '10', width: '7', height: '3', unit: 'in'},
+    [CarrierSize.USPSFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSPFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSWFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSLFRE]: { length: '15', width: '9.5', height: '3', unit: 'in'},
+    [CarrierSize.USPSMFRB2]: { length: '14', width: '12', height: '3.5', unit: 'in'},
+    [CarrierSize.USPSMFRB1]: { length: '11.25', width: '8.75', height: '6', unit: 'in'},
+    [CarrierSize.USPSLFRBGB]: { length: '24.0625', width: '11.875', height: '3.125', unit: 'in'},
+    [CarrierSize.USPSLFRB]: { length: '12.25', width: '12.25', height: '6', unit: 'in'},
+
+    [CarrierSize.FEDSB1]: { length: '10.875', width: '1.5', height: '12.375', unit: 'in'},
+    [CarrierSize.FEDSB2]: { length: '8.75', width: '2.625', height: '11.25', unit: 'in'},
+    [CarrierSize.FEDMB1]: { length: '11.5', width: '2.375', height: '13.25', unit: 'in'},
+    [CarrierSize.FEDMB2]: { length: '8.75', width: '4.375', height: '11.25', unit: 'in'},
+
+    [CarrierSize.UPSL]: { length: '14.9375', width: '9.4375', height: '3', unit: 'in'},
+    [CarrierSize.UPSPM]: { length: '16.0625', width: '12.8125', height: '3', unit: 'in'},
+    [CarrierSize.UPSPL]: { length: '17.6875', width: '16.125', height: '3', unit: 'in'},
+    [CarrierSize.UPS10B]: { length: '16.5625', width: '13.375', height: '10.625', unit: 'in'},
+    [CarrierSize.UPS25B]: { length: '19.6875', width: '17.6875', height: '13.375', unit: 'in'},
   }
 
-  function setCarrierSizeDimensions(field: Field, selectedSize: CarrierSize): void {
-    const dimensions = sizeDimensions[selectedSize]
-    if (!dimensions) {
-      console.error('Selected carrier size does not have defined dimensions.')
-      return
+
+  const handleCarrierSizeChange = (selectedSizeValue: string) => {
+    // Cast the value to CarrierSize if it is one of its keys, otherwise null
+    const selectedSize = Object.values(CarrierSize).includes(selectedSizeValue as CarrierSize)
+      ? (selectedSizeValue as CarrierSize)
+      : null;
+  
+    if (!selectedSize) {
+      console.error('Invalid carrier size selected.');
+      return;
     }
-
-    field.length = dimensions.length
-    field.width = dimensions.width
-    field.height = dimensions.height
-    field.dimensionUnit = dimensions.unit
-  }
+  
+    const dimensions = sizeDimensions[selectedSize];
+    if (!dimensions) {
+      console.error('Selected carrier size does not have defined dimensions.');
+      return;
+    }
+  
+    // Use the correct field index and property names to set the values
+    const fieldIndex = fields.length - 1;
+    setValue(`fields.${fieldIndex}.carrierSize`, selectedSize, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.length`, dimensions.length, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.width`, dimensions.width, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.height`, dimensions.height, {
+      shouldValidate: true,
+    });
+    setValue(`fields.${fieldIndex}.dimensionUnit`, dimensions.unit, {
+      shouldValidate: true,
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
@@ -238,24 +390,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         <Select
         label="Select Carrier Size"
         options={carrierSizes}
-        value={findOption(carrierSizes, field.carrierSize)}
+        value={field.carrierSize}
         error={fieldErrors?.carrierSize}
-        onChange={({ value }) => {
-          // First, set the carrier size
-          setFieldItem('carrierSize', value);
-      
-          // Then, set the dimensions based on the selected carrier size
-          setCarrierSizeDimensions(field, value as CarrierSize);
-      
-          // Now you should update the fields with the new dimensions
-          // However, directly mutating 'field' here will not trigger a re-render
-          // 'setFieldItem' updates the state and should trigger a re-render
-          // but it needs to be done for each dimension to work correctly with React's state management
-          setFieldItem('length', field.length);
-          setFieldItem('width', field.width);
-          setFieldItem('height', field.height);
-          setFieldItem('dimensionUnit', field.dimensionUnit);
-        }}
+        onChange={({ value }) => handleCarrierSizeChange(value)}
       />
       
       )}
