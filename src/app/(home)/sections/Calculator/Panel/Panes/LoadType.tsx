@@ -1,25 +1,32 @@
-import { SubmitHandler, UseFormReturn } from 'react-hook-form'
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import Link from 'next/link'
 
-import Delete from '@assets/icons/delete.svg'
-import IconDHL from '@assets/icons/dhl.svg'
-import IconFedEx from '@assets/icons/fedex.svg'
-import Plus from '@assets/icons/plus.svg'
-import IconPostalService from '@assets/icons/postal-service.svg'
-import X from '@assets/icons/x.svg'
-import uPsLogo from '@assets/images/UPS-logo.png'
-import { Button } from '@components/ui/Button'
-import { ButtonSelect } from '@components/ui/ButtonSelect'
-import { Check } from '@components/ui/Check'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Input } from '@components/ui/Input'
-import { Radio } from '@components/ui/Radio'
-import { Option, Select, findOption } from '@components/ui/Select'
-import { cn } from '@lib/utils'
 
-import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options'
-import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
+import Link from 'next/link';
+
+
+
+import Delete from '@assets/icons/delete.svg';
+import IconDHL from '@assets/icons/dhl.svg';
+import IconFedEx from '@assets/icons/fedex.svg';
+import Plus from '@assets/icons/plus.svg';
+import IconPostalService from '@assets/icons/postal-service.svg';
+import X from '@assets/icons/x.svg';
+import uPsLogo from '@assets/images/UPS-logo.png';
+import { Button } from '@components/ui/Button';
+import { ButtonSelect } from '@components/ui/ButtonSelect';
+import { Check } from '@components/ui/Check';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Input } from '@components/ui/Input';
+import { Radio } from '@components/ui/Radio';
+import { Option, Select, findOption } from '@components/ui/Select';
+import { cn } from '@lib/utils';
+
+
+
+import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options';
+import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants';
+
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
@@ -214,31 +221,31 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   }
 
   const sizeDimensions: { [key in CarrierSize]: Dimensions } = {
-    [CarrierSize.USPSLL]: { length: '11.5', width: '6.125', height: '0.25', unit: 'in' }, 
-    [CarrierSize.USPSSFRB]: { length: '8.6875', width: '5.4375', height: '1.75', unit: 'in'},
-    [CarrierSize.USPSLVB]: { length: '9.25', width: '6.25', height: '2', unit: 'in'},
-    [CarrierSize.USPSLLE]: { length: '15', width: '12', height: '0.75', unit: 'in'},
-    [CarrierSize.USPSSFRE]: { length: '10', width: '6', height: '3', unit: 'in'},
-    [CarrierSize.USPSGCFRE]: { length: '10', width: '7', height: '3', unit: 'in'},
-    [CarrierSize.USPSFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
-    [CarrierSize.USPSPFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
-    [CarrierSize.USPSWFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'in'},
-    [CarrierSize.USPSLFRE]: { length: '15', width: '9.5', height: '3', unit: 'in'},
-    [CarrierSize.USPSMFRB2]: { length: '14', width: '12', height: '3.5', unit: 'in'},
-    [CarrierSize.USPSMFRB1]: { length: '11.25', width: '8.75', height: '6', unit: 'in'},
-    [CarrierSize.USPSLFRBGB]: { length: '24.0625', width: '11.875', height: '3.125', unit: 'in'},
-    [CarrierSize.USPSLFRB]: { length: '12.25', width: '12.25', height: '6', unit: 'in'},
+    [CarrierSize.USPSLL]: { length: '11.5', width: '6.125', height: '0.25', unit: 'inch' },
+    [CarrierSize.USPSSFRB]: { length: '8.6875', width: '5.4375', height: '1.75', unit: 'inch' },
+    [CarrierSize.USPSLVB]: { length: '9.25', width: '6.25', height: '2', unit: 'inch' },
+    [CarrierSize.USPSLLE]: { length: '15', width: '12', height: '0.75', unit: 'inch' },
+    [CarrierSize.USPSSFRE]: { length: '10', width: '6', height: '3', unit: 'inch' },
+    [CarrierSize.USPSGCFRE]: { length: '10', width: '7', height: '3', unit: 'inch' },
+    [CarrierSize.USPSFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'inch' },
+    [CarrierSize.USPSPFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'inch' },
+    [CarrierSize.USPSWFRE]: { length: '12.5', width: '9.5', height: '3', unit: 'inch' },
+    [CarrierSize.USPSLFRE]: { length: '15', width: '9.5', height: '3', unit: 'inch' },
+    [CarrierSize.USPSMFRB2]: { length: '14', width: '12', height: '3.5', unit: 'inch' },
+    [CarrierSize.USPSMFRB1]: { length: '11.25', width: '8.75', height: '6', unit: 'inch' },
+    [CarrierSize.USPSLFRBGB]: { length: '24.0625', width: '11.875', height: '3.125', unit: 'inch' },
+    [CarrierSize.USPSLFRB]: { length: '12.25', width: '12.25', height: '6', unit: 'inch' },
 
-    [CarrierSize.FEDSB1]: { length: '10.875', width: '1.5', height: '12.375', unit: 'in'},
-    [CarrierSize.FEDSB2]: { length: '8.75', width: '2.625', height: '11.25', unit: 'in'},
-    [CarrierSize.FEDMB1]: { length: '11.5', width: '2.375', height: '13.25', unit: 'in'},
-    [CarrierSize.FEDMB2]: { length: '8.75', width: '4.375', height: '11.25', unit: 'in'},
+    [CarrierSize.FEDSB1]: { length: '10.875', width: '1.5', height: '12.375', unit: 'inch' },
+    [CarrierSize.FEDSB2]: { length: '8.75', width: '2.625', height: '11.25', unit: 'inch' },
+    [CarrierSize.FEDMB1]: { length: '11.5', width: '2.375', height: '13.25', unit: 'inch' },
+    [CarrierSize.FEDMB2]: { length: '8.75', width: '4.375', height: '11.25', unit: 'inch' },
 
-    [CarrierSize.UPSL]: { length: '14.9375', width: '9.4375', height: '3', unit: 'in'},
-    [CarrierSize.UPSPM]: { length: '16.0625', width: '12.8125', height: '3', unit: 'in'},
-    [CarrierSize.UPSPL]: { length: '17.6875', width: '16.125', height: '3', unit: 'in'},
-    [CarrierSize.UPS10B]: { length: '16.5625', width: '13.375', height: '10.625', unit: 'in'},
-    [CarrierSize.UPS25B]: { length: '19.6875', width: '17.6875', height: '13.375', unit: 'in'},
+    [CarrierSize.UPSL]: { length: '14.9375', width: '9.4375', height: '3', unit: 'inch' },
+    [CarrierSize.UPSPM]: { length: '16.0625', width: '12.8125', height: '3', unit: 'inch' },
+    [CarrierSize.UPSPL]: { length: '17.6875', width: '16.125', height: '3', unit: 'inch' },
+    [CarrierSize.UPS10B]: { length: '16.5625', width: '13.375', height: '10.625', unit: 'inch' },
+    [CarrierSize.UPS25B]: { length: '19.6875', width: '17.6875', height: '13.375', unit: 'inch' }
   }
 
 

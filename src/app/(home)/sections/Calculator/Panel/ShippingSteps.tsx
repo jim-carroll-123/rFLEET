@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -26,14 +25,16 @@ import { Plane } from '@components/ui/Plane';
 import { Star } from '@components/ui/Star';
 import { Tab } from '@components/ui/TabPane';
 import { Truck } from '@components/ui/Truck';
+import countries from '@json/countries.json';
+import { cn } from '@lib/utils';
 
-import countries from '@json/countries.json'
-import { cn } from '@lib/utils'
 
-import { addBestValueRates } from './SortRates/bestValue'
-import { addCheapestShippingAmounts } from './SortRates/cheapest'
-import { addQuickestShippingAmounts } from './SortRates/quickest'
-import { Field } from './types-schemas-constants'
+
+import { addBestValueRates } from './SortRates/bestValue';
+import { addCheapestShippingAmounts } from './SortRates/cheapest';
+import { addQuickestShippingAmounts } from './SortRates/quickest';
+import { Field } from './types-schemas-constants';
+
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
@@ -94,18 +95,18 @@ const handleSubmit = async (
               value: data.fields[0].weight,
               unit: data.fields[0].weightUnit
             },
-            // dimensions: {
-            //   unit: data.fields?.[0].dimensionUnit,
-            //   length: data.fields?.[0].length,
-            //   width: data.fields?.[0].width,
-            //   height: data.fields?.[0].height
-            // }
             dimensions: {
-              unit: 'inch',
-              length: 12,
-              width: 12,
-              height: 12
+              unit: data.fields?.[0].dimensionUnit,
+              length: data.fields?.[0].length,
+              width: data.fields?.[0].width,
+              height: data.fields?.[0].height
             }
+            // dimensions: {
+            //   unit: 'inch',
+            //   length: 12,
+            //   width: 12,
+            //   height: 12
+            // }
           }
         ]
       }
