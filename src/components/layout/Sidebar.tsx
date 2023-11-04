@@ -1,30 +1,14 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+
+
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
-import { VideoModal } from '@app/(home)/sections/Banner/VideoModal'
-import Close from '@assets/icons/close.svg'
-import Hamburger from '@assets/icons/hamburger.svg'
-import Lock from '@assets/icons/lock.svg'
-import { Button } from '@components/ui/Button'
 import { Logo } from '@components/ui/Logo'
 
-export default function Example() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [openVideoModal, setOpenVideoModal] = useState(false)
-  const pathName = usePathname()
-
-  const closeMenu = () => {
-    setMobileMenuOpen(false)
-  }
-
-  useEffect(() => {
-    closeMenu()
-  }, [pathName])
-
+export default function Sidebar() {
   return (
     <header className="bg-[#252C65]">
       <div className="flex flex-col h-full overflow-y-auto">
