@@ -4,14 +4,18 @@ import { useEffect, useState } from 'react';
 
 import Map from '@assets/images/maps.png';
 import User from '@assets/images/user.png'
-import { Input } from '@components/ui/Input'
-import { Message } from '@components/ui/Message'
-import { Phone } from '@components/ui/Phone'
-import { Search } from '@components/ui/Search'
-import { Video } from '@components/ui/Video'
+import { Arrows } from '@components/ui/Arrows';
+import { DropdownArrow } from '@components/ui/DropdownArrow';
+import { Input } from '@components/ui/Input';
+import { Message } from '@components/ui/Message';
+import { Phone } from '@components/ui/Phone';
+import { Search } from '@components/ui/Search';
+import { Video } from '@components/ui/Video';
+
 
 export const DashboardSection = () => {
   const [selected, setSelected] = useState<number | null>(null)
+  const [selectedType, setSelectedType] = useState<number | null>(null)
 
   useEffect(() => {
     setSelected(0)
@@ -19,6 +23,21 @@ export const DashboardSection = () => {
 
   const handleClick = (index: number) => {
     setSelected(index)
+  }
+
+  useEffect(() => {
+    setSelectedType(0)
+  }, [])
+
+  const handleClickType = (index: number) => {
+    setSelectedType(index)
+  }
+
+  const getBgColorType = (index: number) => {
+    if (selectedType === index) {
+      return 'bg-blue-500 !text-white'
+    }
+    return ''
   }
 
   const getBgColor = (index: number) => {
@@ -97,25 +116,85 @@ export const DashboardSection = () => {
           </div>
 
           <div className="text-black mt-4 flex">
-            <div>Status</div>
-            <div className="flex border border-[#B8BEF8] rounded-d-6 p-[2px] justify-content-center w-60">
-              <div className="flex w-[100%]">
+            <div className="flex items-center text-black font-poppins text-b3 font-medium">Status</div>
+            <div className="flex border border-[#B8BEF8] rounded-d-6 p-[2px] justify-content-center ml-4">
+              <div className="flex">
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColor(
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     0
                   )}`}
-                  onClick={() => handleClick(0)}
+                  onClick={() => handleClickType(0)}
                 >
-                  <span>Flat</span>
+                  <span className="px-6">All</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColor(
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     1
                   )}`}
-                  onClick={() => handleClick(1)}
+                  onClick={() => handleClickType(1)}
                 >
-                  <span>3D</span>
+                  <span className="px-6">Parcel</span>
                 </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                    2
+                  )}`}
+                  onClick={() => handleClickType(2)}
+                >
+                  <span className="px-6">LTL</span>
+                </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                    3
+                  )}`}
+                  onClick={() => handleClickType(3)}
+                >
+                  <span className="px-6">FTL</span>
+                </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                    4
+                  )}`}
+                  onClick={() => handleClickType(4)}
+                >
+                  <span className="px-6">Drayage</span>
+                </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                    5
+                  )}`}
+                  onClick={() => handleClickType(5)}
+                >
+                  <span className="px-6">Rail</span>
+                </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                    6
+                  )}`}
+                  onClick={() => handleClickType(6)}
+                >
+                  <span className="px-6">Ocean</span>
+                </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                    7
+                  )}`}
+                  onClick={() => handleClickType(7)}
+                >
+                  <span className="px-6">Air</span>
+                </div>
+              </div>
+            </div>
+            <div className="w-12 border border-[#2F80ED] ml-2 rounded-lg hover:cursor-pointer">
+              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
+                <Arrows />
+              </div>
+            </div>
+            <div className="flex items-center ml-4">Entries</div>
+            <div className=" border border-[#2F80ED] ml-4 flex rounded-lg hover:cursor-pointer">
+              <div className="flex items-center px-4">15</div>
+              <div className="flex items-center px-2">
+                <DropdownArrow />
               </div>
             </div>
           </div>
