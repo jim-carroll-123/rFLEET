@@ -112,7 +112,7 @@ export const DashboardSection = () => {
         <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] p-4">
           <div className="text-gray border border-gray p-2 rounded-lg flex">
             <Search />
-            <input className="ml-2" placeholder="Search"></input>
+            <input className="ml-2 w-[100%]" placeholder="Search"/>
           </div>
 
           <div className="text-black mt-4 flex">
