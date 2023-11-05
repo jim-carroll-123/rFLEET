@@ -17,7 +17,7 @@ const PageContent = () => {
   return (
     <main>
       <DashboardSection />
-      <NewQuoteSection />
+      
     </main>
   )
 }
