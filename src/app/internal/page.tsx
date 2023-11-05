@@ -5,6 +5,8 @@ import { ParallaxProvider } from 'react-scroll-parallax'
 
 import { DashboardSection } from './sections/Dashboard'
 import { NewQuoteSection } from './sections/New Quote'
+import { NewShipmentSection } from './sections/NewShipment'
+
 
 // Define the props that Home component accepts
 interface HomeProps {
@@ -45,6 +47,8 @@ const PageContent = ({ currentHash }: PageContentProps) => {
         return <DashboardSection />
       case '#new-quote':
         return <NewQuoteSection />
+      case '#new-shipment':
+        return <NewShipmentSection />
       default:
         return <DashboardSection />
     }

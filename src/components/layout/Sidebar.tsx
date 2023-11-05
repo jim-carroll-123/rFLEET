@@ -39,7 +39,7 @@ export default function Sidebar() {
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New Quote</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('new-shipment')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <TruckLogo />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New Shipment</div>
           </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 
 import Map from '@assets/images/maps.png';
-import User from '@assets/images/user.png'
+import User from '@assets/images/user.png';
 import { Arrows } from '@components/ui/Arrows';
 import { DropdownArrow } from '@components/ui/DropdownArrow';
 import { Input } from '@components/ui/Input';
@@ -11,6 +11,10 @@ import { Message } from '@components/ui/Message';
 import { Phone } from '@components/ui/Phone';
 import { Search } from '@components/ui/Search';
 import { Video } from '@components/ui/Video';
+
+
+
+import { Header } from '../../components/header'
 
 
 export const DashboardSection = () => {
@@ -51,32 +55,7 @@ export const DashboardSection = () => {
     <div>
       <div className="bg-[#141943] h-12"></div>
       <div className="relative p-8 bg-[#F6F7FF] overflow-hidden">
-        <div className="flex justify-between">
-          <div className="text-[#141943] font-poppins text-4xl font-bold leading-11 uppercase">New Shipment</div>
-          <div className="flex">
-            <div className="w-12 h-12 mr-2 bg-white border border-[#2F80ED] rounded-md">
-              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
-                <Phone />
-              </div>
-            </div>
-
-            <div className="w-12 h-12 mr-2 bg-white border border-[#2F80ED] rounded-md">
-              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
-                <Video />
-              </div>
-            </div>
-
-            <div className="w-12 h-12 mr-2 bg-white border border-[#2f80ED] rounded-md">
-              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
-                <Message />
-              </div>
-            </div>
-            <div className="w-12 h-12 bg-white border border-[#2f80ED] rounded-md hover:cursor-pointer">
-              <img src={User.src} alt="" />
-            </div>
-          </div>
-        </div>
-
+        <Header title="Dashboard" />
         <div
           className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] shadow-xl"
           style={{ boxShadow: '0 -10px 10px rgba(0, 0, 0, 0.025)' }}
@@ -112,7 +91,7 @@ export const DashboardSection = () => {
         <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] p-4">
           <div className="text-gray border border-gray p-2 rounded-lg flex">
             <Search />
-            <input className="ml-2 w-[100%]" placeholder="Search"/>
+            <input className="ml-2 w-[100%]" placeholder="Search" />
           </div>
 
           <div className="text-black mt-4 flex">
