@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import Map from '@assets/images/maps.png'
+
+
+import Map from '@assets/images/maps.png';
 import User from '@assets/images/user.png'
+import { Input } from '@components/ui/Input'
 import { Message } from '@components/ui/Message'
 import { Phone } from '@components/ui/Phone'
+import { Search } from '@components/ui/Search'
 import { Video } from '@components/ui/Video'
 
 export const DashboardSection = () => {
@@ -54,7 +58,10 @@ export const DashboardSection = () => {
           </div>
         </div>
 
-        <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] shadow-xl" style={{boxShadow: "0 -10px 10px rgba(0, 0, 0, 0.025)"}}>
+        <div
+          className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] shadow-xl"
+          style={{ boxShadow: '0 -10px 10px rgba(0, 0, 0, 0.025)' }}
+        >
           <div className="flex justify-between p-4">
             <div className="text-[#0C0A09] flex items-center font-poppins text-b2 font-semibold">Shipping</div>
 
@@ -68,8 +75,6 @@ export const DashboardSection = () => {
                 >
                   <span>Flat</span>
                 </div>
-
-                {/* Quickest */}
                 <div
                   className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColor(
                     1
@@ -86,8 +91,34 @@ export const DashboardSection = () => {
         </div>
 
         <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] p-4">
-          <div className="text-black">Search</div>
-          <div className="text-black">Status</div>
+          <div className="text-gray border border-gray p-2 rounded-lg flex">
+            <Search />
+            <input className="ml-2" placeholder="Search"></input>
+          </div>
+
+          <div className="text-black mt-4 flex">
+            <div>Status</div>
+            <div className="flex border border-[#B8BEF8] rounded-d-6 p-[2px] justify-content-center w-60">
+              <div className="flex w-[100%]">
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColor(
+                    0
+                  )}`}
+                  onClick={() => handleClick(0)}
+                >
+                  <span>Flat</span>
+                </div>
+                <div
+                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColor(
+                    1
+                  )}`}
+                  onClick={() => handleClick(1)}
+                >
+                  <span>3D</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
