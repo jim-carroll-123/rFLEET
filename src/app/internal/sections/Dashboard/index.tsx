@@ -31,30 +31,30 @@ export const DashboardSection = () => {
         <div className="flex justify-between">
           <div className="text-[#141943] font-poppins text-4xl font-bold leading-11 uppercase">New Shipment</div>
           <div className="flex">
-            <div className="w-10 h-10 mr-2 bg-white border border-[#2F80ED] rounded-md">
-              <div className="h-10 flex justify-center items-center">
+            <div className="w-12 h-12 mr-2 bg-white border border-[#2F80ED] rounded-md">
+              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
                 <Phone />
               </div>
             </div>
 
-            <div className="w-10 h-10 mr-2 bg-white border border-[#2F80ED] rounded-md">
-              <div className="h-10 flex justify-center items-center">
+            <div className="w-12 h-12 mr-2 bg-white border border-[#2F80ED] rounded-md">
+              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
                 <Video />
               </div>
             </div>
 
-            <div className="w-10 h-10 mr-2 bg-white border border-[#2f80ED] rounded-md">
-              <div className="h-10 flex justify-center items-center">
+            <div className="w-12 h-12 mr-2 bg-white border border-[#2f80ED] rounded-md">
+              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
                 <Message />
               </div>
             </div>
-            <div className="w-10 h-10 bg-white border border-[#2f80ED] rounded-md">
+            <div className="w-12 h-12 bg-white border border-[#2f80ED] rounded-md hover:cursor-pointer">
               <img src={User.src} alt="" />
             </div>
           </div>
         </div>
 
-        <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] shadow-xl">
+        <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] shadow-xl" style={{boxShadow: "0 -10px 10px rgba(0, 0, 0, 0.025)"}}>
           <div className="flex justify-between p-4">
             <div className="text-[#0C0A09] flex items-center font-poppins text-b2 font-semibold">Shipping</div>
 
