@@ -44,32 +44,32 @@ export default function Sidebar() {
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New Shipment</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('e-commerce')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <ECommerce />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">E-Commerce</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('product')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <BoxLight />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Product</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('addressbook')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <ClipBoard />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Address Book</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('shipmentprofile')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <BoxLight />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Shipment Profile</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('newpfq-newrfb')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <ECommerce />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New PFQ/New RFB</div>
           </div>
 
-          <div className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+          <div onClick={() => navigateToSection('reports')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <ClipBoard />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Reports</div>
           </div>
