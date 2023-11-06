@@ -2,15 +2,10 @@ import { useEffect, useState } from 'react';
 
 
 
-import Map from '@assets/images/maps.png';
-import User from '@assets/images/user.png';
+import Map from '@assets/images/Maps.png';
 import { Arrows } from '@components/ui/Arrows';
 import { DropdownArrow } from '@components/ui/DropdownArrow';
-import { Input } from '@components/ui/Input';
-import { Message } from '@components/ui/Message';
-import { Phone } from '@components/ui/Phone';
 import { Search } from '@components/ui/Search';
-import { Video } from '@components/ui/Video';
 
 
 

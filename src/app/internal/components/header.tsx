@@ -1,4 +1,4 @@
-import User from '@assets/images/user.png'
+import User from '@assets/images/User.png'
 import { Message } from '@components/ui/Message'
 import { Phone } from '@components/ui/Phone'
 import { Video } from '@components/ui/Video'
