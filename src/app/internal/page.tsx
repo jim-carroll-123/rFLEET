@@ -22,9 +22,15 @@ interface HomeProps {
 }
 
 export default function Home(props: HomeProps) {
-  const [currentHash, setCurrentHash] = useState<string>(window.location.hash)
+  const [currentHash, setCurrentHash] = useState<string>(() =>
+    typeof window !== 'undefined' ? window.location.hash : ''
+  )
 
   useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
     const handleHashChange = () => {
       setCurrentHash(window.location.hash)
     }
