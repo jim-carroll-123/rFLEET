@@ -52,7 +52,7 @@ export const DashboardSection = () => {
       <div className="relative p-8 bg-[#F6F7FF] overflow-hidden">
         <Header title="Dashboard" />
         <div
-          className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] shadow-xl"
+          className="mt-10 rounded-lg bg-[#FFF] shadow-xl"
           style={{ boxShadow: '0 -10px 10px rgba(0, 0, 0, 0.025)' }}
         >
           <div className="flex justify-between p-4">
@@ -83,7 +83,7 @@ export const DashboardSection = () => {
           <img src={Map.src} alt="" />
         </div>
 
-        <div className="mt-10 rounded-lg w-90 h-90 bg-[#FFF] p-4">
+        <div className="mt-10 rounded-lg bg-[#FFF] p-4">
           <div className="text-gray border border-gray p-2 rounded-lg flex">
             <Search />
             <input className="ml-2 w-[100%]" placeholder="Search" />
