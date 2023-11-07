@@ -92,72 +92,79 @@ export const DashboardSection = () => {
           <div className="text-black mt-4 flex">
             <div className="flex items-center text-black font-poppins text-b3 font-medium">Status</div>
             <div className="flex border border-[#B8BEF8] rounded-d-6 p-[2px] justify-content-center ml-4">
+
+
+
+
               <div className="flex">
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     0
                   )}`}
                   onClick={() => handleClickType(0)}
                 >
-                  <span className="px-6">All</span>
+                  <span className="px-5">All</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     1
                   )}`}
                   onClick={() => handleClickType(1)}
                 >
-                  <span className="px-6">Parcel</span>
+                  <span className="px-5">Parcel</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     2
                   )}`}
                   onClick={() => handleClickType(2)}
                 >
-                  <span className="px-6">LTL</span>
+                  <span className="px-5">LTL</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     3
                   )}`}
                   onClick={() => handleClickType(3)}
                 >
-                  <span className="px-6">FTL</span>
+                  <span className="px-5">FTL</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     4
                   )}`}
                   onClick={() => handleClickType(4)}
                 >
-                  <span className="px-6">Drayage</span>
+                  <span className="px-5">Drayage</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     5
                   )}`}
                   onClick={() => handleClickType(5)}
                 >
-                  <span className="px-6">Rail</span>
+                  <span className="px-5">Rail</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     6
                   )}`}
                   onClick={() => handleClickType(6)}
                 >
-                  <span className="px-6">Ocean</span>
+                  <span className="px-5">Ocean</span>
                 </div>
                 <div
-                  className={`px-3 p-1 w-[50%] flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
                     7
                   )}`}
                   onClick={() => handleClickType(7)}
                 >
-                  <span className="px-6">Air</span>
+                  <span className="px-5">Air</span>
                 </div>
               </div>
+
+
+
             </div>
             <div className="w-12 border border-[#2F80ED] ml-2 rounded-lg hover:cursor-pointer">
               <div className="h-12 flex justify-center items-center hover:cursor-pointer">
@@ -172,6 +179,9 @@ export const DashboardSection = () => {
               </div>
             </div>
           </div>
+
+
+
         </div>
       </div>
     </div>
