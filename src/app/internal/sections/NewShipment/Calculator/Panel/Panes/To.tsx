@@ -5,14 +5,14 @@ import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 
 import ArrowRight from '@assets/icons/arrow-right.svg';
-import BusinessAddress from '@assets/icons/business-address.svg';
+import BusinessAddress from '@assets/icons/business-address-internal.svg'
 import ConsolidationStation from '@assets/icons/consolidation-station.svg';
 import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
 import FulfillmentCenter from '@assets/icons/fulfillment-center.svg';
 import PortAirport from '@assets/icons/port_airport.svg';
 import ResidentialAddress from '@assets/icons/residential-address.svg';
 import User from '@assets/icons/user.svg';
-import { Button } from '@components/ui/ButtonInternal'
+import { Button } from '@components/ui/ButtonInternal';
 import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
 import { GradientHR } from '@components/ui/GradientHR';
 import { Input } from '@components/ui/InputInternal';

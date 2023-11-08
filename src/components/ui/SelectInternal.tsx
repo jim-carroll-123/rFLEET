@@ -1,21 +1,20 @@
 'use client';
 
 import * as React from 'react';
-import { onlyText } from 'react-children-utilities';
-
-
+import { useState } from 'react'
+import { onlyText } from 'react-children-utilities'
 
 import { string } from 'joi'
 
 import ArrowDown from '@assets/icons/arrow-down-internal.svg'
-import { useOnClickOutside } from '@hooks/utils/useClickOutside';
-import { cn } from '@lib/utils';
-
+import { useOnClickOutside } from '@hooks/utils/useClickOutside'
+import { cn } from '@lib/utils'
 
 export interface Option {
   label: string | JSX.Element
   value: string
   icon?: any
+  iconInternal?: any
   groupLabel?: boolean
   description?: string
 }
@@ -92,6 +91,8 @@ export const Select = React.forwardRef(
       }
     }, [selectOpen])
 
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
     return (
       <div className={cn(`relative text-input`, containerClassName, full ? 'w-full' : '')} ref={selectNode}>
         {props.label && (
@@ -107,7 +108,7 @@ export const Select = React.forwardRef(
           )}
         >
           {typeof value != 'string' && value?.icon && (
-            <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>
+            <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.iconInternal}</div>
           )}
           <input
             type="text"
@@ -138,19 +139,23 @@ export const Select = React.forwardRef(
                   <div
                     key={index}
                     className={cn(
-                      'flex items-center rounded hover:bg-primary',
-                      typeof value != 'string'
-                        ? value?.value === option.value
-                          ? 'bg-primary'
-                          : 'cursor-pointer '
-                        : value === option.value
-                        ? 'bg-primary'
-                        : 'cursor-pointer '
+                      'flex items-center rounded text-[#A6A4A3]',
+                      (typeof value !== 'string' ? value?.value === option.value : value === option.value)
+                        ? 'bg-primary text-white'
+                        : 'cursor-pointer hover:bg-primary hover:text-white'
                     )}
                     onClick={() => handleOptionClick(option)}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
                   >
                     {option?.icon && (
-                      <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{option.icon}</div>
+                      <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">
+                        {/* Show the selected or hovered icon */}
+                        {(typeof value !== 'string' ? value?.value === option.value : value === option.value) ||
+                        hoveredIndex === index
+                          ? option.icon
+                          : option.iconInternal}
+                      </div>
                     )}
                     <div className="lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]">{option.label}</div>
                   </div>
