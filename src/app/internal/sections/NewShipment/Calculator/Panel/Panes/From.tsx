@@ -11,13 +11,15 @@ import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
 import PortAirport from '@assets/icons/port_airport.svg';
 import ResidentialAddress from '@assets/icons/residential-address.svg';
 import User from '@assets/icons/user.svg';
-import { Button } from '@components/ui/Button';
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Input } from '@components/ui/InputInternal'
-import { Select, findOption } from '@components/ui/SelectInternal'
+import { Button } from '@components/ui/ButtonInternal'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Input } from '@components/ui/InputInternal';
+import { Select, findOption } from '@components/ui/SelectInternal';
 
-import { FromInputs } from '../types-schemas-constants'
+
+
+import { FromInputs } from '../types-schemas-constants';
 
 
 const fromTypes = [
@@ -157,7 +159,7 @@ export const From = ({ methods, onSubmit }: Props) => {
           </div>
 
           <div>
-            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company (Optional)</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
             <Input
               value={watch('fromName')}
               onChange={(value) => setValue('fromName', value, { shouldValidate: true })}

@@ -13,9 +13,9 @@ import Plus from '@assets/icons/plus.svg';
 import IconPostalService from '@assets/icons/postal-service.svg';
 import X from '@assets/icons/x.svg';
 import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/Button';
+import { Button } from '@components/ui/ButtonInternal'
 import { ButtonSelect } from '@components/ui/ButtonSelectInternal';
-import { Check } from '@components/ui/CheckInternal'
+import { Check } from '@components/ui/CheckInternal';
 import { GradientHR } from '@components/ui/GradientHR';
 import { Input } from '@components/ui/Input';
 import { Radio } from '@components/ui/Radio';

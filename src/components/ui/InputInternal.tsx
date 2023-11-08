@@ -77,7 +77,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onChange={(e) => (onChange ? onChange(e.target.value) : false)}
             className={cn(
               'block w-full lg:py-[10px] py-[8px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent text-black placeholder:text-black',
-              error ? 'border-red-600' : 'border-black hover:border-gray-300 focus:border-primary',
+              error ? 'border-red-600' : 'border-gray hover:border-gray-300 focus:border-primary',
               leftIcon ? 'pl-[54px]' : 'lg:pl-[16px] pl-[12px]',
               rightIcon ? 'pr-[54px]' : 'lg:pr-[16px] pr-[12px]'
             )}

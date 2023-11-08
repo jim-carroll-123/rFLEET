@@ -13,8 +13,8 @@ import IconDHL from '@assets/icons/dhl.svg';
 import IconFedEx from '@assets/icons/fedex.svg';
 import IconPostalService from '@assets/icons/postal-service.svg';
 import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/CheckInternal'
+import { Button } from '@components/ui/ButtonInternal'
+import { Check } from '@components/ui/CheckInternal';
 import { Circle } from '@components/ui/Circle';
 import { GradientHR } from '@components/ui/GradientHR';
 import { Line } from '@components/ui/Line';
@@ -248,7 +248,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               setDisplayRate={setDisplayRate}
             >
               {data.fromType ? (
-                <div className="flex items-center gap-d-10 text-white font-bold">
+                <div className="flex items-center gap-d-10 text-black font-bold">
                   <div className="flex items-center shrink-0 lg:gap-[4px] gap-[3px]">
                     {
                       <img
@@ -271,7 +271,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               setDisplayRate={setDisplayRate}
             >
               {data.toType ? (
-                <div className="flex items-center gap-d-10 text-white font-bold">
+                <div className="flex items-center gap-d-10 text-black font-bold">
                   <div className="flex items-center shrink-0 lg:gap-[4px] gap-[3px]">
                     {
                       <img
@@ -294,7 +294,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               setDisplayRate={setDisplayRate}
             >
               {data.parcelType ? (
-                <div className="flex items-center gap-d-10 text-white font-bold">
+                <div className="flex items-center gap-d-10 text-black font-bold">
                   <div className="text-input">
                     {data.parcelType === 'Enter Custom Dimensions' ? 'Custom Dimensions' : data.parcelType}
                   </div>

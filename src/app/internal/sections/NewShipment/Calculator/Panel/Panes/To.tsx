@@ -12,13 +12,16 @@ import FulfillmentCenter from '@assets/icons/fulfillment-center.svg';
 import PortAirport from '@assets/icons/port_airport.svg';
 import ResidentialAddress from '@assets/icons/residential-address.svg';
 import User from '@assets/icons/user.svg';
-import { Button } from '@components/ui/Button'
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Input } from '@components/ui/InputInternal'
-import { Select, findOption } from '@components/ui/SelectInternal'
+import { Button } from '@components/ui/ButtonInternal'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Input } from '@components/ui/InputInternal';
+import { Select, findOption } from '@components/ui/SelectInternal';
 
-import { ToInputs } from '../types-schemas-constants'
+
+
+import { ToInputs } from '../types-schemas-constants';
+
 
 const toTypes = [
   {
@@ -168,7 +171,7 @@ export const To = ({ methods, onSubmit }: Props) => {
           </div>
 
           <div>
-            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company (Optional)</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
             <Input
               value={watch('toName')}
               onChange={(value) => setValue('toName', value, { shouldValidate: true })}
