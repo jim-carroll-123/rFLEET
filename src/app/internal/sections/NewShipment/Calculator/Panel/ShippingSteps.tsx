@@ -736,8 +736,8 @@ export const ShippingStep = ({
 }: ShippingStepProps) => {
   return (
     <div>
-      <div className={cn('lg:mb-[8px] mb-[6px]', target === shippingStepId ? 'text-white' : 'text-gray')}>
-        <span className="font-semibold text-caption">{label}</span>
+      <div className={cn('lg:mb-[8px] mb-[6px]')}>
+        <span className="font-semibold text-caption text-black">{label}</span>
       </div>
       <Tab
         target={target}
@@ -745,10 +745,10 @@ export const ShippingStep = ({
           setDisplayRate(false)
         }}
         className={cn(
-          'w-full lg:py-[10px] py-[8px] border-2 border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent lg:pl-[12px] pl-[8px] lg:pr-[12px] pr-[8px]',
+          'w-full lg:py-[10px] py-[8px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent lg:pl-[12px] pl-[8px] lg:pr-[12px] pr-[8px]',
           className,
           target === shippingStepId
-            ? 'text-white border-white hover:text-white cursor-default'
+            ? 'text-black border-black hover:text-black cursor-default'
             : 'text-gray border-gray hover:text-primary hover:border-primary'
         )}
       >

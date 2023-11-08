@@ -115,7 +115,7 @@ export const To = ({ methods, onSubmit }: Props) => {
       <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
         <div className="flex-1 lg:grid lg:grid-cols-3 flex flex-col gap-d-16">
           <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Type</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
             <Select
               options={toTypes}
               value={findOption(toTypes, watch('toType'))}
@@ -125,7 +125,7 @@ export const To = ({ methods, onSubmit }: Props) => {
             />
           </div>
           <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Country</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Country</div>
             <CountrySelect
               searchable
               value={findOption(countryOptions, watch('toCountry'))}
@@ -146,7 +146,7 @@ export const To = ({ methods, onSubmit }: Props) => {
           </div> */}
 
           <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Postal Code</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
             <Input
               value={watch('toPostalCode')}
               onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
@@ -156,7 +156,7 @@ export const To = ({ methods, onSubmit }: Props) => {
           </div>
 
           <div className="col-span-2">
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Address</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
             <Input
               value={watch('toAddress')}
               onChange={(value) => setValue('toAddress', value, { shouldValidate: true })}
@@ -166,7 +166,7 @@ export const To = ({ methods, onSubmit }: Props) => {
           </div>
 
           <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">Name / Company (Optional)</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company (Optional)</div>
             <Input
               value={watch('toName')}
               onChange={(value) => setValue('toName', value, { shouldValidate: true })}
@@ -181,15 +181,7 @@ export const To = ({ methods, onSubmit }: Props) => {
           </Button>
         </div>
       </form>
-      <GradientHR />
-      <div className="flex flex-col lg:gap-[4px] gap-[3px]">
-        <div className="text-input">My recent searches</div>
-        <div className="flex items-center lg:gap-[8px] gap-[6px]">
-          <User />
-          <div className="text-body-lg">Login / Sign Up</div>
-        </div>
-        <div className="text-input">Access your searches on any devices</div>
-      </div>
+     
     </>
   )
 }
