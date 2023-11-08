@@ -748,8 +748,8 @@ export const ShippingStep = ({
           'w-full lg:py-[10px] py-[8px] border border-solid sm:text-sm shadow-sm lg:rounded-lg rounded-md bg-transparent lg:pl-[12px] pl-[8px] lg:pr-[12px] pr-[8px]',
           className,
           target === shippingStepId
-            ? 'text-black border-black hover:text-black cursor-default'
-            : 'text-gray border-gray hover:text-primary hover:border-primary'
+            ? 'text-primary border-primary hover:text-primary cursor-default'
+            : 'text-[#A6A4A3] border-[#A6A4A3] hover:text-primary hover:border-primary'
         )}
       >
         {children}

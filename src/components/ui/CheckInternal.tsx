@@ -32,7 +32,7 @@ export const Check = ({ checked, label, containerClassName, labelClassName, onCh
         <label
           htmlFor={id}
           className={cn(
-            'inline-block pl-[0.15rem] hover:cursor-pointer text-input text-black leading-[24px]',
+            'inline-block pl-[0.15rem] hover:cursor-pointer text-input text-[#848382] leading-[24px]',
             labelClassName
           )}
         >
