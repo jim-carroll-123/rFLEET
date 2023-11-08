@@ -12,12 +12,13 @@ import PortAirport from '@assets/icons/port_airport.svg';
 import ResidentialAddress from '@assets/icons/residential-address.svg';
 import User from '@assets/icons/user.svg';
 import { Button } from '@components/ui/Button';
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelect';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/Input'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Input } from '@components/ui/InputInternal'
 import { Select, findOption } from '@components/ui/SelectInternal'
 
 import { FromInputs } from '../types-schemas-constants'
+
 
 const fromTypes = [
   {

@@ -1,13 +1,16 @@
-'use client'
+'use client';
 
-import * as React from 'react'
-import { onlyText } from 'react-children-utilities'
+import * as React from 'react';
+import { onlyText } from 'react-children-utilities';
+
+
 
 import { string } from 'joi'
 
-import ArrowDown from '@assets/icons/arrow-down.svg'
-import { useOnClickOutside } from '@hooks/utils/useClickOutside'
-import { cn } from '@lib/utils'
+import ArrowDown from '@assets/icons/arrow-down-internal.svg'
+import { useOnClickOutside } from '@hooks/utils/useClickOutside';
+import { cn } from '@lib/utils';
+
 
 export interface Option {
   label: string | JSX.Element
