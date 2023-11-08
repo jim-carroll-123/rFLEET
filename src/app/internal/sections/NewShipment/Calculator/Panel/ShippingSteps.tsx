@@ -14,7 +14,7 @@ import IconFedEx from '@assets/icons/fedex.svg';
 import IconPostalService from '@assets/icons/postal-service.svg';
 import uPsLogo from '@assets/images/UPS-logo.png';
 import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
+import { Check } from '@components/ui/CheckInternal'
 import { Circle } from '@components/ui/Circle';
 import { GradientHR } from '@components/ui/GradientHR';
 import { Line } from '@components/ui/Line';

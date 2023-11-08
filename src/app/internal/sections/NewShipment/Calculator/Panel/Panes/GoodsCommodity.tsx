@@ -8,11 +8,11 @@ import { BiSearch } from 'react-icons/bi';
 import IconInfo from '@assets/icons/info.svg';
 import QuoteRequest from '@assets/icons/quote-request.svg';
 import { Button, TransparentButton } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
+import { Check } from '@components/ui/CheckInternal'
 import { GradientHR } from '@components/ui/GradientHR';
 import { Input } from '@components/ui/Input';
-import { Modal } from '@components/ui/Modal'
-import { Select, findOption } from '@components/ui/SelectInternal'
+import { Modal } from '@components/ui/Modal';
+import { Select, findOption } from '@components/ui/SelectInternal';
 
 
 

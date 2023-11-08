@@ -12,11 +12,11 @@ import Link from 'next/link';
 import X from '@assets/icons/x.svg';
 import gradientCard from '@assets/images/gradient-card-cyan-indigo-to-r.png';
 import { Button, TransparentButton } from '@components/ui/Button';
-import { Check } from '@components/ui/Check';
+import { Check } from '@components/ui/CheckInternal'
 import { GradientHR } from '@components/ui/GradientHR';
 import { Input } from '@components/ui/Input';
-import { Radio } from '@components/ui/Radio'
-import { Select, findOption } from '@components/ui/SelectInternal'
+import { Radio } from '@components/ui/Radio';
+import { Select, findOption } from '@components/ui/SelectInternal';
 
 
 
