@@ -7,11 +7,14 @@ import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 import ArrowRight from '@assets/icons/arrow-right.svg';
 import BusinessAddressInternal from '@assets/icons/business-address-internal.svg';
-import BusinessAddress from '@assets/icons/business-address.svg';
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
-import PortAirport from '@assets/icons/port_airport.svg';
-import ResidentialAddress from '@assets/icons/residential-address.svg';
-import User from '@assets/icons/user.svg';
+import BusinessAddress from '@assets/icons/business-address.svg'
+import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg'
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
+import PortAirportInternal from '@assets/icons/port_airport-internal.svg'
+import PortAirport from '@assets/icons/port_airport.svg'
+import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg'
+import ResidentialAddress from '@assets/icons/residential-address.svg'
+import User from '@assets/icons/user.svg'
 import { Button } from '@components/ui/ButtonInternal'
 import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
 import { GradientHR } from '@components/ui/GradientHR'
@@ -24,12 +27,14 @@ const fromTypes = [
   {
     label: 'Port/Airport',
     value: 'Port/Airport',
-    icon: <PortAirport />
+    icon: <PortAirport />,
+    iconInternal: <PortAirportInternal />
   },
   {
     label: 'Factory/Warehouse',
     value: 'Factory/Warehouse',
-    icon: <FactoryWarehouse />
+    icon: <FactoryWarehouse />,
+    iconInternal: <FactoryWarehouseInternal />
   },
   {
     label: 'Business Address',
@@ -40,7 +45,8 @@ const fromTypes = [
   {
     label: 'Residential Address',
     value: 'Residential Address',
-    icon: <ResidentialAddress />
+    icon: <ResidentialAddress />,
+    iconInternal: <ResidentialAddressInternal />
   }
 ]
 
