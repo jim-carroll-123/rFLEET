@@ -1,11 +1,15 @@
-'use client'
+'use client';
 
-import { BiLock } from 'react-icons/bi'
+import { BiLock } from 'react-icons/bi';
 
-import { cn } from '@lib/utils'
+
+
+import { cn } from '@lib/utils';
+
 
 interface Option {
   label: React.ReactNode
+  labelInternal: React.ReactNode
   value: string
   locked?: boolean
 }
@@ -35,7 +39,7 @@ export const ButtonSelect = ({ options, value, onChange, full = false, container
           disabled={option.locked || option.value === value?.value}
           className={cn(
             'relative flex grow items-center justify-center before:absolute before:inset-0 before:rounded-md before:transition before:duration-300 active:duration-75 lg:h-[48px] h-[36px] lg:px-[32px] px-[24px hover:enabled:before:opacity-30 active:before:scale-[0.97] hover:after:blur-md active:after:blur-none active:after:bg-transparent',
-            option.value === value?.value ? 'before:bg-primary' : 'border border-solid rounded-md',
+            option.value === value?.value ? 'before:bg-primary text-white' : 'border border-solid rounded-md',
             full ? 'lg:flex-1' : 'lg:max-w-[282px]'
           )}
         >
@@ -45,7 +49,15 @@ export const ButtonSelect = ({ options, value, onChange, full = false, container
               option.value === value?.value ? 'before:text-white' : 'text-black'
             )}
           >
-            {option.locked && <BiLock className="h-5 w-5" />} {option.label}
+            {option.value === value?.value ? (
+              <div className="mb-5 font-normal text-[14px]">
+                {option.locked && <BiLock className="h-5 w-5" />} {option.label}
+              </div>
+            ) : (
+              <div className="mb-5">
+                {option.locked && <BiLock className="h-5 w-5" />} {option.labelInternal}
+              </div>
+            )}
           </span>
         </button>
       ))}

@@ -1,7 +1,8 @@
-import Parcel from '@assets/icons/parcel.svg';
-import PolyMailer from '@assets/icons/polymailer.svg';
-import currunciesData from '@json/currencies.json';
-
+import ParcelInternal from '@assets/icons/parcel-internal.svg';
+import Parcel from '@assets/icons/parcel.svg'
+import PolyMailerInternal from '@assets/icons/polymailer-internal.svg'
+import PolyMailer from '@assets/icons/polymailer.svg'
+import currunciesData from '@json/currencies.json'
 
 export const shippingMethods = [
   { label: 'Parcel', value: 'Parcel' },
@@ -23,12 +24,24 @@ export const parcelShapes = [
         Box or Tube
       </div>
     ),
+    labelInternal: (
+      <div className="flex items-center gap-d-10">
+        <ParcelInternal />
+        Box or Tube
+      </div>
+    ),
     value: 'Box or Tube'
   },
   {
     label: (
       <div className="flex items-center gap-d-10">
         <PolyMailer />
+        Poly Mailer/Satchel
+      </div>
+    ),
+    labelInternal: (
+      <div className="flex items-center gap-d-10">
+        <PolyMailerInternal />
         Poly Mailer/Satchel
       </div>
     ),

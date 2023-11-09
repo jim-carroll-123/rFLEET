@@ -304,7 +304,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           labelClassName="text-heading"
         />
       </div>
-      <GradientHR />
+      <hr></hr>
       {isCustomDimensions && (
         <ButtonSelect
           full
@@ -341,7 +341,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           ))}
         </>
       )}
-      {isCustomDimensions && <GradientHR />}
+      {isCustomDimensions && <hr></hr>}
       {!isCustomDimensions && (
         <div className="flex flex-col gap-d-16">
           <div className="font-bold">Select Carrier</div>
@@ -586,7 +586,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           </div>
         </div>
       </div>
-      <GradientHR />
+      <hr></hr>
       <div className="flex flex-col gap-d-16">
         <Check
           label="Shipment contains alcohol"
@@ -655,7 +655,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           containerClassName="lg:max-w-[500px]"
         />
       </div>
-      <GradientHR />
+      <hr></hr>
       <div className="flex lg:flex-row flex-col gap-d-16 justify-end">
         <Button type="button" color="transparent" onClick={onAdd}>
           <div className="flex gap-d-10">
