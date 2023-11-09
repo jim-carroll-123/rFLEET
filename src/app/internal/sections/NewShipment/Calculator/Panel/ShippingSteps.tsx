@@ -72,7 +72,7 @@ const handleSubmit = async (
         validateAddress: 'no_validation',
         shipTo: {
           name: data.toName,
-          phone: '555-555-5555',
+          phone: data.toPhone,
           addressLine1: data.toAddress,
           stateProvince: data.toState,
           cityLocality: data.toCity,

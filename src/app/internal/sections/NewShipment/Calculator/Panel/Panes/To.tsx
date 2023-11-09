@@ -127,7 +127,7 @@ export const To = ({ methods, onSubmit }: Props) => {
     <>
       <div className="text-body-lg font-semibold">Where are you shipping to?</div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
-        <div className="flex-1 lg:grid lg:grid-cols-3 flex flex-col gap-d-16">
+        <div className="flex-1 lg:grid lg:grid-cols-4 flex flex-col gap-d-16">
           <div>
             <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
             <Select
@@ -149,16 +149,37 @@ export const To = ({ methods, onSubmit }: Props) => {
             />
           </div>
 
-          {/* <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">City</div>
+          <div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
             <Input
-              value={watch('toCity')}
-              onChange={(value) => setValue('toCity', value, { shouldValidate: true })}
-              placeholder="Enter the City"
-              error={errors.toCity?.message}
+              value={watch('toName')}
+              onChange={(value) => setValue('toName', value, { shouldValidate: true })}
+              placeholder="Enter the Name or Company"
+              error={errors.toName?.message}
             />
-          </div> */}
+          </div>
 
+          <div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
+            <Input
+              value={watch('toPhone')}
+              onChange={(value) => setValue('toPhone', value, { shouldValidate: true })}
+              placeholder="Enter the Phone Number"
+              error={errors.toPhone?.message}
+            />
+          </div>
+
+          
+
+          <div className="col-span-3">
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
+            <Input
+              value={watch('toAddress')}
+              onChange={(value) => setValue('toAddress', value, { shouldValidate: true })}
+              placeholder="Enter the Street Address"
+              error={errors.toAddress?.message}
+            />
+          </div>
           <div>
             <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
             <Input
@@ -169,25 +190,7 @@ export const To = ({ methods, onSubmit }: Props) => {
             />
           </div>
 
-          <div className="col-span-2">
-            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
-            <Input
-              value={watch('toAddress')}
-              onChange={(value) => setValue('toAddress', value, { shouldValidate: true })}
-              placeholder="Enter Address or Zip/Postal Code"
-              error={errors.toAddress?.message}
-            />
-          </div>
-
-          <div>
-            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
-            <Input
-              value={watch('toName')}
-              onChange={(value) => setValue('toName', value, { shouldValidate: true })}
-              placeholder="Enter Name"
-              error={errors.toName?.message}
-            />
-          </div>
+        
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
           <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
