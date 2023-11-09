@@ -23,7 +23,17 @@ interface Props {
   onChange?: (newValue: any) => void
 }
 
+
+
 export const ButtonSelect = ({ options, value, onChange, full = false, containerClassName }: Props) => {
+  console.log('options', options)
+
+  var isBox = false
+  if (options[0].value === 'Box or Tube') {
+    isBox = true
+  }
+
+  console.log('isBox', isBox)
   return (
     <div
       className={cn(
@@ -46,17 +56,25 @@ export const ButtonSelect = ({ options, value, onChange, full = false, container
           <span
             className={cn(
               'flex items-center justify-center gap-2 relative z-[2] text-input whitespace-pre',
-              option.value === value?.value ? 'before:text-white' : 'text-black'
+              option.value === value?.value ? 'text-white' : 'text-black'
             )}
           >
-            {option.value === value?.value ? (
-              <div className="mb-5 font-normal text-[14px]">
-                {option.locked && <BiLock className="h-5 w-5" />} {option.label}
+            {isBox ? (
+              <div>
+                {option.value === value?.value ? (
+                  <div className="mb-5 text-white">
+                    {option.locked && <BiLock className="h-5 w-5" />} {option.label}
+                  </div>
+                ) : (
+                  <div className="mb-5 text-black">
+                    {option.locked && <BiLock className="h-5 w-5" />} {option.labelInternal}
+                  </div>
+                )}
               </div>
             ) : (
-              <div className="mb-5">
-                {option.locked && <BiLock className="h-5 w-5" />} {option.labelInternal}
-              </div>
+              <>
+                {option.locked && <BiLock className="h-5 w-5" />} {option.label}
+              </>
             )}
           </span>
         </button>
