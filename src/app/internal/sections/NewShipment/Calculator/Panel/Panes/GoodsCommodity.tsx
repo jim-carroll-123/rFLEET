@@ -10,7 +10,7 @@ import QuoteRequest from '@assets/icons/quote-request.svg';
 import { Button, TransparentButton } from '@components/ui/ButtonInternal'
 import { Check } from '@components/ui/CheckInternal';
 import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/Input';
+import { Input } from '@components/ui/InputInternal';
 import { Modal } from '@components/ui/Modal';
 import { Select, findOption } from '@components/ui/SelectInternal';
 
@@ -56,18 +56,20 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           <Input containerClassName="grow" placeholder="Enter your item descriptions (170 Character Maximum)" />
         </div>
       </div>
-      <GradientHR />
+      <hr></hr>
       <div className="flex lg:flex-row flex-col gap-d-16">
         <Input
           value={watch('quantity')}
           onChange={(value) => setValue('quantity', value, { shouldValidate: true })}
           error={errors.quantity?.message}
           label="Quantity*"
+          placeholder="#"
           containerClassName="lg:w-[80px] w-full"
           type="number"
         />
         <Input
           label="SKU*"
+          placeholder="SKU"
           value={watch('sku')}
           onChange={(value) => setValue('sku', value, { shouldValidate: true })}
           error={errors.sku?.message}
@@ -95,6 +97,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           }
           // options={currencies}
           onChange={(value) => setValue('value', value, { shouldValidate: true })}
+          placeholder="Value"
           error={errors.value?.message}
         />
         <Select
@@ -115,6 +118,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           }
           value={watch('weight')}
           onChange={(value) => setValue('weight', value, { shouldValidate: true })}
+          placeholder="Weight"
           error={errors.weight?.message}
         />
       </div>
@@ -129,6 +133,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
           }
           value={watch('madeWhere')}
           onChange={(value) => setValue('madeWhere', value, { shouldValidate: true })}
+          placeholder="Made Where"
           error={errors.madeWhere?.message}
         />
         {/* <Input
@@ -141,10 +146,10 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         <div className="flex flex-col gap-1">
           <div>Schedule B</div>
           <div className="flex items-center border rounded-md ">
-            <div className="p-2 px-3 flex-grow">--------/-------/--------</div>
+            <div className="p-2 px-3 flex-grow text-[grey]">--------/-------/--------</div>
             <Button
               onClick={() => setComoditySearchModalOpen(true)}
-              className=" h-10 w-16  bg-transparent border-0 rounded-none border-l border-white"
+              className=" h-10 w-16  bg-transparent border-0 border-l bg-primary rounded-sm"
             >
               <div className="px-3 p-2">
                 <BiSearch className="h-6 w-6" />
@@ -154,7 +159,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
         </div>
       </div>
       <Check label="Add on insurance for goods valued over $100" />
-      <GradientHR />
+      <hr></hr>
       <div className="flex justify-end">
         <Button type="submit" className="lg:!px-[24px] !px-[18px]">
           Save
@@ -164,7 +169,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
       <Modal
         open={describeItemModalOpen}
         onClose={() => setDescribeItemModalOpen(false)}
-        className="  my-auto p-2 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
+        className="  my-auto p-2 lg:max-w-[810px]  w-full lg:rounded-[10px] rounded-[8px] bg-[white] text-black border border-white shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
       >
         <DescribeItem onClose={() => setDescribeItemModalOpen(false)} />
       </Modal>
@@ -172,7 +177,7 @@ export const GoodsCommodity = ({ methods, onSubmit }: Props) => {
       <Modal
         open={comoditySearchModalOpen}
         onClose={() => setComoditySearchModalOpen(false)}
-        className="  my-auto p-2 lg:max-w-[680px]  w-full lg:rounded-[10px] rounded-[8px] bg-[#1a194990] border border-[#1a1949] shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
+        className="  my-auto p-2 lg:max-w-[680px]  w-full lg:rounded-[10px] rounded-[8px] bg-[white] text-black border border-white shadow-[0px,4px,4px,0px,rgba(0,0,0,0.25)] backdrop-blur-[25px] z-999"
       >
         <ComoditySearch onClose={() => setComoditySearchModalOpen(false)} />
       </Modal>
@@ -204,7 +209,7 @@ export const DescribeItem = ({ onClose, onSubmit }: DescribeItemProps) => {
             </div>
           </div>
           <div className="my-4">
-            <GradientHR />
+            <hr></hr>
           </div>{' '}
         </div>
         <div className="grid grid-cols-2 gap-3">
@@ -239,7 +244,7 @@ export const DescribeItem = ({ onClose, onSubmit }: DescribeItemProps) => {
         </div>
         <div>
           <div className="my-4">
-            <GradientHR />
+            <hr></hr>
           </div>
 
           <div className="flex justify-between">
@@ -301,7 +306,7 @@ export const ComoditySearch = ({ onClose, onSubmit }: ComoditySearchProps) => {
             </div>
           </div>
           <div className="my-4">
-            <GradientHR />
+            <hr></hr>
           </div>{' '}
         </div>
         <div className="grid grid-cols-1 gap-3">
@@ -341,7 +346,7 @@ export const ComoditySearch = ({ onClose, onSubmit }: ComoditySearchProps) => {
               <div className="basis-3/12">Comodity Code</div>
               <div className="basis-9/12">Description</div>
             </div>
-            <div className="flex gap-3 font-light rounded-md p-3 bg-[rgba(249,249,249,0.1)] bg-opacity-10 backdrop-blur-[40px]  ">
+            <div className="flex gap-3 font-light rounded-md p-3 bg-[grey] bg-opacity-10 backdrop-blur-[40px]  ">
               <div className="basis-3/12">9026 80 0000</div>
               <div className="basis-9/12 text-sm">
                 Instruments and apparatus for measuring or checking the flow, level, pressure or other variablesof
@@ -354,7 +359,7 @@ export const ComoditySearch = ({ onClose, onSubmit }: ComoditySearchProps) => {
         </div>
         <div>
           <div className="my-4">
-            <GradientHR />
+            <hr></hr>
           </div>
 
           <div className="flex justify-between">
