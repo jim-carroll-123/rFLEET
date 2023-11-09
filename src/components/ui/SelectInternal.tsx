@@ -115,7 +115,14 @@ export const Select = React.forwardRef(
           )}
         >
           {typeof value != 'string' && value?.icon && (
+            <div>
+            {!countries ? (
             <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.iconInternal}</div>
+            ):(
+            <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>
+            )
+            }
+            </div>
           )}
           <input
             type="text"
@@ -149,7 +156,7 @@ export const Select = React.forwardRef(
                       <div
                         key={index}
                         className={cn(
-                          'flex items-center rounded text-[#A6A4A3]',
+                          'flex items-center rounded text-black',
                           (typeof value !== 'string' ? value?.value === option.value : value === option.value)
                             ? 'bg-primary text-white'
                             : 'cursor-pointer hover:bg-primary hover:text-white'
@@ -172,13 +179,13 @@ export const Select = React.forwardRef(
                       <div
                         key={index}
                         className={cn(
-                          'flex items-center rounded hover:bg-primary',
+                          'flex items-center rounded hover:bg-primary hover:text-white',
                           typeof value != 'string'
                             ? value?.value === option.value
-                              ? 'bg-primary'
+                              ? 'bg-primary text-white'
                               : 'cursor-pointer '
                             : value === option.value
-                            ? 'bg-primary'
+                            ? 'bg-primary hover:text-white'
                             : 'cursor-pointer '
                         )}
                         onClick={() => handleOptionClick(option)}

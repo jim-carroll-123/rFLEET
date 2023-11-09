@@ -10,7 +10,7 @@ import { Panel } from './Panel'
 export const CalculatorSection = () => {
   return (
     <section id="calculator-section" className="relative">
-      <div className="bg-white mt-10">
+      <div className="bg-white mt-10 rounded-lg border border-[#B8BEF8] shadow-md">
         <Panel />
       </div>
     </section>
