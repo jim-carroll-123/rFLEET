@@ -10,6 +10,8 @@ import { ClipBoard } from '@components/ui/Clipboard';
 import { ECommerce } from '@components/ui/E-Commerce'
 import { Logo } from '@components/ui/Logo'
 import { TruckLogo } from '@components/ui/TruckLogo'
+import { WMS } from '@components/ui/WMS'
+
 
 export default function Sidebar() {
   const navigateToSection = (sectionId: any) => {
@@ -52,6 +54,11 @@ export default function Sidebar() {
           <div onClick={() => navigateToSection('product')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
             <BoxLight />
             <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Product</div>
+          </div>
+
+          <div onClick={() => navigateToSection('wms')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">
+            <WMS />
+            <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">WMS</div>
           </div>
 
           <div onClick={() => navigateToSection('addressbook')} className="flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer hover:bg-[#252C65]">

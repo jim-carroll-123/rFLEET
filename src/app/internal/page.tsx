@@ -5,15 +5,16 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 
 
-import { AddressBookSection } from './sections/Address Book'
-import { DashboardSection } from './sections/Dashboard'
-import { ECommerceSection } from './sections/ECommerce'
-import { NewQuoteSection } from './sections/New Quote'
-import { NewPFQSection } from './sections/NewPFQ'
-import { NewShipmentSection } from './sections/NewShipment'
-import { ProductSection } from './sections/Product'
-import { ReportsSection } from './sections/Reports'
+import { AddressBookSection } from './sections/Address Book';
+import { DashboardSection } from './sections/Dashboard';
+import { ECommerceSection } from './sections/ECommerce';
+import { NewQuoteSection } from './sections/New Quote';
+import { NewPFQSection } from './sections/NewPFQ';
+import { NewShipmentSection } from './sections/NewShipment';
+import { ProductSection } from './sections/Product';
+import { ReportsSection } from './sections/Reports';
 import { ShipmentProfileSection } from './sections/Shipment Profile'
+import { WMSSection } from './sections/WMS'
 
 
 // Define the props that Home component accepts
@@ -67,6 +68,8 @@ const PageContent = ({ currentHash }: PageContentProps) => {
         return <ECommerceSection />
       case '#product':
         return <ProductSection />
+      case '#wms':
+        return <WMSSection />
       case '#addressbook':
         return <AddressBookSection />
       case '#shipmentprofile':
@@ -75,6 +78,7 @@ const PageContent = ({ currentHash }: PageContentProps) => {
         return <NewPFQSection />
       case '#reports':
         return <ReportsSection />
+    
         
       default:
         return <DashboardSection />
