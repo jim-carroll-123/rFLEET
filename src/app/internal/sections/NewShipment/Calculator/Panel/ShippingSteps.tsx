@@ -521,7 +521,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   </div>
 
-                  {url?.slice(0, 5).map((rate: any, index: number) => (
+                  {url?.slice(0, 20).map((rate: any, index: number) => (
                     <div key={index} className="bg-[white] rounded-lg p-4 my-4 pr-0 border border-[#CBCAC9]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
