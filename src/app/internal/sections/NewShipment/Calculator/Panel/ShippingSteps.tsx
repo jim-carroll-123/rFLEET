@@ -16,6 +16,7 @@ import uPsLogo from '@assets/images/UPS-logo.png';
 import { Button } from '@components/ui/ButtonInternal';
 import { Check } from '@components/ui/CheckInternal';
 import { Circle } from '@components/ui/Circle';
+import { CircleInternal } from '@components/ui/CircleInternal';
 import { GradientHR } from '@components/ui/GradientHR';
 import { Line } from '@components/ui/Line';
 import { LineRate } from '@components/ui/LineRate';
@@ -26,7 +27,7 @@ import { Star } from '@components/ui/Star';
 import { Tab } from '@components/ui/TabPane';
 import { Truck } from '@components/ui/Truck';
 import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
+import { cn } from '@lib/utils'
 
 
 
@@ -199,7 +200,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
   const getBgColor = (index: number) => {
     if (selected === index) {
-      return 'bg-blue-500'
+      return 'bg-blue-500 text-white'
     }
     return ''
   }
@@ -339,7 +340,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         </div>
       </div>
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="text-black">Loading...</div>
       ) : (
         <div>
           {Object.keys(rates).length === 0 ? (
@@ -348,17 +349,19 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             <div>
               {isDisplayRate && (
                 <div className="backdrop-blur -mx-[24px] px-[24px] -mb-[24px] pb-[24px]">
-                  <GradientHR />
-                  <div className="my-5 text-white font-poppins text-[16px] font-bold leading-6">Load Details</div>
+                  <hr></hr>
+                  <div className="my-5 text-black font-poppins text-[16px] font-bold leading-6">Load Details</div>
                   {/* {fields.length > 1 && (
                 <>
                   {fields.slice(0, fields.length - 1).map((el, index) => ( */}
-                  <div className="flex border border-white rounded-d-6 mb-5">
-                    <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
-                    <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
+                  <div className="flex border border-[#f7f6f5] rounded-d-6 bg-[#f7f6f5] mb-5">
+                    <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px] text-black">
+                      Load 1
+                    </div>
+                    <div className="grow text-[14px] text-black lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
                       {(rates as any).packages?.[0]?.packageCode}
                     </div>
-                    <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
+                    <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px] text-black">
                       {(rates as any).packages?.[0]?.dimensions.length}X{(rates as any).packages?.[0]?.dimensions.width}
                       X{(rates as any).packages?.[0]?.dimensions.height} {(rates as any).packages?.[0]?.dimensions.unit}
                       {' / '}
@@ -378,12 +381,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   {/* ))}
                 </>
               )} */}
-                  <GradientHR />
+                  <hr></hr>
 
                   <div className="flex flex-row">
-                    <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#4f5684] shadow-md">
+                    <div className="bg-white w-[50%] rounded-lg p-4 my-5 mr-5 border border-[#CBCAC9]">
                       <div className="flex flex-row">
-                        <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
+                        <h3 className="text-black font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
                         <div className="ml-auto">
                           <Tab
                             target="tab-ship-origin"
@@ -397,23 +400,23 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           </Tab>
                         </div>
                       </div>
-                      <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
+                      <h4 className="text-black font-poppins text-[16px] font-semibold leading-6 mb-2">
                         {(rates as any).shipFrom?.name}
                       </h4>
-                      <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
+                      <p className="text-[#848382] font-poppins text-[14px] font-normal leading-6 mb-4">
                         {(rates as any).shipFrom?.addressLine1}, {(rates as any).shipFrom?.cityLocality},{' '}
                         {(rates as any).shipFrom?.stateProvince} {(rates as any).shipFrom?.postalCode},{' '}
                         {(rates as any).shipFrom?.countryCode}
                       </p>
                       <div className="flex items-center">
                         <input type="checkbox" className="w-4 h-4 mr-2" />
-                        <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
+                        <span className="text-black font-poppins text-[16px] leading-6">Use as return Address</span>
                       </div>
                     </div>
 
-                    <div className="bg-gradient-rate-card w-[50%] rounded-lg p-4 my-5 border border-[#4f5684] shadow-md">
+                    <div className="bg-white w-[50%] rounded-lg p-4 my-5 border border-[#CBCAC9]">
                       <div className="flex flex-row">
-                        <h3 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-4">Receiver</h3>
+                        <h3 className="text-black font-poppins text-[16px] font-semibold leading-6 mb-4">Receiver</h3>
                         <div className="ml-auto">
                           <Tab
                             target="tab-ship-destination"
@@ -427,36 +430,34 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           </Tab>
                         </div>
                       </div>
-                      <h4 className="text-white font-poppins text-[16px] font-semibold leading-6 mb-2">
+                      <h4 className="text-black font-poppins text-[16px] font-semibold leading-6 mb-2">
                         {(rates as any).shipTo?.name}
                       </h4>
-                      <p className="text-whit font-poppins text-[14px] font-normal leading-6 mb-4">
+                      <p className="text-[#848382] font-poppins text-[14px] font-normal leading-6 mb-4">
                         {(rates as any).shipTo?.addressLine1}, {(rates as any).shipTo?.cityLocality},{' '}
                         {(rates as any).shipTo?.stateProvince} {(rates as any).shipTo?.postalCode},{' '}
                         {(rates as any).shipTo?.countryCode}
                       </p>
                       <div className="flex items-center">
                         <input type="checkbox" className="w-4 h-4 mr-2" />
-                        <span className="text-white font-poppins text-[16px] leading-6">Use as return Address</span>
+                        <span className="text-black font-poppins text-[16px] leading-6">Use as return Address</span>
                       </div>
                     </div>
                   </div>
 
-                  <GradientHR />
+                  <hr></hr>
 
-                  <div className="flex border border-white rounded-d-6 my-5 p-1 justify-content-center">
+                  <div className="flex border border-[#B8BEF8] rounded-d-6 my-5 p-1 justify-content-center">
                     <div className="flex w-[100%]">
                       {/* Best Value */}
                       <div
-                        className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                        className={`p-4 w-[33%] text-black flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
                           0
                         )}`}
                         onClick={() => handleClick(0)}
                       >
-                        <span>Best Value</span>
-                        <span className="p-2">
-                          <Circle />
-                        </span>
+                        <span className="font-semibold">Best Value</span>
+                        <span className="p-2">{selected === 0 ? <Circle /> : <CircleInternal />}</span>
                         <span>
                           {(rates as any).bestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
                           {(rates as any).bestRates?.[0]?.carrierDeliveryDays === '1'
@@ -465,9 +466,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             ? ' days'
                             : null}
                         </span>
-                        <span className="p-2">
-                          <Circle />
-                        </span>
+                        <span className="p-2">{selected === 0 ? <Circle /> : <CircleInternal />}</span>
                         <span>${((rates as any).bestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
 
@@ -477,15 +476,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
                       {/* Quickest */}
                       <div
-                        className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                        className={`p-4 w-[33%] text-black flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
                           1
                         )}`}
                         onClick={() => handleClick(1)}
                       >
-                        <span>Quickest</span>
-                        <span className="p-2">
-                          <Circle />
-                        </span>
+                        <span className="font-semibold">Quickest</span>
+                        <span className="p-2">{selected === 1 ? <Circle /> : <CircleInternal />}</span>
                         <span>
                           {(rates as any).quickestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
                           {(rates as any).quickestRates?.[0]?.carrierDeliveryDays === '1'
@@ -494,9 +491,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             ? ' days'
                             : null}
                         </span>
-                        <span className="p-2">
-                          <Circle />
-                        </span>
+                        <span className="p-2">{selected === 1 ? <Circle /> : <CircleInternal />}</span>
                         <span>${((rates as any).quickestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                       <div className="p-1 pt-2">
@@ -505,15 +500,13 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
 
                       {/* Cheapest */}
                       <div
-                        className={`p-4 w-[33%] flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
+                        className={`p-4 w-[33%] text-black flex flex-row justify-center items-center cursor-pointer rounded-md ${getBgColor(
                           2
                         )}`}
                         onClick={() => handleClick(2)}
                       >
-                        <span>Cheapest</span>
-                        <span className="p-2">
-                          <Circle />
-                        </span>
+                        <span className="font-semibold">Cheapest</span>
+                        <span className="p-2">{selected === 2 ? <Circle /> : <CircleInternal />}</span>
                         <span>
                           {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays?.split(' ')[0]}
                           {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays === '1'
@@ -522,9 +515,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                             ? ' days'
                             : null}
                         </span>
-                        <span className="p-2">
-                          <Circle />
-                        </span>
+                        <span className="p-2">{selected === 2 ? <Circle /> : <CircleInternal />}</span>
                         <span>${((rates as any).cheapestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
                       </div>
                     </div>
@@ -572,14 +563,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-
                               {url[index].carrierDeliveryDays}
                               {url[index].carrierDeliveryDays === '1'
                                 ? ' day'
                                 : url[index].carrierDeliveryDays.length <= 2
                                 ? ' days'
                                 : null}
-
                             </div>
                           </div>
                           <div className="flex flex-row">
@@ -604,9 +593,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-
                                 ${Number(url[index].shippingAmount?.amount || 0).toFixed(2)}
-
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
@@ -626,7 +613,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                       </div>
                     </div>
                   ))}
-
 
                   {/* {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
 
