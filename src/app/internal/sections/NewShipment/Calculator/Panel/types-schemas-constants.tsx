@@ -26,7 +26,6 @@ export type Dimensions = {
   unit: string
 }
 
-
 export type LTLField = {
   handlingUnit: string
   length: string
@@ -139,7 +138,8 @@ export const fromSchema = yup.object({
   fromCity: yup.string().required(),
   fromPostalCode: yup.string().required(),
   fromState: yup.string().required(),
-  fromName: yup.string().required()
+  fromName: yup.string().required(),
+  fromPhone: yup.string().required()
 })
 
 export const toSchema = yup.object({
@@ -374,4 +374,3 @@ export type OceanLoadTypeInputs = yup.InferType<typeof oceanLoadTypeSchema>
 export type AirLoadTypeInputs = yup.InferType<typeof airLoadTypeSchema>
 
 export type GoodsCommodityInputs = yup.InferType<typeof goodsCommoditySchema>
-

@@ -13,7 +13,7 @@ import IconDHL from '@assets/icons/dhl.svg';
 import IconFedEx from '@assets/icons/fedex.svg';
 import IconPostalService from '@assets/icons/postal-service.svg';
 import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/ButtonInternal'
+import { Button } from '@components/ui/ButtonInternal';
 import { Check } from '@components/ui/CheckInternal';
 import { Circle } from '@components/ui/Circle';
 import { GradientHR } from '@components/ui/GradientHR';
@@ -82,7 +82,7 @@ const handleSubmit = async (
         shipFrom: {
           companyName: 'Example Corp.',
           name: data.fromName,
-          phone: '111-111-1111',
+          phone: data.fromPhone,
           addressLine1: data.fromAddress,
           stateProvince: data.fromState,
           cityLocality: data.fromCity,

@@ -5,8 +5,10 @@ import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 
 
-import ArrowRight from '@assets/icons/arrow-right.svg';
-import BusinessAddressInternal from '@assets/icons/business-address-internal.svg';
+import { set } from 'mongoose'
+
+import ArrowRight from '@assets/icons/arrow-right.svg'
+import BusinessAddressInternal from '@assets/icons/business-address-internal.svg'
 import BusinessAddress from '@assets/icons/business-address.svg'
 import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg'
 import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
@@ -70,7 +72,8 @@ export const From = ({ methods, onSubmit }: Props) => {
         cityLocality: watch('fromCity'),
         postalCode: watch('fromPostalCode'),
         countryCode: watch('fromCountry'),
-        name: watch('fromName')
+        name: watch('fromName'),
+        phone: watch('fromNumber')
       }
     ]
 
@@ -94,6 +97,7 @@ export const From = ({ methods, onSubmit }: Props) => {
         setValue('fromPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
         setValue('fromState', data[0].normalizedAddress.stateProvince, { shouldValidate: true })
         setValue('fromName', data[0].normalizedAddress.name, { shouldValidate: true })
+        setValue('fromNumber', data[0].normalizedAddress.phone, { shouldValidate: true })
         handleSubmit(onSubmit)()
       } else {
         alert('The address is not valid. Please check it and try again.')
@@ -112,7 +116,7 @@ export const From = ({ methods, onSubmit }: Props) => {
     <>
       <div className="text-body-lg font-semibold">Where are you shipping from?</div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
-        <div className="flex-1 lg:grid lg:grid-cols-3 flex flex-col gap-d-16">
+        <div className="flex-1 lg:grid lg:grid-cols-4 flex flex-col gap-d-16">
           <div>
             <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
             <Select
@@ -134,26 +138,27 @@ export const From = ({ methods, onSubmit }: Props) => {
             />
           </div>
 
-          {/* <div>
-            <div className="text-input font-semibold text-gray-200 lg:mb-[8px] mb-[6px]">City</div>
-            <Input
-              value={watch('fromCity')}
-              onChange={(value) => setValue('fromCity', value, { shouldValidate: true })}
-              placeholder="Enter the City"
-              error={errors.fromCity?.message}
-            />
-          </div> */}
           <div>
-            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
             <Input
-              value={watch('fromPostalCode')}
-              onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
-              placeholder="Enter Postal Code"
-              error={errors.fromPostalCode?.message}
+              value={watch('fromName')}
+              onChange={(value) => setValue('fromName', value, { shouldValidate: true })}
+              placeholder="Enter the Name or Company"
+              error={errors.fromName?.message}
             />
           </div>
 
-          <div className="col-span-2">
+          <div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
+            <Input
+              value={watch('fromPhone')}
+              onChange={(value) => setValue('fromPhone', value, { shouldValidate: true })}
+              placeholder="Enter the Phone Number"
+              error={errors.fromPhone?.message}
+            />
+          </div>
+
+          <div className="col-span-3">
             <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
             <Input
               value={watch('fromAddress')}
@@ -164,12 +169,12 @@ export const From = ({ methods, onSubmit }: Props) => {
           </div>
 
           <div>
-            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
+            <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
             <Input
-              value={watch('fromName')}
-              onChange={(value) => setValue('fromName', value, { shouldValidate: true })}
-              placeholder="Enter Name"
-              error={errors.fromName?.message}
+              value={watch('fromPostalCode')}
+              onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
+              placeholder="Enter Postal Code"
+              error={errors.fromPostalCode?.message}
             />
           </div>
         </div>
