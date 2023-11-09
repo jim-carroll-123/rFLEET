@@ -5,25 +5,30 @@ import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 
 
-import { set } from 'mongoose'
+import { set } from 'mongoose';
 
-import ArrowRight from '@assets/icons/arrow-right.svg'
-import BusinessAddressInternal from '@assets/icons/business-address-internal.svg'
-import BusinessAddress from '@assets/icons/business-address.svg'
-import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg'
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
-import PortAirportInternal from '@assets/icons/port_airport-internal.svg'
-import PortAirport from '@assets/icons/port_airport.svg'
-import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg'
-import ResidentialAddress from '@assets/icons/residential-address.svg'
-import User from '@assets/icons/user.svg'
-import { Button } from '@components/ui/ButtonInternal'
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Input } from '@components/ui/InputInternal'
-import { Select, findOption } from '@components/ui/SelectInternal'
 
-import { FromInputs } from '../types-schemas-constants'
+
+import ArrowRight from '@assets/icons/arrow-right.svg';
+import BusinessAddressInternal from '@assets/icons/business-address-internal.svg';
+import BusinessAddress from '@assets/icons/business-address.svg';
+import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg';
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
+import PortAirportInternal from '@assets/icons/port_airport-internal.svg';
+import PortAirport from '@assets/icons/port_airport.svg';
+import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg';
+import ResidentialAddress from '@assets/icons/residential-address.svg';
+import User from '@assets/icons/user.svg';
+import { Button } from '@components/ui/ButtonInternal';
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Input } from '@components/ui/InputInternal';
+import { Select, findOption } from '@components/ui/SelectInternal';
+
+
+
+import { FromInputs } from '../types-schemas-constants';
+
 
 const fromTypes = [
   {
@@ -72,8 +77,7 @@ export const From = ({ methods, onSubmit }: Props) => {
         cityLocality: watch('fromCity'),
         postalCode: watch('fromPostalCode'),
         countryCode: watch('fromCountry'),
-        name: watch('fromName'),
-        phone: watch('fromNumber')
+        name: watch('fromName')
       }
     ]
 
@@ -88,8 +92,6 @@ export const From = ({ methods, onSubmit }: Props) => {
 
       const data = await response.json()
 
-      console.log('data', data)
-
       if (data[0].status === 'verified') {
         setValue('fromCountry', data[0].normalizedAddress.countryCode, { shouldValidate: true })
         setValue('fromCity', data[0].normalizedAddress.cityLocality, { shouldValidate: true })
@@ -97,7 +99,6 @@ export const From = ({ methods, onSubmit }: Props) => {
         setValue('fromPostalCode', data[0].normalizedAddress.postalCode, { shouldValidate: true })
         setValue('fromState', data[0].normalizedAddress.stateProvince, { shouldValidate: true })
         setValue('fromName', data[0].normalizedAddress.name, { shouldValidate: true })
-        setValue('fromNumber', data[0].normalizedAddress.phone, { shouldValidate: true })
         handleSubmit(onSubmit)()
       } else {
         alert('The address is not valid. Please check it and try again.')

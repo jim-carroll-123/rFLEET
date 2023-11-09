@@ -26,14 +26,11 @@ interface Props {
 
 
 export const ButtonSelect = ({ options, value, onChange, full = false, containerClassName }: Props) => {
-  console.log('options', options)
-
   var isBox = false
   if (options[0].value === 'Box or Tube') {
     isBox = true
   }
 
-  console.log('isBox', isBox)
   return (
     <div
       className={cn(
