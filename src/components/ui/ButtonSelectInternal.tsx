@@ -9,7 +9,7 @@ import { cn } from '@lib/utils';
 
 interface Option {
   label: React.ReactNode
-  labelInternal: React.ReactNode
+  labelInternal?: React.ReactNode
   value: string
   locked?: boolean
 }
