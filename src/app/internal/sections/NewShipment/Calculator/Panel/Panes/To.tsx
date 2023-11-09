@@ -5,54 +5,63 @@ import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
 
 import ArrowRight from '@assets/icons/arrow-right.svg';
-import BusinessAddress from '@assets/icons/business-address-internal.svg'
-import ConsolidationStation from '@assets/icons/consolidation-station.svg';
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
-import FulfillmentCenter from '@assets/icons/fulfillment-center.svg';
-import PortAirport from '@assets/icons/port_airport.svg';
-import ResidentialAddress from '@assets/icons/residential-address.svg';
-import User from '@assets/icons/user.svg';
-import { Button } from '@components/ui/ButtonInternal';
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/InputInternal';
-import { Select, findOption } from '@components/ui/SelectInternal';
+import BusinessAddress from '@assets/icons/business-address-internal.svg';
+import BusinessAddressInternal from '@assets/icons/business-address-internal.svg'
+import ConsolidationStationInternal from '@assets/icons/consolidation-station-internal.svg'
+import ConsolidationStation from '@assets/icons/consolidation-station.svg'
+import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg'
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
+import FulfillmentCenterInternal from '@assets/icons/fulfillment-center-internal.svg'
+import FulfillmentCenter from '@assets/icons/fulfillment-center.svg'
+import PortAirportInternal from '@assets/icons/port_airport-internal.svg'
+import PortAirport from '@assets/icons/port_airport.svg'
+import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg'
+import ResidentialAddress from '@assets/icons/residential-address.svg'
+import User from '@assets/icons/user.svg'
+import { Button } from '@components/ui/ButtonInternal'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Input } from '@components/ui/InputInternal'
+import { Select, findOption } from '@components/ui/SelectInternal'
 
-
-
-import { ToInputs } from '../types-schemas-constants';
-
+import { ToInputs } from '../types-schemas-constants'
 
 const toTypes = [
   {
     label: 'Port/Airport',
     value: 'Port/Airport',
-    icon: <PortAirport />
+    icon: <PortAirport />,
+    iconInternal: <PortAirportInternal />
   },
   {
     label: 'Factory/Warehouse',
     value: 'Factory/Warehouse',
-    icon: <FactoryWarehouse />
+    icon: <FactoryWarehouse />,
+    iconInternal: <FactoryWarehouseInternal />
   },
   {
     label: 'Business Address',
     value: 'Business Address',
-    icon: <BusinessAddress />
+    icon: <BusinessAddress />,
+    iconInternal: <BusinessAddressInternal />
   },
   {
     label: 'Residential Address',
     value: 'Residential Address',
-    icon: <ResidentialAddress />
+    icon: <ResidentialAddress />,
+    iconInternal: <ResidentialAddressInternal />
   },
   {
     label: 'Fulfillment Center',
     value: 'Fulfillment Center',
-    icon: <FulfillmentCenter />
+    icon: <FulfillmentCenter />,
+    iconInternal: <FulfillmentCenterInternal />
   },
   {
     label: 'Consolidation Station',
     value: 'Consolidation Station',
-    icon: <ConsolidationStation />
+    icon: <ConsolidationStation />,
+    iconInternal: <ConsolidationStationInternal />
   }
 ]
 
