@@ -21,7 +21,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         textColor: 'text-white'
       },
       transparent: {
-        bgColor: 'bg-transparent border-white',
+        bgColor: 'bg-[#848382] border-white',
         textColor: 'text-white'
       }
     }

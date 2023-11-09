@@ -11,13 +11,13 @@ import IconDHL from '@assets/icons/dhl.svg';
 import IconFedEx from '@assets/icons/fedex.svg';
 import Plus from '@assets/icons/plus.svg';
 import IconPostalService from '@assets/icons/postal-service.svg';
-import X from '@assets/icons/x.svg';
+import X from '@assets/icons/x-internal.svg';
 import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/ButtonInternal'
+import { Button } from '@components/ui/ButtonInternal';
 import { ButtonSelect } from '@components/ui/ButtonSelectInternal';
 import { Check } from '@components/ui/CheckInternal';
 import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/Input';
+import { Input } from '@components/ui/InputInternal';
 import { Radio } from '@components/ui/Radio';
 import { Option, Select, findOption } from '@components/ui/SelectInternal';
 import { cn } from '@lib/utils';
@@ -351,8 +351,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               onClick={() => setFieldItem('carrierProvider', 'Postal Service')}
               className={cn(
                 'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
-                field.carrierProvider === 'Postal Service' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
-                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
+                field.carrierProvider === 'Postal Service' ? 'bg-[#cecece] border-black' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : ''
               )}
             >
               <IconPostalService />
@@ -362,8 +362,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               onClick={() => setFieldItem('carrierProvider', 'FedEx')}
               className={cn(
                 'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
-                field.carrierProvider === 'FedEx' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
-                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
+                field.carrierProvider === 'FedEx' ? 'bg-[#cecece] border-black' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : ''
               )}
             >
               <IconFedEx />
@@ -373,8 +373,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               onClick={() => setFieldItem('carrierProvider', 'DHL')}
               className={cn(
                 'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
-                field.carrierProvider === 'DHL' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
-                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
+                field.carrierProvider === 'DHL' ? 'bg-[#cecece] border-black' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : ''
               )}
             >
               <IconDHL />
@@ -384,8 +384,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               onClick={() => setFieldItem('carrierProvider', 'UPS')}
               className={cn(
                 'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
-                field.carrierProvider === 'UPS' ? 'bg-white' : 'bg-white-40 hover:bg-white-30',
-                fieldErrors?.carrierProvider ? 'border-red-600' : 'border-white'
+                field.carrierProvider === 'UPS' ? 'bg-[#cecece] border-black' : 'bg-white-40 hover:bg-white-30',
+                fieldErrors?.carrierProvider ? 'border-red-600' : ''
               )}
             >
               <img src={uPsLogo.src} className="h-[27px]" />
