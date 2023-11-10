@@ -47,6 +47,19 @@ interface ShippingStepsProps {
   data: any
 }
 
+type Package = {
+  weight: {
+    value: number | undefined
+    unit: string | undefined
+  }
+  dimensions: {
+    unit: string | undefined
+    length: number | undefined
+    width: number | undefined
+    height: number | undefined
+  }
+}
+
 const handleSubmit = async (
   data: any,
   setRates: React.Dispatch<React.SetStateAction<any>>,
@@ -64,7 +77,20 @@ const handleSubmit = async (
   }
 
   try {
-    const datatest = {
+    const packages: Package[] = data.fields.map((field: any) => ({
+      weight: {
+        value: field.weight,
+        unit: field.weightUnit
+      },
+      dimensions: {
+        unit: field.dimensionUnit,
+        length: field.length,
+        width: field.width,
+        height: field.height
+      }
+    }))
+
+    const datatosend = {
       rateOptions: {
         carrierIds: carrierIds
       },
@@ -89,73 +115,19 @@ const handleSubmit = async (
           postalCode: data.fromPostalCode,
           countryCode: data.fromCountry
         },
-        packages: [
-          {
-            weight: {
-              value: data.fields[0].weight,
-              unit: data.fields[0].weightUnit
-            },
-            dimensions: {
-              unit: data.fields?.[0].dimensionUnit,
-              length: data.fields?.[0].length,
-              width: data.fields?.[0].width,
-              height: data.fields?.[0].height
-            }
-          }
-        ]
+        packages: packages
       }
     }
-    // const datatest = {
-    //   rateOptions: {
-    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
-    //   },
-    //   shipment: {
-    //     validateAddress: 'no_validation',
-    //     shipTo: {
-    //       name: 'Luke Skywalker',
-    //       phone: '555-555-5555',
-    //       addressLine1: '1001 SW 17TH LN',
-    //       stateProvince: 'FL',
-    //       cityLocality: 'GAINESVILLE',
-    //       postalCode: '32601-0001',
-    //       countryCode: 'US'
-    //     },
-    //     shipFrom: {
-    //       companyName: 'Example Corp.',
-    //       name: 'Darth Vader',
-    //       phone: '111-111-1111',
-    //       addressLine1: '303 W 5TH ST',
-    //       stateProvince: 'TX',
-    //       cityLocality: 'AUSTIN',
-    //       postalCode: '78701-3164',
-    //       countryCode: 'US'
-    //     },
-    //     packages: [
-    //       {
-    //         weight: {
-    //           value: 10,
-    //           unit: 'pound'
-    //         },
-    //         dimensions: {
-    //           unit: 'inch',
-    //           length: 12,
-    //           width: 12,
-    //           height: 12
-    //         }
-    //       }
-    //     ]
-    //   }
-    // }
 
+    console.log('datatest: ', datatosend)
     const response = await fetch('/api/shipengine/rates/estimate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(datatest)
+      body: JSON.stringify(datatosend)
     })
 
-    console.log('Da Data: ', data)
     const responseData = await response.json()
     console.log('the response: ', responseData)
     setRates(responseData)
@@ -344,33 +316,29 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <div className="backdrop-blur -mx-[24px] px-[24px] -mb-[24px] pb-[24px]">
                   <GradientHR />
                   <div className="my-5 text-white font-poppins text-[16px] font-bold leading-6">Load Details</div>
-                  {/* {fields.length > 1 && (
-                <>
-                  {fields.slice(0, fields.length - 1).map((el, index) => ( */}
-                  <div className="flex border border-white rounded-d-6 mb-5">
-                    <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">Load 1</div>
-                    <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
-                      {(rates as any).packages?.[0]?.packageCode}
+                  {fields.map((el, index) => (
+                    <div key={index} className="flex border border-white rounded-d-6 mb-5">
+                      <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
+                        Load {index + 1}
+                      </div>
+                      <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
+                        {(rates as any)?.[index]?.packageType}
+                      </div>
+                      <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
+                        {el.length} X {el.width} X {el.height} {el.dimensionUnit} {'/'} {el.weight} {el.weightUnit}
+                        {'s'}
+                      </div>
+                      <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
+                        {/* <Delete
+                          onClick={() => {
+                            let newArray = [...fields]
+                            newArray.splice(index, 1)
+                            setValue('fields', newArray, { shouldValidate: true })
+                          }}
+                        /> */}
+                      </div>
                     </div>
-                    <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
-                      {(rates as any).packages?.[0]?.dimensions.length} x {(rates as any).packages?.[0]?.dimensions.width} x {(rates as any).packages?.[0]?.dimensions.height} {(rates as any).packages?.[0]?.dimensions.unit}
-                      {' / '}
-                      {(rates as any).packages?.[0]?.weight.value} {(rates as any).packages?.[0]?.weight.unit}
-                      {'s'}
-                    </div>
-                    <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
-                      <Delete
-                      // onClick={() => {
-                      //   let newArray = [...fields]
-                      //   newArray.splice(index, 1)
-                      //   setValue('fields', newArray, { shouldValidate: true })
-                      // }}
-                      />
-                    </div>
-                  </div>
-                  {/* ))}
-                </>
-              )} */}
+                  ))}
                   <GradientHR />
 
                   <div className="flex flex-row">
@@ -523,7 +491,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                     </div>
                   </div>
 
-                  {url?.slice(0, 5).map((rate: any, index: number) => (
+                  {url?.slice(0, 10).map((rate: any, index: number) => (
                     <div key={index} className="bg-gradient-rate-card rounded-lg p-4 my-4 pr-0 border border-[#4f5684]">
                       <div className="flex mx-auto">
                         <div className="w-[25%]">
@@ -565,14 +533,12 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="pb-6 flex flex-row">
                             <div className="text-white font-poppins text-sm font-normal leading-4 pr-2">Est. </div>
                             <div className="text-white font-poppins text-sm font-semibold leading-4">
-
                               {url[index].carrierDeliveryDays}
                               {url[index].carrierDeliveryDays === '1'
                                 ? ' day'
                                 : url[index].carrierDeliveryDays.length <= 2
                                 ? ' days'
                                 : null}
-
                             </div>
                           </div>
                           <div className="flex flex-row">
@@ -597,9 +563,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           <div className="ml-2">
                             <div className="flex flex-row">
                               <div className="text-white text-right font-poppins text-[30px] font-semibold leading-9 pb-5 pr-6">
-
                                 ${Number(url[index].shippingAmount?.amount || 0).toFixed(2)}
-
                               </div>
 
                               <Button size="md" className="lg:w-auto w-full h-10">
@@ -619,7 +583,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                       </div>
                     </div>
                   ))}
-
 
                   {/* {(rates as any).rateResponse?.invalidRates.map((rate: any, index: number) => (
 
