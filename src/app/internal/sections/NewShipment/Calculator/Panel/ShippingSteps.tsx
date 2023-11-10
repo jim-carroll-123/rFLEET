@@ -48,6 +48,19 @@ interface ShippingStepsProps {
   data: any
 }
 
+type Package = {
+  weight: {
+    value: number | undefined
+    unit: string | undefined
+  }
+  dimensions: {
+    unit: string | undefined
+    length: number | undefined
+    width: number | undefined
+    height: number | undefined
+  }
+}
+
 const handleSubmit = async (
   data: any,
   setRates: React.Dispatch<React.SetStateAction<any>>,
@@ -65,15 +78,30 @@ const handleSubmit = async (
   }
 
   try {
-    const datatest = {
+    const packages: Package[] = data.fields.flatMap((field: Field) =>
+      Array.from({ length: field.identicalUnitsCount }, () => ({
+        weight: {
+          value: field.weight,
+          unit: field.weightUnit
+        },
+        dimensions: {
+          unit: field.dimensionUnit,
+          length: field.length,
+          width: field.width,
+          height: field.height
+        }
+      }))
+    )
+
+    const datatosend = {
       rateOptions: {
         carrierIds: carrierIds
       },
       shipment: {
         validateAddress: 'no_validation',
         shipTo: {
-          name: data.toName,
-          phone: data.toPhone,
+          name: data.toName ? data.toName : 'To',
+          phone: '555-555-5555',
           addressLine1: data.toAddress,
           stateProvince: data.toState,
           cityLocality: data.toCity,
@@ -82,87 +110,27 @@ const handleSubmit = async (
         },
         shipFrom: {
           companyName: 'Example Corp.',
-          name: data.fromName,
-          phone: data.fromPhone,
+          name: data.fromName ? data.fromName : 'From',
+          phone: '111-111-1111',
           addressLine1: data.fromAddress,
           stateProvince: data.fromState,
           cityLocality: data.fromCity,
           postalCode: data.fromPostalCode,
           countryCode: data.fromCountry
         },
-        packages: [
-          {
-            weight: {
-              value: data.fields[0].weight,
-              unit: data.fields[0].weightUnit
-            },
-            dimensions: {
-              unit: data.fields?.[0].dimensionUnit,
-              length: data.fields?.[0].length,
-              width: data.fields?.[0].width,
-              height: data.fields?.[0].height
-            }
-            // dimensions: {
-            //   unit: 'inch',
-            //   length: 12,
-            //   width: 12,
-            //   height: 12
-            // }
-          }
-        ]
+        packages: packages
       }
     }
-    // const datatest = {
-    //   rateOptions: {
-    //     carrierIds: ['se-5107717', 'se-5107720', 'se-5107758', 'se-5391275']
-    //   },
-    //   shipment: {
-    //     validateAddress: 'no_validation',
-    //     shipTo: {
-    //       name: 'Luke Skywalker',
-    //       phone: '555-555-5555',
-    //       addressLine1: '1001 SW 17TH LN',
-    //       stateProvince: 'FL',
-    //       cityLocality: 'GAINESVILLE',
-    //       postalCode: '32601-0001',
-    //       countryCode: 'US'
-    //     },
-    //     shipFrom: {
-    //       companyName: 'Example Corp.',
-    //       name: 'Darth Vader',
-    //       phone: '111-111-1111',
-    //       addressLine1: '303 W 5TH ST',
-    //       stateProvince: 'TX',
-    //       cityLocality: 'AUSTIN',
-    //       postalCode: '78701-3164',
-    //       countryCode: 'US'
-    //     },
-    //     packages: [
-    //       {
-    //         weight: {
-    //           value: 10,
-    //           unit: 'pound'
-    //         },
-    //         dimensions: {
-    //           unit: 'inch',
-    //           length: 12,
-    //           width: 12,
-    //           height: 12
-    //         }
-    //       }
-    //     ]
-    //   }
-    // }
-
+    console.log('data: ', data)
+    console.log('datatosend: ', datatosend)
     const response = await fetch('/api/shipengine/rates/estimate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(datatest)
+      body: JSON.stringify(datatosend)
     })
 
-    console.log('Da Data: ', data)
     const responseData = await response.json()
     console.log('the response: ', responseData)
     setRates(responseData)
@@ -351,36 +319,40 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                 <div className="backdrop-blur -mx-[24px] px-[24px] -mb-[24px] pb-[24px]">
                   <hr></hr>
                   <div className="my-5 text-black font-poppins text-[16px] font-bold leading-6">Load Details</div>
-                  {/* {fields.length > 1 && (
-                <>
-                  {fields.slice(0, fields.length - 1).map((el, index) => ( */}
-                  <div className="flex border border-[#f7f6f5] rounded-d-6 bg-[#f7f6f5] mb-5">
-                    <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px] text-black">
-                      Load 1
+                  {fields.map((el, index) => (
+                    <div key={index} className="flex border border-[#f7f6f5] rounded-d-6 bg-[#f7f6f5] mb-5">
+                      <div className="shrink-0 text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px] text-black">
+                        Load {index + 1}
+                      </div>
+                      <div className="grow text-[14px] lg:px-[60px] px-[53px] lg:py-[15px] py-[10px] text-black">
+                        {el.identicalUnitsCount} {'Boxes / Crates'}
+                      </div>
+                      <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px] text-black">
+                        {el.length} X {el.width} X {el.height} {el.dimensionUnit} {'/'} {el.weight} {el.weightUnit}
+                        {'s'}
+                      </div>
+                      <div className="ml-auto mt-1.5 mr-1.5">
+                        {/* <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer"> */}
+                        {/* <Delete
+                          onClick={() => {
+                            let newArray = [...fields]
+                            newArray.splice(index, 1)
+                            setValue('fields', newArray, { shouldValidate: true })
+                          }}
+                        /> */}
+                        <Tab
+                          target="tab-ship-load-type"
+                          onClick={() => {
+                            setDisplayRate(false)
+                          }}
+                        >
+                          <Button size="sm">
+                            <Pencil />
+                          </Button>
+                        </Tab>
+                      </div>
                     </div>
-                    <div className="grow text-[14px] text-black lg:px-[60px] px-[53px] lg:py-[15px] py-[10px]">
-                      {(rates as any).packages?.[0]?.packageCode}
-                    </div>
-                    <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px] text-black">
-                      {(rates as any).packages?.[0]?.dimensions.length}X{(rates as any).packages?.[0]?.dimensions.width}
-                      X{(rates as any).packages?.[0]?.dimensions.height} {(rates as any).packages?.[0]?.dimensions.unit}
-                      {' / '}
-                      {(rates as any).packages?.[0]?.weight.value} {(rates as any).packages?.[0]?.weight.unit}
-                      {'s'}
-                    </div>
-                    <div className="flex shrink-0 justify-center items-center lg:px-[40px] px-[30px] lg:py-[15px] py-[10px] hover:cursor-pointer">
-                      <Delete
-                      // onClick={() => {
-                      //   let newArray = [...fields]
-                      //   newArray.splice(index, 1)
-                      //   setValue('fields', newArray, { shouldValidate: true })
-                      // }}
-                      />
-                    </div>
-                  </div>
-                  {/* ))}
-                </>
-              )} */}
+                  ))}
                   <hr></hr>
 
                   <div className="flex flex-row">
