@@ -10,7 +10,7 @@ export type Field = {
   dimensionUnit: string
   weight: string
   weightUnit: string
-  identicalUnitsCount: string
+  identicalUnitsCount: number
   containsAlcohol: boolean
   alcoholRecipientType: 'License' | 'Consumer' | ''
   containsDryIce: boolean
@@ -122,7 +122,7 @@ export const initialField: Field = {
   dimensionUnit: '',
   weight: '',
   weightUnit: '',
-  identicalUnitsCount: '',
+  identicalUnitsCount: 0,
   containsAlcohol: false,
   alcoholRecipientType: '',
   containsDryIce: false,

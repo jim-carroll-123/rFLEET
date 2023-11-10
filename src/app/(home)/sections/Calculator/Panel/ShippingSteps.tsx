@@ -77,18 +77,20 @@ const handleSubmit = async (
   }
 
   try {
-    const packages: Package[] = data.fields.map((field: any) => ({
-      weight: {
-        value: field.weight,
-        unit: field.weightUnit
-      },
-      dimensions: {
-        unit: field.dimensionUnit,
-        length: field.length,
-        width: field.width,
-        height: field.height
-      }
-    }))
+    const packages: Package[] = data.fields.flatMap((field: Field) =>
+      Array.from({ length: field.identicalUnitsCount }, () => ({
+        weight: {
+          value: field.weight,
+          unit: field.weightUnit
+        },
+        dimensions: {
+          unit: field.dimensionUnit,
+          length: field.length,
+          width: field.width,
+          height: field.height
+        }
+      }))
+    )
 
     const datatosend = {
       rateOptions: {
