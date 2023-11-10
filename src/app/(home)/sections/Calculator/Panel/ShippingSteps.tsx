@@ -71,7 +71,7 @@ const handleSubmit = async (
       shipment: {
         validateAddress: 'no_validation',
         shipTo: {
-          name: data.toName,
+          name: data.toName ? data.toName : 'To',
           phone: '555-555-5555',
           addressLine1: data.toAddress,
           stateProvince: data.toState,
@@ -81,7 +81,7 @@ const handleSubmit = async (
         },
         shipFrom: {
           companyName: 'Example Corp.',
-          name: data.fromName,
+          name: data.fromName ? data.fromName : 'From',
           phone: '111-111-1111',
           addressLine1: data.fromAddress,
           stateProvince: data.fromState,
@@ -101,12 +101,6 @@ const handleSubmit = async (
               width: data.fields?.[0].width,
               height: data.fields?.[0].height
             }
-            // dimensions: {
-            //   unit: 'inch',
-            //   length: 12,
-            //   width: 12,
-            //   height: 12
-            // }
           }
         ]
       }
