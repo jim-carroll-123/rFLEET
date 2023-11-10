@@ -353,8 +353,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                       {(rates as any).packages?.[0]?.packageCode}
                     </div>
                     <div className="grow text-[14px] lg:px-[30px] px-[23px] lg:py-[15px] py-[10px]">
-                      {(rates as any).packages?.[0]?.dimensions.length}X{(rates as any).packages?.[0]?.dimensions.width}
-                      X{(rates as any).packages?.[0]?.dimensions.height} {(rates as any).packages?.[0]?.dimensions.unit}
+                      {(rates as any).packages?.[0]?.dimensions.length} x {(rates as any).packages?.[0]?.dimensions.width} x {(rates as any).packages?.[0]?.dimensions.height} {(rates as any).packages?.[0]?.dimensions.unit}
                       {' / '}
                       {(rates as any).packages?.[0]?.weight.value} {(rates as any).packages?.[0]?.weight.unit}
                       {'s'}
