@@ -6,15 +6,15 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 
 
 import { AddressBookSection } from './sections/Address Book';
-import { DashboardSection } from './sections/Dashboard';
-import { ECommerceSection } from './sections/ECommerce';
-import { NewQuoteSection } from './sections/New Quote';
+import { ECommerceSection } from './sections/ECommerce'
+import { NewQuoteSection } from './sections/New Quote'
 import { NewPFQSection } from './sections/NewPFQ';
 import { NewShipmentSection } from './sections/NewShipment';
 import { ProductSection } from './sections/Product';
 import { ReportsSection } from './sections/Reports';
-import { ShipmentProfileSection } from './sections/Shipment Profile'
-import { WMSSection } from './sections/WMS'
+import { ShipmentProfileSection } from './sections/Shipment Profile';
+import { WMSSection } from './sections/WMS';
+import { DashboardSection } from './sections/dashboard/page';
 
 
 // Define the props that Home component accepts

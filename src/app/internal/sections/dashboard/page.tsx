@@ -1,16 +1,13 @@
-import { useEffect, useState } from 'react';
+'use client'
 
+import { useEffect, useState } from 'react'
 
-
-import Map from '@assets/images/Maps.png';
-import { Arrows } from '@components/ui/Arrows';
-import { DropdownArrow } from '@components/ui/DropdownArrow';
-import { Search } from '@components/ui/Search';
-
-
+import Map from '@assets/images/Maps.png'
+import { Arrows } from '@components/ui/Arrows'
+import { DropdownArrow } from '@components/ui/DropdownArrow'
+import { Search } from '@components/ui/Search'
 
 import { Header } from '../../components/header'
-
 
 export const DashboardSection = () => {
   const [selected, setSelected] = useState<number | null>(null)
@@ -92,10 +89,6 @@ export const DashboardSection = () => {
           <div className="text-black mt-4 flex">
             <div className="flex items-center text-black font-poppins text-b3 font-medium">Status</div>
             <div className="flex border border-[#B8BEF8] rounded-d-6 p-[2px] justify-content-center ml-4">
-
-
-
-
               <div className="flex">
                 <div
                   className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
@@ -162,9 +155,6 @@ export const DashboardSection = () => {
                   <span className="px-5">Air</span>
                 </div>
               </div>
-
-
-
             </div>
             <div className="w-12 border border-[#2F80ED] ml-2 rounded-lg hover:cursor-pointer">
               <div className="h-12 flex justify-center items-center hover:cursor-pointer">
@@ -179,11 +169,9 @@ export const DashboardSection = () => {
               </div>
             </div>
           </div>
-
-
-
         </div>
       </div>
     </div>
   )
 }
+export default DashboardSection
