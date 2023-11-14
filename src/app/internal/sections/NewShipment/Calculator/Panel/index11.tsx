@@ -9,7 +9,6 @@ import { ButtonSelect } from '@components/ui/ButtonSelectInternal'
 import { TabPane } from '@components/ui/TabPane'
 
 import { AirLoadType } from './Panes/AirLoadType'
-import { All } from './Panes/All'
 import { FTLLoadType } from './Panes/FTLLoadType'
 import { From } from './Panes/From'
 import { GoodsCommodity } from './Panes/GoodsCommodity'
@@ -24,7 +23,6 @@ import { parcelShapes, shippingMethods } from './options'
 import {
   AirLoadTypeInputs,
   AllInputs,
-  AllSchema,
   FromInputs,
   GoodsCommodityInputs,
   LoadTypeInputs,
@@ -55,9 +53,9 @@ export const Panel = () => {
     console.log('Updated Data:', data)
   }, [data])
 
-  const AllMethods = useForm<AllInputs>({
+  const fromFormMethods = useForm<FromInputs>({
     mode: 'onChange',
-    resolver: yupResolver(AllSchema),
+    resolver: yupResolver(fromSchema),
     defaultValues: {
       fromType: '',
       fromCountry: '',
@@ -66,7 +64,14 @@ export const Panel = () => {
       fromPostalCode: '',
       fromState: '',
       fromName: '',
-      fromPhone: '',
+      fromPhone: ''
+    }
+  })
+
+  const toFormMethods = useForm<ToInputs>({
+    mode: 'onChange',
+    resolver: yupResolver(toSchema),
+    defaultValues: {
       toType: '',
       toCountry: '',
       toAddress: '',
@@ -147,13 +152,24 @@ export const Panel = () => {
     }
   })
 
-  const onAllSubmit: SubmitHandler<AllInputs> = (data) => {
+  const onFromFormSubmit: SubmitHandler<FromInputs> = (data) => {
     setData((prev) => {
       console.log('From Previous data:', prev)
       return { ...prev, ...data }
     })
 
     console.log('From Data: ', data)
+    setShippingStepId('tab-ship-destination')
+  }
+
+  const onToFormSubmit: SubmitHandler<ToInputs> = (data) => {
+    setData((prev) => {
+      console.log('To Previous data:', prev)
+      return { ...prev, ...data }
+    })
+
+    console.log('To Data: ', data)
+    setShippingStepId('tab-ship-load-type')
   }
 
   const onLoadTypeFormSubmit: SubmitHandler<LoadTypeInputs> = (data) => {
@@ -163,6 +179,7 @@ export const Panel = () => {
     })
 
     console.log('Load Type Data: ', data)
+    setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onLtlLoadTypeFormSubmit: SubmitHandler<LtlLoadTypeInputs> = (data) => {
@@ -172,18 +189,22 @@ export const Panel = () => {
     })
 
     console.log('LTL Load Type Data: ', data)
+    setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onOceanLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
     setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onAirLoadTypeFormSubmit: SubmitHandler<OceanLoadTypeInputs> = (data) => {
     setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onFtlLoadTypeFormSubmit: SubmitHandler<FtlLoadTypeInputs> = (data) => {
     setData((prev) => ({ ...prev, ...data }))
+    setShippingStepId('tab-ship-goods-commodity')
   }
 
   const onGoodsCommodityFormSubmit: SubmitHandler<GoodsCommodityInputs> = (data) => {
@@ -211,18 +232,20 @@ export const Panel = () => {
         onChange={setShippingMethod}
         containerClassName="lg:mb-[24px] mb-[18px]"
       />
-
       <TabPane className="relative" activeTab={shippingStepId} onTabChange={(id) => setShippingStepId(id)}>
+        <ShippingSteps shippingStepId={shippingStepId} data={data} />
         <div>
-          <ShippingPane id="">
-            <All methods={AllMethods} onSubmit={onAllSubmit} />
-
-            {shippingMethodLoadTypes[shippingMethod.value]}
-
+          <ShippingPane id="tab-ship-origin">
+            <From methods={fromFormMethods} onSubmit={onFromFormSubmit} />
+          </ShippingPane>
+          <ShippingPane id="tab-ship-destination">
+            <To methods={toFormMethods} onSubmit={onToFormSubmit} />
+          </ShippingPane>
+          <ShippingPane id="tab-ship-load-type">{shippingMethodLoadTypes[shippingMethod.value]}</ShippingPane>
+          <ShippingPane id="tab-ship-goods-commodity">
             <GoodsCommodity methods={goodsCommodityFormMethods} onSubmit={onGoodsCommodityFormSubmit} />
           </ShippingPane>
         </div>
-        <ShippingSteps shippingStepId={shippingStepId} data={data} />
       </TabPane>
     </div>
   )
