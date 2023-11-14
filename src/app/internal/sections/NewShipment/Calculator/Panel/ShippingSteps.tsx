@@ -210,7 +210,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         <div className="grow">
           <div className="lg:grid lg:grid-cols-4 gap-d-12 flex flex-col lg:mb-[8px] mb-[6px]">
             <ShippingStep
-              target="tab-ship-origin"
+              target=""
               label="Origin"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -233,7 +233,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               )}
             </ShippingStep>
             <ShippingStep
-              target="tab-ship-destination"
+              target=""
               label="Destination"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -256,7 +256,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               )}
             </ShippingStep>
             <ShippingStep
-              target="tab-ship-load-type"
+              target=""
               label="Load Type"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -273,7 +273,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               )}
             </ShippingStep>
             <ShippingStep
-              target="tab-ship-goods-commodity"
+              target=""
               label="Goods/Commodity"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
