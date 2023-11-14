@@ -190,6 +190,7 @@ export const Panel = () => {
   }
 
   return (
+  
     <div className="relative border bg-white rounded-lg border-solid border-[#ffffff30] lg:p-[24px]">
       <ButtonSelect
         options={shippingMethods}
@@ -212,6 +213,6 @@ export const Panel = () => {
         <ShippingSteps shippingStepId={shippingStepId} data={data} />
       </TabPane>
     </div>
-    
+   
   )
 }
