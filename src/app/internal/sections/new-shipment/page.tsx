@@ -6,11 +6,10 @@ export const NewShipmentSection = () => {
     <div>
       <div className="bg-[#141943] h-12"></div>
       <div className="relative p-8 bg-[#F6F7FF] min-h-[100vh] overflow-hidden">
-
         <Header title="New Shipment" />
         <CalculatorSection />
-        
       </div>
     </div>
   )
 }
+export default NewShipmentSection

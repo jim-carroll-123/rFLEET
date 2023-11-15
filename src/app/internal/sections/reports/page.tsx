@@ -10,3 +10,4 @@ export const ReportsSection = () => {
     </div>
   )
 }
+export default ReportsSection

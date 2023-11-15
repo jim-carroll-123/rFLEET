@@ -10,3 +10,4 @@ export const WMSSection = () => {
     </div>
   )
 }
+export default WMSSection

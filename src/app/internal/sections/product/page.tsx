@@ -10,3 +10,4 @@ export const ProductSection = () => {
     </div>
   )
 }
+export default ProductSection
