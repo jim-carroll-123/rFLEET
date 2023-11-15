@@ -11,7 +11,9 @@ import { Search } from '@components/ui/Search';
 
 
 
-import { Header } from '../components/header'
+import Footer from '../components/footer'
+import { Header } from '../components/header';
+
 
 const DashboardSection = () => {
   const [selected, setSelected] = useState<number | null>(null)
@@ -174,6 +176,7 @@ const DashboardSection = () => {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     </main>
   )

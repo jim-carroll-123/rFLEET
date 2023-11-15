@@ -1,5 +1,6 @@
+import Footer from '../components/footer';
 import { Header } from '../components/header';
-import { CalculatorSection } from './Calculator';
+import { CalculatorSection } from './Calculator'
 
 
 const NewShipmentSection = () => {
@@ -9,6 +10,7 @@ const NewShipmentSection = () => {
       <div className="relative p-8 bg-[#F6F7FF] min-h-[100vh] overflow-hidden">
         <Header title="New Shipment" />
         <CalculatorSection />
+        <Footer />
       </div>
     </main>
   )
