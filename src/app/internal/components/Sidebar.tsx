@@ -1,8 +1,6 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-
-
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
@@ -11,7 +9,7 @@ import { BoxLight } from '@components/ui/BoxLight'
 import { ClipBoard } from '@components/ui/Clipboard'
 import { ECommerce } from '@components/ui/E-Commerce'
 import { Logo } from '@components/ui/Logo'
-import { TruckLogo } from '@components/ui/TruckLogo';
+import { TruckLogo } from '@components/ui/TruckLogo'
 import { WMS } from '@components/ui/WMS'
 
 export default function Sidebar() {
@@ -22,7 +20,7 @@ export default function Sidebar() {
   }
 
   const sectionStyle = (sectionId: any) =>
-    `flex items-center pl-1 p-2 rounded-lg hover:cursor-pointer ${
+    `flex items-center pl-5 p-2 rounded-lg hover:cursor-pointer ${
       activeSection === sectionId ? 'bg-[#252C65]' : 'hover:bg-[#252C65]'
     }`
 
@@ -33,7 +31,7 @@ export default function Sidebar() {
           <Logo />
         </div>
 
-        <nav className="flex flex-col gap-6 p-8">
+        <nav className="flex flex-col gap-4 p-5">
           <div onClick={() => handleSectionClick('dashboard')} className={sectionStyle('dashboard')}>
             <BoxLight />
             <Link href="/internal/dashboard">
