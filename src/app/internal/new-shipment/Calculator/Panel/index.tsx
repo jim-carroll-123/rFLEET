@@ -45,7 +45,6 @@ export const Panel = () => {
     mode: 'onChange',
     resolver: yupResolver(AllSchema),
     defaultValues: {
-      fromType: '',
       fromCountry: '',
       fromAddress: '',
       fromCity: '',
@@ -53,7 +52,6 @@ export const Panel = () => {
       fromState: '',
       fromName: '',
       fromPhone: '',
-      toType: '',
       toCountry: '',
       toAddress: '',
       toCity: '',
