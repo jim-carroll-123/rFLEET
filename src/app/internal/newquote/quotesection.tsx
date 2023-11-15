@@ -8,7 +8,7 @@ import { Input } from '@components/ui/InputInternal';
 
 const QuoteSection = () => {
   return (
-    <div className="grid grid-cols-2 gap-2 grid-rows-6 mt-5 text-black">
+    <div className="grid grid-cols-2 gap-2 grid-rows-6 mt-8 text-[#0C0A09]">
       <div className="col-span-1 row-span-4 bg-white rounded-lg border border-[#B8BEF8]">
         <div className="flex flex-col p-4">
           <h1 className="text-2xl mb-4">Shipping From</h1>
@@ -82,8 +82,34 @@ const QuoteSection = () => {
 
       <div className="col-span-1 row-span-3 bg-white rounded-lg border border-[#B8BEF8]">
         <div className="flex flex-col p-4">
-          <h1 className="text-2xl ">Service</h1>
-          <p className="text-sm ">This is the quote section</p>
+          <h1 className="text-2xl mb-4">Service</h1>
+          <hr></hr>
+
+          <div className="grid grid-cols-2 gap-3 my-4">
+            <div className="col-span-2">
+              <div className="text-input font-semibold">Ship Date</div>
+              <Input placeholder="Search Address Book" />
+            </div>
+            <div className="col-span-2">
+              <div className="text-input font-semibold ">Load Type</div>
+              <Input placeholder="Enter company name" />
+            </div>
+            <div className="col-span-2">Service Options</div>
+              <Check label="Signature Options" />
+              <Check label="Broker Select" />
+              <Check label="Hold at Location" />
+              <Check label="Dangerous Goods" />
+              <div className="col-span-2">You can find dry ice, lithium batteries and non-standard packaging in the package details section.</div>
+          </div>
+          <hr></hr>
+          <div className='mt-4'>Additional Options</div>
+
+          <div className="flex flex-col gap-3 mt-4">
+            <Check label="Add references" />
+            <Check label="Email Import shipment label" />
+            <Check label="Include a return label" />
+          </div>
+          
         </div>
       </div>
 
