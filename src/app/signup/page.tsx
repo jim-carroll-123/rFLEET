@@ -13,11 +13,10 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import planetEarth from '@assets/images/bg-planet-earth.jpeg'
 import { Button } from '@components/ui/Button'
 import { Check } from '@components/ui/Check'
+import FormMessages from '@components/ui/FormMessages'
 import { Input } from '@components/ui/Input'
 import { Option, Select, findOption } from '@components/ui/Select'
 import { Title } from '@components/ui/Typography'
-
-import Messages from './messages'
 
 const profileTypes = [
   {
@@ -196,7 +195,7 @@ export default function Index() {
                 <Link href="/signin">Log in</Link>
               </div>
 
-              <Messages />
+              <FormMessages />
             </div>
           </form>
         </div>

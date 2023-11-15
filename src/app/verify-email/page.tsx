@@ -5,8 +5,7 @@ import { redirect, useRouter, useSearchParams } from 'next/navigation'
 import ConfirmEmail from '@assets/icons/confirm-email.svg'
 import planetEarth from '@assets/images/bg-planet-earth.jpeg'
 import { Button } from '@components/ui/Button'
-
-import Messages from './messages'
+import FormMessages from '@components/ui/FormMessages'
 
 type Props = {
   params?: {
@@ -40,7 +39,7 @@ export default function Index() {
               <Button full color="transparent">
                 Resend email
               </Button>
-              <Messages />
+              <FormMessages />
             </form>
           </div>
         </div>
