@@ -207,10 +207,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-d-16">
-        <div className="grow">
+       {isDisplayRate ? <div className="grow">
           <div className="lg:grid lg:grid-cols-4 gap-d-12 flex flex-col lg:mb-[8px] mb-[6px]">
             <ShippingStep
-              target="tab-ship-origin"
+              target=""
               label="Origin"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -233,7 +233,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               )}
             </ShippingStep>
             <ShippingStep
-              target="tab-ship-destination"
+              target=""
               label="Destination"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -256,7 +256,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               )}
             </ShippingStep>
             <ShippingStep
-              target="tab-ship-load-type"
+              target=""
               label="Load Type"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -273,7 +273,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               )}
             </ShippingStep>
             <ShippingStep
-              target="tab-ship-goods-commodity"
+              target=""
               label="Goods/Commodity"
               className="overflow-x-hidden"
               shippingStepId={shippingStepId}
@@ -288,7 +288,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
             <div className="lg:block hidden" />
             <Check label="Add More Goods/Commodities" />
           </div>
-        </div>
+        </div> : null}
         <div className="lg:pt-[32px]">
           <Tab target="tab">
             <Button
@@ -361,7 +361,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                         <h3 className="text-black font-poppins text-[16px] font-semibold leading-6 mb-4">Sender</h3>
                         <div className="ml-auto">
                           <Tab
-                            target="tab-ship-origin"
+                            target=""
                             onClick={() => {
                               setDisplayRate(false)
                             }}

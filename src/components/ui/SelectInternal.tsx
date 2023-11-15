@@ -151,7 +151,7 @@ export const Select = React.forwardRef(
                     <div className="font-bold lg:px-[10px] px-[6px] lg:py-[10px] py-[8px]">{option.label}</div>
                   </div>
                 ) : (
-                  <div>
+                  <div key={index}>
                     {!countries ? (
                       <div
                         key={index}
@@ -166,7 +166,7 @@ export const Select = React.forwardRef(
                         onMouseLeave={() => setHoveredIndex(null)}
                       >
                         {option?.icon && (
-                          <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">
+                          <div key={index} className="flex justify-center items-center lg:pl-[12px] pl-[9px]">
                             {(typeof value !== 'string' ? value?.value === option.value : value === option.value) ||
                             hoveredIndex === index
                               ? option.icon
