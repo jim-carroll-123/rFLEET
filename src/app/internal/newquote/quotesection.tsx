@@ -1,10 +1,12 @@
 'use client';
 
 import React from 'react';
+import { BiSearch } from 'react-icons/bi'
 
-
-
-import X from '@assets/icons/x-internal.svg';
+import ParcelInternal from '@assets/icons/parcel-internal.svg'
+import X from '@assets/icons/x-internal.svg'
+import { BoxHands } from '@components/ui/BoxHands'
+import { Button } from '@components/ui/Button'
 import { Check } from '@components/ui/CheckInternal'
 import { CheckMark } from '@components/ui/CheckMark'
 import { Input } from '@components/ui/InputInternal'
@@ -284,13 +286,88 @@ const QuoteSection = () => {
           </div>
 
           <div className="col-span-2">
-            <div className="text-input font-semibold ">Schedule B</div>
-            <Input placeholder="Start typing..." />
+            <div className="flex flex-col gap-1">
+              <div>Schedule B</div>
+              <div className="flex items-center border rounded-md ">
+                <div className="p-2 px-3 flex-grow text-[grey]">--------/-------/--------</div>
+                <Button className=" h-10 w-16  bg-transparent border-0 border-l bg-primary rounded-sm">
+                  <div className="px-3 p-2">
+                    <BiSearch className="h-6 w-6" />
+                  </div>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex bg-[#D9D9D9] rounded-lg mt-5 shadow-lg p-4 text-[#6654F1]">
+          <div className="w-[50%]">9026 80 0000</div>
+          <div>
+            Instruments and apparatus for measuring or checking the flow, level, pressure or other variablesof liquids
+            or gases (for example, flow meters, level gauges, manometers, heat meters), excluding instruments and
+            apparatus of headings 9014, 9015, 9028 or 9032; parts and accessories thereof, Other instruments or
+            apparatus
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <h1 className="text-base font-semibold leading-6">What type of goods are you shipping?</h1>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
+              <div className="flex gap-4 items-center">
+                <div className="p-2 border border-[#2F80ED] rounded-lg">
+                  <ParcelInternal />
+                </div>
+                <div>
+                  <div className="text-[14px] font-semibold leading-6">General Cargo</div>
+                  <div className="text-[12px] text-[#848382] leading-6">
+                    General cargo is cargo that doesn’t require any special accommodation. Most cargo fits under this
+                    category
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
+              <div className="flex gap-4 items-center">
+                <div className="p-2 border border-[#2F80ED] rounded-lg">
+                  <BoxHands />
+                </div>
+                <div>
+                  <div className="text-[14px] font-semibold leading-6">Special Considerations</div>
+                  <div className="text-[12px] text-[#848382] leading-6">
+                    Including restricted commodities and hazardous goods
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <h1 className="text-base font-semibold leading-6">Select all that apply</h1>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
+              <div className="flex gap-4 items-center">
+                <div className="p-2 border border-[#2F80ED] rounded-lg">
+                  <ParcelInternal />
+                </div>
+                <div>
+                  <div className="text-[14px] font-semibold leading-6">Hazardous Good/ Lithium Batteries</div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
+              <div className="flex gap-4 items-center">
+                <div className="p-2 border border-[#2F80ED] rounded-lg">
+                  <BoxHands />
+                </div>
+                <div>
+                  <div className="text-[14px] font-semibold leading-6">Temperature control</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-     
     </>
   )
 }
