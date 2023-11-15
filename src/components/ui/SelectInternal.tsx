@@ -151,7 +151,7 @@ export const Select = React.forwardRef(
                     <div className="font-bold lg:px-[10px] px-[6px] lg:py-[10px] py-[8px]">{option.label}</div>
                   </div>
                 ) : (
-                  <div>
+                  <div key={index}>
                     {!countries ? (
                       <div
                         key={index}
