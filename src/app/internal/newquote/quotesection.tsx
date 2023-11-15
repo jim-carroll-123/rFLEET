@@ -2,7 +2,9 @@ import React from 'react';
 
 
 
-import { Input } from '@components/ui/InputInternal'
+import { Check } from '@components/ui/CheckInternal'
+import { Input } from '@components/ui/InputInternal';
+
 
 const QuoteSection = () => {
   return (
@@ -67,6 +69,14 @@ const QuoteSection = () => {
             </div>
           </div>
           <hr></hr>
+
+          <div className="flex flex-col gap-d-16 mt-4">
+            <Check label="Save as default sender details" />
+            <div className="flex items-center gap-2">
+              <Check label="Save as a new sender in" />
+              <Input />
+            </div>
+          </div>
         </div>
       </div>
 
