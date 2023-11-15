@@ -110,7 +110,7 @@ export const Select = React.forwardRef(
             disabled ? null : setSelectOpen(!selectOpen)
           }}
           className={cn(
-            'flex justify-between items-center w-full border border-solid shadow-sm lg:rounded-lg rounded-md text-black cursor-default',
+            'flex justify-between items-center w-full border border-solid shadow-sm bg-white lg:rounded-lg rounded-md text-black cursor-default',
             error ? 'border-red-600' : selectOpen ? 'border-primary' : 'border-[#A6A4A3] hover:border-gray-300'
           )}
         >
@@ -133,7 +133,7 @@ export const Select = React.forwardRef(
             readOnly={!searchable}
             ref={inputRef}
             className={cn(
-              'flex flex-1 w-inherit placeholder:text-black bg-transparent cursor-default lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]'
+              'flex flex-1 w-inherit placeholder:text-black bg-white rounded-lg cursor-default lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]'
             )}
           />
           <ArrowDown className="shrink-0 lg:w-[24px] lg:h-[24px] w-[20px] h-[20px] lg:mr-[12px] mr-[9px]" />

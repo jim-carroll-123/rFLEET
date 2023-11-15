@@ -416,6 +416,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                       type="text"
                       placeholder='L'
                       value={field.length}
+                     
                       error={fieldErrors?.length}
                       onChange={(value: string) => {
                         if (value === '') {
