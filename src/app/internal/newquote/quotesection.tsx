@@ -172,8 +172,8 @@ const QuoteSection = () => {
         </div>
       </div>
 
-      <div className="mt-8 text-[#0C0A09] bg-white rounded-lg border border-[#B8BEF8] p-4">
-        <h1 className="text-2xl">Package Details</h1>
+      <div className="mt-8 text-[#0C0A09] bg-white rounded-lg border border-[#B8BEF8] p-4 shadow-lg">
+        <h1 className="text-base font-semibold leading-6">Package Details</h1>
         <hr className="my-3"></hr>
 
         <div className="grid grid-cols-2 gap-3 my-4 ">
@@ -189,27 +189,66 @@ const QuoteSection = () => {
 
         <hr className="my-3"></hr>
 
-        <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4">
-          <div className="text-caption font-bold">Dimensions</div>
-          <div className="flex lg:flex-row flex-col gap-d-16">
-            <div className="flex gap-d-16">
-              <Input type="text" placeholder="L" />
-              <div className="flex items-center flex-1">
-                <X />
-              </div>
+        <div className="flex-grow bg-[rgb(247,246,245)] rounded-lg mt-4 p-4">
+          <div className='flex gap-6'>
 
-              <Input type="text" placeholder="W" />
+            <div>
+              <div className="text-caption font-bold">No of packages</div>
+              <Input type="text" placeholder="1" />
             </div>
-            <div className="flex gap-d-16">
-              <div className="flex items-center flex-1">
-                <X />
-              </div>
 
-              <Input type="text" placeholder="H" />
+            <div>
+              <div className="text-caption font-bold">Weight per Package</div>
+              <Input type="text" placeholder="Weight" />
             </div>
+
+            <div>
+              <div className="text-caption font-bold">Dimensions</div>
+              <div className="flex lg:flex-row flex-col gap-d-16">
+                <div className="flex gap-d-16">
+                  <Input type="text" placeholder="L" />
+                  <div className="flex items-center flex-1">
+                    <X />
+                  </div>
+                  <Input type="text" placeholder="W" />
+                </div>
+                <div className="flex gap-d-16">
+                  <div className="flex items-center flex-1">
+                    <X />
+                  </div>
+                  <Input type="text" placeholder="H" />
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div className="text-caption">Enter dimensions of package</div>
         </div>
+
+        <h1 className="text-base font-semibold leading-6 my-5">Commodity</h1>
+
+        <div className='grid grid-cols-5 gap-3'>
+
+          <div className="col-span-2">
+            <div className="text-input font-semibold ">Commodity</div>
+            <Input placeholder="Start typing..." />
+          </div>
+
+          <div className="col-span-2">
+            <div className="text-input font-semibold ">Cargo Value</div>
+            <Input placeholder="Enter cargo value" />
+          </div>
+
+          <div className="col-span-1">
+            <div className="text-input font-semibold ">Currency</div>
+            <Input placeholder="USD" />
+          </div>
+
+          <div className="col-span-2">
+            <div className="text-input font-semibold ">Schedule B</div>
+            <Input placeholder="Start typing..." />
+          </div>
+        </div>
+        
       </div>
     </>
   )
