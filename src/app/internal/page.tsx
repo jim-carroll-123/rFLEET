@@ -9,16 +9,18 @@ import Link from 'next/link';
 
 
 
-import { WMSSection } from './WMS/page'
-import { AddressBookSection } from './address-book/page'
-import { DashboardSection } from './dashboard/page'
-import { ECommerceSection } from './ecommerce/page'
-import { NewShipmentSection } from './new-shipment/page'
-import { NewPFQSection } from './newPFQ/page'
-import { NewQuoteSection } from './newquote/page'
-import { ProductSection } from './product/page'
-import { ReportsSection } from './reports/page'
-import { ShipmentProfileSection } from './shipment-profile/page'
+// import { WMSSection } from './WMS/page'
+// import { AddressBookSection } from './address-book/page'
+import DashboardSection from './dashboard/page';
+
+
+// import { ECommerceSection } from './ecommerce/page'
+// import { NewShipmentSection } from './new-shipment/page'
+// import { NewPFQSection } from './newPFQ/page'
+// import { NewQuoteSection } from './newquote/page'
+// import { ProductSection } from './product/page'
+// import { ReportsSection } from './reports/page'
+// import { ShipmentProfileSection } from './shipment-profile/page'
 
 
 // Define the props that Home component accepts

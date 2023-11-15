@@ -1,7 +1,8 @@
-import { Header } from '../components/header'
-import QuoteSection from './quotesection'
+import { Header } from '../components/header';
+import QuoteSection from './quotesection';
 
-export const NewQuoteSection = () => {
+
+const NewQuoteSection = () => {
   return (
     <main>
       <div className="bg-[#141943] h-12"></div>

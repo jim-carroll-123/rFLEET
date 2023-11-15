@@ -1,6 +1,7 @@
-import { Header } from '../components/header'
+import { Header } from '../components/header';
 
-export const ShipmentProfileSection = () => {
+
+const ShipmentProfileSection = () => {
   return (
     <main>
       <div className="bg-[#141943] h-12"></div>

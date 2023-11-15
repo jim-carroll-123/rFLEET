@@ -1,7 +1,8 @@
-import { Header } from '../components/header'
-import { CalculatorSection } from './Calculator'
+import { Header } from '../components/header';
+import { CalculatorSection } from './Calculator';
 
-export const NewShipmentSection = () => {
+
+const NewShipmentSection = () => {
   return (
     <main>
       <div className="bg-[#141943] h-12"></div>

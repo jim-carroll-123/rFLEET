@@ -1,15 +1,19 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-import Map from '@assets/images/Maps.png'
-import { Arrows } from '@components/ui/Arrows'
-import { DropdownArrow } from '@components/ui/DropdownArrow'
-import { Search } from '@components/ui/Search'
+
+
+import Map from '@assets/images/Maps.png';
+import { Arrows } from '@components/ui/Arrows';
+import { DropdownArrow } from '@components/ui/DropdownArrow';
+import { Search } from '@components/ui/Search';
+
+
 
 import { Header } from '../components/header'
 
-export const DashboardSection = () => {
+const DashboardSection = () => {
   const [selected, setSelected] = useState<number | null>(null)
   const [selectedType, setSelectedType] = useState<number | null>(null)
 
