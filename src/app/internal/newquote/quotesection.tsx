@@ -10,62 +10,62 @@ const QuoteSection = () => {
   return (
     <>
       <div className="grid grid-cols-2 gap-6 grid-rows-6 mt-8 text-[#0C0A09]">
-        <div className="col-span-1 row-span-4 bg-white rounded-lg border border-[#B8BEF8] shadow-lg">
+        <div className="col-span-1 row-span-4 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <h1 className="text-2xl mb-4">Shipping From</h1>
+            <h1 className="text-[18px] font-semibold leading-6 mb-4">Shipping From</h1>
             <hr></hr>
 
             <div className="grid grid-cols-2 gap-3 my-4">
               <div className="col-span-2">
-                <div className="text-input font-semibold">Address Book</div>
+                <div className="text-input font-medium leading-6">Address Book</div>
                 <Input placeholder="Search Address Book" />
               </div>
               <div className="col-span-2">
-                <div className="text-input font-semibold ">Company Name</div>
+                <div className="text-input font-medium leading-6">Company Name</div>
                 <Input placeholder="Enter company name" />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Contact Name</div>
+                <div className="text-input font-medium leading-6">Contact Name</div>
                 <Input placeholder="Enter contact name" />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Email</div>
+                <div className="text-input font-medium leading-6">Email</div>
                 <Input placeholder="Enter email" />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Phone Number</div>
+                <div className="text-input font-medium leading-6">Phone Number</div>
                 <Input placeholder="Enter phone number" />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Phone Extension</div>
+                <div className="text-input font-medium leading-6">Phone Extension</div>
                 <Input placeholder="Enter extension" />
               </div>
               <div className="col-span-2">
-                <div className="text-input font-semibold">Address Line 1</div>
+                <div className="text-input font-medium leading-6">Address Line 1</div>
                 <Input />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Address Line 2</div>
+                <div className="text-input font-medium leading-6">Address Line 2</div>
                 <Input />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Address Line 3</div>
+                <div className="text-input font-medium leading-6">Address Line 3</div>
                 <Input />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Country/Territory</div>
+                <div className="text-input font-medium leading-6">Country/Territory</div>
                 <Input />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">Postal Code</div>
+                <div className="text-input font-medium leading-6">Postal Code</div>
                 <Input />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">State or Province</div>
+                <div className="text-input font-medium leading-6">State or Province</div>
                 <Input />
               </div>
               <div className="col-span-1">
-                <div className="text-input font-semibold">City</div>
+                <div className="text-input font-medium leading-6">City</div>
                 <Input />
               </div>
             </div>
@@ -81,18 +81,18 @@ const QuoteSection = () => {
           </div>
         </div>
 
-        <div className="col-span-1 row-span-3 bg-white rounded-lg border border-[#B8BEF8] shadow-lg">
+        <div className="col-span-1 row-span-3 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <h1 className="text-2xl mb-4">Service</h1>
+            <h1 className="text-[18px] font-semibold leading-6 mb-4">Service</h1>
             <hr></hr>
 
             <div className="grid grid-cols-2 gap-3 my-4">
               <div className="col-span-2">
-                <div className="text-input font-semibold">Ship Date</div>
+                <div className="text-input font-medium leading-6">Ship Date</div>
                 <Input placeholder="Search Address Book" />
               </div>
               <div className="col-span-2">
-                <div className="text-input font-semibold ">Load Type</div>
+                <div className="text-input font-medium leading-6">Load Type</div>
                 <Input placeholder="Enter company name" />
               </div>
               <div className="col-span-2">Service Options</div>
@@ -115,12 +115,12 @@ const QuoteSection = () => {
           </div>
         </div>
 
-        <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-lg">
+        <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <h1 className="text-2xl">Pickup / Drop Off</h1>
+            <h1 className="text-[18px] font-semibold leading-6">Pickup / Drop Off</h1>
             <hr className="my-3"></hr>
             <div className="col-span-2">
-              <div className="text-input font-semibold ">Pickup/Drop Off</div>
+              <div className="text-input font-medium leading-6">Pickup/Drop Off</div>
               <Input placeholder="Enter company name" />
             </div>
             <hr className="my-3"></hr>
@@ -128,12 +128,12 @@ const QuoteSection = () => {
           </div>
         </div>
 
-        <div className="col-span-1 row-span-2 bg-white rounded-lg border border-[#B8BEF8] flex flex-col shadow-lg">
+        <div className="col-span-1 row-span-2 bg-white rounded-lg border border-[#B8BEF8] flex flex-col shadow-md">
           <div className="p-4 flex flex-col h-full">
-            <h1 className="text-2xl ">Delivery To</h1>
+            <h1 className="text-[18px] font-semibold leading-6">Delivery To</h1>
             <hr className="my-3"></hr>
             <div className="col-span-2">
-              <div className="text-input font-semibold ">Choose Address</div>
+              <div className="text-input font-medium leading-6">Choose Address</div>
               <Input placeholder="Choose Address" />
             </div>
             <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4">
@@ -145,12 +145,12 @@ const QuoteSection = () => {
           </div>
         </div>
 
-        <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-lg">
+        <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <h1 className="text-2xl">Billing and Tax IDs</h1>
+            <h1 className="text-[18px] font-semibold leading-6">Billing and Tax IDs</h1>
             <hr className="my-3"></hr>
             <div className="col-span-2">
-              <div className="text-input font-semibold ">Bill Transportation cost to*</div>
+              <div className="text-input font-medium leading-6">Bill Transportation cost to*</div>
               <Input placeholder="My account" />
             </div>
             <hr className="my-3"></hr>
@@ -158,12 +158,12 @@ const QuoteSection = () => {
           </div>
         </div>
 
-        <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-lg">
+        <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <h1 className="text-2xl">Customs and Clearance</h1>
+            <h1 className="text-[18px] font-semibold leading-6">Customs and Clearance</h1>
             <hr className="my-3"></hr>
             <div className="col-span-2">
-              <div className="text-input font-semibold ">Bill Transportation cost to*</div>
+              <div className="text-input font-medium leading-6 mb-1">Bill Transportation cost to*</div>
               <Input placeholder="My account" />
             </div>
             <hr className="my-3"></hr>
@@ -172,7 +172,7 @@ const QuoteSection = () => {
         </div>
       </div>
 
-      <div className="mt-8 text-[#0C0A09] bg-white rounded-lg border border-[#B8BEF8] p-4 shadow-lg">
+      <div className="mt-8 text-[#0C0A09] bg-white rounded-lg border border-[#B8BEF8] p-4 shadow-md">
         <h1 className="text-base font-semibold leading-6">Package Details</h1>
         <hr className="my-3"></hr>
 
