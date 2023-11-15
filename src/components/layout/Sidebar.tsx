@@ -36,70 +36,70 @@ export default function Sidebar() {
         <nav className="flex flex-col gap-6 p-8">
           <div onClick={() => handleSectionClick('dashboard')} className={sectionStyle('dashboard')}>
             <BoxLight />
-            <Link href="../../internal/sections/dashboard">
+            <Link href="/internal/dashboard">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Dashboard</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('newquote')} className={sectionStyle('newquote')}>
             <ClipBoard />
-            <Link href="../../internal/sections/newquote">
+            <Link href="/internal/newquote">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New Quote</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('new-shipment')} className={sectionStyle('new-shipment')}>
             <TruckLogo />
-            <Link href="../../internal/sections/new-shipment">
+            <Link href="/internal/new-shipment">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New Shipment</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('ecommerce')} className={sectionStyle('ecommerce')}>
             <ECommerce />
-            <Link href="../../internal/sections/ecommerce">
+            <Link href="/internal/ecommerce">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">E-Commerce</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('product')} className={sectionStyle('product')}>
             <BoxLight />
-            <Link href="../../internal/sections/product">
+            <Link href="/internal/product">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Product</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('WMS')} className={sectionStyle('WMS')}>
             <WMS />
-            <Link href="../../internal/sections/WMS">
+            <Link href="/internal/WMS">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">WMS</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('address-book')} className={sectionStyle('address-book')}>
             <ClipBoard />
-            <Link href="../../internal/sections/address-book">
+            <Link href="/internal/address-book">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Address Book</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('shipment-profile')} className={sectionStyle('shipment-profile')}>
             <BoxLight />
-            <Link href="../../internal/sections/shipment-profile">
+            <Link href="/internal/shipment-profile">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Shipment Profile</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('newPFQ')} className={sectionStyle('newPFQ')}>
             <ECommerce />
-            <Link href="../../internal/sections/newPFQ">
+            <Link href="/internal/newPFQ">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">New PFQ/New RFB</div>
             </Link>
           </div>
 
           <div onClick={() => handleSectionClick('reports')} className={sectionStyle('reports')}>
             <ClipBoard />
-            <Link href="../../internal/sections/reports">
+            <Link href="/internal/reports">
               <div className="text-[#FFFFFF80] font-poppins text-base font-medium ml-4 leading-5">Reports</div>
             </Link>
           </div>

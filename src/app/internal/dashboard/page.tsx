@@ -7,7 +7,7 @@ import { Arrows } from '@components/ui/Arrows'
 import { DropdownArrow } from '@components/ui/DropdownArrow'
 import { Search } from '@components/ui/Search'
 
-import { Header } from '../../components/header'
+import { Header } from '../components/header'
 
 export const DashboardSection = () => {
   const [selected, setSelected] = useState<number | null>(null)
@@ -44,7 +44,7 @@ export const DashboardSection = () => {
   }
 
   return (
-    <div>
+    <main>
       <div className="bg-[#141943] h-12"></div>
       <div className="relative p-8 bg-[#F6F7FF] overflow-hidden">
         <Header title="Dashboard" />
@@ -171,7 +171,7 @@ export const DashboardSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 export default DashboardSection
