@@ -286,7 +286,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px] p-4 rounded-lg border">
       <div className="text-body-lg font-semibold">What are you shipping?</div>
       <div className="flex lg:flex-row flex-col lg:items-center lg:gap-[40px] gap-[10px]">
         <Radio
@@ -317,7 +317,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       {fields.length > 1 && (
         <>
           {fields.slice(0, fields.length - 1).map((el, index) => (
-            <div key={index} className="flex border border-white rounded-d-6">
+            <div key={index} className="flex border border-white rounded-d-6 bg-[#DFDDDD]">
               <div className="shrink-0 text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">
                 Load {index + 1}
               </div>
@@ -403,7 +403,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       />
       
       )}
-      <div className="lg:grid lg:grid-cols-2 flex flex-col lg:gap-[48px] gap-[12px]">
+      <div className=" flex flex-col">
+        <div className='flex justify-between bg-[#DFDDDD] rounded-lg p-4'>
         {isCustomDimensions && (
           <div className="flex flex-col gap-d-12">
             {isBoxOrTube && (
@@ -584,8 +585,18 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
             </div>
             <Check label="Includes packaging" labelClassName="text-caption" />
           </div>
+          </div>
+        </div>
+        <div className='max-w-[250px]'>
+          <Button type="button" color="transparent" onClick={onAdd}>
+            <div className="flex gap-d-10">
+              <Plus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
+              Add Another Field
+            </div>
+          </Button>
         </div>
       </div>
+      
       <hr></hr>
       <div className="flex flex-col gap-d-16">
         <Check
@@ -657,13 +668,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       </div>
       <hr></hr>
       <div className="flex lg:flex-row flex-col gap-d-16 justify-end">
-        <Button type="button" color="transparent" onClick={onAdd}>
-          <div className="flex gap-d-10">
-            <Plus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
-            Add Another Field
-          </div>
-        </Button>
-        <Button type="submit">Confirm</Button>
+       
+        <Button type="submit">Quick Quote</Button>
       </div>
     </form>
   )

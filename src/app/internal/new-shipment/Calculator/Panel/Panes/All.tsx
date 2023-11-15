@@ -200,7 +200,7 @@ export const All = ({ methods, onSubmit }: Props) => {
       <div className="text-body-lg font-semibold">Route</div>
       <div className='flex justify-center space-x-4'>
         <div className='w-1/2'>
-            <div className="text-body-lg font-normal">From</div>
+            <div className="text-body-lg font-normal mb-2">From</div>
             <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
                 <div className="flex-1 lg:grid lg:grid-cols-2 flex flex-col gap-d-16">
                 <div>
@@ -214,15 +214,15 @@ export const All = ({ methods, onSubmit }: Props) => {
                     />
                 </div>
                 <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
-                    <Select
-                    options={fromTypes}
-                    value={findOption(fromTypes, watch('fromType'))}
-                    onChange={({ value }) => setValue('fromType', value, { shouldValidate: true })}
-                    placeholder="Tell us about your goods"
-                    error={errors.fromType?.message}
+                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
+                    <Input
+                    value={watch('fromPostalCode')}
+                    onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
+                    placeholder="Enter Postal Code"
+                    error={errors.fromPostalCode?.message}
                     />
                 </div>
+              
                
 
                 <div>
@@ -255,32 +255,15 @@ export const All = ({ methods, onSubmit }: Props) => {
                     />
                 </div>
 
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
-                    <Input
-                    value={watch('fromPostalCode')}
-                    onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
-                    placeholder="Enter Postal Code"
-                    error={errors.fromPostalCode?.message}
-                    />
-                </div>
+              
                 </div>
             </form>
         </div>
         <div className='w-1/2'>
-            <div className="text-body-lg font-normal">To</div>
+            <div className="text-body-lg font-normal mb-2">To</div>
             <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
                 <div className="flex-1 lg:grid lg:grid-cols-2 flex flex-col gap-d-16">
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
-                    <Select
-                    options={toTypes}
-                    value={findOption(toTypes, watch('toType'))}
-                    onChange={({ value }) => setValue('toType', value, { shouldValidate: true })}
-                    error={errors.toType?.message}
-                    placeholder="Tell us about your goods"
-                    />
-                </div>
+              
                 <div>
                     <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Country</div>
                     <CountrySelect
@@ -289,6 +272,15 @@ export const All = ({ methods, onSubmit }: Props) => {
                     placeholder="Select a country"
                     onChange={({ value }) => setValue('toCountry', value, { shouldValidate: true })}
                     error={errors.toCountry?.message}
+                    />
+                </div>
+                <div>
+                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
+                    <Input
+                    value={watch('toPostalCode')}
+                    onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
+                    placeholder="Enter Postal Code"
+                    error={errors.toPostalCode?.message}
                     />
                 </div>
 
@@ -321,22 +313,14 @@ export const All = ({ methods, onSubmit }: Props) => {
                     error={errors.toAddress?.message}
                     />
                 </div>
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
-                    <Input
-                    value={watch('toPostalCode')}
-                    onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
-                    placeholder="Enter Postal Code"
-                    error={errors.toPostalCode?.message}
-                    />
-                </div>
+               
                 </div>
             </form>
         </div>
       </div>
 
-      <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
-        Validate Address
+      <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] my-4 w-full">
+        Submit Addresses
       </Button>
     </>
   )
