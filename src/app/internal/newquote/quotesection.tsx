@@ -115,22 +115,34 @@ const QuoteSection = () => {
 
       <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8]">
         <div className="flex flex-col p-4">
-          <h1 className="text-2xl ">Quote Section</h1>
-          <p className="text-sm ">This is the quote section</p>
+          <h1 className="text-2xl">Pickup / Drop Off</h1>
+          <hr className='my-3'></hr>
+          <div className="col-span-2">
+              <div className="text-input font-semibold ">Pickup/Drop Off</div>
+              <Input placeholder="Enter company name" />
+          </div>
+          <hr className='my-3'></hr>
+          <p>Find a location</p>
         </div>
       </div>
 
       <div className="col-span-1 row-span-2 bg-white rounded-lg border border-[#B8BEF8]">
         <div className="flex flex-col p-4">
-          <h1 className="text-2xl ">Quote Section</h1>
+          <h1 className="text-2xl ">Delivery To</h1>
           <p className="text-sm ">This is the quote section</p>
         </div>
       </div>
 
       <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8]">
         <div className="flex flex-col p-4">
-          <h1 className="text-2xl ">Quote Section</h1>
-          <p className="text-sm ">This is the quote section</p>
+          <h1 className="text-2xl">Billing and Tax IDs</h1>
+          <hr className='my-3'></hr>
+          <div className="col-span-2">
+              <div className="text-input font-semibold ">Bill Transportation cost to*</div>
+              <Input placeholder="My account" />
+          </div>
+          <hr className='my-3'></hr>
+          <p>You can find the shipment references in the service options section.</p>
         </div>
       </div>
 
