@@ -317,7 +317,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       {fields.length > 1 && (
         <>
           {fields.slice(0, fields.length - 1).map((el, index) => (
-            <div key={index} className="flex border border-white rounded-d-6 bg-[#DFDDDD]">
+            <div key={index} className="flex border border-white rounded-d-6 bg-[#F7F6F5]">
               <div className="shrink-0 text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">
                 Load {index + 1}
               </div>
@@ -404,7 +404,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       
       )}
       <div className=" flex flex-col">
-        <div className='flex justify-between bg-[#DFDDDD] rounded-lg p-4'>
+        <div className='flex justify-between bg-[#F7F6F5] rounded-lg p-4'>
         {isCustomDimensions && (
           <div className="flex flex-col gap-d-12">
             {isBoxOrTube && (
@@ -587,7 +587,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           </div>
           </div>
         </div>
-        <div className='max-w-[250px]'>
+        <div className='max-w-[250px] mt-4'>
           <Button type="button" color="transparent" onClick={onAdd}>
             <div className="flex gap-d-10">
               <Plus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
