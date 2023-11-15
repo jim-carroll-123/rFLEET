@@ -1,15 +1,19 @@
 'use client';
 
 import React from 'react';
-import { BiSearch } from 'react-icons/bi'
+import { BiSearch } from 'react-icons/bi';
 
-import ParcelInternal from '@assets/icons/parcel-internal.svg'
-import X from '@assets/icons/x-internal.svg'
-import { BoxHands } from '@components/ui/BoxHands'
-import { Button } from '@components/ui/Button'
-import { Check } from '@components/ui/CheckInternal'
-import { CheckMark } from '@components/ui/CheckMark'
+
+
+import ParcelInternal from '@assets/icons/parcel-internal.svg';
+import X from '@assets/icons/x-internal.svg';
+import { BoxHands } from '@components/ui/BoxHands';
+import { Button } from '@components/ui/Button';
+import { Check } from '@components/ui/CheckInternal';
+import { CheckMark } from '@components/ui/CheckMark';
 import { Input } from '@components/ui/InputInternal'
+import { Radio } from '@components/ui/Radio'
+
 
 const QuoteSection = () => {
   return (
@@ -312,7 +316,7 @@ const QuoteSection = () => {
         <div className="mt-10">
           <h1 className="text-base font-semibold leading-6">What type of goods are you shipping?</h1>
           <div className="grid grid-cols-2 gap-4 mt-4">
-            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
+            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4 relative">
               <div className="flex gap-4 items-center">
                 <div className="p-2 border border-[#2F80ED] rounded-lg">
                   <ParcelInternal />
@@ -324,9 +328,11 @@ const QuoteSection = () => {
                     category
                   </div>
                 </div>
+                <div className='absolute top-3 right-2'><Radio/></div>
+                
               </div>
             </div>
-            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
+            <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4 relative">
               <div className="flex gap-4 items-center">
                 <div className="p-2 border border-[#2F80ED] rounded-lg">
                   <BoxHands />
@@ -337,6 +343,7 @@ const QuoteSection = () => {
                     Including restricted commodities and hazardous goods
                   </div>
                 </div>
+                <div className='absolute top-3 right-2'><Radio/></div>
               </div>
             </div>
           </div>
@@ -346,27 +353,34 @@ const QuoteSection = () => {
           <h1 className="text-base font-semibold leading-6">Select all that apply</h1>
           <div className="grid grid-cols-2 gap-4 mt-4">
             <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-4 items-center justify-between">
+                <div className='flex gap-4 items-center'>
                 <div className="p-2 border border-[#2F80ED] rounded-lg">
                   <ParcelInternal />
                 </div>
                 <div>
                   <div className="text-[14px] font-semibold leading-6">Hazardous Good/ Lithium Batteries</div>
                 </div>
+                </div>
+                <Check/>
               </div>
             </div>
             <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
-              <div className="flex gap-4 items-center">
-                <div className="p-2 border border-[#2F80ED] rounded-lg">
-                  <BoxHands />
+              <div className="flex gap-4 items-center justify-between">
+                <div className='flex gap-4 items-center'>
+                  <div className="p-2 border border-[#2F80ED] rounded-lg">
+                    <BoxHands />
+                  </div>
+                  <div>
+                    <div className="text-[14px] font-semibold leading-6">Temperature control</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-[14px] font-semibold leading-6">Temperature control</div>
-                </div>
+                <Check/>
               </div>
             </div>
           </div>
         </div>
+        <div className='mt-5 text-[#2F80ED] cursor-pointer'>+ Add another package</div>
       </div>
     </>
   )
