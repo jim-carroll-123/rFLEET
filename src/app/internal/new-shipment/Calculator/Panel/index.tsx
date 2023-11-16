@@ -22,13 +22,13 @@ import { GoodsCommodity } from './Panes/GoodsCommodity';
 import { LTLLoadType } from './Panes/LTLLoadType';
 import { LoadType } from './Panes/LoadType';
 import { OceanLoadType } from './Panes/OceanLoadType';
+import { PaymentTerms } from './Panes/PaymentTerms'
 import { To } from './Panes/To';
 import { ShippingPane } from './ShippingPane';
 import { ShippingSteps } from './ShippingSteps';
 import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas';
 import { parcelShapes, shippingMethods } from './options';
 import { AirLoadTypeInputs, AllInputs, AllSchema, FromInputs, GoodsCommodityInputs, LoadTypeInputs, LtlLoadTypeInputs, OceanLoadTypeInputs, ToInputs, airLoadTypeSchema, fromSchema, goodsCommoditySchema, initialField, initialLTLField, initialOceanFclField, initialOceanField, loadTypeSchema, ltlLoadTypeSchema, oceanLoadTypeSchema, toSchema } from './types-schemas-constants';
-
 
 type shippingMethodType = { label: string; value: string }
 
@@ -201,6 +201,8 @@ export const Panel = () => {
         <div>
           <ShippingPane id="">
             <All methods={AllMethods} onSubmit={onAllSubmit} />
+
+            <PaymentTerms/>
 
             {shippingMethodLoadTypes[shippingMethod.value]}
 

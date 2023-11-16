@@ -189,7 +189,7 @@ export const All = ({ methods, onSubmit }: Props) => {
         <div className="text-input font-semibold text-black lg:mb-2 mb-1.5">Expected Departure Date</div>
         <input
           type="date"
-         
+          className="text-input border p-2 rounded-lg"
         />
    
       </div>
