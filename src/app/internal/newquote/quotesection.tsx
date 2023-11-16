@@ -178,11 +178,11 @@ const QuoteSection = () => {
               <div className="text-input font-medium leading-6">Choose Address</div>
               <Input placeholder="Choose Address" />
             </div>
-            <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4 py-8 gap-2 flex flex-col justify-between" >
-              <div>Rashid Sharif</div>
-              <div>123 Main Street</div>
-              <div>San Francisco, CA 94105</div>
-              <div>United States</div>
+            <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4 py-8 gap-2" >
+              <div className='p-2'>Rashid Sharif</div>
+              <div className='p-2 text-[#4B4949]'>123 Main Street</div>
+              <div className='p-2 text-[#4B4949]'>San Francisco, CA 94105</div>
+              <div className='p-2 text-[#4B4949]'>United States</div>
             </div>
            
           </div>
