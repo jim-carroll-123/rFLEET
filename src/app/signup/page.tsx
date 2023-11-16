@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { redirect, useRouter, useSearchParams } from 'next/navigation'
 
 import * as yup from 'yup'
 
@@ -17,6 +17,8 @@ import FormMessages from '@components/ui/FormMessages'
 import { Input } from '@components/ui/Input'
 import { Option, Select, findOption } from '@components/ui/Select'
 import { Title } from '@components/ui/Typography'
+
+import { useUserContext } from '../../providers/UserProvider'
 
 const profileTypes = [
   {
@@ -57,6 +59,8 @@ export const signupSchema = yup.object({
 export type signupInputs = yup.InferType<typeof signupSchema>
 
 export default function Index() {
+  const { user } = useUserContext()
+  if (user) redirect('/')
   const searchParams = useSearchParams()
   const router = useRouter()
 

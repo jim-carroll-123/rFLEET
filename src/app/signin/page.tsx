@@ -3,7 +3,7 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { redirect, useRouter } from 'next/navigation'
 
 import * as yup from 'yup'
 
@@ -18,6 +18,8 @@ import FormMessages from '@components/ui/FormMessages'
 import { Input } from '@components/ui/Input'
 import { Title } from '@components/ui/Typography'
 
+import { useUserContext } from '../../providers/UserProvider'
+
 export const signinSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required()
@@ -26,6 +28,8 @@ export const signinSchema = yup.object({
 export type signinInputs = yup.InferType<typeof signinSchema>
 
 export default function Index() {
+  const { user } = useUserContext()
+  if (user) redirect('/')
   const router = useRouter()
 
   const {
