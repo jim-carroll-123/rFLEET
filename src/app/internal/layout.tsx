@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
-import Sidebar from '@components/layout/Sidebar'
+import Sidebar from './components/Sidebar'
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
   const supabase = createServerComponentClient({
@@ -22,7 +22,7 @@ export default async function Layout({ children }: { children: React.ReactNode }
   return (
     <div className="flex">
       <Sidebar />
-      {children}
+      <div className="ml-64">{children}</div>
     </div>
   )
 }

@@ -1,8 +1,6 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-
-
+import { useState } from 'react'
 
 import Link from 'next/link'
 
@@ -26,9 +24,14 @@ export const BannerSection = () => {
               options={{
                 strings: [
                   'ELEVATE YOUR LOGISTICS',
-                  'CONNECT YOUR ONLINE STORE',
-                  'GROW YOUR GLOBAL FOOTPRINT',
-                  'MANAGE YOUR TRUCKING & DELIVERY OPERATIONS'
+                  'EXPAND YOUR BUSINESS',
+                  'CONNECT ONLINE STORE',
+                  'STREAMLINE OPERATIONS',
+                  'OPTIMIZE YOUR DELIVERIES',
+                  'MANAGE TRUCK ASSETS',
+                  'MANAGE YOUR INVENTORY',
+                  'MANAGE YOUR WAREHOUSE',
+                  'GAIN SECURITY AND CONTROL'
                 ],
                 autoStart: true,
                 delay: 35,
