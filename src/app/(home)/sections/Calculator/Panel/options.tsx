@@ -1,17 +1,16 @@
-import Parcel from '@assets/icons/parcel.svg';
-import PolyMailer from '@assets/icons/polymailer.svg';
-import currunciesData from '@json/currencies.json';
-
+import Parcel from '@assets/icons/parcel.svg'
+import PolyMailer from '@assets/icons/polymailer.svg'
+import currunciesData from '@json/currencies.json'
 
 export const shippingMethods = [
   { label: 'Parcel', value: 'Parcel' },
   { label: 'LTL & Partials', value: 'LTL & Partials' },
-  { label: 'Ocean Shipping', value: 'Ocean Shipping', locked: false },
-  { label: 'Air Cargo', value: 'Air Cargo', locked: false },
+  { label: 'Ocean Shipping', value: 'Ocean Shipping', locked: true },
+  { label: 'Air Cargo', value: 'Air Cargo', locked: true },
   {
     label: 'FTL, Drayage, etc',
     value: 'FTL',
-    locked: false
+    locked: true
   }
 ]
 
