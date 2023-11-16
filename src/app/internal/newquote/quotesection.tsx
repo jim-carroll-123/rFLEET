@@ -7,12 +7,14 @@ import { BiSearch } from 'react-icons/bi';
 
 import ParcelInternal from '@assets/icons/parcel-internal.svg';
 import X from '@assets/icons/x-internal.svg';
-import { BoxHands } from '@components/ui/BoxHands';
-import { Button } from '@components/ui/Button';
-import { Check } from '@components/ui/CheckInternal';
-import { CheckMark } from '@components/ui/CheckMark';
-import { Input } from '@components/ui/InputInternal'
-import { Radio } from '@components/ui/Radio'
+import { BlueSearch } from '@components/ui/BlueSearch'
+import { BoxHands } from '@components/ui/BoxHands'
+import { Button } from '@components/ui/Button'
+import { Check } from '@components/ui/CheckInternal'
+import { CheckMark } from '@components/ui/CheckMark'
+import { DangerCircle } from '@components/ui/DangerCircle'
+import { Input } from '@components/ui/InputInternal';
+import { Radio } from '@components/ui/Radio';
 
 
 const QuoteSection = () => {
@@ -117,17 +119,20 @@ const QuoteSection = () => {
                 <div className="text-input font-medium leading-6">Load Type</div>
                 <Input placeholder="Enter company name" />
               </div>
-              <div className="col-span-2">Service Options</div>
+              <div className="col-span-2 mt-4">Service Options</div>
               <Check label="Signature Options" />
               <Check label="Broker Select" />
               <Check label="Hold at Location" />
               <Check label="Dangerous Goods" />
-              <div className="col-span-2">
+              <div className="col-span-2 flex items-center gap-4 p-0 m-0 text-[12px] text-[#4B4949] mt-2">
+                <DangerCircle />
+                <div className='flex flex-col items-center'>
                 You can find dry ice, lithium batteries and non-standard packaging in the package details section.
+                </div>
               </div>
             </div>
             <hr></hr>
-            <div className="mt-4">Additional Options</div>
+            <div className="mt-5">Additional Options</div>
 
             <div className="flex flex-col gap-3 mt-4">
               <Check label="Add references" />
@@ -152,7 +157,10 @@ const QuoteSection = () => {
               <Input placeholder="Enter company name" />
             </div>
             <hr className="my-3"></hr>
-            <p>Find a location</p>
+            <div className='flex gap-2 cursor-pointer'>
+              <BlueSearch />
+              <div className='text-[16px] text-[#2F80ED]'>Find a location</div>
+            </div>
           </div>
         </div>
 
@@ -170,12 +178,13 @@ const QuoteSection = () => {
               <div className="text-input font-medium leading-6">Choose Address</div>
               <Input placeholder="Choose Address" />
             </div>
-            <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4">
+            <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4 py-8 gap-2 flex flex-col justify-between" >
               <div>Rashid Sharif</div>
               <div>123 Main Street</div>
               <div>San Francisco, CA 94105</div>
               <div>United States</div>
             </div>
+           
           </div>
         </div>
 
@@ -194,7 +203,10 @@ const QuoteSection = () => {
               <Input placeholder="My account" />
             </div>
             <hr className="my-3"></hr>
-            <p>You can find the shipment references in the service options section.</p>
+            <div className='flex items-center gap-4 text-[12px]'>
+              <DangerCircle />
+              <p>You can find the shipment references in the service options section.</p>
+            </div>
           </div>
         </div>
 
@@ -213,7 +225,10 @@ const QuoteSection = () => {
               <Input placeholder="My account" />
             </div>
             <hr className="my-3"></hr>
-            <p>You can find the shipment references in the service options section.</p>
+            <div className='flex items-center gap-4 text-[12px]'>
+              <DangerCircle />
+              <p>You can find the shipment references in the service options section.</p>
+           </div>
           </div>
         </div>
       </div>
