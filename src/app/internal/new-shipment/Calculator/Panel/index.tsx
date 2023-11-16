@@ -1,34 +1,48 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
+import { yupResolver } from '@hookform/resolvers/yup'
 
+import { ButtonSelect } from '@components/ui/ButtonSelectInternal'
+import { TabPane } from '@components/ui/TabPane'
 
-import { yupResolver } from '@hookform/resolvers/yup';
-
-
-
-import { ButtonSelect } from '@components/ui/ButtonSelectInternal';
-import { TabPane } from '@components/ui/TabPane';
-
-
-
-import { AirLoadType } from './Panes/AirLoadType';
-import { All } from './Panes/All';
-import { FTLLoadType } from './Panes/FTLLoadType';
-import { From } from './Panes/From';
-import { GoodsCommodity } from './Panes/GoodsCommodity';
-import { LTLLoadType } from './Panes/LTLLoadType';
-import { LoadType } from './Panes/LoadType';
-import { OceanLoadType } from './Panes/OceanLoadType';
-import { To } from './Panes/To';
-import { ShippingPane } from './ShippingPane';
-import { ShippingSteps } from './ShippingSteps';
-import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas';
-import { parcelShapes, shippingMethods } from './options';
-import { AirLoadTypeInputs, AllInputs, AllSchema, FromInputs, GoodsCommodityInputs, LoadTypeInputs, LtlLoadTypeInputs, OceanLoadTypeInputs, ToInputs, airLoadTypeSchema, fromSchema, goodsCommoditySchema, initialField, initialLTLField, initialOceanFclField, initialOceanField, loadTypeSchema, ltlLoadTypeSchema, oceanLoadTypeSchema, toSchema } from './types-schemas-constants';
-
+import { AirLoadType } from './Panes/AirLoadType'
+import { All } from './Panes/All'
+import { FTLLoadType } from './Panes/FTLLoadType'
+import { From } from './Panes/From'
+import { GoodsCommodity } from './Panes/GoodsCommodity'
+import { LTLLoadType } from './Panes/LTLLoadType'
+import { LoadType } from './Panes/LoadType'
+import { OceanLoadType } from './Panes/OceanLoadType'
+import { To } from './Panes/To'
+import { ShippingPane } from './ShippingPane'
+import { ShippingSteps } from './ShippingSteps'
+import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas'
+import { parcelShapes, shippingMethods } from './options'
+import {
+  AirLoadTypeInputs,
+  AllInputs,
+  AllSchema,
+  FromInputs,
+  GoodsCommodityInputs,
+  LoadTypeInputs,
+  LtlLoadTypeInputs,
+  OceanLoadTypeInputs,
+  ToInputs,
+  airLoadTypeSchema,
+  fromSchema,
+  goodsCommoditySchema,
+  initialField,
+  initialLTLField,
+  initialOceanFclField,
+  initialOceanField,
+  loadTypeSchema,
+  ltlLoadTypeSchema,
+  oceanLoadTypeSchema,
+  toSchema
+} from './types-schemas-constants'
 
 type shippingMethodType = { label: string; value: string }
 
@@ -190,7 +204,6 @@ export const Panel = () => {
   }
 
   return (
-  
     <div className="relative border bg-white rounded-lg border-solid border-[#ffffff30] lg:p-[24px]">
       <ButtonSelect
         options={shippingMethods}
@@ -209,10 +222,9 @@ export const Panel = () => {
             <GoodsCommodity methods={goodsCommodityFormMethods} onSubmit={onGoodsCommodityFormSubmit} />
           </ShippingPane>
         </div>
-        
+
         <ShippingSteps shippingStepId={shippingStepId} data={data} />
       </TabPane>
     </div>
-   
   )
 }

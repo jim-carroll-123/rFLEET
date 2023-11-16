@@ -1,4 +1,4 @@
-import ParcelInternal from '@assets/icons/parcel-internal.svg';
+import ParcelInternal from '@assets/icons/parcel-internal.svg'
 import Parcel from '@assets/icons/parcel.svg'
 import PolyMailerInternal from '@assets/icons/polymailer-internal.svg'
 import PolyMailer from '@assets/icons/polymailer.svg'

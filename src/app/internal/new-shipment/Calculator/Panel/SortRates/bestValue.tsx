@@ -68,9 +68,6 @@ export const addBestValueRates = (rates: RatesObject) => {
     rates.bestRates = [...rates.rateResponse.rates].sort((a, b) => a.combinedScore! - b.combinedScore!) // Using the non-null assertion (!) since we know combinedScore is set
   }
 }
-  
-  
-  
 
 // export const addBestValueRates = (rates: RatesObject) => {
 //   if (rates?.rateResponse?.rates) {

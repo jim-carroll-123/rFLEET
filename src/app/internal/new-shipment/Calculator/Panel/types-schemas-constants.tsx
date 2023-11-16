@@ -1,5 +1,4 @@
-import * as yup from 'yup';
-
+import * as yup from 'yup'
 
 export type Field = {
   carrierProvider: string

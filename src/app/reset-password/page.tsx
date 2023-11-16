@@ -14,11 +14,11 @@ import FormMessages from '@components/ui/FormMessages'
 import { Input } from '@components/ui/Input'
 import { Title } from '@components/ui/Typography'
 
-export const forgotPasswordSchema = yup.object({
-  email: yup.string().email().required()
+export const resetPasswordSchema = yup.object({
+  password: yup.string().required()
 })
 
-export type forgotPasswordInputs = yup.InferType<typeof forgotPasswordSchema>
+export type resetPasswordInputs = yup.InferType<typeof resetPasswordSchema>
 export default function Index() {
   const {
     watch,
@@ -28,9 +28,9 @@ export default function Index() {
     getValues,
     formState: { errors },
     control
-  } = useForm<forgotPasswordInputs>({
+  } = useForm<resetPasswordInputs>({
     mode: 'onChange',
-    resolver: yupResolver(forgotPasswordSchema),
+    resolver: yupResolver(resetPasswordSchema),
     defaultValues: {}
   })
 
@@ -38,39 +38,34 @@ export default function Index() {
     <main className="relative flex" style={{ background: `url(${planetEarth.src}) no-repeat center / cover` }}>
       <div className="flex flex-1 bg-[#1a194990]">
         <div className="flex-1 flex justify-center items-center">
-          <form action="/api/account/forgot-password" method="post">
+          <form action="/api/account/reset-password" method="post">
             <div className="bg-gradient-blur-dialog backdrop-blur lg:px-[80px] px-[20px] lg:pt-[80px] pt-[60px] lg:pb-[40px] pb-[30px] flex flex-col gap-d-36 max-w-[720px] w-full">
               <div>
                 <Link href="/">
                   <Title className="text-5xl font-semibold lg:mb-[80px] mb-[60px]">SHIPPING SIMPLIFIED</Title>
                 </Link>
-                <h6 className="font-semibold">RESET YOUR PASSWORD</h6>
-                <div className="text-body-small text-gray-400">
-                  Please enter the email address you&apos;d like your password reset information sent to.
-                </div>
+                <h6 className="font-semibold">UPDATE YOUR PASSWORD</h6>
+                <div className="text-body-small text-gray-400">Please enter new password.</div>
               </div>
               <div className="flex flex-col gap-d-24">
                 <Controller
-                  name="email"
+                  name="password"
                   control={control}
                   render={({ field }) => (
                     <Input
-                      label="Email"
-                      placeholder="Enter your email address"
-                      leftIcon="email"
-                      error={errors.email?.message}
+                      type="password"
+                      label="New Password"
+                      placeholder="Enter new password"
+                      leftIcon="lock"
+                      error={errors.password?.message}
                       {...field}
                       required
                     />
                   )}
                 />
-                <Button full>Request reset link</Button>
+                <Button full>Reset password</Button>
               </div>
               <FormMessages />
-
-              <Link href="/signin">
-                <div className="text-center">Back to Login</div>
-              </Link>
             </div>
           </form>
         </div>

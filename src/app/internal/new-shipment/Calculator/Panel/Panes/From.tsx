@@ -1,34 +1,27 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { useEffect, useState } from 'react'
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
+import { set } from 'mongoose'
 
+import ArrowRight from '@assets/icons/arrow-right.svg'
+import BusinessAddressInternal from '@assets/icons/business-address-internal.svg'
+import BusinessAddress from '@assets/icons/business-address.svg'
+import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg'
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
+import PortAirportInternal from '@assets/icons/port_airport-internal.svg'
+import PortAirport from '@assets/icons/port_airport.svg'
+import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg'
+import ResidentialAddress from '@assets/icons/residential-address.svg'
+import User from '@assets/icons/user.svg'
+import { Button } from '@components/ui/ButtonInternal'
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Input } from '@components/ui/InputInternal'
+import { Select, findOption } from '@components/ui/SelectInternal'
 
-import { set } from 'mongoose';
-
-
-
-import ArrowRight from '@assets/icons/arrow-right.svg';
-import BusinessAddressInternal from '@assets/icons/business-address-internal.svg';
-import BusinessAddress from '@assets/icons/business-address.svg';
-import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg';
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
-import PortAirportInternal from '@assets/icons/port_airport-internal.svg';
-import PortAirport from '@assets/icons/port_airport.svg';
-import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg';
-import ResidentialAddress from '@assets/icons/residential-address.svg';
-import User from '@assets/icons/user.svg';
-import { Button } from '@components/ui/ButtonInternal';
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/InputInternal';
-import { Select, findOption } from '@components/ui/SelectInternal';
-
-
-
-import { FromInputs } from '../types-schemas-constants';
-
+import { FromInputs } from '../types-schemas-constants'
 
 const fromTypes = [
   {

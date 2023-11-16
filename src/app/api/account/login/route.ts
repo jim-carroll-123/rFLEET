@@ -1,47 +1,29 @@
-import { connectToDatabase, isDatabaseConnected } from '@lib/db';
+import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
 
-import { apiHandler } from '@lib/api';
-import { cookies } from 'next/headers';
-import joi from 'joi';
-import { usersController } from '@controllers/users';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 
-/**
- * @swagger
- * /api/account/login:
- *   post:
- *     requestBody:
- *       description: Login
- *       content:
- *         application/json:
- *           schema:
- *              $ref: '#/components/schemas/LoginRequest'
- *     description: Login
- *     responses:
- *       200:
- *         description: Login Successful
- *         content:
- *           application/json:
- *              schema:
- *                  $ref: '#/components/schemas/LoginResponse'
- */
+export const dynamic = 'force-dynamic'
 
-module.exports = apiHandler({
-    POST: login
-});
+export async function POST(request: Request) {
+  const requestUrl = new URL(request.url)
+  const formData = await request.json()
 
-async function login(req: Request) {
-    if (!isDatabaseConnected()) await connectToDatabase();
+  const { email, password } = formData
+  const supabase = createRouteHandlerClient({ cookies })
 
-    const body = await req.json();
-    const { user, token } = await usersController.authenticate(body);
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  })
 
-    // return jwt token in http only cookie
-    cookies().set('authorization', token, { httpOnly: true });
+  if (error) {
+    return NextResponse.json(`${error.message}`, {
+      status: 400
+    })
+  }
 
-    return { response: { ...user } }
+  return NextResponse.json(`Logged in Successfully`, {
+    status: 200
+  })
 }
-
-login.schema = joi.object({
-    username: joi.string().required(),
-    password: joi.string().required()
-});

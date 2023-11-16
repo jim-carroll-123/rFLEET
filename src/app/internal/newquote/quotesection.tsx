@@ -12,10 +12,9 @@ const QuoteSection = () => {
       <div className="grid grid-cols-2 gap-6 grid-rows-6 mt-8 text-[#0C0A09]">
         <div className="col-span-1 row-span-4 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-
-            <div className='flex justify-between mb-4'>
-               <h1 className="text-[18px] font-semibold leading-6">Shipping From</h1>
-               <div className='bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center'>Required</div>
+            <div className="flex justify-between mb-4">
+              <h1 className="text-[18px] font-semibold leading-6">Shipping From</h1>
+              <div className="bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center">Required</div>
             </div>
 
             <hr></hr>
@@ -88,9 +87,9 @@ const QuoteSection = () => {
 
         <div className="col-span-1 row-span-3 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-          <div className='flex justify-between mb-4'>
-               <h1 className="text-[18px] font-semibold leading-6">Service</h1>
-               <div className='bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center'>Required</div>
+            <div className="flex justify-between mb-4">
+              <h1 className="text-[18px] font-semibold leading-6">Service</h1>
+              <div className="bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center">Required</div>
             </div>
             <hr></hr>
 
@@ -125,9 +124,9 @@ const QuoteSection = () => {
 
         <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-           <div className='flex justify-between'>
-               <h1 className="text-[18px] font-semibold leading-6">Pickup / Drop Off</h1>
-               <div className='bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center'>Required</div>
+            <div className="flex justify-between">
+              <h1 className="text-[18px] font-semibold leading-6">Pickup / Drop Off</h1>
+              <div className="bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center">Required</div>
             </div>
             <hr className="my-3"></hr>
             <div className="col-span-2">
@@ -141,9 +140,9 @@ const QuoteSection = () => {
 
         <div className="col-span-1 row-span-2 bg-white rounded-lg border border-[#B8BEF8] flex flex-col shadow-md">
           <div className="p-4 flex flex-col h-full">
-          <div className='flex justify-between'>
-               <h1 className="text-[18px] font-semibold leading-6">Deliver to</h1>
-               <div className='bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center'>Required</div>
+            <div className="flex justify-between">
+              <h1 className="text-[18px] font-semibold leading-6">Deliver to</h1>
+              <div className="bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center">Required</div>
             </div>
             <hr className="my-3"></hr>
             <div className="col-span-2">
@@ -161,10 +160,11 @@ const QuoteSection = () => {
 
         <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <div className='flex justify-between'>
-               <h1 className="text-[18px] font-semibold leading-6">Billing and Tax IDs</h1>
-               <div className='bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center'>Required</div>
-            </div>            <hr className="my-3"></hr>
+            <div className="flex justify-between">
+              <h1 className="text-[18px] font-semibold leading-6">Billing and Tax IDs</h1>
+              <div className="bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center">Required</div>
+            </div>{' '}
+            <hr className="my-3"></hr>
             <div className="col-span-2">
               <div className="text-input font-medium leading-6">Bill Transportation cost to*</div>
               <Input placeholder="My account" />
@@ -176,9 +176,9 @@ const QuoteSection = () => {
 
         <div className="col-span-1 row-span-1 bg-white rounded-lg border border-[#B8BEF8] shadow-md">
           <div className="flex flex-col p-4">
-            <div className='flex justify-between'>
-               <h1 className="text-[18px] font-semibold leading-6">Customs Clearance</h1>
-               <div className='bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center'>Required</div>
+            <div className="flex justify-between">
+              <h1 className="text-[18px] font-semibold leading-6">Customs Clearance</h1>
+              <div className="bg-[#141943] text-white text-[12px] rounded-md px-2 flex items-center">Required</div>
             </div>
             <hr className="my-3"></hr>
             <div className="col-span-2">
@@ -209,8 +209,7 @@ const QuoteSection = () => {
         <hr className="my-3"></hr>
 
         <div className="flex-grow bg-[rgb(247,246,245)] rounded-lg mt-4 p-4">
-          <div className='flex gap-6'>
-
+          <div className="flex gap-6">
             <div>
               <div className="text-caption font-bold">No of packages</div>
               <Input type="text" placeholder="1" />
@@ -239,14 +238,12 @@ const QuoteSection = () => {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
 
         <h1 className="text-base font-semibold leading-6 my-5">Commodity</h1>
 
-        <div className='grid grid-cols-5 gap-3'>
-
+        <div className="grid grid-cols-5 gap-3">
           <div className="col-span-2">
             <div className="text-input font-semibold ">Commodity</div>
             <Input placeholder="Start typing..." />
@@ -267,7 +264,6 @@ const QuoteSection = () => {
             <Input placeholder="Start typing..." />
           </div>
         </div>
-        
       </div>
     </>
   )

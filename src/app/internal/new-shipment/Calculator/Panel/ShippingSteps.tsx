@@ -1,41 +1,34 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
+import { set } from 'mongoose'
 
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/ButtonInternal'
+import { Check } from '@components/ui/CheckInternal'
+import { Circle } from '@components/ui/Circle'
+import { CircleInternal } from '@components/ui/CircleInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRateInternal'
+import { LocationInternal } from '@components/ui/LocationInternal'
+import { Pencil } from '@components/ui/Pencil'
+import { PlaneInternal } from '@components/ui/PlaneInternal'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import { TruckInternal } from '@components/ui/TruckInternal'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
-import { set } from 'mongoose';
-
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/ButtonInternal';
-import { Check } from '@components/ui/CheckInternal';
-import { Circle } from '@components/ui/Circle';
-import { CircleInternal } from '@components/ui/CircleInternal';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRateInternal';
-import { LocationInternal } from '@components/ui/LocationInternal';
-import { Pencil } from '@components/ui/Pencil';
-import { PlaneInternal } from '@components/ui/PlaneInternal';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import { TruckInternal } from '@components/ui/TruckInternal';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
-
-
-
-import { addBestValueRates } from './SortRates/bestValue';
-import { addCheapestShippingAmounts } from './SortRates/cheapest';
-import { addQuickestShippingAmounts } from './SortRates/quickest';
-import { Field } from './types-schemas-constants';
-
+import { addBestValueRates } from './SortRates/bestValue'
+import { addCheapestShippingAmounts } from './SortRates/cheapest'
+import { addQuickestShippingAmounts } from './SortRates/quickest'
+import { Field } from './types-schemas-constants'
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
@@ -207,88 +200,90 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   return (
     <>
       <div className="flex lg:flex-row flex-col gap-d-16">
-       {isDisplayRate ? <div className="grow">
-          <div className="lg:grid lg:grid-cols-4 gap-d-12 flex flex-col lg:mb-[8px] mb-[6px]">
-            <ShippingStep
-              target=""
-              label="Origin"
-              className="overflow-x-hidden"
-              shippingStepId={shippingStepId}
-              setDisplayRate={setDisplayRate}
-            >
-              {data.fromType ? (
-                <div className="flex items-center gap-d-10 text-black font-bold">
-                  <div className="flex items-center shrink-0 lg:gap-[4px] gap-[3px]">
-                    {
-                      <img
-                        src={countries.find((country) => country.code === data.fromCountry)?.flag}
-                        className="w-[24px] h-[18px]"
-                      />
-                    }
+        {isDisplayRate ? (
+          <div className="grow">
+            <div className="lg:grid lg:grid-cols-4 gap-d-12 flex flex-col lg:mb-[8px] mb-[6px]">
+              <ShippingStep
+                target=""
+                label="Origin"
+                className="overflow-x-hidden"
+                shippingStepId={shippingStepId}
+                setDisplayRate={setDisplayRate}
+              >
+                {data.fromType ? (
+                  <div className="flex items-center gap-d-10 text-black font-bold">
+                    <div className="flex items-center shrink-0 lg:gap-[4px] gap-[3px]">
+                      {
+                        <img
+                          src={countries.find((country) => country.code === data.fromCountry)?.flag}
+                          className="w-[24px] h-[18px]"
+                        />
+                      }
+                    </div>
+                    <div className="text-input">{data.fromType}</div>
                   </div>
-                  <div className="text-input">{data.fromType}</div>
-                </div>
-              ) : (
-                'Where are you shipping from?'
-              )}
-            </ShippingStep>
-            <ShippingStep
-              target=""
-              label="Destination"
-              className="overflow-x-hidden"
-              shippingStepId={shippingStepId}
-              setDisplayRate={setDisplayRate}
-            >
-              {data.toType ? (
-                <div className="flex items-center gap-d-10 text-black font-bold">
-                  <div className="flex items-center shrink-0 lg:gap-[4px] gap-[3px]">
-                    {
-                      <img
-                        src={countries.find((country) => country.code === data.toCountry)?.flag}
-                        className="w-[24px] h-[18px]"
-                      />
-                    }
+                ) : (
+                  'Where are you shipping from?'
+                )}
+              </ShippingStep>
+              <ShippingStep
+                target=""
+                label="Destination"
+                className="overflow-x-hidden"
+                shippingStepId={shippingStepId}
+                setDisplayRate={setDisplayRate}
+              >
+                {data.toType ? (
+                  <div className="flex items-center gap-d-10 text-black font-bold">
+                    <div className="flex items-center shrink-0 lg:gap-[4px] gap-[3px]">
+                      {
+                        <img
+                          src={countries.find((country) => country.code === data.toCountry)?.flag}
+                          className="w-[24px] h-[18px]"
+                        />
+                      }
+                    </div>
+                    <div className="text-input">{data.toType}</div>
                   </div>
-                  <div className="text-input">{data.toType}</div>
-                </div>
-              ) : (
-                'Where are you shipping to?'
-              )}
-            </ShippingStep>
-            <ShippingStep
-              target=""
-              label="Load Type"
-              className="overflow-x-hidden"
-              shippingStepId={shippingStepId}
-              setDisplayRate={setDisplayRate}
-            >
-              {data.parcelType ? (
-                <div className="flex items-center gap-d-10 text-black font-bold">
-                  <div className="text-input">
-                    {data.parcelType === 'Enter Custom Dimensions' ? 'Custom Dimensions' : data.parcelType}
+                ) : (
+                  'Where are you shipping to?'
+                )}
+              </ShippingStep>
+              <ShippingStep
+                target=""
+                label="Load Type"
+                className="overflow-x-hidden"
+                shippingStepId={shippingStepId}
+                setDisplayRate={setDisplayRate}
+              >
+                {data.parcelType ? (
+                  <div className="flex items-center gap-d-10 text-black font-bold">
+                    <div className="text-input">
+                      {data.parcelType === 'Enter Custom Dimensions' ? 'Custom Dimensions' : data.parcelType}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                'What are you shipping?'
-              )}
-            </ShippingStep>
-            <ShippingStep
-              target=""
-              label="Goods/Commodity"
-              className="overflow-x-hidden"
-              shippingStepId={shippingStepId}
-              setDisplayRate={setDisplayRate}
-            >
-              Goods/Commodity
-            </ShippingStep>
+                ) : (
+                  'What are you shipping?'
+                )}
+              </ShippingStep>
+              <ShippingStep
+                target=""
+                label="Goods/Commodity"
+                className="overflow-x-hidden"
+                shippingStepId={shippingStepId}
+                setDisplayRate={setDisplayRate}
+              >
+                Goods/Commodity
+              </ShippingStep>
+            </div>
+            <div className="lg:grid lg:grid-cols-4 flex flex-col gap-d-12 lg:mb-[34px] mb-[26px]">
+              <Check label="Add Extra Pickups" />
+              <Check label="Add Extra Drops" />
+              <div className="lg:block hidden" />
+              <Check label="Add More Goods/Commodities" />
+            </div>
           </div>
-          <div className="lg:grid lg:grid-cols-4 flex flex-col gap-d-12 lg:mb-[34px] mb-[26px]">
-            <Check label="Add Extra Pickups" />
-            <Check label="Add Extra Drops" />
-            <div className="lg:block hidden" />
-            <Check label="Add More Goods/Commodities" />
-          </div>
-        </div> : null}
+        ) : null}
         <div className="lg:pt-[32px]">
           <Tab target="tab">
             <Button

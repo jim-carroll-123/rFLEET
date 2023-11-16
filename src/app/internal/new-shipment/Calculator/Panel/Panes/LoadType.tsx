@@ -1,32 +1,25 @@
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
+import Link from 'next/link'
 
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import Plus from '@assets/icons/plus.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import X from '@assets/icons/x-internal.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/ButtonInternal'
+import { ButtonSelect } from '@components/ui/ButtonSelectInternal'
+import { Check } from '@components/ui/CheckInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Input } from '@components/ui/InputInternal'
+import { Radio } from '@components/ui/Radio'
+import { Option, Select, findOption } from '@components/ui/SelectInternal'
+import { cn } from '@lib/utils'
 
-import Link from 'next/link';
-
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import Plus from '@assets/icons/plus.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import X from '@assets/icons/x-internal.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/ButtonInternal';
-import { ButtonSelect } from '@components/ui/ButtonSelectInternal';
-import { Check } from '@components/ui/CheckInternal';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/InputInternal';
-import { Radio } from '@components/ui/Radio';
-import { Option, Select, findOption } from '@components/ui/SelectInternal';
-import { cn } from '@lib/utils';
-
-
-
-import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options';
-import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants';
-
+import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options'
+import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
@@ -74,8 +67,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   }
 
   var carrierSizes: Option[] = []
-  if(field.carrierProvider === 'Postal Service') {
-     carrierSizes = [
+  if (field.carrierProvider === 'Postal Service') {
+    carrierSizes = [
       {
         label: `USPS®️ Lightweight Letter`,
         value: 'USPS®️ Lightweight Letter'
@@ -133,7 +126,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         value: 'USPS®️ Large Flat Rate Box'
       }
     ]
-  }else if(field.carrierProvider === 'FedEx') {
+  } else if (field.carrierProvider === 'FedEx') {
     carrierSizes = [
       {
         label: `FedEx®️ Small Box 1`,
@@ -152,7 +145,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         value: 'FedEx®️ Medium Box 2'
       }
     ]
-  }else if(field.carrierProvider === 'UPS'){
+  } else if (field.carrierProvider === 'UPS') {
     carrierSizes = [
       {
         label: `UPS®️ Letter`,
@@ -176,7 +169,6 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       }
     ]
   }
-
 
   const setFieldItem = (key: keyof Field, value: any) => {
     const newField = { ...field, [key]: value }
@@ -217,7 +209,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     UPSPM = 'UPS®️ Pak Medium',
     UPSPL = 'UPS®️ Pak Large',
     UPS10B = 'UPS®️ 10KG Box',
-    UPS25B = 'UPS®️ 25KG Box',
+    UPS25B = 'UPS®️ 25KG Box'
   }
 
   const sizeDimensions: { [key in CarrierSize]: Dimensions } = {
@@ -248,42 +240,41 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
     [CarrierSize.UPS25B]: { length: '19.6875', width: '17.6875', height: '13.375', unit: 'inch' }
   }
 
-
   const handleCarrierSizeChange = (selectedSizeValue: string) => {
     // Cast the value to CarrierSize if it is one of its keys, otherwise null
     const selectedSize = Object.values(CarrierSize).includes(selectedSizeValue as CarrierSize)
       ? (selectedSizeValue as CarrierSize)
-      : null;
-  
+      : null
+
     if (!selectedSize) {
-      console.error('Invalid carrier size selected.');
-      return;
+      console.error('Invalid carrier size selected.')
+      return
     }
-  
-    const dimensions = sizeDimensions[selectedSize];
+
+    const dimensions = sizeDimensions[selectedSize]
     if (!dimensions) {
-      console.error('Selected carrier size does not have defined dimensions.');
-      return;
+      console.error('Selected carrier size does not have defined dimensions.')
+      return
     }
-  
+
     // Use the correct field index and property names to set the values
-    const fieldIndex = fields.length - 1;
+    const fieldIndex = fields.length - 1
     setValue(`fields.${fieldIndex}.carrierSize`, selectedSize, {
-      shouldValidate: true,
-    });
+      shouldValidate: true
+    })
     setValue(`fields.${fieldIndex}.length`, dimensions.length, {
-      shouldValidate: true,
-    });
+      shouldValidate: true
+    })
     setValue(`fields.${fieldIndex}.width`, dimensions.width, {
-      shouldValidate: true,
-    });
+      shouldValidate: true
+    })
     setValue(`fields.${fieldIndex}.height`, dimensions.height, {
-      shouldValidate: true,
-    });
+      shouldValidate: true
+    })
     setValue(`fields.${fieldIndex}.dimensionUnit`, dimensions.unit, {
-      shouldValidate: true,
-    });
-  };
+      shouldValidate: true
+    })
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
@@ -351,7 +342,9 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
               onClick={() => setFieldItem('carrierProvider', 'Postal Service')}
               className={cn(
                 'flex justify-center lg:p-[20px] p-[15px] rounded-d-6 border lg:w-[200px]',
-                field.carrierProvider === 'Postal Service' ? 'bg-[#cecece] border-black' : 'bg-white-40 hover:bg-white-30',
+                field.carrierProvider === 'Postal Service'
+                  ? 'bg-[#cecece] border-black'
+                  : 'bg-white-40 hover:bg-white-30',
                 fieldErrors?.carrierProvider ? 'border-red-600' : ''
               )}
             >
@@ -395,13 +388,12 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       )}
       {field.carrierProvider && (
         <Select
-        label="Select Carrier Size"
-        options={carrierSizes}
-        value={field.carrierSize}
-        error={fieldErrors?.carrierSize}
-        onChange={({ value }) => handleCarrierSizeChange(value)}
-      />
-      
+          label="Select Carrier Size"
+          options={carrierSizes}
+          value={field.carrierSize}
+          error={fieldErrors?.carrierSize}
+          onChange={({ value }) => handleCarrierSizeChange(value)}
+        />
       )}
       <div className="lg:grid lg:grid-cols-2 flex flex-col lg:gap-[48px] gap-[12px]">
         {isCustomDimensions && (
@@ -413,17 +405,17 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                   <div className="flex gap-d-16">
                     <Input
                       type="text"
-                      placeholder='L'
+                      placeholder="L"
                       value={field.length}
                       error={fieldErrors?.length}
                       onChange={(value: string) => {
                         if (value === '') {
-                          setFieldItem('length', '');
-                          return;
+                          setFieldItem('length', '')
+                          return
                         }
-                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
                         if (value === '' || isValidNumber) {
-                          setFieldItem('length', value === '' ? '' : value);
+                          setFieldItem('length', value === '' ? '' : value)
                         }
                       }}
                       containerClassName="lg:w-[99px]"
@@ -431,22 +423,22 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                     <div className="flex items-center flex-1">
                       <X />
                     </div>
-                   
-                     <Input
+
+                    <Input
                       type="text"
-                      placeholder='W'
+                      placeholder="W"
                       value={field.width}
                       error={fieldErrors?.width}
                       onChange={(value: string) => {
                         if (value === '') {
-                          setFieldItem('width', '');
-                          return;
+                          setFieldItem('width', '')
+                          return
                         }
 
-                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
 
                         if (value === '' || isValidNumber) {
-                          setFieldItem('width', value === '' ? '' : value);
+                          setFieldItem('width', value === '' ? '' : value)
                         }
                       }}
                       containerClassName="lg:w-[99px]"
@@ -456,20 +448,20 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
                     <div className="flex items-center flex-1">
                       <X />
                     </div>
-                   
+
                     <Input
                       type="text"
-                      placeholder='H'
+                      placeholder="H"
                       value={field.height}
                       error={fieldErrors?.height}
                       onChange={(value: string) => {
                         if (value === '') {
-                          setFieldItem('height', '');
-                          return;
+                          setFieldItem('height', '')
+                          return
                         }
-                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
                         if (value === '' || isValidNumber) {
-                          setFieldItem('height', value === '' ? '' : value);
+                          setFieldItem('height', value === '' ? '' : value)
                         }
                       }}
                       containerClassName="lg:w-[99px]"
@@ -531,23 +523,23 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
         <div className="flex lg:flex-row flex-col lg:gap-[48px] gap-[12px]">
           <div className="flex flex-col gap-d-12">
             <div className="text-caption font-bold"># of Identical Units</div>
-                <Input
-                  type="text"
-                  value={field.identicalUnitsCount.toString()}
-                  error={fieldErrors?.identicalUnitsCount}
-                  onChange={(value: string) => {
-                    if (value === '') {
-                      setFieldItem('identicalUnitsCount', '');
-                      return;
-                    }
+            <Input
+              type="text"
+              value={field.identicalUnitsCount.toString()}
+              error={fieldErrors?.identicalUnitsCount}
+              onChange={(value: string) => {
+                if (value === '') {
+                  setFieldItem('identicalUnitsCount', '')
+                  return
+                }
 
-                    const isPositiveInteger = /^[1-9]\d*$/.test(value);
+                const isPositiveInteger = /^[1-9]\d*$/.test(value)
 
-                    if (isPositiveInteger) {
-                      setFieldItem('identicalUnitsCount', parseInt(value, 10));
-                    }
-                  }}
-                />
+                if (isPositiveInteger) {
+                  setFieldItem('identicalUnitsCount', parseInt(value, 10))
+                }
+              }}
+            />
           </div>
           <div className="flex flex-col gap-d-12">
             <div className="text-caption font-bold">
@@ -556,23 +548,23 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
             </div>
             <div className="flex gap-d-16">
               <Input
-                  type="text"
-                  placeholder='Weight'
-                  value={field.weight}
-                  error={fieldErrors?.weight}
-                  onChange={(value: string) => {
-                    if (value === '') {
-                      setFieldItem('weight', '');
-                      return;
-                    }
+                type="text"
+                placeholder="Weight"
+                value={field.weight}
+                error={fieldErrors?.weight}
+                onChange={(value: string) => {
+                  if (value === '') {
+                    setFieldItem('weight', '')
+                    return
+                  }
 
-                    const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value);
+                  const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
 
-                    if (value === '' || isValidNumber) {
-                      setFieldItem('weight', value === '' ? '' : value);
-                    }
-                  }}
-                />
+                  if (value === '' || isValidNumber) {
+                    setFieldItem('weight', value === '' ? '' : value)
+                  }
+                }}
+              />
               <Select
                 placeholder=" "
                 options={weightUnits}

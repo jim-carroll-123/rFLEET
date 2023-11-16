@@ -1,6 +1,5 @@
-import { Header } from '../components/header';
-import QuoteSection from './quotesection';
-
+import { Header } from '../components/header'
+import QuoteSection from './quotesection'
 
 const NewQuoteSection = () => {
   return (

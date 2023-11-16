@@ -1,6 +1,5 @@
-import { Header } from '../components/header';
-import { CalculatorSection } from './Calculator';
-
+import { Header } from '../components/header'
+import { CalculatorSection } from './Calculator'
 
 const NewShipmentSection = () => {
   return (

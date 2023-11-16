@@ -183,155 +183,156 @@ export const All = ({ methods, onSubmit }: Props) => {
 
   return (
     <>
-    <div className="text-body-lg font-semibold">Date</div>
-    <div>
+      <div className="text-body-lg font-semibold">Date</div>
+      <div>
         <div className="text-input font-semibold text-black lg:mb-2 mb-1.5">Expected Departure Date</div>
         <input
-            type="date"
-            value={watch('fromType')}
-            onChange={(e) => setValue('fromType', e.target.value, { shouldValidate: true })}
-            placeholder="Enter date"
-            className={`border-[1px] ${errors.fromType ? 'border-red-500' : 'border-gray-300'} p-2 min-w-[300px] rounded-lg`}
+          type="date"
+          value={watch('fromType')}
+          onChange={(e) => setValue('fromType', e.target.value, { shouldValidate: true })}
+          placeholder="Enter date"
+          className={`border-[1px] ${
+            errors.fromType ? 'border-red-500' : 'border-gray-300'
+          } p-2 min-w-[300px] rounded-lg`}
         />
         {errors.fromType && <div className="text-red-500 mt-1">{errors.fromType.message}</div>}
-    </div>
-    <div className="text-body-lg font-semibold">Where are you shipping from and to?</div>
-        <hr></hr>
+      </div>
+      <div className="text-body-lg font-semibold">Where are you shipping from and to?</div>
+      <hr></hr>
       <div className="text-body-lg font-semibold">Route</div>
-      <div className='flex justify-center space-x-4'>
-        <div className='w-1/2'>
-            <div className="text-body-lg font-normal">From</div>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
-                <div className="flex-1 lg:grid lg:grid-cols-2 flex flex-col gap-d-16">
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Country</div>
-                    <CountrySelect
-                    searchable
-                    value={findOption(countryOptions, watch('fromCountry'))}
-                    placeholder="Select a country"
-                    onChange={({ value }) => setValue('fromCountry', value, { shouldValidate: true })}
-                    error={errors.fromCountry?.message}
-                    />
-                </div>
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
-                    <Select
-                    options={fromTypes}
-                    value={findOption(fromTypes, watch('fromType'))}
-                    onChange={({ value }) => setValue('fromType', value, { shouldValidate: true })}
-                    placeholder="Tell us about your goods"
-                    error={errors.fromType?.message}
-                    />
-                </div>
-               
+      <div className="flex justify-center space-x-4">
+        <div className="w-1/2">
+          <div className="text-body-lg font-normal">From</div>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
+            <div className="flex-1 lg:grid lg:grid-cols-2 flex flex-col gap-d-16">
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Country</div>
+                <CountrySelect
+                  searchable
+                  value={findOption(countryOptions, watch('fromCountry'))}
+                  placeholder="Select a country"
+                  onChange={({ value }) => setValue('fromCountry', value, { shouldValidate: true })}
+                  error={errors.fromCountry?.message}
+                />
+              </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
+                <Select
+                  options={fromTypes}
+                  value={findOption(fromTypes, watch('fromType'))}
+                  onChange={({ value }) => setValue('fromType', value, { shouldValidate: true })}
+                  placeholder="Tell us about your goods"
+                  error={errors.fromType?.message}
+                />
+              </div>
 
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
-                    <Input
-                    value={watch('fromName')}
-                    onChange={(value) => setValue('fromName', value, { shouldValidate: true })}
-                    placeholder="Enter the Name or Company"
-                    error={errors.fromName?.message}
-                    />
-                </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
+                <Input
+                  value={watch('fromName')}
+                  onChange={(value) => setValue('fromName', value, { shouldValidate: true })}
+                  placeholder="Enter the Name or Company"
+                  error={errors.fromName?.message}
+                />
+              </div>
 
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
-                    <Input
-                    value={watch('fromPhone')}
-                    onChange={(value) => setValue('fromPhone', value, { shouldValidate: true })}
-                    placeholder="Enter the Phone Number"
-                    error={errors.fromPhone?.message}
-                    />
-                </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
+                <Input
+                  value={watch('fromPhone')}
+                  onChange={(value) => setValue('fromPhone', value, { shouldValidate: true })}
+                  placeholder="Enter the Phone Number"
+                  error={errors.fromPhone?.message}
+                />
+              </div>
 
-                <div className="col-span-2">
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
-                    <Input
-                    value={watch('fromAddress')}
-                    onChange={(value) => setValue('fromAddress', value, { shouldValidate: true })}
-                    placeholder="Enter Address"
-                    error={errors.fromAddress?.message}
-                    />
-                </div>
+              <div className="col-span-2">
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
+                <Input
+                  value={watch('fromAddress')}
+                  onChange={(value) => setValue('fromAddress', value, { shouldValidate: true })}
+                  placeholder="Enter Address"
+                  error={errors.fromAddress?.message}
+                />
+              </div>
 
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
-                    <Input
-                    value={watch('fromPostalCode')}
-                    onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
-                    placeholder="Enter Postal Code"
-                    error={errors.fromPostalCode?.message}
-                    />
-                </div>
-                </div>
-            </form>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
+                <Input
+                  value={watch('fromPostalCode')}
+                  onChange={(value) => setValue('fromPostalCode', value, { shouldValidate: true })}
+                  placeholder="Enter Postal Code"
+                  error={errors.fromPostalCode?.message}
+                />
+              </div>
+            </div>
+          </form>
         </div>
-        <div className='w-1/2'>
-            <div className="text-body-lg font-normal">To</div>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
-                <div className="flex-1 lg:grid lg:grid-cols-2 flex flex-col gap-d-16">
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
-                    <Select
-                    options={toTypes}
-                    value={findOption(toTypes, watch('toType'))}
-                    onChange={({ value }) => setValue('toType', value, { shouldValidate: true })}
-                    error={errors.toType?.message}
-                    placeholder="Tell us about your goods"
-                    />
-                </div>
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Country</div>
-                    <CountrySelect
-                    searchable
-                    value={findOption(countryOptions, watch('toCountry'))}
-                    placeholder="Select a country"
-                    onChange={({ value }) => setValue('toCountry', value, { shouldValidate: true })}
-                    error={errors.toCountry?.message}
-                    />
-                </div>
+        <div className="w-1/2">
+          <div className="text-body-lg font-normal">To</div>
+          <form onSubmit={handleSubmit(onSubmit)} className="flex lg:flex-row flex-col flex-1 gap-d-16">
+            <div className="flex-1 lg:grid lg:grid-cols-2 flex flex-col gap-d-16">
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Type</div>
+                <Select
+                  options={toTypes}
+                  value={findOption(toTypes, watch('toType'))}
+                  onChange={({ value }) => setValue('toType', value, { shouldValidate: true })}
+                  error={errors.toType?.message}
+                  placeholder="Tell us about your goods"
+                />
+              </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Country</div>
+                <CountrySelect
+                  searchable
+                  value={findOption(countryOptions, watch('toCountry'))}
+                  placeholder="Select a country"
+                  onChange={({ value }) => setValue('toCountry', value, { shouldValidate: true })}
+                  error={errors.toCountry?.message}
+                />
+              </div>
 
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
-                    <Input
-                    value={watch('toName')}
-                    onChange={(value) => setValue('toName', value, { shouldValidate: true })}
-                    placeholder="Enter the Name or Company"
-                    error={errors.toName?.message}
-                    />
-                </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
+                <Input
+                  value={watch('toName')}
+                  onChange={(value) => setValue('toName', value, { shouldValidate: true })}
+                  placeholder="Enter the Name or Company"
+                  error={errors.toName?.message}
+                />
+              </div>
 
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
-                    <Input
-                    value={watch('toPhone')}
-                    onChange={(value) => setValue('toPhone', value, { shouldValidate: true })}
-                    placeholder="Enter the Phone Number"
-                    error={errors.toPhone?.message}
-                    />
-                </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
+                <Input
+                  value={watch('toPhone')}
+                  onChange={(value) => setValue('toPhone', value, { shouldValidate: true })}
+                  placeholder="Enter the Phone Number"
+                  error={errors.toPhone?.message}
+                />
+              </div>
 
-                <div className="col-span-2">
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
-                    <Input
-                    value={watch('toAddress')}
-                    onChange={(value) => setValue('toAddress', value, { shouldValidate: true })}
-                    placeholder="Enter the Street Address"
-                    error={errors.toAddress?.message}
-                    />
-                </div>
-                <div>
-                    <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
-                    <Input
-                    value={watch('toPostalCode')}
-                    onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
-                    placeholder="Enter Postal Code"
-                    error={errors.toPostalCode?.message}
-                    />
-                </div>
-                </div>
-            </form>
+              <div className="col-span-2">
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
+                <Input
+                  value={watch('toAddress')}
+                  onChange={(value) => setValue('toAddress', value, { shouldValidate: true })}
+                  placeholder="Enter the Street Address"
+                  error={errors.toAddress?.message}
+                />
+              </div>
+              <div>
+                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Postal Code</div>
+                <Input
+                  value={watch('toPostalCode')}
+                  onChange={(value) => setValue('toPostalCode', value, { shouldValidate: true })}
+                  placeholder="Enter Postal Code"
+                  error={errors.toPostalCode?.message}
+                />
+              </div>
+            </div>
+          </form>
         </div>
       </div>
 
