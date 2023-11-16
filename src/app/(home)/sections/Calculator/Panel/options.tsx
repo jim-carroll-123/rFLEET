@@ -3,8 +3,8 @@ import PolyMailer from '@assets/icons/polymailer.svg'
 import currunciesData from '@json/currencies.json'
 
 export const shippingMethods = [
-  { label: 'Parcel', value: 'Parcel' },
-  { label: 'LTL & Partials', value: 'LTL & Partials' },
+  { label: 'Parcel', value: 'Parcel', locked: false },
+  { label: 'LTL & Partials', value: 'LTL & Partials', locked: false },
   { label: 'Ocean Shipping', value: 'Ocean Shipping', locked: true },
   { label: 'Air Cargo', value: 'Air Cargo', locked: true },
   {

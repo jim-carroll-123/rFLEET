@@ -50,10 +50,12 @@ export const Panel = () => {
   const [shippingStepId, setShippingStepId] = useState('')
   const [data, setData] = useState({})
   const { user } = useUserContext()
+
+  // unlock shipment methods tabs if user is signed in
   const protectedShippingMethods = shippingMethods.map((obj) => {
     return {
       ...obj,
-      locked: user?.id ? false : true
+      locked: user?.id ? false : obj.locked
     }
   })
   useEffect(() => {

@@ -8,6 +8,7 @@ import { redirect, useRouter } from 'next/navigation'
 import * as yup from 'yup'
 
 import { yupResolver } from '@hookform/resolvers/yup'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import Google from '@assets/icons/google.svg'
 import Linkedin from '@assets/icons/linkedin.svg'
@@ -45,6 +46,10 @@ export default function Index() {
     resolver: yupResolver(signinSchema),
     defaultValues: {}
   })
+  const supabase = createClientComponentClient()
+  const loginWithGoogle = () => {
+    supabase.auth.signInWithOAuth({ provider: 'google' })
+  }
 
   const onSubmitForm: SubmitHandler<signinInputs> = async (data) => {
     const response = await fetch('/api/account/login', {
@@ -121,13 +126,13 @@ export default function Index() {
                 <div className="grow h-[1px] bg-[linear-gradient(90deg,rgba(234,204,248,1)0%,rgba(102,84,241,1)100%)]" />
               </div>
               <div className="flex gap-d-16">
-                <Button full color="transparent">
+                <Button type="button" full color="transparent" onClick={loginWithGoogle}>
                   <div className="flex items-center gap-d-10">
                     <Google />
                     Google
                   </div>
                 </Button>
-                <Button full color="transparent">
+                <Button type="button" full color="transparent">
                   <div className="flex items-center gap-d-10">
                     <Linkedin />
                     Linkedin

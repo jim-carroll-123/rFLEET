@@ -62,7 +62,9 @@ export default function Example() {
                 <Nav onClick={() => setOpenVideoModal(true)}>ABOUT US</Nav>
               </div>
               {user?.email ? (
-                user.email
+                <form action="/api/account/logout" method="post">
+                  <Button> Logout </Button>
+                </form>
               ) : (
                 <>
                   <div className="flex">
