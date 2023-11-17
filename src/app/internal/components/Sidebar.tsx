@@ -25,7 +25,7 @@ export default function Sidebar() {
     }`
 
   return (
-    <header className="bg-[#141943] fixed top-0 h-screen w-64">
+    <header className="bg-[#141943] fixed top-0 h-screen w-[20%]">
       <div className="flex flex-col h-full overflow-y-auto">
         <div className="flex justify-between items-center p-6">
           <Logo />
