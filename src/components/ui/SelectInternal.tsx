@@ -1,10 +1,8 @@
-'use client';
+'use client'
 
-import * as React from 'react';
-import { useState } from 'react';
-import { onlyText } from 'react-children-utilities';
-
-
+import * as React from 'react'
+import { useState } from 'react'
+import { onlyText } from 'react-children-utilities'
 
 import { string } from 'joi'
 
@@ -116,12 +114,11 @@ export const Select = React.forwardRef(
         >
           {typeof value != 'string' && value?.icon && (
             <div>
-            {!countries ? (
-            <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.iconInternal}</div>
-            ):(
-            <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>
-            )
-            }
+              {!countries ? (
+                <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.iconInternal}</div>
+              ) : (
+                <div className="flex justify-center items-center lg:pl-[12px] pl-[9px]">{value.icon}</div>
+              )}
             </div>
           )}
           <input
@@ -151,7 +148,7 @@ export const Select = React.forwardRef(
                     <div className="font-bold lg:px-[10px] px-[6px] lg:py-[10px] py-[8px]">{option.label}</div>
                   </div>
                 ) : (
-                  <div key={index}>
+                  <>
                     {!countries ? (
                       <div
                         key={index}
@@ -196,7 +193,7 @@ export const Select = React.forwardRef(
                         <div className="lg:px-[12px] px-[9px] lg:py-[10px] py-[8px]">{option.label}</div>
                       </div>
                     )}
-                  </div>
+                  </>
                 )
               )}
             {filteredOptions.length === 0 && (

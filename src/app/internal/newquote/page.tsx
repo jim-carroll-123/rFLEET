@@ -15,3 +15,4 @@ const NewQuoteSection = () => {
   )
 }
 export default NewQuoteSection
+

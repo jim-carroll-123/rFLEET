@@ -1,18 +1,12 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
+import { yupResolver } from '@hookform/resolvers/yup'
 
-
-import { yupResolver } from '@hookform/resolvers/yup';
-
-
-
-import { ButtonSelect } from '@components/ui/ButtonSelectInternal';
-import { TabPane } from '@components/ui/TabPane';
-
-
+import { ButtonSelect } from '@components/ui/ButtonSelectInternal'
+import { TabPane } from '@components/ui/TabPane'
 
 import { AirLoadType } from './Panes/AirLoadType';
 import { All } from './Panes/All';
@@ -189,7 +183,6 @@ export const Panel = () => {
   }
 
   return (
-  
     <div className="relative border bg-white rounded-lg border-solid border-[#ffffff30] lg:p-[24px]">
       <ButtonSelect
         options={shippingMethods}
@@ -218,6 +211,5 @@ export const Panel = () => {
         <ShippingSteps shippingStepId={shippingStepId} data={data} />
       </TabPane>
     </div>
-   
   )
 }

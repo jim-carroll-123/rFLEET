@@ -1,28 +1,22 @@
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
+import Link from 'next/link'
 
-
-import Link from 'next/link';
-
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import Plus from '@assets/icons/plus.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import X from '@assets/icons/x-internal.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/ButtonInternal';
-import { ButtonSelect } from '@components/ui/ButtonSelectInternal';
-import { Check } from '@components/ui/CheckInternal';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Input } from '@components/ui/InputInternal';
-import { Radio } from '@components/ui/Radio';
-import { Option, Select, findOption } from '@components/ui/SelectInternal';
-import { cn } from '@lib/utils';
-
-
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import Plus from '@assets/icons/plus.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import X from '@assets/icons/x-internal.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/ButtonInternal'
+import { ButtonSelect } from '@components/ui/ButtonSelectInternal'
+import { Check } from '@components/ui/CheckInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Input } from '@components/ui/InputInternal'
+import { Radio } from '@components/ui/Radio'
+import { Option, Select, findOption } from '@components/ui/SelectInternal'
+import { cn } from '@lib/utils'
 
 import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options';
 import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants';
@@ -398,6 +392,12 @@ export const LoadType = ({ methods, onSubmit, data }: Props) => {
       )}
       {field.carrierProvider && (
         <Select
+          label="Select Carrier Size"
+          options={carrierSizes}
+          value={field.carrierSize}
+          error={fieldErrors?.carrierSize}
+          onChange={({ value }) => handleCarrierSizeChange(value)}
+        />
           label="Select Carrier Size"
           options={carrierSizes}
           value={field.carrierSize}

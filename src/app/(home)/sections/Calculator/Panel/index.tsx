@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-
-
+import { useEffect, useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { yupResolver } from '@hookform/resolvers/yup'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { ButtonSelect } from '@components/ui/ButtonSelect'
 import { TabPane } from '@components/ui/TabPane'
 
+import { useUserContext } from '../../../../../providers/UserProvider'
 import { AirLoadType } from './Panes/AirLoadType'
 import { FTLLoadType } from './Panes/FTLLoadType'
 import { From } from './Panes/From'
@@ -49,7 +49,15 @@ export const Panel = () => {
   const [shippingMethod, setShippingMethod] = useState<shippingMethodType>(shippingMethods[0])
   const [shippingStepId, setShippingStepId] = useState('')
   const [data, setData] = useState({})
+  const { user } = useUserContext()
 
+  // unlock shipment methods tabs if user is signed in
+  const protectedShippingMethods = shippingMethods.map((obj) => {
+    return {
+      ...obj,
+      locked: user?.id ? false : obj.locked
+    }
+  })
   useEffect(() => {
     console.log('Updated Data:', data)
   }, [data])
@@ -227,7 +235,7 @@ export const Panel = () => {
     <div className="relative border bg-gradient-blur-dialog border-solid border-[#ffffff30] lg:p-[24px] rounded-[20px]">
       {/* {bg-gradient-blur-dialog backdrop-blur-[12px]} */}
       <ButtonSelect
-        options={shippingMethods}
+        options={protectedShippingMethods}
         value={shippingMethod}
         onChange={setShippingMethod}
         containerClassName="lg:mb-[24px] mb-[18px]"

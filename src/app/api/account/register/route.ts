@@ -1,64 +1,41 @@
-import { connectToDatabase, isDatabaseConnected } from '@lib/db'
+import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
 
-import { CreateUser } from '@lib/types/User'
-import { apiHandler } from '@lib/api'
 import { emailController } from '@controllers/email'
-import joi from 'joi'
 import { usersController } from '@controllers/users'
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 
-/**
- * @swagger
- * /api/account/register:
- *   post:
- *     requestBody:
- *       description: Register a new User
- *       content:
- *         application/json:
- *           schema:
- *              $ref: '#/components/schemas/CreateUserRequest'
- *     description: Register new user
- *     responses:
- *       201:
- *         description: Register Successful
- *       400:
- *         description: Bad Request
- */
+export const dynamic = 'force-dynamic'
 
-module.exports = apiHandler({
-  POST: register
-})
+export async function POST(request: Request) {
+  const requestUrl = new URL(request.url)
+  const formData = await request.json()
 
-async function register(req: Request) {
-  if (!isDatabaseConnected()) await connectToDatabase()
+  const { email, password, firstName, lastName, profileType } = formData
+  const supabase = createRouteHandlerClient({ cookies })
 
-  const body = await req.json()
-  const { username, email, password, firstName, lastName, userType } = body
-  const user = await usersController.create({
-    username,
+  const { error, data } = await supabase.auth.signUp({
     email,
     password,
-    firstName,
-    lastName,
-    userType,
-    isVerified: false
-  } as CreateUser)
 
-  const link = usersController.generateEmailVerificationLink(user.id)
-
-  await emailController.sendEmail({
-    to: email,
-    subject: 'Verify Your Account',
-    text: link
+    options: {
+      emailRedirectTo: `${requestUrl.origin}/api/account/callback`,
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        profile_type: profileType
+      }
+    }
   })
 
-  return { response: { message: 'Success' }, status: 201 }
-}
+  if (error) {
+    console.log(error)
+    return NextResponse.json(`${error.message}`, {
+      status: 400
+    })
+  }
 
-register.schema = joi.object({
-  firstName: joi.string().required(),
-  lastName: joi.string().required(),
-  username: joi.string().required(),
-  email: joi.string().required(),
-  password: joi.string().min(8).required(),
-  userType: joi.number().required()
-})
+  return NextResponse.json(`Success! Check your email`, {
+    status: 201
+  })
+}

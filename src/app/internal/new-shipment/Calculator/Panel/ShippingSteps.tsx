@@ -1,35 +1,29 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
+import { set } from 'mongoose'
 
-
-import { set } from 'mongoose';
-
-
-
-import Delete from '@assets/icons/delete.svg';
-import IconDHL from '@assets/icons/dhl.svg';
-import IconFedEx from '@assets/icons/fedex.svg';
-import IconPostalService from '@assets/icons/postal-service.svg';
-import uPsLogo from '@assets/images/UPS-logo.png';
-import { Button } from '@components/ui/ButtonInternal';
-import { Check } from '@components/ui/CheckInternal';
-import { Circle } from '@components/ui/Circle';
-import { CircleInternal } from '@components/ui/CircleInternal';
-import { GradientHR } from '@components/ui/GradientHR';
-import { Line } from '@components/ui/Line';
-import { LineRate } from '@components/ui/LineRateInternal';
-import { LocationInternal } from '@components/ui/LocationInternal';
-import { Pencil } from '@components/ui/Pencil';
-import { PlaneInternal } from '@components/ui/PlaneInternal';
-import { Star } from '@components/ui/Star';
-import { Tab } from '@components/ui/TabPane';
-import { TruckInternal } from '@components/ui/TruckInternal';
-import countries from '@json/countries.json';
-import { cn } from '@lib/utils';
-
-
+import Delete from '@assets/icons/delete.svg'
+import IconDHL from '@assets/icons/dhl.svg'
+import IconFedEx from '@assets/icons/fedex.svg'
+import IconPostalService from '@assets/icons/postal-service.svg'
+import uPsLogo from '@assets/images/UPS-logo.png'
+import { Button } from '@components/ui/ButtonInternal'
+import { Check } from '@components/ui/CheckInternal'
+import { Circle } from '@components/ui/Circle'
+import { CircleInternal } from '@components/ui/CircleInternal'
+import { GradientHR } from '@components/ui/GradientHR'
+import { Line } from '@components/ui/Line'
+import { LineRate } from '@components/ui/LineRateInternal'
+import { LocationInternal } from '@components/ui/LocationInternal'
+import { Pencil } from '@components/ui/Pencil'
+import { PlaneInternal } from '@components/ui/PlaneInternal'
+import { Star } from '@components/ui/Star'
+import { Tab } from '@components/ui/TabPane'
+import { TruckInternal } from '@components/ui/TruckInternal'
+import countries from '@json/countries.json'
+import { cn } from '@lib/utils'
 
 import { addBestValueRates } from './SortRates/bestValue';
 import { addCheapestShippingAmounts } from './SortRates/cheapest';

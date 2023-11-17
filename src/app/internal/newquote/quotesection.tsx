@@ -255,6 +255,7 @@ const QuoteSection = () => {
 
         <div className="flex-grow bg-[rgb(247,246,245)] rounded-lg mt-4 p-4">
           <div className="flex gap-6">
+          <div className="flex gap-6">
             <div>
               <div className="text-caption font-bold">No of packages</div>
               <Input type="text" placeholder="1" />

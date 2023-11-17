@@ -1,11 +1,9 @@
-'use client';
+'use client'
 
-import { SubmitHandler, UseFormReturn } from 'react-hook-form';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form'
 
-
-
-import ArrowRight from '@assets/icons/arrow-right.svg';
-import BusinessAddress from '@assets/icons/business-address-internal.svg';
+import ArrowRight from '@assets/icons/arrow-right.svg'
+import BusinessAddress from '@assets/icons/business-address-internal.svg'
 import BusinessAddressInternal from '@assets/icons/business-address-internal.svg'
 import ConsolidationStationInternal from '@assets/icons/consolidation-station-internal.svg'
 import ConsolidationStation from '@assets/icons/consolidation-station.svg'
@@ -169,8 +167,6 @@ export const To = ({ methods, onSubmit }: Props) => {
             />
           </div>
 
-          
-
           <div className="col-span-3">
             <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
             <Input
@@ -189,8 +185,6 @@ export const To = ({ methods, onSubmit }: Props) => {
               error={errors.toPostalCode?.message}
             />
           </div>
-
-        
         </div>
         <div className="flex items-end lg:mt-0 mt-[20px]">
           <Button onClick={handleButtonClick} type="submit" size="sm" className="lg:py-[7px] py-[6px] lg:w-auto w-full">
