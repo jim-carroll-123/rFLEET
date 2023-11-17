@@ -21,26 +21,108 @@ async function getData(): Promise<Payment[]> {
   // Fetch data from your API here.
   return [
     {
-      id: '728ed52f',
-      load: '#123432',
-      type: 'Parcel',
-      status: 'In Transit',
-      customer: 'Amazon',
-      carrier: 'UPS',
-      shipping: 'New York, NY / Los Angeles, CA',
-      date: '09/23/2021 12:00 PM'
+      "id": "1ee86b9",
+      "load": "#427925",
+      "type": "Parcel",
+      "status": "Out for Delivery",
+      "customer": "Alibaba",
+      "carrier": "FedEx",
+      "shipping": "Los Angeles, CA / Houston, TX",
+      "date": "09/06/2021 01:14 PM"
     },
     {
-      id: '123432',
-      load: '#123432',
-      type: 'Parcel',
-      status: 'In Transit',
-      customer: 'Amazon',
-      carrier: 'UPS',
-      shipping: 'New York, NY / Los Angeles, CA',
-      date: '09/23/2021 12:00 PM'
+      "id": "1e8e137",
+      "load": "#229683",
+      "type": "Parcel",
+      "status": "In Transit",
+      "customer": "Walmart",
+      "carrier": "FedEx",
+      "shipping": "New York, NY / Houston, TX",
+      "date": "08/21/2021 07:46 PM"
+    },
+    {
+      "id": "5e3bf37",
+      "load": "#207339",
+      "type": "Freight",
+      "status": "Out for Delivery",
+      "customer": "Alibaba",
+      "carrier": "USPS",
+      "shipping": "Chicago, IL / Houston, TX",
+      "date": "03/06/2021 06:56 PM"
+    },
+    {
+      "id": "aca76e",
+      "load": "#577697",
+      "type": "Envelope",
+      "status": "In Transit",
+      "customer": "Walmart",
+      "carrier": "USPS",
+      "shipping": "Houston, TX / New York, NY",
+      "date": "07/16/2021 05:04 AM"
+    },
+    {
+      "id": "15d6d00",
+      "load": "#154580",
+      "type": "Freight",
+      "status": "In Transit",
+      "customer": "Amazon",
+      "carrier": "USPS",
+      "shipping": "New York, NY / Chicago, IL",
+      "date": "05/13/2021 08:42 PM"
+    },
+    {
+      "id": "1ee86b9",
+      "load": "#427925",
+      "type": "Parcel",
+      "status": "Out for Delivery",
+      "customer": "Alibaba",
+      "carrier": "FedEx",
+      "shipping": "Los Angeles, CA / Houston, TX",
+      "date": "09/06/2021 01:14 PM"
+    },
+    {
+      "id": "1e8e137",
+      "load": "#229683",
+      "type": "Parcel",
+      "status": "In Transit",
+      "customer": "Walmart",
+      "carrier": "FedEx",
+      "shipping": "New York, NY / Houston, TX",
+      "date": "08/21/2021 07:46 PM"
+    },
+    {
+      "id": "5e3bf37",
+      "load": "#207339",
+      "type": "Freight",
+      "status": "Out for Delivery",
+      "customer": "Alibaba",
+      "carrier": "USPS",
+      "shipping": "Chicago, IL / Houston, TX",
+      "date": "03/06/2021 06:56 PM"
+    },
+    {
+      "id": "aca76e",
+      "load": "#577697",
+      "type": "Envelope",
+      "status": "In Transit",
+      "customer": "Walmart",
+      "carrier": "USPS",
+      "shipping": "Houston, TX / New York, NY",
+      "date": "07/16/2021 05:04 AM"
+    },
+    {
+      "id": "15d6d00",
+      "load": "#154580",
+      "type": "Freight",
+      "status": "In Transit",
+      "customer": "Amazon",
+      "carrier": "USPS",
+      "shipping": "New York, NY / Chicago, IL",
+      "date": "05/13/2021 08:42 PM"
     }
+  
   ]
+  
 }
 
 const DashboardSection = () => {
