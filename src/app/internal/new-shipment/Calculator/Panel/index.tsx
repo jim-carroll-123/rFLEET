@@ -206,9 +206,13 @@ export const Panel = () => {
             <PaymentTerms/>
 
             {shippingMethodLoadTypes[shippingMethod.value]}
+            
 
             <GoodsCommodity methods={goodsCommodityFormMethods} onSubmit={onGoodsCommodityFormSubmit} />
           </ShippingPane>
+        </div>
+        <div className='absolute right-0 top-20'>
+        <ShippingSteps shippingStepId={shippingStepId} data={data} />
         </div>
         
         <ShippingSteps shippingStepId={shippingStepId} data={data} />
