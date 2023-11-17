@@ -13,11 +13,27 @@ import { Search } from '@components/ui/Search';
 
 import Footer from '../components/footer'
 import { Header } from '../components/header';
+import { Payment, columns } from './table/columns';
+import { DataTable } from './table/data-table';
 
+
+async function getData(): Promise<Payment[]> {
+  // Fetch data from your API here.
+  return [
+    {
+      id: '728ed52f',
+      amount: 100,
+      status: 'pending',
+      email: 'm@example.com'
+    }
+    // ...
+  ]
+}
 
 const DashboardSection = () => {
   const [selected, setSelected] = useState<number | null>(null)
   const [selectedType, setSelectedType] = useState<number | null>(null)
+  const [data, setData] = useState<Payment[] | null>(null)
 
   useEffect(() => {
     setSelected(0)
@@ -29,6 +45,14 @@ const DashboardSection = () => {
 
   useEffect(() => {
     setSelectedType(0)
+  }, [])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getData()
+      setData(result)
+    }
+    fetchData()
   }, [])
 
   const handleClickType = (index: number) => {
@@ -94,7 +118,7 @@ const DashboardSection = () => {
 
           <div className="text-black mt-4 flex">
             <div className="flex items-center text-black font-poppins text-b3 font-medium">Status</div>
-            <div className="flex border border-[#B8BEF8] rounded-d-6 p-[2px] justify-content-center ml-4">
+            <div className="flex border border-[#B8BEF8] rounded-lg p-[2px] justify-content-center ml-4">
               <div className="flex">
                 <div
                   className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
@@ -175,8 +199,9 @@ const DashboardSection = () => {
               </div>
             </div>
           </div>
+          <div>{data && <DataTable columns={columns} data={data} />}</div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </main>
   )
