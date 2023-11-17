@@ -214,7 +214,7 @@ const DashboardSection = () => {
               </div>
             </div>
           </div>
-          <div>{data && <DataTable columns={columns} data={data} />}</div>
+          <div className='text-black'>{data && <DataTable columns={columns} data={data} />}</div>
         </div>
         <Footer />
       </div>
