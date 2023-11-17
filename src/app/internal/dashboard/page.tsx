@@ -22,11 +22,24 @@ async function getData(): Promise<Payment[]> {
   return [
     {
       id: '728ed52f',
-      amount: 100,
-      status: 'pending',
-      email: 'm@example.com'
+      load: '#123432',
+      type: 'Parcel',
+      status: 'In Transit',
+      customer: 'Amazon',
+      carrier: 'UPS',
+      shipping: 'New York, NY / Los Angeles, CA',
+      date: '09/23/2021 12:00 PM'
+    },
+    {
+      id: '123432',
+      load: '#123432',
+      type: 'Parcel',
+      status: 'In Transit',
+      customer: 'Amazon',
+      carrier: 'UPS',
+      shipping: 'New York, NY / Los Angeles, CA',
+      date: '09/23/2021 12:00 PM'
     }
-    // ...
   ]
 }
 
@@ -110,92 +123,94 @@ const DashboardSection = () => {
           <img src={Map.src} alt="" />
         </div>
 
-        <div className="mt-10 rounded-lg bg-[#FFF] p-4">
-          <div className="text-gray border border-gray p-2 rounded-lg flex">
-            <Search />
-            <input className="ml-2 w-[100%]" placeholder="Search" />
-          </div>
+        <div className="mt-10 rounded-lg bg-[#FFF]">
+          <div className="p-4">
+            <div className="text-gray border border-gray p-2 rounded-lg flex">
+              <Search />
+              <input className="ml-2 w-[100%]" placeholder="Search" />
+            </div>
 
-          <div className="text-black mt-4 flex">
-            <div className="flex items-center text-black font-poppins text-b3 font-medium">Status</div>
-            <div className="flex border border-[#B8BEF8] rounded-lg p-[2px] justify-content-center ml-4">
-              <div className="flex">
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    0
-                  )}`}
-                  onClick={() => handleClickType(0)}
-                >
-                  <span className="px-5">All</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    1
-                  )}`}
-                  onClick={() => handleClickType(1)}
-                >
-                  <span className="px-5">Parcel</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    2
-                  )}`}
-                  onClick={() => handleClickType(2)}
-                >
-                  <span className="px-5">LTL</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    3
-                  )}`}
-                  onClick={() => handleClickType(3)}
-                >
-                  <span className="px-5">FTL</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    4
-                  )}`}
-                  onClick={() => handleClickType(4)}
-                >
-                  <span className="px-5">Drayage</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    5
-                  )}`}
-                  onClick={() => handleClickType(5)}
-                >
-                  <span className="px-5">Rail</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    6
-                  )}`}
-                  onClick={() => handleClickType(6)}
-                >
-                  <span className="px-5">Ocean</span>
-                </div>
-                <div
-                  className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
-                    7
-                  )}`}
-                  onClick={() => handleClickType(7)}
-                >
-                  <span className="px-5">Air</span>
+            <div className="text-black mt-4 flex">
+              <div className="flex items-center text-black font-poppins text-b3 font-medium">Status</div>
+              <div className="flex border border-[#B8BEF8] rounded-lg p-[2px] justify-content-center ml-4">
+                <div className="flex">
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      0
+                    )}`}
+                    onClick={() => handleClickType(0)}
+                  >
+                    <span className="px-5">All</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      1
+                    )}`}
+                    onClick={() => handleClickType(1)}
+                  >
+                    <span className="px-5">Parcel</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      2
+                    )}`}
+                    onClick={() => handleClickType(2)}
+                  >
+                    <span className="px-5">LTL</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      3
+                    )}`}
+                    onClick={() => handleClickType(3)}
+                  >
+                    <span className="px-5">FTL</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      4
+                    )}`}
+                    onClick={() => handleClickType(4)}
+                  >
+                    <span className="px-5">Drayage</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      5
+                    )}`}
+                    onClick={() => handleClickType(5)}
+                  >
+                    <span className="px-5">Rail</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      6
+                    )}`}
+                    onClick={() => handleClickType(6)}
+                  >
+                    <span className="px-5">Ocean</span>
+                  </div>
+                  <div
+                    className={`px-3 p-1 flex flex-row justify-center text-black items-center cursor-pointer rounded-md ${getBgColorType(
+                      7
+                    )}`}
+                    onClick={() => handleClickType(7)}
+                  >
+                    <span className="px-5">Air</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="w-12 border border-[#2F80ED] ml-2 rounded-lg hover:cursor-pointer">
-              <div className="h-12 flex justify-center items-center hover:cursor-pointer">
-                <Arrows />
+              <div className="w-12 border border-[#2F80ED] ml-2 rounded-lg hover:cursor-pointer">
+                <div className="h-12 flex justify-center items-center hover:cursor-pointer">
+                  <Arrows />
+                </div>
               </div>
-            </div>
-            <div className="flex items-center ml-4">Entries</div>
-            <div className=" border border-[#2F80ED] ml-4 flex rounded-lg hover:cursor-pointer">
-              <div className="flex items-center px-4">15</div>
-              <div className="flex items-center px-2">
-                <DropdownArrow />
+              <div className="flex items-center ml-4">Entries</div>
+              <div className=" border border-[#2F80ED] ml-4 flex rounded-lg hover:cursor-pointer">
+                <div className="flex items-center px-4">15</div>
+                <div className="flex items-center px-2">
+                  <DropdownArrow />
+                </div>
               </div>
             </div>
           </div>
