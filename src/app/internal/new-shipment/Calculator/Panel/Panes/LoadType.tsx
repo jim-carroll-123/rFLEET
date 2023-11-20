@@ -526,7 +526,7 @@ export const LoadType = ({ methods, onSubmit, data }: Props) => {
               )}
             </div>
           )}
-          ;
+          
           <div className="flex lg:flex-row flex-col lg:gap-[48px] gap-[12px]">
             <div className="flex flex-col gap-d-12">
               <div className="text-caption font-bold"># of Identical Units</div>
