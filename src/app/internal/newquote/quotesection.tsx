@@ -126,8 +126,8 @@ const QuoteSection = () => {
               <Check label="Dangerous Goods" />
               <div className="col-span-2 flex items-center gap-4 p-0 m-0 text-[12px] text-[#4B4949] mt-2">
                 <DangerCircle />
-                <div className='flex flex-col items-center'>
-                You can find dry ice, lithium batteries and non-standard packaging in the package details section.
+                <div className="flex flex-col items-center">
+                  You can find dry ice, lithium batteries and non-standard packaging in the package details section.
                 </div>
               </div>
             </div>
@@ -157,9 +157,9 @@ const QuoteSection = () => {
               <Input placeholder="Enter company name" />
             </div>
             <hr className="my-3"></hr>
-            <div className='flex gap-2 cursor-pointer'>
+            <div className="flex gap-2 cursor-pointer">
               <BlueSearch />
-              <div className='text-[16px] text-[#2F80ED]'>Find a location</div>
+              <div className="text-[16px] text-[#2F80ED]">Find a location</div>
             </div>
           </div>
         </div>
@@ -178,13 +178,12 @@ const QuoteSection = () => {
               <div className="text-input font-medium leading-6">Choose Address</div>
               <Input placeholder="Choose Address" />
             </div>
-            <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4 py-8 gap-2" >
-              <div className='p-2'>Rashid Sharif</div>
-              <div className='p-2 text-[#4B4949]'>123 Main Street</div>
-              <div className='p-2 text-[#4B4949]'>San Francisco, CA 94105</div>
-              <div className='p-2 text-[#4B4949]'>United States</div>
+            <div className="flex-grow bg-[#F7F6F5] rounded-lg mt-4 p-4 py-8 gap-2">
+              <div className="p-2">Rashid Sharif</div>
+              <div className="p-2 text-[#4B4949]">123 Main Street</div>
+              <div className="p-2 text-[#4B4949]">San Francisco, CA 94105</div>
+              <div className="p-2 text-[#4B4949]">United States</div>
             </div>
-           
           </div>
         </div>
 
@@ -203,7 +202,7 @@ const QuoteSection = () => {
               <Input placeholder="My account" />
             </div>
             <hr className="my-3"></hr>
-            <div className='flex items-center gap-4 text-[12px]'>
+            <div className="flex items-center gap-4 text-[12px]">
               <DangerCircle />
               <p>You can find the shipment references in the service options section.</p>
             </div>
@@ -225,36 +224,36 @@ const QuoteSection = () => {
               <Input placeholder="My account" />
             </div>
             <hr className="my-3"></hr>
-            <div className='flex items-center gap-4 text-[12px]'>
+            <div className="flex items-center gap-4 text-[12px]">
               <DangerCircle />
               <p>You can find the shipment references in the service options section.</p>
-           </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="mt-8 text-[#0C0A09] bg-white rounded-lg border border-[#B8BEF8] p-4 shadow-md">
-        <div className="flex gap-2">
-          <CheckMark />
-          <h1 className="text-base font-semibold leading-6">Package Details</h1>
+      <div className="flex gap-2">
+        <CheckMark />
+        <h1 className="text-base font-semibold leading-6">Package Details</h1>
+      </div>
+      <hr className="my-3"></hr>
+
+      <div className="grid grid-cols-2 gap-3 my-4 ">
+        <div className="col-span-1">
+          <div className="text-input font-semibold ">Bill Transportation cost to*</div>
+          <Input placeholder="My account" />
         </div>
-        <hr className="my-3"></hr>
-
-        <div className="grid grid-cols-2 gap-3 my-4 ">
-          <div className="col-span-1">
-            <div className="text-input font-semibold ">Bill Transportation cost to*</div>
-            <Input placeholder="My account" />
-          </div>
-          <div className="col-span-1 flex flex-col justify-center gap-2">
-            <Check label="Purchase a higher limit of liability" />
-            <Check label="Add non-standard packaging, dry ice or lithium batteries" />
-          </div>
+        <div className="col-span-1 flex flex-col justify-center gap-2">
+          <Check label="Purchase a higher limit of liability" />
+          <Check label="Add non-standard packaging, dry ice or lithium batteries" />
         </div>
+      </div>
 
-        <hr className="my-3"></hr>
+      <hr className="my-3"></hr>
 
-        <div className="flex-grow bg-[rgb(247,246,245)] rounded-lg mt-4 p-4">
-          <div className="flex gap-6">
+      <div className="flex-grow bg-[rgb(247,246,245)] rounded-lg mt-4 p-4">
+        <div className="flex gap-6">
           <div className="flex gap-6">
             <div>
               <div className="text-caption font-bold">No of packages</div>
@@ -286,6 +285,7 @@ const QuoteSection = () => {
             </div>
           </div>
         </div>
+      </div>
 
         <h1 className="text-base font-semibold leading-6 my-5">Commodity</h1>
 
@@ -344,8 +344,9 @@ const QuoteSection = () => {
                     category
                   </div>
                 </div>
-                <div className='absolute top-3 right-2'><Radio/></div>
-                
+                <div className="absolute top-3 right-2">
+                  <Radio />
+                </div>
               </div>
             </div>
             <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4 relative">
@@ -359,7 +360,9 @@ const QuoteSection = () => {
                     Including restricted commodities and hazardous goods
                   </div>
                 </div>
-                <div className='absolute top-3 right-2'><Radio/></div>
+                <div className="absolute top-3 right-2">
+                  <Radio />
+                </div>
               </div>
             </div>
           </div>
@@ -370,20 +373,20 @@ const QuoteSection = () => {
           <div className="grid grid-cols-2 gap-4 mt-4">
             <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
               <div className="flex gap-4 items-center justify-between">
-                <div className='flex gap-4 items-center'>
-                <div className="p-2 border border-[#2F80ED] rounded-lg">
-                  <ParcelInternal />
+                <div className="flex gap-4 items-center">
+                  <div className="p-2 border border-[#2F80ED] rounded-lg">
+                    <ParcelInternal />
+                  </div>
+                  <div>
+                    <div className="text-[14px] font-semibold leading-6">Hazardous Good/ Lithium Batteries</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-[14px] font-semibold leading-6">Hazardous Good/ Lithium Batteries</div>
-                </div>
-                </div>
-                <Check/>
+                <Check />
               </div>
             </div>
             <div className="flex flex-col gap-2 border border-[#CBCAC9] rounded-lg p-4">
               <div className="flex gap-4 items-center justify-between">
-                <div className='flex gap-4 items-center'>
+                <div className="flex gap-4 items-center">
                   <div className="p-2 border border-[#2F80ED] rounded-lg">
                     <BoxHands />
                   </div>
@@ -391,13 +394,14 @@ const QuoteSection = () => {
                     <div className="text-[14px] font-semibold leading-6">Temperature control</div>
                   </div>
                 </div>
-                <Check/>
+                <Check />
               </div>
             </div>
           </div>
         </div>
-        <div className='mt-5 text-[#2F80ED] cursor-pointer'>+ Add another package</div>
+        <div className="mt-5 text-[#2F80ED] cursor-pointer">+ Add another package</div>
       </div>
+    
     </>
   )
 }

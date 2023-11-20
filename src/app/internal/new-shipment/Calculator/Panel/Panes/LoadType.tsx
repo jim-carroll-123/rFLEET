@@ -398,12 +398,7 @@ export const LoadType = ({ methods, onSubmit, data }: Props) => {
           error={fieldErrors?.carrierSize}
           onChange={({ value }) => handleCarrierSizeChange(value)}
         />
-          label="Select Carrier Size"
-          options={carrierSizes}
-          value={field.carrierSize}
-          error={fieldErrors?.carrierSize}
-          onChange={({ value }) => handleCarrierSizeChange(value)}
-        />
+          
       )}
       <div className=" flex flex-col">
         <div className="flex justify-between bg-[#F7F6F5] rounded-lg p-4">

@@ -1,31 +1,38 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { SubmitHandler, UseFormReturn } from 'react-hook-form'
+import { useEffect, useState } from 'react';
+import { SubmitHandler, UseFormReturn } from 'react-hook-form';
 
-import { set } from 'mongoose'
 
-import ArrowRight from '@assets/icons/arrow-right.svg'
-import BusinessAddressInternal from '@assets/icons/business-address-internal.svg'
-import BusinessAddress from '@assets/icons/business-address.svg'
-import ConsolidationStationInternal from '@assets/icons/consolidation-station-internal.svg'
-import ConsolidationStation from '@assets/icons/consolidation-station.svg'
-import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg'
-import FactoryWarehouse from '@assets/icons/factory_warehouse.svg'
-import FulfillmentCenterInternal from '@assets/icons/fulfillment-center-internal.svg'
-import FulfillmentCenter from '@assets/icons/fulfillment-center.svg'
-import PortAirportInternal from '@assets/icons/port_airport-internal.svg'
-import PortAirport from '@assets/icons/port_airport.svg'
-import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg'
-import ResidentialAddress from '@assets/icons/residential-address.svg'
-import User from '@assets/icons/user.svg'
-import { Button } from '@components/ui/ButtonInternal'
-import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal'
-import { GradientHR } from '@components/ui/GradientHR'
-import { Input } from '@components/ui/InputInternal'
-import { Select, findOption } from '@components/ui/SelectInternal'
 
-import { AllInputs } from '../types-schemas-constants'
+import { set } from 'mongoose';
+
+
+
+import ArrowRight from '@assets/icons/arrow-right.svg';
+import BusinessAddressInternal from '@assets/icons/business-address-internal.svg';
+import BusinessAddress from '@assets/icons/business-address.svg';
+import ConsolidationStationInternal from '@assets/icons/consolidation-station-internal.svg';
+import ConsolidationStation from '@assets/icons/consolidation-station.svg';
+import FactoryWarehouseInternal from '@assets/icons/factory_warehouse-internal.svg';
+import FactoryWarehouse from '@assets/icons/factory_warehouse.svg';
+import FulfillmentCenterInternal from '@assets/icons/fulfillment-center-internal.svg';
+import FulfillmentCenter from '@assets/icons/fulfillment-center.svg';
+import PortAirportInternal from '@assets/icons/port_airport-internal.svg';
+import PortAirport from '@assets/icons/port_airport.svg';
+import ResidentialAddressInternal from '@assets/icons/residential-address-internal.svg';
+import ResidentialAddress from '@assets/icons/residential-address.svg';
+import User from '@assets/icons/user.svg';
+import { Button } from '@components/ui/ButtonInternal';
+import { CountrySelect, countryOptions } from '@components/ui/CountrySelectInternal';
+import { GradientHR } from '@components/ui/GradientHR';
+import { Input } from '@components/ui/InputInternal';
+import { Select, findOption } from '@components/ui/SelectInternal';
+
+
+
+import { AllInputs } from '../types-schemas-constants';
+
 
 const fromTypes = [
   {
@@ -184,8 +191,7 @@ export const All = ({ methods, onSubmit }: Props) => {
 
   return (
     <>
-      <div className="text-body-lg font-semibold">Date</div>
-      <div>
+      
       <div className="text-body-lg font-semibold">Date</div>
       <div>
         <div className="text-input font-semibold text-black lg:mb-2 mb-1.5">Expected Departure Date</div>
