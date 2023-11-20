@@ -238,15 +238,7 @@ export const All = ({ methods, onSubmit }: Props) => {
                   error={errors.fromName?.message}
                 />
               </div>
-              <div>
-                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Name / Company</div>
-                <Input
-                  value={watch('fromName')}
-                  onChange={(value) => setValue('fromName', value, { shouldValidate: true })}
-                  placeholder="Enter the Name or Company"
-                  error={errors.fromName?.message}
-                />
-              </div>
+             
 
               <div>
                 <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
@@ -257,15 +249,7 @@ export const All = ({ methods, onSubmit }: Props) => {
                   error={errors.fromPhone?.message}
                 />
               </div>
-              <div>
-                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
-                <Input
-                  value={watch('fromPhone')}
-                  onChange={(value) => setValue('fromPhone', value, { shouldValidate: true })}
-                  placeholder="Enter the Phone Number"
-                  error={errors.fromPhone?.message}
-                />
-              </div>
+           
 
               <div className="col-span-2">
                 <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
@@ -322,15 +306,7 @@ export const All = ({ methods, onSubmit }: Props) => {
                   error={errors.toPhone?.message}
                 />
               </div>
-              <div>
-                <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Phone</div>
-                <Input
-                  value={watch('toPhone')}
-                  onChange={(value) => setValue('toPhone', value, { shouldValidate: true })}
-                  placeholder="Enter the Phone Number"
-                  error={errors.toPhone?.message}
-                />
-              </div>
+             
 
               <div className="col-span-2">
                 <div className="text-input font-semibold text-black lg:mb-[8px] mb-[6px]">Address</div>
