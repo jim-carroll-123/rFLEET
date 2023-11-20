@@ -60,6 +60,7 @@ export default function Example() {
                 <Nav>SHIP NOW</Nav>
                 <Nav href="/signup">JOIN NETWORK</Nav>
                 <Nav onClick={() => setOpenVideoModal(true)}>ABOUT US</Nav>
+                <Nav href="/internal">INTERNAL</Nav>
               </div>
               {user?.email ? (
                 <form action="/api/account/logout" method="post">

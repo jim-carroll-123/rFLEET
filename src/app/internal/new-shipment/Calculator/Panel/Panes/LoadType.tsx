@@ -18,15 +18,17 @@ import { Radio } from '@components/ui/Radio'
 import { Option, Select, findOption } from '@components/ui/SelectInternal'
 import { cn } from '@lib/utils'
 
-import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options'
-import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants'
+import { dimensionUnits, parcelShapes, returnLabels, weightUnits } from '../options';
+import { Dimensions, Field, LoadTypeInputs, initialField } from '../types-schemas-constants';
+import { useShipping } from '../useShipping'
 
 interface Props {
   methods: UseFormReturn<LoadTypeInputs>
   onSubmit: SubmitHandler<LoadTypeInputs>
+  data: any
 }
 
-export const LoadType = ({ methods, onSubmit }: Props) => {
+export const LoadType = ({ methods, onSubmit, data }: Props) => {
   const {
     watch,
     setValue,
@@ -36,6 +38,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   } = methods
 
   const fieldErrors: any = errors.fields?.message
+
+  const { Searching } = useShipping(data)
 
   const isCustomDimensions = watch('parcelType') === 'Enter Custom Dimensions'
   const isBoxOrTube = watch('parcelShape') === 'Box or Tube'
@@ -277,7 +281,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px]">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col lg:gap-[24px] gap-[18px] p-4 rounded-lg border">
       <div className="text-body-lg font-semibold">What are you shipping?</div>
       <div className="flex lg:flex-row flex-col lg:items-center lg:gap-[40px] gap-[10px]">
         <Radio
@@ -308,7 +312,7 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       {fields.length > 1 && (
         <>
           {fields.slice(0, fields.length - 1).map((el, index) => (
-            <div key={index} className="flex border border-white rounded-d-6">
+            <div key={index} className="flex border border-white rounded-d-6 bg-[#F7F6F5]">
               <div className="shrink-0 text-body-lg lg:px-[30px] px-[23px] lg:py-[20px] py-[15px]">
                 Load {index + 1}
               </div>
@@ -394,190 +398,203 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
           error={fieldErrors?.carrierSize}
           onChange={({ value }) => handleCarrierSizeChange(value)}
         />
+          
       )}
-      <div className="lg:grid lg:grid-cols-2 flex flex-col lg:gap-[48px] gap-[12px]">
-        {isCustomDimensions && (
-          <div className="flex flex-col gap-d-12">
-            {isBoxOrTube && (
-              <>
-                <div className="text-caption font-bold">Dimensions</div>
-                <div className="flex lg:flex-row flex-col gap-d-16">
-                  <div className="flex gap-d-16">
-                    <Input
-                      type="text"
-                      placeholder="L"
-                      value={field.length}
-                      error={fieldErrors?.length}
-                      onChange={(value: string) => {
-                        if (value === '') {
-                          setFieldItem('length', '')
-                          return
-                        }
-                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
-                        if (value === '' || isValidNumber) {
-                          setFieldItem('length', value === '' ? '' : value)
-                        }
-                      }}
-                      containerClassName="lg:w-[99px]"
-                    />
-                    <div className="flex items-center flex-1">
-                      <X />
+      <div className=" flex flex-col">
+        <div className="flex justify-between bg-[#F7F6F5] rounded-lg p-4">
+          {isCustomDimensions && (
+            <div className="flex flex-col gap-d-12">
+              {isBoxOrTube && (
+                <>
+                  <div className="text-caption font-bold">Dimensions</div>
+                  <div className="flex lg:flex-row flex-col gap-d-16">
+                    <div className="flex gap-d-16">
+                      <Input
+                        type="text"
+                        placeholder="L"
+                        value={field.length}
+                        error={fieldErrors?.length}
+                        onChange={(value: string) => {
+                          if (value === '') {
+                            setFieldItem('length', '')
+                            return
+                          }
+                          const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
+                          if (value === '' || isValidNumber) {
+                            setFieldItem('length', value === '' ? '' : value)
+                          }
+                        }}
+                        containerClassName="lg:w-[99px]"
+                      />
+                      <div className="flex items-center flex-1">
+                        <X />
+                      </div>
+
+                      <Input
+                        type="text"
+                        placeholder="W"
+                        value={field.width}
+                        error={fieldErrors?.width}
+                        onChange={(value: string) => {
+                          if (value === '') {
+                            setFieldItem('width', '')
+                            return
+                          }
+
+                          const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
+
+                          if (value === '' || isValidNumber) {
+                            setFieldItem('width', value === '' ? '' : value)
+                          }
+                        }}
+                        containerClassName="lg:w-[99px]"
+                      />
                     </div>
+                    <div className="flex gap-d-16">
+                      <div className="flex items-center flex-1">
+                        <X />
+                      </div>
 
-                    <Input
-                      type="text"
-                      placeholder="W"
-                      value={field.width}
-                      error={fieldErrors?.width}
-                      onChange={(value: string) => {
-                        if (value === '') {
-                          setFieldItem('width', '')
-                          return
-                        }
-
-                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
-
-                        if (value === '' || isValidNumber) {
-                          setFieldItem('width', value === '' ? '' : value)
-                        }
-                      }}
-                      containerClassName="lg:w-[99px]"
-                    />
+                      <Input
+                        type="text"
+                        placeholder="H"
+                        value={field.height}
+                        error={fieldErrors?.height}
+                        onChange={(value: string) => {
+                          if (value === '') {
+                            setFieldItem('height', '')
+                            return
+                          }
+                          const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
+                          if (value === '' || isValidNumber) {
+                            setFieldItem('height', value === '' ? '' : value)
+                          }
+                        }}
+                        containerClassName="lg:w-[99px]"
+                      />
+                      <Select
+                        placeholder="Unit"
+                        options={dimensionUnits}
+                        error={fieldErrors?.dimensionUnit}
+                        value={findOption(dimensionUnits, field.dimensionUnit)}
+                        onChange={({ value }) => setFieldItem('dimensionUnit', value)}
+                        containerClassName="lg:w-[99px]"
+                      />
+                    </div>
                   </div>
-                  <div className="flex gap-d-16">
-                    <div className="flex items-center flex-1">
-                      <X />
+                  <div className="text-caption">Enter dimensions of package</div>
+                </>
+              )}
+              {!isBoxOrTube && (
+                <>
+                  <div className="flex flex-col gap-d-16">
+                    <div className="flex gap-d-16">
+                      <Input
+                        type="number"
+                        label="Length*"
+                        placeholder="Length"
+                        value={field.length}
+                        error={fieldErrors?.length}
+                        onChange={(value) => setFieldItem('length', value)}
+                        containerClassName="lg:w-[326px]"
+                        labelClassName="font-bold"
+                      />
+                      <Input
+                        type="number"
+                        label="Width*"
+                        placeholder="Width"
+                        value={field.width}
+                        error={fieldErrors?.width}
+                        onChange={(value) => setFieldItem('width', value)}
+                        containerClassName="lg:w-[326px]"
+                        labelClassName="font-bold"
+                      />
                     </div>
-
-                    <Input
-                      type="text"
-                      placeholder="H"
-                      value={field.height}
-                      error={fieldErrors?.height}
-                      onChange={(value: string) => {
-                        if (value === '') {
-                          setFieldItem('height', '')
-                          return
-                        }
-                        const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
-                        if (value === '' || isValidNumber) {
-                          setFieldItem('height', value === '' ? '' : value)
-                        }
-                      }}
-                      containerClassName="lg:w-[99px]"
-                    />
                     <Select
-                      placeholder="Unit"
+                      label="Units"
+                      placeholder="Select Unit"
                       options={dimensionUnits}
-                      error={fieldErrors?.dimensionUnit}
                       value={findOption(dimensionUnits, field.dimensionUnit)}
+                      error={fieldErrors?.dimensionUnit}
                       onChange={({ value }) => setFieldItem('dimensionUnit', value)}
-                      containerClassName="lg:w-[99px]"
-                    />
-                  </div>
-                </div>
-                <div className="text-caption">Enter dimensions of package</div>
-              </>
-            )}
-            {!isBoxOrTube && (
-              <>
-                <div className="flex flex-col gap-d-16">
-                  <div className="flex gap-d-16">
-                    <Input
-                      type="number"
-                      label="Length*"
-                      placeholder="Length"
-                      value={field.length}
-                      error={fieldErrors?.length}
-                      onChange={(value) => setFieldItem('length', value)}
-                      containerClassName="lg:w-[326px]"
-                      labelClassName="font-bold"
-                    />
-                    <Input
-                      type="number"
-                      label="Width*"
-                      placeholder="Width"
-                      value={field.width}
-                      error={fieldErrors?.width}
-                      onChange={(value) => setFieldItem('width', value)}
                       containerClassName="lg:w-[326px]"
                       labelClassName="font-bold"
                     />
                   </div>
-                  <Select
-                    label="Units"
-                    placeholder="Select Unit"
-                    options={dimensionUnits}
-                    value={findOption(dimensionUnits, field.dimensionUnit)}
-                    error={fieldErrors?.dimensionUnit}
-                    onChange={({ value }) => setFieldItem('dimensionUnit', value)}
-                    containerClassName="lg:w-[326px]"
-                    labelClassName="font-bold"
-                  />
-                </div>
-                <div className="text-caption">Enter dimensions of package</div>
-              </>
-            )}
-          </div>
-        )}
-        <div className="flex lg:flex-row flex-col lg:gap-[48px] gap-[12px]">
-          <div className="flex flex-col gap-d-12">
-            <div className="text-caption font-bold"># of Identical Units</div>
-            <Input
-              type="text"
-              value={field.identicalUnitsCount.toString()}
-              error={fieldErrors?.identicalUnitsCount}
-              onChange={(value: string) => {
-                if (value === '') {
-                  setFieldItem('identicalUnitsCount', '')
-                  return
-                }
-
-                const isPositiveInteger = /^[1-9]\d*$/.test(value)
-
-                if (isPositiveInteger) {
-                  setFieldItem('identicalUnitsCount', parseInt(value, 10))
-                }
-              }}
-            />
-          </div>
-          <div className="flex flex-col gap-d-12">
-            <div className="text-caption font-bold">
-              {isCustomDimensions ? (isBoxOrTube ? 'Package' : 'Total') : 'Package'}
-              &nbsp;Weight
+                  <div className="text-caption">Enter dimensions of package</div>
+                </>
+              )}
             </div>
-            <div className="flex gap-d-16">
+          )}
+          
+          <div className="flex lg:flex-row flex-col lg:gap-[48px] gap-[12px]">
+            <div className="flex flex-col gap-d-12">
+              <div className="text-caption font-bold"># of Identical Units</div>
               <Input
                 type="text"
-                placeholder="Weight"
-                value={field.weight}
-                error={fieldErrors?.weight}
+                value={field.identicalUnitsCount.toString()}
+                error={fieldErrors?.identicalUnitsCount}
                 onChange={(value: string) => {
                   if (value === '') {
-                    setFieldItem('weight', '')
+                    setFieldItem('identicalUnitsCount', '')
                     return
                   }
 
-                  const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
+                  const isPositiveInteger = /^[1-9]\d*$/.test(value)
 
-                  if (value === '' || isValidNumber) {
-                    setFieldItem('weight', value === '' ? '' : value)
+                  if (isPositiveInteger) {
+                    setFieldItem('identicalUnitsCount', parseInt(value, 10))
                   }
                 }}
               />
-              <Select
-                placeholder=" "
-                options={weightUnits}
-                value={findOption(weightUnits, field.weightUnit)}
-                error={fieldErrors?.weightUnit}
-                onChange={({ value }) => setFieldItem('weightUnit', value)}
-                containerClassName="lg:w-[100px]"
-              />
             </div>
-            <Check label="Includes packaging" labelClassName="text-caption" />
+            <div className="flex flex-col gap-d-12">
+              <div className="text-caption font-bold">
+                {isCustomDimensions ? (isBoxOrTube ? 'Package' : 'Total') : 'Package'}
+                &nbsp;Weight
+              </div>
+              <div className="flex gap-d-16">
+                <Input
+                  type="text"
+                  placeholder="Weight"
+                  value={field.weight}
+                  error={fieldErrors?.weight}
+                  onChange={(value: string) => {
+                    if (value === '') {
+                      setFieldItem('weight', '')
+                      return
+                    }
+
+                    const isValidNumber = /^(0|[1-9]\d*)(\.\d*)?$/.test(value)
+
+                    if (value === '' || isValidNumber) {
+                      setFieldItem('weight', value === '' ? '' : value)
+                    }
+                  }}
+                />
+                <Select
+                  placeholder=" "
+                  options={weightUnits}
+                  value={findOption(weightUnits, field.weightUnit)}
+                  error={fieldErrors?.weightUnit}
+                  onChange={({ value }) => setFieldItem('weightUnit', value)}
+                  containerClassName="lg:w-[100px]"
+                />
+              </div>
+              <Check label="Includes packaging" labelClassName="text-caption" />
+            </div>
           </div>
         </div>
+        <div className="max-w-[250px] mt-4">
+          <Button type="button" color="transparent" onClick={onAdd}>
+            <div className="flex gap-d-10">
+              <Plus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
+              Add Another Field
+            </div>
+          </Button>
+        </div>
       </div>
+
       <hr></hr>
       <div className="flex flex-col gap-d-16">
         <Check
@@ -649,13 +666,8 @@ export const LoadType = ({ methods, onSubmit }: Props) => {
       </div>
       <hr></hr>
       <div className="flex lg:flex-row flex-col gap-d-16 justify-end">
-        <Button type="button" color="transparent" onClick={onAdd}>
-          <div className="flex gap-d-10">
-            <Plus className="lg:w-[20px] w-[15px] lg:h-[20px] h-[15px]" />
-            Add Another Field
-          </div>
-        </Button>
-        <Button type="submit">Confirm</Button>
+        <Button type="submit">Save Boxes</Button>
+        {/* <Button onClick={Searching}>Search</Button> */}
       </div>
     </form>
   )

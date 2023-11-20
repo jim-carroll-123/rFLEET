@@ -8,41 +8,22 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ButtonSelect } from '@components/ui/ButtonSelectInternal'
 import { TabPane } from '@components/ui/TabPane'
 
-import { AirLoadType } from './Panes/AirLoadType'
-import { All } from './Panes/All'
-import { FTLLoadType } from './Panes/FTLLoadType'
-import { From } from './Panes/From'
-import { GoodsCommodity } from './Panes/GoodsCommodity'
-import { LTLLoadType } from './Panes/LTLLoadType'
-import { LoadType } from './Panes/LoadType'
-import { OceanLoadType } from './Panes/OceanLoadType'
-import { To } from './Panes/To'
-import { ShippingPane } from './ShippingPane'
-import { ShippingSteps } from './ShippingSteps'
-import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas'
-import { parcelShapes, shippingMethods } from './options'
-import {
-  AirLoadTypeInputs,
-  AllInputs,
-  AllSchema,
-  FromInputs,
-  GoodsCommodityInputs,
-  LoadTypeInputs,
-  LtlLoadTypeInputs,
-  OceanLoadTypeInputs,
-  ToInputs,
-  airLoadTypeSchema,
-  fromSchema,
-  goodsCommoditySchema,
-  initialField,
-  initialLTLField,
-  initialOceanFclField,
-  initialOceanField,
-  loadTypeSchema,
-  ltlLoadTypeSchema,
-  oceanLoadTypeSchema,
-  toSchema
-} from './types-schemas-constants'
+import { AirLoadType } from './Panes/AirLoadType';
+import { All } from './Panes/All';
+import { FTLLoadType } from './Panes/FTLLoadType';
+import { From } from './Panes/From';
+import { GoodsCommodity } from './Panes/GoodsCommodity';
+import { LTLLoadType } from './Panes/LTLLoadType';
+import { LoadType } from './Panes/LoadType';
+import { OceanLoadType } from './Panes/OceanLoadType';
+import { PaymentTerms } from './Panes/PaymentTerms';
+import { To } from './Panes/To';
+import { ShippingPane } from './ShippingPane';
+import { ShippingSteps } from './ShippingSteps';
+import { FtlLoadTypeInputs, initialDrayage, initialHazmatTL, initialOversizeTL, initialStandardTL } from './ftl-schemas';
+import { parcelShapes, shippingMethods } from './options';
+import { AirLoadTypeInputs, AllInputs, AllSchema, FromInputs, GoodsCommodityInputs, LoadTypeInputs, LtlLoadTypeInputs, OceanLoadTypeInputs, ToInputs, airLoadTypeSchema, fromSchema, goodsCommoditySchema, initialField, initialLTLField, initialOceanFclField, initialOceanField, loadTypeSchema, ltlLoadTypeSchema, oceanLoadTypeSchema, toSchema } from './types-schemas-constants';
+
 
 type shippingMethodType = { label: string; value: string }
 
@@ -59,7 +40,6 @@ export const Panel = () => {
     mode: 'onChange',
     resolver: yupResolver(AllSchema),
     defaultValues: {
-      fromType: '',
       fromCountry: '',
       fromAddress: '',
       fromCity: '',
@@ -67,7 +47,6 @@ export const Panel = () => {
       fromState: '',
       fromName: '',
       fromPhone: '',
-      toType: '',
       toCountry: '',
       toAddress: '',
       toCity: '',
@@ -196,7 +175,7 @@ export const Panel = () => {
   }
 
   const shippingMethodLoadTypes: any = {
-    Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} />,
+    Parcel: <LoadType methods={loadTypeFormMethods} onSubmit={onLoadTypeFormSubmit} data={data} />,
     'LTL & Partials': <LTLLoadType methods={ltlLoadTypeFormMethods} onSubmit={onLtlLoadTypeFormSubmit} />,
     'Ocean Shipping': <OceanLoadType methods={oceanLoadTypeFormMethods} onSubmit={onOceanLoadTypeFormSubmit} />,
     'Air Cargo': <AirLoadType methods={airLoadTypeFormMethods} onSubmit={onAirLoadTypeFormSubmit} />,
@@ -217,12 +196,18 @@ export const Panel = () => {
           <ShippingPane id="">
             <All methods={AllMethods} onSubmit={onAllSubmit} />
 
+            <PaymentTerms/>
+
             {shippingMethodLoadTypes[shippingMethod.value]}
+            
 
             <GoodsCommodity methods={goodsCommodityFormMethods} onSubmit={onGoodsCommodityFormSubmit} />
           </ShippingPane>
         </div>
-
+        <div className='absolute right-0 top-20'>
+        <ShippingSteps shippingStepId={shippingStepId} data={data} />
+        </div>
+        
         <ShippingSteps shippingStepId={shippingStepId} data={data} />
       </TabPane>
     </div>

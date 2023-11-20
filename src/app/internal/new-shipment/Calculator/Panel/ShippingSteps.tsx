@@ -25,10 +25,11 @@ import { TruckInternal } from '@components/ui/TruckInternal'
 import countries from '@json/countries.json'
 import { cn } from '@lib/utils'
 
-import { addBestValueRates } from './SortRates/bestValue'
-import { addCheapestShippingAmounts } from './SortRates/cheapest'
-import { addQuickestShippingAmounts } from './SortRates/quickest'
-import { Field } from './types-schemas-constants'
+import { addBestValueRates } from './SortRates/bestValue';
+import { addCheapestShippingAmounts } from './SortRates/cheapest';
+import { addQuickestShippingAmounts } from './SortRates/quickest';
+import { Field } from './types-schemas-constants';
+import { useShipping } from './useShipping'
 
 const carrierProviderIcons: any = {
   USPS: <IconPostalService />,
@@ -54,7 +55,7 @@ type Package = {
   }
 }
 
-const handleSubmit = async (
+export const handleSubmit = async (
   data: any,
   setRates: React.Dispatch<React.SetStateAction<any>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -134,7 +135,7 @@ const handleSubmit = async (
   }
 }
 
-const handleButtonClick = (
+export const handleButtonClick = (
   e: { preventDefault: () => void },
   data: any,
   setRates: React.Dispatch<React.SetStateAction<any>>,
@@ -145,19 +146,7 @@ const handleButtonClick = (
 }
 
 export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
-  const [isDisplayRate, setDisplayRate] = useState(false)
-  const [rates, setRates] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-
-  const [selected, setSelected] = useState<number | null>(null)
-
-  useEffect(() => {
-    setSelected(0)
-  }, [])
-
-  const handleClick = (index: number) => {
-    setSelected(index)
-  }
+  const { isDisplayRate, setDisplayRate, rates, isLoading, selected, handleClick, Searching } = useShipping(data)
 
   const getBgColor = (index: number) => {
     if (selected === index) {
@@ -192,10 +181,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
     selected === 0
       ? (rates as any).bestRates
       : selected === 1
-      ? (rates as any).quickestRates
-      : selected === 2
-      ? (rates as any).cheapestRates
-      : undefined
+        ? (rates as any).quickestRates
+        : selected === 2
+          ? (rates as any).cheapestRates
+          : undefined
 
   return (
     <>
@@ -286,17 +275,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
         ) : null}
         <div className="lg:pt-[32px]">
           <Tab target="tab">
-            <Button
-              size="sm"
-              glossy
-              className="lg:w-auto w-full"
-              onClick={(e) => {
-                setIsLoading(true)
-
-                handleButtonClick(e, data, setRates, setIsLoading)
-                setDisplayRate(true)
-              }}
-            >
+            <Button size="sm" glossy className="lg:w-auto w-full" onClick={Searching}>
               {isDisplayRate ? <Pencil /> : 'Search'}
             </Button>
           </Tab>
@@ -430,8 +409,8 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           {(rates as any).bestRates?.[0]?.carrierDeliveryDays === '1'
                             ? ' day'
                             : (rates as any).bestRates?.[0]?.carrierDeliveryDays.length <= 2
-                            ? ' days'
-                            : null}
+                              ? ' days'
+                              : null}
                         </span>
                         <span className="p-2">{selected === 0 ? <Circle /> : <CircleInternal />}</span>
                         <span>${((rates as any).bestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
@@ -455,8 +434,8 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           {(rates as any).quickestRates?.[0]?.carrierDeliveryDays === '1'
                             ? ' day'
                             : (rates as any).quickestRates?.[0]?.carrierDeliveryDays.length <= 2
-                            ? ' days'
-                            : null}
+                              ? ' days'
+                              : null}
                         </span>
                         <span className="p-2">{selected === 1 ? <Circle /> : <CircleInternal />}</span>
                         <span>${((rates as any).quickestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
@@ -479,8 +458,8 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                           {(rates as any).cheapestRates?.[0]?.carrierDeliveryDays === '1'
                             ? ' day'
                             : (rates as any).cheapestRates?.[0]?.carrierDeliveryDays.length <= 2
-                            ? ' days'
-                            : null}
+                              ? ' days'
+                              : null}
                         </span>
                         <span className="p-2">{selected === 2 ? <Circle /> : <CircleInternal />}</span>
                         <span>${((rates as any).cheapestRates?.[0]?.shippingAmount.amount || 0).toFixed(2)}</span>
@@ -497,10 +476,10 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                               {selected === 0
                                 ? 'Best Value'
                                 : selected === 1
-                                ? 'Quickest'
-                                : selected === 2
-                                ? 'Cheapest'
-                                : null}
+                                  ? 'Quickest'
+                                  : selected === 2
+                                    ? 'Cheapest'
+                                    : null}
                             </div>
                           )}
 
@@ -534,8 +513,8 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                               {url[index].carrierDeliveryDays === '1'
                                 ? ' day'
                                 : url[index].carrierDeliveryDays.length <= 2
-                                ? ' days'
-                                : null}
+                                  ? ' days'
+                                  : null}
                             </div>
                           </div>
                           <div className="flex flex-row">

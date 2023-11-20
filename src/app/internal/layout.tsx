@@ -22,7 +22,9 @@ export default async function Layout({ children }: { children: React.ReactNode }
   return (
     <div className="flex">
       <Sidebar />
-      <div className="ml-64">{children}</div>
+      <div className='ml-[20%] w-[80%] '>
+      {children}
+      </div>
     </div>
   )
 }

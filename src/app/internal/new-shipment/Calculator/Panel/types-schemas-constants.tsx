@@ -154,7 +154,6 @@ export const toSchema = yup.object({
 })
 
 export const AllSchema = yup.object({
-  fromType: yup.string().required(),
   fromCountry: yup.string().required(),
   fromAddress: yup.string().required(),
   fromCity: yup.string().required(),
@@ -162,7 +161,6 @@ export const AllSchema = yup.object({
   fromState: yup.string().required(),
   fromName: yup.string().required(),
   fromPhone: yup.string().required(),
-  toType: yup.string().required(),
   toCountry: yup.string().required(),
   toAddress: yup.string().required(),
   toCity: yup.string().required(),
