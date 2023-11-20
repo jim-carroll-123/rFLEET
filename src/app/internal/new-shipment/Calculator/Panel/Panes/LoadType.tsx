@@ -666,8 +666,8 @@ export const LoadType = ({ methods, onSubmit, data }: Props) => {
       </div>
       <hr></hr>
       <div className="flex lg:flex-row flex-col gap-d-16 justify-end">
-        <Button type="submit">Quick Quote</Button>
-        <Button onClick={Searching}>Search</Button>
+        <Button type="submit">Save Boxes</Button>
+        {/* <Button onClick={Searching}>Search</Button> */}
       </div>
     </form>
   )
