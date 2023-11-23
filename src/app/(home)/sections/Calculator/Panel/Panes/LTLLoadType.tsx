@@ -75,6 +75,7 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
     const validated = await trigger('fields', { shouldFocus: true })
     if (validated) {
       const fieldsValues = getValues('fields')
+      console.log('Values', fieldsValues)
       let totalCubicFeet = 0
       let estimatedDensity = 0
       let averageShipingClass = 0
@@ -85,6 +86,8 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
         estimatedDensity = totalWeight / totalCubicFeet
         averageShipingClass = findAverageShippingClass(estimatedDensity)
         setDensityResult({ averageShipingClass, estimatedDensity, totalCubicFeet })
+
+        console.log('totalCubicFeet', densityResult)
       }
     }
   }
@@ -92,11 +95,11 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
   // Function to calculate cubic feet for a field
   const calculateCubicInches = (fieldValue: any) => {
     let length, width, height
-    if (fieldValue.dimensionUnit === 'in') {
+    if (fieldValue.dimensionUnit === 'inch') {
       length = parseFloat(fieldValue.length)
       width = parseFloat(fieldValue.width)
       height = parseFloat(fieldValue.height)
-    } else if (fieldValue.dimensionUnit === 'cm') {
+    } else if (fieldValue.dimensionUnit === 'centimeter') {
       length = parseFloat(fieldValue.length) / 2.54
       width = parseFloat(fieldValue.width) / 2.54
       height = parseFloat(fieldValue.height) / 2.54
@@ -318,7 +321,7 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
             Estimated Density <div>{densityResult.estimatedDensity?.toFixed(2)}</div>
           </div>
           <div className="basis-2/5 flex flex-col gap-4">
-            Total Cubic Feet <div>{densityResult.totalCubicFeet?.toFixed(2)}</div>
+            Total Cubic Feet <div>{densityResult.totalCubicFeet?.toFixed(8)}</div>
           </div>
           <div className="basis-2/5 flex flex-col gap-4">
             Average Shipping Class <div>{densityResult.averageShipingClass}</div>

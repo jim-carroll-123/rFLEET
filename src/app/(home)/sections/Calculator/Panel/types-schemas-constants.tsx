@@ -17,6 +17,8 @@ export type Field = {
   dryIceWeight: string
   createsReturnLabel: boolean
   returnLabel: ''
+  noOfUnits: string,
+  handlingUnit: string,
   containsLithium: boolean
 }
 
@@ -129,7 +131,9 @@ export const initialField: Field = {
   dryIceWeight: '',
   createsReturnLabel: false,
   returnLabel: '',
-  containsLithium: false
+  containsLithium: false,
+  noOfUnits: '',
+  handlingUnit: '',
 }
 
 export const fromSchema = yup.object({
