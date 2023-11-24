@@ -51,6 +51,8 @@ export const Panel = () => {
   const [data, setData] = useState({})
   const { user } = useUserContext()
 
+  console.log('some data', data)
+
   // unlock shipment methods tabs if user is signed in
   const protectedShippingMethods = shippingMethods.map((obj) => {
     return {
@@ -58,9 +60,6 @@ export const Panel = () => {
       locked: user?.id ? false : obj.locked
     }
   })
-  useEffect(() => {
-    console.log('Updated Data:', data)
-  }, [data])
 
   const fromFormMethods = useForm<FromInputs>({
     mode: 'onChange',

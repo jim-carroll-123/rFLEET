@@ -67,21 +67,21 @@ const handleSubmit = async (
 ) => {
   var carrierIds = []
   if (data.fields?.[0].carrierProvider === 'UPS') {
-    carrierIds.push('se-5107720')
+    carrierIds.push('se-5107650')
   } else if (data.fields?.[0].carrierProvider === 'USPS') {
     carrierIds.push('se-5107717', 'se-5107720')
   } else if (data.fields?.[0].carrierProvider === 'FedEx') {
-    carrierIds.push('se-5107758')
+    carrierIds.push('se-5107651')
   } else {
-    carrierIds.push('se-5107717', 'se-5107720', 'se-5107758', 'se-5391275')
+    carrierIds.push('se-5107650', 'se-5107650', 'se-5107650', 'se-5107650')
   }
 
   try {
     const packages: Package[] = data.fields.flatMap((field: Field) =>
-      Array.from({ length: field.identicalUnitsCount }, () => ({
+      Array.from({ length: +field.noOfUnits }, () => ({
         weight: {
           value: field.weight,
-          unit: field.weightUnit
+          unit: 'ounce'
         },
         dimensions: {
           unit: field.dimensionUnit,
@@ -112,14 +112,16 @@ const handleSubmit = async (
           name: data.fromName ? data.fromName : 'From',
           phone: '111-111-1111',
           addressLine1: data.fromAddress,
-          stateProvince: data.fromState,
+          stateProvince: data.toState,
           cityLocality: data.fromCity,
           postalCode: data.fromPostalCode,
           countryCode: data.fromCountry
         },
         packages: packages
+
       }
     }
+
     console.log('data: ', data)
     console.log('datatosend: ', datatosend)
     const response = await fetch('/api/shipengine/rates/estimate', {
@@ -129,6 +131,7 @@ const handleSubmit = async (
       },
       body: JSON.stringify(datatosend)
     })
+
 
     const responseData = await response.json()
     console.log('the response: ', responseData)
@@ -160,6 +163,19 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
   useEffect(() => {
     setSelected(0)
   }, [])
+
+
+  const handelSendFile = async function (data: any, endpoint: string, method: string) {
+    await fetch(`${endpoint}`, {
+      method: `${method}`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    console.log(rates)
+  }
+
 
   const handleClick = (index: number) => {
     setSelected(index)
@@ -268,7 +284,7 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
                   </div>
                 </div>
               ) : (
-                'What are you shipping?'
+                  'What are you shiping?'
               )}
             </ShippingStep>
             <ShippingStep
@@ -296,7 +312,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               className="lg:w-auto w-full"
               onClick={(e) => {
                 setIsLoading(true)
-
                 handleButtonClick(e, data, setRates, setIsLoading)
                 setDisplayRate(true)
               }}
