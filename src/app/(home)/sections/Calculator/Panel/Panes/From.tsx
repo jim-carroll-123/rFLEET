@@ -75,8 +75,6 @@ export const From = ({ methods, onSubmit }: Props) => {
 
       const data = await response.json()
 
-      console.log('FromData', data)
-
       if (data[0].status === 'verified') {
         setValue('fromCountry', data[0].normalizedAddress.countryCode, { shouldValidate: true })
         setValue('fromCity', data[0].normalizedAddress.cityLocality, { shouldValidate: true })

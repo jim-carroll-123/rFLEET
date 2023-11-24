@@ -65,7 +65,6 @@ const handleSubmit = async (
   setRates: React.Dispatch<React.SetStateAction<any>>,
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  console.log('Handle data', data)
   var carrierIds = []
   if (data.fields?.[0].carrierProvider === 'UPS') {
     carrierIds.push('se-5107650')
@@ -74,11 +73,10 @@ const handleSubmit = async (
   } else if (data.fields?.[0].carrierProvider === 'FedEx') {
     carrierIds.push('se-5107651')
   } else {
-    carrierIds.push('se-5107650', 'se-5107720', 'se-5107651', 'se-5391275')
+    carrierIds.push('se-5107650', 'se-5107650', 'se-5107650', 'se-5107650')
   }
 
   try {
-    console.log('data.fields', data.fields)
     const packages: Package[] = data.fields.flatMap((field: Field) =>
       Array.from({ length: +field.noOfUnits }, () => ({
         weight: {
@@ -96,7 +94,7 @@ const handleSubmit = async (
 
     const datatosend = {
       rateOptions: {
-        carrierIds: ['se-5107650']
+        carrierIds: carrierIds
       },
       shipment: {
         validateAddress: 'no_validation',
@@ -104,7 +102,7 @@ const handleSubmit = async (
           name: data.toName ? data.toName : 'To',
           phone: '555-555-5555',
           addressLine1: data.toAddress,
-          stateProvince: data.toState ? data.toState : 'LA',
+          stateProvince: data.toState,
           cityLocality: data.toCity,
           postalCode: data.toPostalCode,
           countryCode: data.toCountry
@@ -114,7 +112,7 @@ const handleSubmit = async (
           name: data.fromName ? data.fromName : 'From',
           phone: '111-111-1111',
           addressLine1: data.fromAddress,
-          stateProvince: data.toState ? data.toState : 'LA',
+          stateProvince: data.toState,
           cityLocality: data.fromCity,
           postalCode: data.fromPostalCode,
           countryCode: data.fromCountry
@@ -175,7 +173,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
       },
       body: JSON.stringify(data)
     })
-    console.log('Updated Data mazafaca:', data)
     console.log(rates)
   }
 
@@ -315,7 +312,6 @@ export const ShippingSteps = ({ shippingStepId, data }: ShippingStepsProps) => {
               className="lg:w-auto w-full"
               onClick={(e) => {
                 setIsLoading(true)
-                // handelSendFile(data, '/endpoint', "POST")
                 handleButtonClick(e, data, setRates, setIsLoading)
                 setDisplayRate(true)
               }}

@@ -75,7 +75,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
     const validated = await trigger('fields', { shouldFocus: true })
     if (validated) {
       const fieldsValues = getValues('fields')
-      console.log('Values', fieldsValues)
       let totalCubicFeet = 0
       let estimatedDensity = 0
       let averageShipingClass = 0
@@ -86,8 +85,6 @@ export const LTLLoadType = ({ methods, onSubmit }: Props) => {
         estimatedDensity = totalWeight / totalCubicFeet
         averageShipingClass = findAverageShippingClass(estimatedDensity)
         setDensityResult({ averageShipingClass, estimatedDensity, totalCubicFeet })
-
-        console.log('totalCubicFeet', densityResult)
       }
     }
   }
