@@ -48,7 +48,7 @@ const onboardingPages: any = {
   'Vendors and Services': '/shipper-onboarding'
 }
 
-export const signupSchema = yup.object({
+const signupSchema = yup.object({
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   profileType: yup.string().required(),
@@ -56,7 +56,7 @@ export const signupSchema = yup.object({
   password: yup.string().required()
 })
 
-export type signupInputs = yup.InferType<typeof signupSchema>
+type signupInputs = yup.InferType<typeof signupSchema>
 
 export default function Index() {
   const { user } = useUserContext()

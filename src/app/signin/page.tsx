@@ -21,12 +21,12 @@ import { Title } from '@components/ui/Typography'
 
 import { useUserContext } from '../../providers/UserProvider'
 
-export const signinSchema = yup.object({
+const signinSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required()
 })
 
-export type signinInputs = yup.InferType<typeof signinSchema>
+type signinInputs = yup.InferType<typeof signinSchema>
 
 export default function Index() {
   const { user } = useUserContext()
@@ -51,6 +51,9 @@ export default function Index() {
     supabase.auth.signInWithOAuth({ provider: 'google' })
   }
 
+  const loginWithLinkedin = () => {
+    supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' })
+  }
   const onSubmitForm: SubmitHandler<signinInputs> = async (data) => {
     const response = await fetch('/api/account/login', {
       method: 'POST',
@@ -132,7 +135,7 @@ export default function Index() {
                     Google
                   </div>
                 </Button>
-                <Button type="button" full color="transparent">
+                <Button type="button" full color="transparent" onClick={loginWithLinkedin}>
                   <div className="flex items-center gap-d-10">
                     <Linkedin />
                     Linkedin

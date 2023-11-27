@@ -14,18 +14,15 @@ import FormMessages from '@components/ui/FormMessages'
 import { Input } from '@components/ui/Input'
 import { Title } from '@components/ui/Typography'
 
-export const resetPasswordSchema = yup.object({
+const resetPasswordSchema = yup.object({
   password: yup.string().required()
 })
 
-export type resetPasswordInputs = yup.InferType<typeof resetPasswordSchema>
+type resetPasswordInputs = yup.InferType<typeof resetPasswordSchema>
 export default function Index() {
   const {
-    watch,
-    setValue,
     handleSubmit,
-    trigger,
-    getValues,
+
     formState: { errors },
     control
   } = useForm<resetPasswordInputs>({
@@ -33,12 +30,20 @@ export default function Index() {
     resolver: yupResolver(resetPasswordSchema),
     defaultValues: {}
   })
-
+  const onSubmitForm: SubmitHandler<resetPasswordInputs> = async (data) => {
+    const response = await fetch('/api/account/reset-password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
   return (
     <main className="relative flex" style={{ background: `url(${planetEarth.src}) no-repeat center / cover` }}>
       <div className="flex flex-1 bg-[#1a194990]">
         <div className="flex-1 flex justify-center items-center">
-          <form action="/api/account/reset-password" method="post">
+          <form onSubmit={handleSubmit(onSubmitForm)}>
             <div className="bg-gradient-blur-dialog backdrop-blur lg:px-[80px] px-[20px] lg:pt-[80px] pt-[60px] lg:pb-[40px] pb-[30px] flex flex-col gap-d-36 max-w-[720px] w-full">
               <div>
                 <Link href="/">
